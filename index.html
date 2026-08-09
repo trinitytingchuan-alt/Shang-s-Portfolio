@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>尚文蜓 · 作品集 | Shang Wenting — Portfolio</title>
+<meta name="description" content="尚文蜓 · 产品经理 / 产品运营 · 产品设计 · 用户测试平台 · 数据驱动 · 作品集" />
+<meta name="author" content="Shang Wenting" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231a1816'/><text x='50' y='68' font-size='56' text-anchor='middle' fill='%23d97757' font-family='Georgia,serif'>蜓</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@300;400;500;600&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<button class="sidebar__toggle" aria-label="打开导航">
+  <svg width="18" height="14" viewBox="0 0 18 14" fill="none"><path d="M0 1h18M0 7h18M0 13h12" stroke="currentColor" stroke-width="1.5"/></svg>
+</button>
+
+<div class="layout">
+
+  <!-- ============================== Sidebar ============================== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar__inner">
+      <div class="sidebar__brand">
+        <div class="sidebar__logo">尚文蜓</div>
+        <div class="sidebar__role">Product Manager</div>
+        <div class="sidebar__subtitle">Portfolio · 2024 — 2026</div>
+      </div>
+
+      <nav class="sidebar__nav" aria-label="主导航">
+        <ol class="sidebar__nav-list">
+
+          <li class="sidebar__nav-item">
+            <a class="sidebar__nav-link is-active" href="#hero" data-target="hero">
+              <span class="sidebar__nav-num">1</span><span>简介 · Intro</span>
+            </a>
+          </li>
+
+          <li class="sidebar__nav-item">
+            <a class="sidebar__nav-link" href="#about" data-target="about">
+              <span class="sidebar__nav-num">2</span><span>关于我 · About</span>
+            </a>
+          </li>
+
+          <li class="sidebar__nav-item">
+            <a class="sidebar__nav-link" href="#capability" data-target="capability">
+              <span class="sidebar__nav-num">3</span><span>能力 · Capability</span>
+            </a>
+          </li>
+
+          <li class="sidebar__nav-item sidebar__nav-group" data-group="anker">
+            <a class="sidebar__nav-link" href="#stage-anker" data-target="stage-anker" data-group="anker">
+              <span class="sidebar__nav-num">4</span><span>Anker 产品设计</span>
+            </a>
+            <ol class="sidebar__nav-sub">
+              <li><a class="sidebar__nav-sub-link" href="#w-voc" data-target="w-voc" data-group="anker">VOC 自动化报告</a></li>
+              <li><a class="sidebar__nav-sub-link" href="#w-xtest" data-target="w-xtest" data-group="anker">业务原型 · 需求</a></li>
+              <li><a class="sidebar__nav-sub-link" href="#w-axure" data-target="w-axure" data-group="anker">业务原型 · Axure</a></li>
+            </ol>
+          </li>
+
+          <li class="sidebar__nav-item sidebar__nav-group" data-group="stock">
+            <a class="sidebar__nav-link" href="#stage-stock" data-target="stage-stock" data-group="stock">
+              <span class="sidebar__nav-num">5</span><span>股票产品设计</span>
+            </a>
+            <ol class="sidebar__nav-sub">
+              <li><a class="sidebar__nav-sub-link" href="#w-stock-app" data-target="w-stock-app" data-group="stock">股票 APP 功能设计</a></li>
+              <li><a class="sidebar__nav-sub-link" href="#w-stock-asset" data-target="w-stock-asset" data-group="stock">股票 APP · 资产分析</a></li>
+              <li><a class="sidebar__nav-sub-link" href="#w-stock-pi" data-target="w-stock-pi" data-group="stock">股票中台 · PI 过期</a></li>
+            </ol>
+          </li>
+
+          <li class="sidebar__nav-item sidebar__nav-group" data-group="project">
+            <a class="sidebar__nav-link" href="#stage-project" data-target="stage-project" data-group="project">
+              <span class="sidebar__nav-num">6</span><span>独立项目</span>
+            </a>
+            <ol class="sidebar__nav-sub">
+              <li><a class="sidebar__nav-sub-link" href="#w-guolian" data-target="w-guolian" data-group="project">鼎泰高科行业研究报告</a></li>
+              <li><a class="sidebar__nav-sub-link" href="#w-tableau" data-target="w-tableau" data-group="project">Tableau 业务看板</a></li>
+              <li><a class="sidebar__nav-sub-link" href="#w-lstm" data-target="w-lstm" data-group="project">LSTM 股价预测</a></li>
+              <li><a class="sidebar__nav-sub-link" href="#w-inventory" data-target="w-inventory" data-group="project">Python 进销存系统</a></li>
+            </ol>
+          </li>
+
+          <li class="sidebar__nav-item">
+            <a class="sidebar__nav-link" href="#photography" data-target="photography">
+              <span class="sidebar__nav-num">7</span><span>摄影 · Photography</span>
+            </a>
+          </li>
+
+          <li class="sidebar__nav-item">
+            <a class="sidebar__nav-link" href="#interests" data-target="interests">
+              <span class="sidebar__nav-num">8</span><span>爱好 · Interests</span>
+            </a>
+          </li>
+
+          <li class="sidebar__nav-item">
+            <a class="sidebar__nav-link" href="#honors" data-target="honors">
+              <span class="sidebar__nav-num">9</span><span>荣誉 · Honors</span>
+            </a>
+          </li>
+
+          <li class="sidebar__nav-item">
+            <a class="sidebar__nav-link" href="#contact" data-target="contact">
+              <span class="sidebar__nav-num">10</span><span>联系 · Contact</span>
+            </a>
+          </li>
+
+        </ol>
+      </nav>
+
+      <div class="sidebar__footer">
+        <a href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener" class="sidebar__social">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2.04c-3.2.69-3.87-1.36-3.87-1.36-.52-1.33-1.27-1.68-1.27-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.34.95.1-.74.4-1.24.73-1.53-2.55-.29-5.23-1.27-5.23-5.66 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.17.91-.25 1.89-.38 2.86-.39.97.01 1.95.14 2.86.39 2.18-1.48 3.14-1.17 3.14-1.17.62 1.59.23 2.76.11 3.05.73.8 1.18 1.82 1.18 3.07 0 4.4-2.69 5.36-5.25 5.65.41.36.78 1.07.78 2.16v3.2c0 .31.21.67.8.55C20.21 21.39 23.5 17.07 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+          GitHub
+        </a>
+        <span class="sidebar__social" aria-disabled="true">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="m3 7 9 6 9-6"/></svg>
+          Email
+        </span>
+        <div class="sidebar__copy">© 2026 Shang Wenting</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ============================== Main ============================== -->
+  <main class="main">
+
+    <!-- ============================== HERO ============================== -->
+    <section class="hero" id="hero">
+      <div class="hero__eyebrow reveal">
+        <span class="hero__pulse"></span>
+        Product Manager · 产品设计 · 数据驱动
+      </div>
+
+      <h1 class="hero__title reveal">
+        尚文蜓
+        <em>Shang Wenting</em>
+      </h1>
+
+      <p class="hero__lead reveal">
+        作品集记录我在<span>快手</span>、<span>安克创新</span>、<span>碧桂园文商旅</span>等工作经历里，定义功能、推动产品落地的过程 —— 核心能力是明确用户需求、业务场景目标并使用数据驱动<strong>产品设计、数据分析、竞品分析、需求分析、用户研究、策略优化</strong>等。
+      </p>
+
+      <div class="hero__meta reveal">
+        <div class="hero__meta-item">
+          <span class="hero__meta-label">电话</span>
+          <span class="hero__meta-value">13249086026</span>
+        </div>
+        <div class="hero__meta-item">
+          <span class="hero__meta-label">邮箱</span>
+          <span class="hero__meta-value">trinity_ting@163.com</span>
+        </div>
+        <div class="hero__meta-item">
+          <span class="hero__meta-label">GitHub</span>
+          <span class="hero__meta-value">
+            <a href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">@trinitytingchuan-alt →</a>
+          </span>
+        </div>
+        <div class="hero__meta-item">
+          <span class="hero__meta-label">本硕211</span>
+          <span class="hero__meta-value">暨南大学 · 辽宁大学</span>
+        </div>
+      </div>
+
+      <div class="hero__rule reveal"></div>
+    </section>
+
+    <!-- ============================== ABOUT ============================== -->
+    <section class="section" id="about">
+      <header class="section__header">
+        <span class="section__num">2</span>
+        <h2 class="section__title">关于我</h2>
+        <span class="section__title-en">About</span>
+      </header>
+
+      <p class="section__lede reveal">
+        我是尚文蜓，暨南大学金融科技硕士保研、辽宁大学金融学本科双一流专业。中共党员，连续两年获国家励志奖学金。
+      </p>
+
+      <div class="about__grid reveal">
+        <div class="about__copy">
+          <p>硕士阶段核心课程：机器学习 97 · Python 93 · 数据挖掘 92 · 区块链 94 · 财务报表分析 93。</p>
+          <p>本科高数上下均满分，四门数学均分95+。主修计量经济学 100 · 概率论 94 · 宏观经济学 97 · 微观经济学 96 · 会计学 92。</p>
+        </div>
+        <div class="about__copy">
+          <p><strong>AI工程：</strong>开发竞品分析、策划报告生成等Agent，基于Claude Code、Codex等AI工具将业务拆解为标准化工作流，完成需求拆解、信息采集、分析推理、报告产出等全链路执行；<strong>单份报告节省人工整理工作时长5小时。</strong></p>
+          <p><strong>产品热爱：</strong>重度3C消费电子爱好者,持有影像设备(微单/无人机/运动相机等)、全品类音频、智能穿戴、智能家居等30余种产品,熟悉软硬件核心参数,关注芯片传感器、AI应用等技术演进,善于从原理层理解对比产品体验。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== CAPABILITY ============================== -->
+    <section class="section" id="capability">
+      <header class="section__header">
+        <span class="section__num">3</span>
+        <h2 class="section__title">核心能力</h2>
+        <span class="section__title-en">Capability</span>
+      </header>
+
+      <p class="section__lede reveal">
+        以下四项能力贯穿过去所有工作 —— 它们不是分散的标签，而是同一套产品思维在不同业务里的四种表达方式。
+      </p>
+
+      <div class="capabilities">
+        <div class="capability reveal">
+          <div class="capability__num">— i</div>
+          <h3 class="capability__title">功能定义与设计</h3>
+          <p class="capability__desc">独立完成从需求洞察到功能定义的全链路闭环：业务场景拆解、用户路径梳理、功能方案输出、原型设计、PRD 撰写。让功能可被理解、可被开发、可被验证、有用户价值。</p>
+          <div class="capability__tags">
+            <span class="capability__tag">需求分析</span>
+            <span class="capability__tag">功能设计</span>
+            <span class="capability__tag">PRD</span>
+            <span class="capability__tag">原型设计</span>
+            <span class="capability__tag">迭代优化</span>
+          </div>
+        </div>
+
+        <div class="capability reveal reveal-delay-1">
+          <div class="capability__num">— ii</div>
+          <h3 class="capability__title">数据分析与可视化</h3>
+          <p class="capability__desc">SQL 取数、Tableau 业务看板、多维用户画像与精准圈选；用 ROI / 转化率 / 漏斗等指标反推产品迭代方向。能在小时级完成数据回收 → 报告输出。</p>
+          <div class="capability__tags">
+            <span class="capability__tag">SQL</span>
+            <span class="capability__tag">Tableau</span>
+            <span class="capability__tag">Excel</span>
+            <span class="capability__tag">Python</span>
+            <span class="capability__tag">SPSS</span>
+          </div>
+        </div>
+
+        <div class="capability reveal reveal-delay-2">
+          <div class="capability__num">— iii</div>
+          <h3 class="capability__title">行业研究 &amp; 商业研策</h3>
+          <p class="capability__desc">券商行业研究、商业地产投资研策、企业对标分析。从政策、行业、竞品到客户需求分析，输出有效分析报告。</p>
+          <div class="capability__tags">
+            <span class="capability__tag">行业研究</span>
+            <span class="capability__tag">投资测算</span>
+            <span class="capability__tag">对标分析</span>
+            <span class="capability__tag">竞品分析</span>
+            <span class="capability__tag">财务建模</span>
+          </div>
+        </div>
+
+        <div class="capability reveal reveal-delay-3">
+          <div class="capability__num">— iv</div>
+          <h3 class="capability__title">AI 工程化实践</h3>
+          <p class="capability__desc">主动探索提高工作效率，基于 Claude Code / Codex 等 AI 工具开发业务 Agent，搭建 Harness 架构：Skill 模块化引用、Hook 规则约束、Markdown 指令渐进式加载、多 Agent 协同。设计自动回测与质量门禁机制，确保产出可靠。</p>
+          <div class="capability__tags">
+            <span class="capability__tag">AI Agent</span>
+            <span class="capability__tag">Skill</span>
+            <span class="capability__tag">Agent team</span>
+            <span class="capability__tag">检查点设置</span>
+            <span class="capability__tag">Harness</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== WORKS ============================== -->
+    <section class="works" id="works">
+
+      <header class="section__header">
+        <span class="section__num">4—6</span>
+        <h2 class="section__title">作品集</h2>
+        <span class="section__title-en">Works</span>
+      </header>
+
+      <p class="section__lede reveal">
+        按「Anker 产品设计 → 股票产品设计 → 独立项目」组织。点击任意设计图可全屏查看，多页文档通过左右箭头翻页；空格或点击图片可放大至 200% 查看标注细节。
+      </p>
+
+      <!-- ============ Stage: Anker 产品设计 ============ -->
+      <div class="stage" id="stage-anker">
+        <header class="stage__header reveal">
+          <div class="stage__heading">
+            <span class="stage__num">4</span>
+            <div>
+              <h3 class="stage__title">Anker 产品设计</h3>
+              <div class="stage__meta">用户测试平台 XTest · 2024.10 — 2025.3</div>
+            </div>
+          </div>
+          <div class="stage__stats">
+            <div class="stage__stat">
+              <div class="stage__stat-num">150<span>+</span></div>
+              <div class="stage__stat-label">需求 / Bug</div>
+            </div>
+            <div class="stage__stat">
+              <div class="stage__stat-num">37<span>%</span></div>
+              <div class="stage__stat-label">测试效率提升</div>
+            </div>
+            <div class="stage__stat">
+              <div class="stage__stat-num">10<span>×</span></div>
+              <div class="stage__stat-label">报告产出提速</div>
+            </div>
+          </div>
+        </header>
+
+        <p class="stage__desc reveal">
+          针对各产线 β 测试标准不一、人工统计测试数据低效的痛点，搭建公司级用户测试平台，统一全产品线测试与调研规范，实现全流程自动化闭环。以下为独立定义的核心功能设计。
+        </p>
+
+        <!-- VOC 自动化报告 -->
+        <article class="work work--image-led reveal" id="w-voc">
+          <div class="work__header">
+            <div class="work__tag">Anker 产品设计 · 核心功能</div>
+            <h4 class="work__title">VOC 自动化报告</h4>
+            <div class="work__sub">独立负责平台核心功能：报告分享、整体 + 子项评分、反馈聚类、用户画像，报告产出由数天缩至小时级</div>
+          </div>
+
+          <figure class="work__hero" data-modal="assets/pdf_hi/voc_p1.png" data-alt="VOC 自动化报告 · 页面 1" data-group="voc">
+            <img src="assets/pdf_hi/voc_p1.png" alt="VOC 自动化报告" loading="lazy" />
+            <span class="work__zoom">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M8 11h6M11 8v6"/></svg>
+              点击查看
+            </span>
+          </figure>
+
+          <div class="page-strip">
+            <div class="page-strip__label">VOC 自动化报告 · 4 页</div>
+            <div class="page-strip__grid">
+              <div class="page-strip__item" data-modal="assets/pdf_hi/voc_p1.png" data-alt="VOC · 页面 1" data-group="voc"><img src="assets/pdf_hi/voc_p1.png" alt="VOC p1" loading="lazy" /><span class="page-strip__num">01</span></div>
+              <div class="page-strip__item" data-modal="assets/pdf_hi/voc_p2.png" data-alt="VOC · 页面 2" data-group="voc"><img src="assets/pdf_hi/voc_p2.png" alt="VOC p2" loading="lazy" /><span class="page-strip__num">02</span></div>
+              <div class="page-strip__item" data-modal="assets/pdf_hi/voc_p3.png" data-alt="VOC · 页面 3" data-group="voc"><img src="assets/pdf_hi/voc_p3.png" alt="VOC p3" loading="lazy" /><span class="page-strip__num">03</span></div>
+              <div class="page-strip__item" data-modal="assets/pdf_hi/voc_p4.png" data-alt="VOC · 页面 4" data-group="voc"><img src="assets/pdf_hi/voc_p4.png" alt="VOC p4" loading="lazy" /><span class="page-strip__num">04</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 业务原型 · 需求文档 -->
+        <article class="work work--image-led reveal" id="w-xtest">
+          <div class="work__header">
+            <div class="work__tag">Anker 产品设计 · 业务原型</div>
+            <h4 class="work__title">XTest 平台 · 需求文档</h4>
+            <div class="work__sub">招募 → 筛选 → 协议 → 寄件 → 任务 → 回收 → 报告 端到端流程设计</div>
+          </div>
+
+          <figure class="work__hero" data-modal="assets/pdf_hi/ankerx_p1.png" data-alt="XTest 需求文档 · 页面 1" data-group="ankerx">
+            <img src="assets/pdf_hi/ankerx_p1.png" alt="XTest 需求文档" loading="lazy" />
+            <span class="work__zoom">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M8 11h6M11 8v6"/></svg>
+              点击查看
+            </span>
+          </figure>
+
+          <div class="page-strip">
+            <div class="page-strip__label">需求文档 · 2 页</div>
+            <div class="page-strip__grid">
+              <div class="page-strip__item" data-modal="assets/pdf_hi/ankerx_p1.png" data-alt="XTest 需求 · 页面 1" data-group="ankerx"><img src="assets/pdf_hi/ankerx_p1.png" alt="xtest p1" loading="lazy" /><span class="page-strip__num">01</span></div>
+              <div class="page-strip__item" data-modal="assets/pdf_hi/ankerx_p2.png" data-alt="XTest 需求 · 页面 2" data-group="ankerx"><img src="assets/pdf_hi/ankerx_p2.png" alt="xtest p2" loading="lazy" /><span class="page-strip__num">02</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Axure 业务原型 -->
+        <article class="work work--image-led reveal" id="w-axure">
+          <div class="work__header">
+            <div class="work__tag">Anker 产品设计 · 交互原型</div>
+            <h4 class="work__title">业务平台 · Axure 交互原型</h4>
+            <div class="work__sub">B 端业务流程原型设计 · 覆盖设备寄送、用户协议、项目进展播报全流程</div>
+          </div>
+
+          <figure class="work__hero" data-modal="assets/docx_images/wk_018.png" data-alt="Axure 设备寄送流程原型" data-group="axure">
+            <img src="assets/docx_images/wk_018.png" alt="Axure 设备寄送流程原型" loading="lazy" />
+            <span class="work__zoom">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M8 11h6M11 8v6"/></svg>
+              点击查看
+            </span>
+          </figure>
+
+          <div class="page-strip">
+            <div class="page-strip__label">Axure 原型 · 关键页面</div>
+            <div class="page-strip__grid">
+              <div class="page-strip__item" data-modal="assets/docx_images/wk_018.png" data-alt="Axure · 设备寄送" data-group="axure"><img src="assets/docx_images/wk_018.png" alt="axure 1" loading="lazy" /><span class="page-strip__num">01</span></div>
+              <div class="page-strip__item" data-modal="assets/docx_images/wk_017.png" data-alt="Axure · 项目进展播报" data-group="axure"><img src="assets/docx_images/wk_017.png" alt="axure 2" loading="lazy" /><span class="page-strip__num">02</span></div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- ============ Stage: 股票产品设计 ============ -->
+      <div class="stage" id="stage-stock">
+        <header class="stage__header reveal">
+          <div class="stage__heading">
+            <span class="stage__num">04</span>
+            <div>
+              <h3 class="stage__title">股票产品设计</h3>
+              <div class="stage__meta">APP + 中台 · 功能定义与交互设计</div>
+            </div>
+          </div>
+          <div class="stage__intro">
+            <p>为金融场景进行产品设计：股票 APP 功能设计、资产分析、中台 PI 授权续签。完整呈现<strong>功能设计与定义交互</strong>的能力。</p>
+          </div>
+        </header>
+
+        <!-- 股票 APP 功能设计 -->
+        <article class="work work--image-led reveal" id="w-stock-app">
+          <div class="work__header">
+            <div class="work__tag">股票产品设计 · APP 端</div>
+            <h4 class="work__title">股票 APP · 功能设计</h4>
+            <div class="work__sub">数据中台 + APP 端联动设计 · 覆盖数据可视化、规则配置、用户运营</div>
+          </div>
+
+          <figure class="work__hero" data-modal="assets/pdf_hi/light_p1.png" data-alt="股票 APP 功能设计 · 页面 1" data-group="stock-app">
+            <img src="assets/pdf_hi/light_p1.png" alt="股票 APP 功能设计" loading="lazy" />
+            <span class="work__zoom">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M8 11h6M11 8v6"/></svg>
+              点击查看
+            </span>
+          </figure>
+
+          <div class="page-strip">
+            <div class="page-strip__label">功能设计稿 · 3 页</div>
+            <div class="page-strip__grid">
+              <div class="page-strip__item" data-modal="assets/pdf_hi/light_p1.png" data-alt="股票 APP · 页面 1" data-group="stock-app"><img src="assets/pdf_hi/light_p1.png" alt="light p1" loading="lazy" /><span class="page-strip__num">01</span></div>
+              <div class="page-strip__item" data-modal="assets/pdf_hi/light_p2.png" data-alt="股票 APP · 页面 2" data-group="stock-app"><img src="assets/pdf_hi/light_p2.png" alt="light p2" loading="lazy" /><span class="page-strip__num">02</span></div>
+              <div class="page-strip__item" data-modal="assets/pdf_hi/light_p3.png" data-alt="股票 APP · 页面 3" data-group="stock-app"><img src="assets/pdf_hi/light_p3.png" alt="light p3" loading="lazy" /><span class="page-strip__num">03</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 股票 APP 资产分析 -->
+        <article class="work work--image-led reveal" id="w-stock-asset">
+          <div class="work__header">
+            <div class="work__tag">股票产品设计 · 资产分析</div>
+            <h4 class="work__title">股票 APP · 资产分析</h4>
+            <div class="work__sub">用户资产数据可视化 · 存量与变动趋势展示</div>
+          </div>
+
+          <figure class="work__hero" data-modal="assets/pdf_hi/asset_p1.png" data-alt="股票 APP 资产分析" data-group="stock-asset">
+            <img src="assets/pdf_hi/asset_p1.png" alt="股票 APP 资产分析" loading="lazy" />
+            <span class="work__zoom">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M8 11h6M11 8v6"/></svg>
+              点击查看
+            </span>
+          </figure>
+        </article>
+
+        <!-- 股票中台 PI 过期 -->
+        <article class="work work--image-led reveal" id="w-stock-pi">
+          <div class="work__header">
+            <div class="work__tag">股票产品设计 · 中台</div>
+            <h4 class="work__title">股票中台 · PI 授权过期与续签</h4>
+            <div class="work__sub">合规监测 · 用户触达 · 续签闭环 · 弹窗与提示页全流程设计</div>
+          </div>
+
+          <figure class="work__hero" data-modal="assets/pdf_hi/pi_p1.png" data-alt="股票中台 PI 授权过期 · 页面 1" data-group="stock-pi">
+            <img src="assets/pdf_hi/pi_p1.png" alt="股票中台 PI 授权过期" loading="lazy" />
+            <span class="work__zoom">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M8 11h6M11 8v6"/></svg>
+              点击查看
+            </span>
+          </figure>
+
+          <div class="page-strip">
+            <div class="page-strip__label">PI 授权续签 · 2 页</div>
+            <div class="page-strip__grid">
+              <div class="page-strip__item" data-modal="assets/pdf_hi/pi_p1.png" data-alt="PI 授权过期 · 页面 1" data-group="stock-pi"><img src="assets/pdf_hi/pi_p1.png" alt="pi p1" loading="lazy" /><span class="page-strip__num">01</span></div>
+              <div class="page-strip__item" data-modal="assets/pdf_hi/pi_p2.png" data-alt="PI 授权过期 · 页面 2" data-group="stock-pi"><img src="assets/pdf_hi/pi_p2.png" alt="pi p2" loading="lazy" /><span class="page-strip__num">02</span></div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- ============ Stage: 独立项目 ============ -->
+      <div class="stage" id="stage-project">
+        <header class="stage__header reveal">
+          <div class="stage__heading">
+            <span class="stage__num">6</span>
+            <div>
+              <h3 class="stage__title">独立项目</h3>
+              <div class="stage__meta">行业研究 · 运营 · 数据分析 · 机器学习 · 工具开发</div>
+            </div>
+          </div>
+          <div class="stage__intro">
+            <p>券商已发表的行业研究报告、Tableau 业务看板、LSTM 股价预测与日常工具。</p>
+          </div>
+        </header>
+
+        <!-- 鼎泰高科深度研究 -->
+        <article class="work work--image-led reveal" id="w-guolian">
+          <div class="work__header">
+            <div class="work__tag">实习项目 · 行业研究</div>
+            <h4 class="work__title">鼎泰高科 (301377) 已发表的行业研究报告</h4>
+            <div class="work__sub">结构化论证产业趋势 · 完成深度研究报告撰写 · 刀具产业链结构拆解</div>
+          </div>
+
+          <figure class="work__hero" data-modal="assets/pdf_pages/guolian_p1.png" data-alt="鼎泰高科深度研究 · 页面 1" data-group="guolian">
+            <img src="assets/pdf_pages/guolian_p1.png" alt="鼎泰高科深度研究" loading="lazy" />
+            <span class="work__zoom">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M8 11h6M11 8v6"/></svg>
+              点击查看
+            </span>
+          </figure>
+
+          <div class="page-strip">
+            <div class="page-strip__label">研究报告 · 完整 24 页</div>
+            <div class="page-strip__grid">
+              <div class="page-strip__item" data-modal="assets/pdf_pages/guolian_p1.png" data-alt="鼎泰高科 · 第 1 页" data-group="guolian"><img src="assets/pdf_pages/guolian_p1.png" alt="p1" loading="lazy" /><span class="page-strip__num">01</span></div>
+              <div class="page-strip__item" data-modal="assets/pdf_pages/guolian_p2.png" data-alt="鼎泰高科 · 第 2 页" data-group="guolian"><img src="assets/pdf_pages/guolian_p2.png" alt="p2" loading="lazy" /><span class="page-strip__num">02</span></div>
+              <div class="page-strip__item" data-modal="assets/pdf_pages/guolian_p3.png" data-alt="鼎泰高科 · 第 3 页" data-group="guolian"><img src="assets/pdf_pages/guolian_p3.png" alt="p3" loading="lazy" /><span class="page-strip__num">03</span></div>
+              <div class="page-strip__item" data-modal="assets/pdf_pages/guolian_p4.png" data-alt="鼎泰高科 · 第 4 页" data-group="guolian"><img src="assets/pdf_pages/guolian_p4.png" alt="p4" loading="lazy" /><span class="page-strip__num">04</span></div>
+              <div class="page-strip__item" data-modal="assets/pdf_pages/guolian_p5.png" data-alt="鼎泰高科 · 第 5 页" data-group="guolian"><img src="assets/pdf_pages/guolian_p5.png" alt="p5" loading="lazy" /><span class="page-strip__num">05</span></div>
+              <div class="page-strip__item" data-modal="assets/pdf_pages/guolian_p6.png" data-alt="鼎泰高科 · 第 6 页" data-group="guolian"><img src="assets/pdf_pages/guolian_p6.png" alt="p6" loading="lazy" /><span class="page-strip__num">06</span></div>
+              <div class="page-strip__item" data-modal="assets/pdf_pages/guolian_p7.png" data-alt="鼎泰高科 · 第 7 页" data-group="guolian"><img src="assets/pdf_pages/guolian_p7.png" alt="p7" loading="lazy" /><span class="page-strip__num">07</span></div>
+              <div class="page-strip__item" data-modal="assets/pdf_pages/guolian_p8.png" data-alt="鼎泰高科 · 第 8 页" data-group="guolian"><img src="assets/pdf_pages/guolian_p8.png" alt="p8" loading="lazy" /><span class="page-strip__num">08</span></div>
+              <div class="page-strip__item" data-modal="assets/pdf_pages/guolian_p9.png" data-alt="鼎泰高科 · 第 9 页" data-group="guolian"><img src="assets/pdf_pages/guolian_p9.png" alt="p9" loading="lazy" /><span class="page-strip__num">09</span></div>
+              <div class="page-strip__item" data-modal="assets/pdf_pages/guolian_p10.png" data-alt="鼎泰高科 · 第 10 页" data-group="guolian"><img src="assets/pdf_pages/guolian_p10.png" alt="p10" loading="lazy" /><span class="page-strip__num">10</span></div>
+              <div class="page-strip__item" data-modal="assets/pdf_pages/guolian_p11.png" data-alt="鼎泰高科 · 第 11 页" data-group="guolian"><img src="assets/pdf_pages/guolian_p11.png" alt="p11" loading="lazy" /><span class="page-strip__num">11</span></div>
+              <div class="page-strip__item" data-modal="assets/pdf_pages/guolian_p12.png" data-alt="鼎泰高科 · 第 12 页" data-group="guolian"><img src="assets/pdf_pages/guolian_p12.png" alt="p12" loading="lazy" /><span class="page-strip__num">12</span></div>
+              <div class="page-strip__item" data-modal="assets/pdf_pages/guolian_p13.png" data-alt="鼎泰高科 · 第 13 页" data-group="guolian"><img src="assets/pdf_pages/guolian_p13.png" alt="p13" loading="lazy" /><span class="page-strip__num">13</span></div>
+              <div class="page-strip__item" data-modal="assets/pdf_pages/guolian_p14.png" data-alt="鼎泰高科 · 第 14 页" data-group="guolian"><img src="assets/pdf_pages/guolian_p14.png" alt="p14" loading="lazy" /><span class="page-strip__num">14</span></div>
+              <div class="page-strip__item" data-modal="assets/pdf_pages/guolian_p15.png" data-alt="鼎泰高科 · 第 15 页" data-group="guolian"><img src="assets/pdf_pages/guolian_p15.png" alt="p15" loading="lazy" /><span class="page-strip__num">15</span></div>
+              <div class="page-strip__item" data-modal="assets/pdf_pages/guolian_p16.png" data-alt="鼎泰高科 · 第 16 页" data-group="guolian"><img src="assets/pdf_pages/guolian_p16.png" alt="p16" loading="lazy" /><span class="page-strip__num">16</span></div>
+              <div class="page-strip__item" data-modal="assets/pdf_pages/guolian_p17.png" data-alt="鼎泰高科 · 第 17 页" data-group="guolian"><img src="assets/pdf_pages/guolian_p17.png" alt="p17" loading="lazy" /><span class="page-strip__num">17</span></div>
+              <div class="page-strip__item" data-modal="assets/pdf_pages/guolian_p18.png" data-alt="鼎泰高科 · 第 18 页" data-group="guolian"><img src="assets/pdf_pages/guolian_p18.png" alt="p18" loading="lazy" /><span class="page-strip__num">18</span></div>
+              <div class="page-strip__item" data-modal="assets/pdf_pages/guolian_p19.png" data-alt="鼎泰高科 · 第 19 页" data-group="guolian"><img src="assets/pdf_pages/guolian_p19.png" alt="p19" loading="lazy" /><span class="page-strip__num">19</span></div>
+              <div class="page-strip__item" data-modal="assets/pdf_pages/guolian_p20.png" data-alt="鼎泰高科 · 第 20 页" data-group="guolian"><img src="assets/pdf_pages/guolian_p20.png" alt="p20" loading="lazy" /><span class="page-strip__num">20</span></div>
+              <div class="page-strip__item" data-modal="assets/pdf_pages/guolian_p21.png" data-alt="鼎泰高科 · 第 21 页" data-group="guolian"><img src="assets/pdf_pages/guolian_p21.png" alt="p21" loading="lazy" /><span class="page-strip__num">21</span></div>
+              <div class="page-strip__item" data-modal="assets/pdf_pages/guolian_p22.png" data-alt="鼎泰高科 · 第 22 页" data-group="guolian"><img src="assets/pdf_pages/guolian_p22.png" alt="p22" loading="lazy" /><span class="page-strip__num">22</span></div>
+              <div class="page-strip__item" data-modal="assets/pdf_pages/guolian_p23.png" data-alt="鼎泰高科 · 第 23 页" data-group="guolian"><img src="assets/pdf_pages/guolian_p23.png" alt="p23" loading="lazy" /><span class="page-strip__num">23</span></div>
+              <div class="page-strip__item" data-modal="assets/pdf_pages/guolian_p24.png" data-alt="鼎泰高科 · 第 24 页" data-group="guolian"><img src="assets/pdf_pages/guolian_p24.png" alt="p24" loading="lazy" /><span class="page-strip__num">24</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tableau 业务看板 -->
+        <article class="work work--image-led reveal" id="w-tableau">
+          <div class="work__header">
+            <div class="work__tag">独立项目 · 数据可视化</div>
+            <h4 class="work__title">每日业务情况总览看板</h4>
+            <div class="work__sub">EXCEL 自动更新报表 + Tableau 联动看板 · 经营总况 / 配送 / 新老客 / 平台 / 门店多维下钻</div>
+          </div>
+
+          <figure class="work__hero" data-modal="assets/portfolio_pngs/tableau_dashboard.jpg" data-alt="每日业务情况总览看板" data-group="tableau">
+            <img src="assets/portfolio_pngs/tableau_dashboard.jpg" alt="Tableau 业务看板" loading="lazy" />
+            <span class="work__zoom">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M8 11h6M11 8v6"/></svg>
+              点击查看
+            </span>
+          </figure>
+        </article>
+
+        <!-- LSTM 股价预测 -->
+        <article class="work work--image-led reveal" id="w-lstm">
+          <div class="work__header">
+            <div class="work__tag">独立项目 · 学术研究</div>
+            <h4 class="work__title">基于 LSTM 的股价时间序列预测</h4>
+            <div class="work__sub">Attention-based CNN-LSTM 与 XGBoost 对比研究 · 测试集准确率 98.8%+</div>
+          </div>
+
+          <figure class="work__hero" data-modal="assets/portfolio_pngs/导出页面自 105尚文蜓202330181270课程论文.png" data-alt="LSTM 股价预测课程论文" data-group="lstm">
+            <img src="assets/portfolio_pngs/导出页面自 105尚文蜓202330181270课程论文.png" alt="LSTM 股价预测课程论文" loading="lazy" />
+            <span class="work__zoom">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M8 11h6M11 8v6"/></svg>
+              点击查看
+            </span>
+          </figure>
+        </article>
+
+        <!-- 进销存系统 -->
+        <article class="work work--image-led reveal" id="w-inventory">
+          <div class="work__header">
+            <div class="work__tag">独立项目 · 工具开发</div>
+            <h4 class="work__title">Python 进销存管理系统</h4>
+            <div class="work__sub">Python Tkinter 桌面 GUI · 商品录入 / 库存查看 / 数据更新</div>
+          </div>
+
+          <figure class="work__hero" data-modal="assets/portfolio_pngs/20240725121334.png" data-alt="Python 进销存管理系统" data-group="inv">
+            <img src="assets/portfolio_pngs/20240725121334.png" alt="Python 进销存管理系统" loading="lazy" />
+            <span class="work__zoom">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M8 11h6M11 8v6"/></svg>
+              点击查看
+            </span>
+          </figure>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============================== PHOTOGRAPHY ============================== -->
+    <section class="section section--photography" id="photography">
+      <header class="section__header">
+        <span class="section__num">06</span>
+        <h2 class="section__title">摄影</h2>
+        <span class="section__title-en">Photography</span>
+      </header>
+
+      <p class="section__lede reveal">
+        摄影是另一种「结构化观察」的训练 —— 你必须决定画面里出现什么、不出现什么，让主体在框内说话。这些是 2024 — 2026 年用微单与运动相机在路上留下的片段。
+      </p>
+
+      <div class="photo-grid">
+        <figure class="photo-item photo-item--landscape" data-ratio="1.78" data-modal="assets/photo/微信图片_20260805194602_22_5.jpg" data-alt="鼓楼" data-group="photo">
+          <img src="assets/photo/微信图片_20260805194602_22_5.jpg" alt="鼓楼" loading="lazy" />
+          <figcaption class="photo-item__caption">黔东南 · 黄岗侗寨</figcaption>
+        </figure>
+        <figure class="photo-item photo-item--landscape" data-ratio="1.78" data-modal="assets/photo/photo_doc_2.jpg" data-alt="青峦" data-group="photo">
+          <img src="assets/photo/photo_doc_2.jpg" alt="青峦" loading="lazy" />
+          <figcaption class="photo-item__caption">伊犁 · 果子沟</figcaption>
+        </figure>
+        <figure class="photo-item photo-item--portrait" data-ratio="0.56" data-modal="assets/photo/微信图片_20260805194602_19_5.jpg" data-alt="雪境" data-group="photo">
+          <img src="assets/photo/微信图片_20260805194602_19_5.jpg" alt="雪境" loading="lazy" />
+          <figcaption class="photo-item__caption">威海 · 下雪的海边</figcaption>
+        </figure>
+        <figure class="photo-item photo-item--portrait" data-ratio="0.56" data-modal="assets/photo/微信图片_20260805194602_32_5.jpg" data-alt="巷晚" data-group="photo">
+          <img src="assets/photo/微信图片_20260805194602_32_5.jpg" alt="巷晚" loading="lazy" />
+          <figcaption class="photo-item__caption">京都 · 秘境街道</figcaption>
+        </figure>
+        <figure class="photo-item photo-item--landscape" data-ratio="1.78" data-modal="assets/photo/微信图片_20260805194602_24_5.jpg" data-alt="梯田" data-group="photo">
+          <img src="assets/photo/微信图片_20260805194602_24_5.jpg" alt="梯田" loading="lazy" />
+          <figcaption class="photo-item__caption">广西 · 龙脊梯田</figcaption>
+        </figure>
+        <figure class="photo-item photo-item--landscape" data-ratio="1.78" data-modal="assets/photo/微信图片_20260805194602_29_5.jpg" data-alt="塔影" data-group="photo">
+          <img src="assets/photo/微信图片_20260805194602_29_5.jpg" alt="塔影" loading="lazy" />
+          <figcaption class="photo-item__caption">黔东南 · 黄岗侗寨</figcaption>
+        </figure>
+        <figure class="photo-item photo-item--portrait" data-ratio="0.56" data-modal="assets/photo/微信图片_20260805194602_33_5.jpg" data-alt="湖光" data-group="photo">
+          <img src="assets/photo/微信图片_20260805194602_33_5.jpg" alt="湖光" loading="lazy" />
+          <figcaption class="photo-item__caption">四川 · 九寨沟</figcaption>
+        </figure>
+        <figure class="photo-item photo-item--portrait-34" data-ratio="0.75" data-modal="assets/photo/DSC04238.jpg" data-alt="静湖" data-group="photo">
+          <img src="assets/photo/DSC04238.jpg" alt="静湖" loading="lazy" />
+          <figcaption class="photo-item__caption">飞机视角 · 雪山冰川</figcaption>
+        </figure>
+        <figure class="photo-item photo-item--landscape" data-ratio="1.78" data-modal="assets/photo/微信图片_20260805194602_31_5.jpg" data-alt="行旅" data-group="photo">
+          <img src="assets/photo/微信图片_20260805194602_31_5.jpg" alt="行旅" loading="lazy" />
+          <figcaption class="photo-item__caption">大阪 · 铁轨</figcaption>
+        </figure>
+        <figure class="photo-item photo-item--landscape" data-ratio="1.50" data-modal="assets/photo/DSC04718.jpg" data-alt="旷野" data-group="photo">
+          <img src="assets/photo/DSC04718.jpg" alt="旷野" loading="lazy" />
+          <figcaption class="photo-item__caption">昌都 · 然乌胡</figcaption>
+        </figure>
+        <figure class="photo-item photo-item--landscape" data-ratio="1.78" data-modal="assets/photo/photo_doc_1.jpg" data-alt="赤岩" data-group="photo">
+          <img src="assets/photo/photo_doc_1.jpg" alt="赤岩" loading="lazy" />
+          <figcaption class="photo-item__caption">乌兰察布 · 大红山</figcaption>
+        </figure>
+        <figure class="photo-item photo-item--landscape" data-ratio="1.50" data-modal="assets/photo/DSC04912.jpg" data-alt="行云" data-group="photo">
+          <img src="assets/photo/DSC04912.jpg" alt="行云" loading="lazy" />
+          <figcaption class="photo-item__caption">林芝 · 雪山</figcaption>
+        </figure>
+        <figure class="photo-item photo-item--landscape" data-ratio="1.50" data-modal="assets/photo/photo_doc_3.jpg" data-alt="穹丘" data-group="photo">
+          <img src="assets/photo/photo_doc_3.jpg" alt="穹丘" loading="lazy" />
+          <figcaption class="photo-item__caption">乌兰察布 · 火山</figcaption>
+        </figure>
+        <figure class="photo-item photo-item--landscape" data-ratio="1.50" data-modal="assets/photo/photo_doc_4.jpg" data-alt="云湖" data-group="photo">
+          <img src="assets/photo/photo_doc_4.jpg" alt="云湖" loading="lazy" />
+          <figcaption class="photo-item__caption">新疆 · 赛里木湖</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============================== INTERESTS ============================== -->
+    <section class="section" id="interests">
+      <header class="section__header">
+        <span class="section__num">8</span>
+        <h2 class="section__title">爱好</h2>
+        <span class="section__title-en">Interests</span>
+      </header>
+
+      <p class="section__lede reveal">
+        工作之外，我用这些事保持对世界的好奇与探索 —— 它们和做产品一样，都需要持续的观察与练习。
+      </p>
+
+      <div class="interests__grid reveal">
+        <div class="interest">
+          <span class="interest__name">摄影及旅行</span>
+          <span class="interest__note">持有微单、无人机、运动相机、Pocket设备，在旅途中记录瞬间，已环游32个省级行政区</span>
+        </div>
+        <div class="interest">
+          <span class="interest__name">骑行</span>
+          <span class="interest__note">月均骑行500km，完成成都100km绿道骑行、阳澄湖100km环湖骑行</span>
+        </div>
+        <div class="interest">
+          <span class="interest__name">阅读</span>
+          <span class="interest__note">保持学习进步，用一本书，学习一个人一生的智慧；读心理学，体验世界底层运行原理</span>
+        </div>
+        <div class="interest">
+          <span class="interest__name">3C消费电子产品</span>
+          <span class="interest__note">拥有30余种电子产品，热爱探索科技革新</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== HONORS ============================== -->
+    <section class="section" id="honors">
+      <header class="section__header">
+        <span class="section__num">9</span>
+        <h2 class="section__title">竞赛与荣誉</h2>
+        <span class="section__title-en">Honors &amp; Awards</span>
+      </header>
+
+      <p class="section__lede reveal">
+        大学与研究生阶段的若干次尝试 —— 数学建模、深度学习应用、产品商业化。每一段经历都加深了我对「把复杂问题变成可量化方案」这件事的理解。
+      </p>
+
+      <div class="honors">
+        <div class="honor reveal">
+          <span class="honor__level">省一等奖</span>
+          <h3 class="honor__title">全国大学生数学建模竞赛</h3>
+          <p class="honor__desc">队长身份组织分工与计划推进，负责数据建模、论文撰写及答辩；用 Stata 进行熵权法 TOPSIS 建模及线性约束规划求解，解决物流订购的最优成本问题。</p>
+        </div>
+
+        <div class="honor reveal reveal-delay-1">
+          <span class="honor__level">省优秀奖</span>
+          <h3 class="honor__title">智慧经济创新创业大赛</h3>
+          <p class="honor__desc">团队负责人进行论文撰写及答辩；联合计算机学院同学实现基于 LSTM 深度学习算法模型的股价时间序列预测，成功预测 50 支股票一个月内行情。</p>
+        </div>
+
+        <div class="honor reveal reveal-delay-2">
+          <span class="honor__level">省铜奖</span>
+          <h3 class="honor__title">互联网+ 创新创业大赛</h3>
+          <p class="honor__desc">负责产品商业策划书撰写及项目答辩；与计算机学院联合完成老旧照片修复网站的编程与商业化实现。</p>
+        </div>
+
+        <div class="honor reveal reveal-delay-3">
+          <span class="honor__level">外聘技术专家</span>
+          <h3 class="honor__title">电网咨询项目 · 对标分析</h3>
+          <p class="honor__desc">实习结束后被原公司邀请担任技术专家，独立完成 16 家企业的经营管理、投资发展、业务发展等方向的对标分析。</p>
+        </div>
+
+        <div class="honor reveal reveal-delay-4">
+          <span class="honor__level">奖学金 · 2 次</span>
+          <h3 class="honor__title">国家励志奖学金</h3>
+          <span class="honor__date">本科期间</span>
+          <p class="honor__desc">连续获得各学期校奖学金，并获评千优百佳学生。</p>
+        </div>
+
+        <div class="honor reveal reveal-delay-5">
+          <span class="honor__level">课程成果</span>
+          <h3 class="honor__title">机器学习 / Python / 数据挖掘</h3>
+          <span class="honor__date">硕士期间</span>
+          <p class="honor__desc">暨南大学金融科技硕士核心课程成绩：机器学习 97 · Python 93 · 数据挖掘 92 · 区块链技术 94 · 金融衍生工具 90 · 财务报表分析 93。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== CONTACT ============================== -->
+    <section class="contact" id="contact">
+      <header class="section__header section__header--dark">
+        <span class="section__num">10</span>
+        <h2 class="section__title">联系我</h2>
+        <span class="section__title-en">Get in Touch</span>
+      </header>
+
+      <p class="section__lede section__lede--dark reveal">
+        期待与您的对话 —— 无论是产品机会，还是一次关于AI或消费电子的闲聊。
+      </p>
+
+      <div class="contact__grid reveal">
+        <div class="contact__item" aria-disabled="true">
+          <span class="contact__label">Email</span>
+          <span class="contact__value">trinity_ting@163.com</span>
+        </div>
+        <div class="contact__item">
+          <span class="contact__label">Phone</span>
+          <span class="contact__value">132 4908 6026</span>
+        </div>
+        <a class="contact__item" href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">
+          <span class="contact__label">GitHub</span>
+          <span class="contact__value">@trinitytingchuan-alt →</span>
+        </a>
+      </div>
+
+      <div class="contact__signoff">
+        <div>© 2026 Shang Wenting · 尚文蜓</div>
+        <div class="contact__signoff-meta">
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="图片放大查看">
+  <div class="modal__topbar">
+    <span class="modal__counter" id="modal-counter"></span>
+    <button class="modal__close" aria-label="关闭">×</button>
+  </div>
+  <button class="modal__nav modal__nav--prev" aria-label="上一张">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 6l-6 6 6 6"/></svg>
+  </button>
+  <div class="modal__stage" id="modal-stage">
+    <img id="modal-img" src="" alt="" />
+  </div>
+  <button class="modal__nav modal__nav--next" aria-label="下一张">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 6l6 6-6 6"/></svg>
+  </button>
+  <div class="modal__hint">
+    <span><kbd>←</kbd> <kbd>→</kbd> 翻页</span>
+    <span><kbd>Space</kbd> / 点击 放大</span>
+    <span><kbd>Esc</kbd> 关闭</span>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>

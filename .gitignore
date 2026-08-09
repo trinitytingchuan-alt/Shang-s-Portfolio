@@ -1,0 +1,5 @@
+# temp / local
+.playwright-cli/
+before.yaml
+*.png.bak
+_resume_text.txt
