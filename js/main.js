@@ -211,83 +211,13 @@
     }
   });
 
-  /* ---------- Photography justified gallery (magazine layout) ---------- */
-  function layoutPhotoGallery() {
-    const grid = document.querySelector('.photo-grid');
-    if (!grid) return;
-    const items = Array.from(grid.querySelectorAll('.photo-item'));
-    if (!items.length) return;
-    const cs = getComputedStyle(grid);
-    const gap = parseFloat(cs.columnGap || cs.gap || 14) || 14;
-    const W = grid.clientWidth;
-    if (W <= 0) return;
-
-    const target = W < 560 ? 180 : (W < 1000 ? 230 : 280);
-
-    // 按目标行高把照片分组成行
-    const rows = [];
-    let row = [], sum = 0;
-    items.forEach((it) => {
-      const r = parseFloat(it.dataset.ratio) || 1.5;
-      row.push(it);
-      sum += r;
-      const avail = W - gap * (row.length - 1);
-      if (avail / sum <= target) {
-        rows.push(row);
-        row = [];
-        sum = 0;
-      }
-    });
-    if (row.length) rows.push(row);
-
-    grid.classList.add('photo-grid--justified');
-    grid.innerHTML = '';
-    rows.forEach((r) => {
-      const rowEl = document.createElement('div');
-      rowEl.className = 'photo-row';
-      const avail = W - gap * (r.length - 1);
-      const sumR = r.reduce((s, it) => s + (parseFloat(it.dataset.ratio) || 1.5), 0);
-      let rowH = avail / sumR;
-      if (rowH > target * 1.8) rowH = target * 1.8; // 防止单张竖图过高
-      r.forEach((it) => {
-        const r2 = parseFloat(it.dataset.ratio) || 1.5;
-        it.style.width = (rowH * r2) + 'px';
-        it.style.height = rowH + 'px';
-        rowEl.appendChild(it);
-      });
-      grid.appendChild(rowEl);
-    });
-  }
-
-  layoutPhotoGallery();
-  let _pt;
-  window.addEventListener('resize', () => {
-    clearTimeout(_pt);
-    _pt = setTimeout(() => {
-      layoutPhotoGallery();
-      // 重建后重新绑定图片触发器（innerHTML 重建会丢失原绑定）
-      const g = document.querySelector('.photo-grid');
-      if (g) g.querySelectorAll('[data-modal]').forEach((el) => {
-        el.addEventListener('click', (e) => {
-          e.preventDefault();
-          const src = el.getAttribute('data-modal');
-          const alt = el.getAttribute('data-alt') || '';
-          const groupAttr = el.getAttribute('data-group');
-          let group = null;
-          if (groupAttr) {
-            group = Array.from(
-              document.querySelectorAll(`[data-group="${groupAttr}"]`)
-            ).map((x) => ({
-              src: x.getAttribute('data-modal'),
-              alt: x.getAttribute('data-alt') || '',
-            }));
-          }
-          openModal(src, alt, group);
-        });
-      });
-    }, 150);
+  /* ---------- Photography: 瀑布流（CSS columns）稳定布局 ---------- */
+  // 用 data-ratio 预设每张图的比例，避免图片懒加载导致瀑布流高度抖动
+  document.querySelectorAll('.photo-item').forEach((it) => {
+    const r = parseFloat(it.dataset.ratio);
+    const img = it.querySelector('img');
+    if (r && img) img.style.aspectRatio = String(r);
   });
-  window.addEventListener('load', layoutPhotoGallery);
 
   /* ---------- 左侧导航点击 → 右侧平滑滚动定位（长滚动交互） ---------- */
   const mainEl = document.querySelector('.main');
