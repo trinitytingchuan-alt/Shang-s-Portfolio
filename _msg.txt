@@ -1,1 +1,1 @@
-Reduce hero title font size (smaller name on homepage)
+Further reduce hero title size and top spacing
