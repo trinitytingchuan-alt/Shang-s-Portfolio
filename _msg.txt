@@ -1,1 +1,0 @@
-Further reduce hero title size and top spacing

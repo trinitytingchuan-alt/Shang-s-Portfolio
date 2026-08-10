@@ -1,5 +1,10 @@
-# temp / local
-.playwright-cli/
-before.yaml
-*.png.bak
-_resume_text.txt
+# 临时 Chrome 数据目录（本地渲染/截图用，非项目内容）
+_chrome_*/
+_chrome*/
+
+# 生成的 PDF 产物（可由 _collection.html 重新构建，不纳入版本库）
+*.pdf
+
+# 系统/编辑器文件
+Thumbs.db
+.DS_Store

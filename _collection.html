@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>尚文蜓 · 作品集合集 | Portfolio Collection</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500;600&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#f6f3ee;
+    --paper-2:#fffdfa;
+    --ink:#232019;
+    --ink-soft:#6a6359;
+    --ink-faint:#a59d90;
+    --line:#e6e0d6;
+    --brand:#c2633f;
+    --faint:#dcd4c8;
+    --sidebar:#1d1b16;
+    --side-text:#efe9df;
+    --side-muted:#a59c8f;
+    --side-line:rgba(255,255,255,.10);
+    --serif:"Noto Serif SC",Georgia,serif;
+    --sans:"Noto Sans SC","Inter",system-ui,sans-serif;
+    --latin:"Cormorant Garamond",Georgia,serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:#e3ddd2;color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;}
+  @page{ size:A4; margin:0; }
+  .doc{ width:793px; margin:0 auto; }
+
+  /* ---------- page shell ---------- */
+  .page{
+    width:793px; min-height:1122px;
+    background:var(--paper);
+    page-break-after:always;
+    display:flex; overflow:hidden; position:relative;
+  }
+  .page:last-child{ page-break-after:auto; }
+  .page--cover{ align-items:center; justify-content:center; text-align:center; }
+
+  /* ---------- sidebar ---------- */
+  .sidebar{
+    flex:0 0 248px; width:248px;
+    background:var(--sidebar); color:var(--side-text);
+    padding:50px 32px 34px;
+    display:flex; flex-direction:column;
+  }
+  .sidebar__brand{ margin-bottom:40px; }
+  .sidebar__logo{ font-family:var(--serif); font-size:27px; font-weight:600; letter-spacing:3px; color:#fff; }
+  .sidebar__role{ font-family:var(--latin); font-size:17px; font-style:italic; color:var(--brand); margin-top:5px; letter-spacing:.5px; }
+  .sidebar__subtitle{ font-size:11px; color:var(--side-muted); margin-top:7px; letter-spacing:1.5px; }
+
+  .sidebar__nav{ flex:1; }
+  .nav-group{ margin-bottom:26px; }
+  .nav-group__title{
+    font-size:12.5px; font-weight:600; letter-spacing:2px;
+    color:#d8d0c4; padding-bottom:9px; margin-bottom:11px;
+    border-bottom:1px solid var(--side-line);
+  }
+  .nav-group__list{ list-style:none; margin:0; padding:0; }
+  .nav-link{
+    display:flex; align-items:baseline; gap:10px;
+    padding:7px 0; text-decoration:none; color:var(--side-muted);
+    font-size:13px; line-height:1.45;
+  }
+  .nav-link:hover{ color:#fff; }
+  .nav-link__num{ font-family:var(--latin); font-size:14px; color:var(--brand); min-width:20px; }
+
+  .sidebar__footer{ margin-top:30px; padding-top:22px; border-top:1px solid var(--side-line); }
+  .sidebar__social{ display:flex; align-items:center; gap:8px; color:var(--side-muted); font-size:12px; text-decoration:none; padding:4px 0; }
+  .sidebar__social:hover{ color:#fff; }
+  .sidebar__social.is-muted{ opacity:.55; }
+  .sidebar__copy{ font-size:10.5px; color:var(--side-muted); margin-top:12px; letter-spacing:.5px; }
+
+  /* ---------- content ---------- */
+  .content{ flex:1; padding:54px 58px 70px; position:relative; display:flex; flex-direction:column; }
+  .content__top{
+    display:flex; align-items:flex-start; gap:20px;
+    border-bottom:1px solid var(--line); padding-bottom:18px; margin-bottom:22px;
+  }
+  .content__topnum{ font-family:var(--latin); font-size:34px; font-weight:500; color:var(--faint); line-height:.9; }
+  .content__head{ flex:1; }
+  .work__tag{ font-size:11.5px; letter-spacing:2px; color:var(--brand); font-weight:600; }
+  .work__title{ font-family:var(--serif); font-size:26px; font-weight:600; margin:7px 0 7px; color:var(--ink); line-height:1.2; }
+  .work__sub{ font-size:13px; color:var(--ink-soft); line-height:1.6; max-width:440px; }
+
+  .work__hero{ margin:8px 0 0; border:1px solid var(--line); background:var(--paper-2); border-radius:2px; overflow:hidden; box-shadow:0 1px 2px rgba(35,32,25,.05); }
+  .work__hero img{ display:block; width:100%; height:auto; }
+
+  .page-strip{ margin-top:24px; }
+  .page-strip__label{ font-size:11px; letter-spacing:1px; color:var(--ink-faint); margin-bottom:11px; }
+  .page-strip__grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:11px; }
+  .page-strip__item{ position:relative; border:1px solid var(--line); background:var(--paper-2); border-radius:2px; overflow:hidden; }
+  .page-strip__item img{ display:block; width:100%; height:104px; object-fit:cover; }
+  .page-strip__item .ps-num{ position:absolute; left:7px; bottom:5px; font-family:var(--latin); font-size:12px; color:#fff; text-shadow:0 1px 3px rgba(0,0,0,.55); }
+
+  /* ---------- photography ---------- */
+  .photo-topnum{ font-family:var(--latin); font-size:34px; font-weight:500; color:var(--faint); line-height:.9; }
+  .photo-title{ font-family:var(--serif); font-size:26px; font-weight:600; margin:7px 0 8px; }
+  .photo-caption{ font-size:14px; color:var(--ink-soft); line-height:1.7; max-width:450px; margin-bottom:20px; }
+  .photo-feature{ border:1px solid var(--line); border-radius:2px; overflow:hidden; margin-bottom:18px; background:var(--paper-2); box-shadow:0 1px 2px rgba(35,32,25,.05); }
+  .photo-feature img{ display:block; width:100%; height:430px; object-fit:cover; }
+  .photo-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:11px; }
+  .photo-grid figure{ margin:0; border:1px solid var(--line); border-radius:2px; overflow:hidden; background:var(--paper-2); }
+  .photo-grid img{ display:block; width:100%; height:120px; object-fit:cover; }
+  .photo-grid figcaption{ font-size:10px; color:var(--ink-faint); padding:6px 8px; }
+
+  /* ---------- cover ---------- */
+  .cover__inner{ max-width:580px; }
+  .cover__eyebrow{ font-family:var(--latin); font-style:italic; font-size:19px; color:var(--brand); letter-spacing:1.5px; }
+  .cover__title{ font-family:var(--serif); font-size:66px; font-weight:700; margin:16px 0 8px; letter-spacing:6px; }
+  .cover__title-en{ font-family:var(--latin); font-size:27px; font-style:italic; color:var(--ink-soft); }
+  .cover__rule{ width:64px; height:2px; background:var(--brand); margin:32px auto; }
+  .cover__lead{ font-size:14.5px; color:var(--ink-soft); line-height:1.8; max-width:440px; margin:0 auto 36px; }
+  .cover__btn{
+    display:inline-block; padding:15px 42px; border:1.5px solid var(--ink);
+    border-radius:40px; font-size:14px; letter-spacing:3px; color:var(--ink);
+    text-decoration:none; font-weight:500;
+  }
+  .cover__btn:hover{ background:var(--ink); color:var(--paper); }
+  .cover__meta{ margin-top:44px; font-size:11px; color:var(--ink-faint); letter-spacing:3px; }
+
+  /* ---------- footer ---------- */
+  .page__footer{
+    position:absolute; left:0; right:0; bottom:24px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:10.5px; color:var(--ink-faint); letter-spacing:1px;
+  }
+  .page__footer .pg{ position:absolute; right:58px; }
+</style>
+</head>
+<body>
+
+<!-- ===================== NAV TEMPLATE ===================== -->
+<div id="nav-template" style="display:none">
+  <div class="sidebar">
+    <div class="sidebar__brand">
+      <div class="sidebar__logo">尚文蜓</div>
+      <div class="sidebar__role">Product Manager</div>
+      <div class="sidebar__subtitle">Portfolio · 2024 — 2026</div>
+    </div>
+    <nav class="sidebar__nav">
+      <div class="nav-group">
+        <div class="nav-group__title">安克产品设计</div>
+        <ul class="nav-group__list">
+          <li><a class="nav-link" href="#p-voc"><span class="nav-link__num">01</span><span>VOC 自动化报告</span></a></li>
+          <li><a class="nav-link" href="#p-xtest"><span class="nav-link__num">02</span><span>XTest 平台 · 需求文档</span></a></li>
+          <li><a class="nav-link" href="#p-axure"><span class="nav-link__num">03</span><span>业务平台 · Axure 交互原型</span></a></li>
+        </ul>
+      </div>
+      <div class="nav-group">
+        <div class="nav-group__title">股票产品设计</div>
+        <ul class="nav-group__list">
+          <li><a class="nav-link" href="#p-stock-app"><span class="nav-link__num">04</span><span>股票 APP · 功能设计</span></a></li>
+          <li><a class="nav-link" href="#p-stock-asset"><span class="nav-link__num">05</span><span>股票 APP · 资产分析</span></a></li>
+          <li><a class="nav-link" href="#p-stock-pi"><span class="nav-link__num">06</span><span>股票中台 · PI 授权过期与续签</span></a></li>
+        </ul>
+      </div>
+      <div class="nav-group">
+        <div class="nav-group__title">独立项目</div>
+        <ul class="nav-group__list">
+          <li><a class="nav-link" href="#p-guolian"><span class="nav-link__num">07</span><span>鼎泰高科 行业研究报告</span></a></li>
+          <li><a class="nav-link" href="#p-tableau"><span class="nav-link__num">08</span><span>每日业务情况总览看板</span></a></li>
+          <li><a class="nav-link" href="#p-lstm"><span class="nav-link__num">09</span><span>基于 LSTM 的股价时间序列预测</span></a></li>
+          <li><a class="nav-link" href="#p-inventory"><span class="nav-link__num">10</span><span>Python 进销存管理系统</span></a></li>
+        </ul>
+      </div>
+      <div class="nav-group">
+        <div class="nav-group__title">摄影</div>
+        <ul class="nav-group__list">
+          <li><a class="nav-link" href="#p-photo"><span class="nav-link__num">11</span><span>摄影合集</span></a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="sidebar__footer">
+      <a class="sidebar__social" href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2.04c-3.2.69-3.87-1.36-3.87-1.36-.52-1.33-1.27-1.68-1.27-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.34.95.1-.74.4-1.24.73-1.53-2.55-.29-5.23-1.27-5.23-5.66 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.17.91-.25 1.89-.38 2.86-.39.97.01 1.95.14 2.86.39 2.18-1.48 3.14-1.17 3.14-1.17.62 1.59.23 2.76.11 3.05.73.8 1.18 1.82 1.18 3.07 0 4.4-2.69 5.36-5.25 5.65.41.36.78 1.07.78 2.16v3.2c0 .31.21.67.8.55C20.21 21.39 23.5 17.07 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+        GitHub
+      </a>
+      <span class="sidebar__social is-muted">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="m3 7 9 6 9-6"/></svg>
+        Email
+      </span>
+      <div class="sidebar__copy">© 2026 Shang Wenting</div>
+    </div>
+  </div>
+</div>
+
+<div class="doc">
+
+  <!-- ===================== COVER ===================== -->
+  <section class="page page--cover">
+    <div class="cover__inner">
+      <div class="cover__eyebrow">Portfolio Collection</div>
+      <div class="cover__title">尚文蜓</div>
+      <div class="cover__title-en">Shang Wenting</div>
+      <div class="cover__rule"></div>
+      <p class="cover__lead">安克产品设计、股票产品设计、独立项目与路上的摄影 —— 一份关于「定义功能、推动落地、结构化观察」的作品集合。</p>
+      <a class="cover__btn" href="#p-voc">查看作品 →</a>
+      <div class="cover__meta">PRODUCT DESIGN · DATA · PHOTOGRAPHY · 2024—2026</div>
+    </div>
+  </section>
+
+  <!-- ===================== 01 VOC ===================== -->
+  <section class="page" id="p-voc" data-nav>
+    <div class="content">
+      <div class="content__top">
+        <div class="content__topnum">01</div>
+        <div class="content__head">
+          <div class="work__tag">安克产品设计 · 核心功能</div>
+          <h2 class="work__title">VOC 自动化报告</h2>
+          <p class="work__sub">独立负责平台核心功能：报告分享、整体 + 子项评分、反馈聚类、用户画像，报告产出由数天缩至小时级。</p>
+        </div>
+      </div>
+      <figure class="work__hero"><img src="assets/pdf_hi/voc_p1.png" alt="VOC 自动化报告" /></figure>
+      <div class="page-strip">
+        <div class="page-strip__label">VOC 自动化报告 · 4 页</div>
+        <div class="page-strip__grid">
+          <div class="page-strip__item"><img src="assets/pdf_hi/voc_p1.png" alt="v1" /><span class="ps-num">01</span></div>
+          <div class="page-strip__item"><img src="assets/pdf_hi/voc_p2.png" alt="v2" /><span class="ps-num">02</span></div>
+          <div class="page-strip__item"><img src="assets/pdf_hi/voc_p3.png" alt="v3" /><span class="ps-num">03</span></div>
+          <div class="page-strip__item"><img src="assets/pdf_hi/voc_p4.png" alt="v4" /><span class="ps-num">04</span></div>
+        </div>
+      </div>
+      <div class="page__footer"><span>尚文蜓 · 作品集合集</span><span class="pg">02 / 13</span></div>
+    </div>
+  </section>
+
+  <!-- ===================== 02 XTest ===================== -->
+  <section class="page" id="p-xtest" data-nav>
+    <div class="content">
+      <div class="content__top">
+        <div class="content__topnum">02</div>
+        <div class="content__head">
+          <div class="work__tag">安克产品设计 · 业务原型</div>
+          <h2 class="work__title">XTest 平台 · 需求文档</h2>
+          <p class="work__sub">招募 → 筛选 → 协议 → 寄件 → 任务 → 回收 → 报告 端到端流程设计。</p>
+        </div>
+      </div>
+      <figure class="work__hero"><img src="assets/pdf_hi/ankerx_p1.png" alt="XTest 需求文档" /></figure>
+      <div class="page-strip">
+        <div class="page-strip__label">需求文档 · 2 页</div>
+        <div class="page-strip__grid">
+          <div class="page-strip__item"><img src="assets/pdf_hi/ankerx_p1.png" alt="x1" /><span class="ps-num">01</span></div>
+          <div class="page-strip__item"><img src="assets/pdf_hi/ankerx_p2.png" alt="x2" /><span class="ps-num">02</span></div>
+        </div>
+      </div>
+      <div class="page__footer"><span>尚文蜓 · 作品集合集</span><span class="pg">03 / 13</span></div>
+    </div>
+  </section>
+
+  <!-- ===================== 03 Axure ===================== -->
+  <section class="page" id="p-axure" data-nav>
+    <div class="content">
+      <div class="content__top">
+        <div class="content__topnum">03</div>
+        <div class="content__head">
+          <div class="work__tag">安克产品设计 · 交互原型</div>
+          <h2 class="work__title">业务平台 · Axure 交互原型</h2>
+          <p class="work__sub">B 端业务流程原型设计 · 覆盖设备寄送、用户协议、项目进展播报全流程。</p>
+        </div>
+      </div>
+      <figure class="work__hero"><img src="assets/docx_images/wk_018.png" alt="Axure 设备寄送流程原型" /></figure>
+      <div class="page-strip">
+        <div class="page-strip__label">Axure 原型 · 关键页面</div>
+        <div class="page-strip__grid">
+          <div class="page-strip__item"><img src="assets/docx_images/wk_018.png" alt="a1" /><span class="ps-num">01</span></div>
+          <div class="page-strip__item"><img src="assets/docx_images/wk_017.png" alt="a2" /><span class="ps-num">02</span></div>
+        </div>
+      </div>
+      <div class="page__footer"><span>尚文蜓 · 作品集合集</span><span class="pg">04 / 13</span></div>
+    </div>
+  </section>
+
+  <!-- ===================== 04 股票 APP 功能设计 ===================== -->
+  <section class="page" id="p-stock-app" data-nav>
+    <div class="content">
+      <div class="content__top">
+        <div class="content__topnum">04</div>
+        <div class="content__head">
+          <div class="work__tag">股票产品设计 · APP 端</div>
+          <h2 class="work__title">股票 APP · 功能设计</h2>
+          <p class="work__sub">数据中台 + APP 端联动设计 · 覆盖数据可视化、规则配置、用户运营。</p>
+        </div>
+      </div>
+      <figure class="work__hero"><img src="assets/pdf_hi/light_p1.png" alt="股票 APP 功能设计" /></figure>
+      <div class="page-strip">
+        <div class="page-strip__label">功能设计稿 · 3 页</div>
+        <div class="page-strip__grid">
+          <div class="page-strip__item"><img src="assets/pdf_hi/light_p1.png" alt="l1" /><span class="ps-num">01</span></div>
+          <div class="page-strip__item"><img src="assets/pdf_hi/light_p2.png" alt="l2" /><span class="ps-num">02</span></div>
+          <div class="page-strip__item"><img src="assets/pdf_hi/light_p3.png" alt="l3" /><span class="ps-num">03</span></div>
+        </div>
+      </div>
+      <div class="page__footer"><span>尚文蜓 · 作品集合集</span><span class="pg">05 / 13</span></div>
+    </div>
+  </section>
+
+  <!-- ===================== 05 股票 资产分析 ===================== -->
+  <section class="page" id="p-stock-asset" data-nav>
+    <div class="content">
+      <div class="content__top">
+        <div class="content__topnum">05</div>
+        <div class="content__head">
+          <div class="work__tag">股票产品设计 · 资产分析</div>
+          <h2 class="work__title">股票 APP · 资产分析</h2>
+          <p class="work__sub">用户资产数据可视化 · 存量与变动趋势展示。</p>
+        </div>
+      </div>
+      <figure class="work__hero"><img src="assets/pdf_hi/asset_p1.png" alt="股票 APP 资产分析" /></figure>
+      <div class="page__footer"><span>尚文蜓 · 作品集合集</span><span class="pg">06 / 13</span></div>
+    </div>
+  </section>
+
+  <!-- ===================== 06 PI 续签 ===================== -->
+  <section class="page" id="p-stock-pi" data-nav>
+    <div class="content">
+      <div class="content__top">
+        <div class="content__topnum">06</div>
+        <div class="content__head">
+          <div class="work__tag">股票产品设计 · 中台</div>
+          <h2 class="work__title">股票中台 · PI 授权过期与续签</h2>
+          <p class="work__sub">合规监测 · 用户触达 · 续签闭环 · 弹窗与提示页全流程设计。</p>
+        </div>
+      </div>
+      <figure class="work__hero"><img src="assets/pdf_hi/pi_p1.png" alt="股票中台 PI 授权过期" /></figure>
+      <div class="page-strip">
+        <div class="page-strip__label">PI 授权续签 · 2 页</div>
+        <div class="page-strip__grid">
+          <div class="page-strip__item"><img src="assets/pdf_hi/pi_p1.png" alt="p1" /><span class="ps-num">01</span></div>
+          <div class="page-strip__item"><img src="assets/pdf_hi/pi_p2.png" alt="p2" /><span class="ps-num">02</span></div>
+        </div>
+      </div>
+      <div class="page__footer"><span>尚文蜓 · 作品集合集</span><span class="pg">07 / 13</span></div>
+    </div>
+  </section>
+
+  <!-- ===================== 07 鼎泰 ===================== -->
+  <section class="page" id="p-guolian" data-nav>
+    <div class="content">
+      <div class="content__top">
+        <div class="content__topnum">07</div>
+        <div class="content__head">
+          <div class="work__tag">实习项目 · 行业研究</div>
+          <h2 class="work__title">鼎泰高科 (301377) 已发表的行业研究报告</h2>
+          <p class="work__sub">结构化论证产业趋势 · 完成深度研究报告撰写 · 刀具产业链结构拆解。</p>
+        </div>
+      </div>
+      <figure class="work__hero"><img src="assets/pdf_pages/guolian_p1.png" alt="鼎泰高科深度研究" /></figure>
+      <div class="page-strip">
+        <div class="page-strip__label">研究报告 · 完整 24 页</div>
+        <div class="page-strip__grid">
+          <div class="page-strip__item"><img src="assets/pdf_pages/guolian_p1.png" alt="g1" /><span class="ps-num">01</span></div>
+          <div class="page-strip__item"><img src="assets/pdf_pages/guolian_p8.png" alt="g8" /><span class="ps-num">08</span></div>
+          <div class="page-strip__item"><img src="assets/pdf_pages/guolian_p16.png" alt="g16" /><span class="ps-num">16</span></div>
+          <div class="page-strip__item"><img src="assets/pdf_pages/guolian_p24.png" alt="g24" /><span class="ps-num">24</span></div>
+        </div>
+      </div>
+      <div class="page__footer"><span>尚文蜓 · 作品集合集</span><span class="pg">08 / 13</span></div>
+    </div>
+  </section>
+
+  <!-- ===================== 08 Tableau ===================== -->
+  <section class="page" id="p-tableau" data-nav>
+    <div class="content">
+      <div class="content__top">
+        <div class="content__topnum">08</div>
+        <div class="content__head">
+          <div class="work__tag">独立项目 · 数据可视化</div>
+          <h2 class="work__title">每日业务情况总览看板</h2>
+          <p class="work__sub">EXCEL 自动更新报表 + Tableau 联动看板 · 经营总况 / 配送 / 新老客 / 平台 / 门店多维下钻。</p>
+        </div>
+      </div>
+      <figure class="work__hero"><img src="assets/portfolio_pngs/tableau_dashboard.jpg" alt="Tableau 业务看板" /></figure>
+      <div class="page__footer"><span>尚文蜓 · 作品集合集</span><span class="pg">09 / 13</span></div>
+    </div>
+  </section>
+
+  <!-- ===================== 09 LSTM ===================== -->
+  <section class="page" id="p-lstm" data-nav>
+    <div class="content">
+      <div class="content__top">
+        <div class="content__topnum">09</div>
+        <div class="content__head">
+          <div class="work__tag">独立项目 · 学术研究</div>
+          <h2 class="work__title">基于 LSTM 的股价时间序列预测</h2>
+          <p class="work__sub">Attention-based CNN-LSTM 与 XGBoost 对比研究 · 测试集准确率 98.8%+。</p>
+        </div>
+      </div>
+      <figure class="work__hero"><img src="assets/portfolio_pngs/导出页面自 105尚文蜓202330181270课程论文.png" alt="LSTM 股价预测课程论文" /></figure>
+      <div class="page__footer"><span>尚文蜓 · 作品集合集</span><span class="pg">10 / 13</span></div>
+    </div>
+  </section>
+
+  <!-- ===================== 10 进销存 ===================== -->
+  <section class="page" id="p-inventory" data-nav>
+    <div class="content">
+      <div class="content__top">
+        <div class="content__topnum">10</div>
+        <div class="content__head">
+          <div class="work__tag">独立项目 · 工具开发</div>
+          <h2 class="work__title">Python 进销存管理系统</h2>
+          <p class="work__sub">Python Tkinter 桌面 GUI · 商品录入 / 库存查看 / 数据更新。</p>
+        </div>
+      </div>
+      <figure class="work__hero"><img src="assets/portfolio_pngs/20240725121334.png" alt="Python 进销存管理系统" /></figure>
+      <div class="page__footer"><span>尚文蜓 · 作品集合集</span><span class="pg">11 / 13</span></div>
+    </div>
+  </section>
+
+  <!-- ===================== 11 摄影 · 一 ===================== -->
+  <section class="page" id="p-photo" data-nav>
+    <div class="content">
+      <div class="content__top">
+        <div class="photo-topnum">11</div>
+        <div class="content__head">
+          <div class="work__tag">旅行摄影</div>
+          <h2 class="photo-title">摄影合集</h2>
+          <p class="photo-caption">记录当下，是另一种生活方式的产品设计。</p>
+        </div>
+      </div>
+      <div class="photo-feature"><img src="assets/photo/微信图片_20260805194602_22_5.jpg" alt="鼓楼" /></div>
+      <div class="photo-grid">
+        <figure><img src="assets/photo/photo_doc_2.jpg" alt="青峦" /><figcaption>伊犁 · 果子沟</figcaption></figure>
+        <figure><img src="assets/photo/微信图片_20260805194602_19_5.jpg" alt="雪境" /><figcaption>威海 · 下雪的海边</figcaption></figure>
+        <figure><img src="assets/photo/微信图片_20260805194602_32_5.jpg" alt="巷晚" /><figcaption>京都 · 秘境街道</figcaption></figure>
+        <figure><img src="assets/photo/微信图片_20260805194602_24_5.jpg" alt="梯田" /><figcaption>广西 · 龙脊梯田</figcaption></figure>
+        <figure><img src="assets/photo/微信图片_20260805194602_29_5.jpg" alt="塔影" /><figcaption>黔东南 · 黄岗侗寨</figcaption></figure>
+        <figure><img src="assets/photo/微信图片_20260805194602_33_5.jpg" alt="湖光" /><figcaption>四川 · 九寨沟</figcaption></figure>
+      </div>
+      <div class="page__footer"><span>尚文蜓 · 作品集合集</span><span class="pg">12 / 13</span></div>
+    </div>
+  </section>
+
+  <!-- ===================== 11 摄影 · 二 ===================== -->
+  <section class="page" data-nav>
+    <div class="content">
+      <div class="content__top">
+        <div class="photo-topnum">11</div>
+        <div class="content__head">
+          <div class="work__tag">旅行摄影</div>
+          <h2 class="photo-title">摄影合集</h2>
+          <p class="photo-caption">永远旅行在路上，用好奇心探索世界的广度与深度。</p>
+        </div>
+      </div>
+      <div class="photo-feature"><img src="assets/photo/DSC04912.jpg" alt="行云" /></div>
+      <div class="photo-grid">
+        <figure><img src="assets/photo/DSC04238.jpg" alt="静湖" /><figcaption>飞机视角 · 雪山冰川</figcaption></figure>
+        <figure><img src="assets/photo/微信图片_20260805194602_31_5.jpg" alt="行旅" /><figcaption>大阪 · 铁轨</figcaption></figure>
+        <figure><img src="assets/photo/DSC04718.jpg" alt="旷野" /><figcaption>昌都 · 然乌胡</figcaption></figure>
+        <figure><img src="assets/photo/photo_doc_1.jpg" alt="赤岩" /><figcaption>乌兰察布 · 大红山</figcaption></figure>
+        <figure><img src="assets/photo/photo_doc_3.jpg" alt="穹丘" /><figcaption>乌兰察布 · 火山</figcaption></figure>
+        <figure><img src="assets/photo/photo_doc_4.jpg" alt="云湖" /><figcaption>新疆 · 赛里木湖</figcaption></figure>
+      </div>
+      <div class="page__footer"><span>尚文蜓 · 作品集合集</span><span class="pg">13 / 13</span></div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  (function(){
+    var tpl = document.getElementById('nav-template').innerHTML;
+    document.querySelectorAll('.page[data-nav]').forEach(function(p){
+      var wrap = document.createElement('div');
+      wrap.innerHTML = tpl.trim();
+      var aside = wrap.firstChild;
+      p.insertBefore(aside, p.firstChild);
+    });
+  })();
+</script>
+</body>
+</html>
