@@ -3,22 +3,23 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>尚文蜓 · 作品典藏 | Portfolio Collection</title>
+<title>尚文蜓 · Portfolio Collection</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Sans+SC:wght@300;400;500;600&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500;600&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <style>
   :root{
-    --paper:#faf7f1;
-    --paper-2:#ffffff;
-    --ink:#2a2620;
-    --ink-soft:#6f685c;
-    --ink-faint:#a89e8e;
-    --line:#e7e0d4;
-    --brand:#b5532e;
-    --faint:#d9cfbf;
+    --paper:#f7f3ec;
+    --paper-2:#fcfaf5;
+    --ink:#2c2823;
+    --ink-soft:#7c7567;
+    --ink-faint:#b0a694;
+    --line:#e7dfd1;
+    --brand:#a8542f;
+    --faint:#ddd3c2;
     --serif:"Noto Serif SC",Georgia,serif;
     --sans:"Noto Sans SC",system-ui,sans-serif;
+    --nav-sans:"Inter","Noto Sans SC",system-ui,sans-serif;
     --latin:"Cormorant Garamond",Georgia,serif;
   }
   *{box-sizing:border-box;}
@@ -36,97 +37,88 @@
   .page:last-child{ page-break-after:auto; }
   .page--cover{ align-items:center; justify-content:center; }
 
-  /* ---------- light sidebar ---------- */
+  /* ---------- light sidebar (narrow, refined) ---------- */
   .sidebar{
-    flex:0 0 232px; width:232px;
+    flex:0 0 188px; width:188px;
     background:var(--paper-2); color:var(--ink);
     border-right:1px solid var(--line);
-    padding:48px 30px 36px;
+    padding:30px 16px 18px;
     display:flex; flex-direction:column;
   }
-  .sidebar__brand{ margin-bottom:36px; }
-  .sidebar__logo{ font-family:var(--serif); font-size:25px; font-weight:600; letter-spacing:4px; color:var(--ink); }
-  .sidebar__role{ font-family:var(--latin); font-size:17px; font-style:italic; color:var(--brand); margin-top:6px; letter-spacing:.5px; }
-  .sidebar__subtitle{ font-size:10.5px; color:var(--ink-faint); margin-top:8px; letter-spacing:2px; }
-
   .sidebar__nav{ flex:1; }
-  .nav-group{ margin-bottom:22px; }
+  .nav-group{ margin-bottom:12px; }
   .nav-group__title{
-    font-size:11px; font-weight:600; letter-spacing:2.5px;
-    color:var(--ink-soft); padding-bottom:8px; margin-bottom:9px;
+    font-family:var(--nav-sans); font-size:8.5px; font-weight:600; letter-spacing:2px;
+    text-transform:uppercase; color:var(--brand); padding-bottom:5px; margin-bottom:4px;
     border-bottom:1px solid var(--line);
   }
   .nav-group__list{ list-style:none; margin:0; padding:0; }
   .nav-link{
-    display:flex; align-items:baseline; gap:10px;
-    padding:6px 0; text-decoration:none; color:var(--ink-soft);
-    font-size:12.5px; line-height:1.4; transition:color .2s;
+    display:flex; align-items:baseline; gap:7px;
+    padding:2.5px 0; text-decoration:none; color:var(--ink-soft);
+    font-family:var(--nav-sans); font-size:9.5px; font-weight:400; line-height:1.35; letter-spacing:.2px;
+    transition:color .2s, transform .2s;
   }
-  .nav-link:hover{ color:var(--brand); }
-  .nav-link__num{ font-family:var(--latin); font-size:13px; color:var(--faint); min-width:20px; }
-
-  .sidebar__footer{ margin-top:24px; padding-top:20px; border-top:1px solid var(--line); }
-  .sidebar__social{ display:flex; align-items:center; gap:8px; color:var(--ink-soft); font-size:11.5px; text-decoration:none; padding:3px 0; }
-  .sidebar__social:hover{ color:var(--brand); }
-  .sidebar__social.is-muted{ opacity:.6; }
-  .sidebar__copy{ font-size:10px; color:var(--ink-faint); margin-top:10px; letter-spacing:.5px; }
+  .nav-link:hover{ color:var(--brand); transform:translateX(2px); }
+  .nav-link__num{ font-family:var(--nav-sans); font-size:9px; color:var(--faint); min-width:15px; font-weight:500; letter-spacing:.5px; }
 
   /* ---------- content ---------- */
-  .content{ flex:1; padding:50px 56px 66px; position:relative; display:flex; flex-direction:column; }
+  .content{ flex:1; padding:46px 50px 60px; position:relative; display:flex; flex-direction:column; }
   .content__top{
-    display:flex; align-items:flex-start; gap:22px;
-    border-bottom:1px solid var(--line); padding-bottom:20px; margin-top:34px; margin-bottom:24px;
+    display:flex; align-items:flex-start; gap:20px;
+    border-bottom:1px solid var(--line); padding-bottom:18px; margin-top:30px; margin-bottom:26px;
   }
-  .content__topnum{ font-family:var(--latin); font-size:46px; font-weight:500; color:var(--faint); line-height:.8; letter-spacing:1px; }
-  .content__head{ flex:1; padding-top:4px; }
-  .work__tag{ position:absolute; top:50px; right:56px; text-align:right; font-size:11px; letter-spacing:2.5px; color:var(--brand); font-weight:600; }
-  .work__title{ font-family:var(--serif); font-size:27px; font-weight:600; margin:9px 0 9px; color:var(--ink); line-height:1.25; letter-spacing:1px; }
-  .work__sub{ font-size:13px; color:var(--ink-soft); line-height:1.75; max-width:430px; }
+  .content__topnum{ font-family:var(--latin); font-size:40px; font-weight:500; color:var(--faint); line-height:.8; letter-spacing:1px; }
+  .content__head{ flex:1; padding-top:2px; }
+  .work__tag{ position:absolute; top:46px; right:50px; text-align:right; font-size:10.5px; letter-spacing:2px; color:var(--brand); font-weight:600; }
+  .work__title{ font-family:var(--serif); font-size:23px; font-weight:600; margin:8px 0 8px; color:var(--ink); line-height:1.3; letter-spacing:.5px; }
+  .work__sub{ font-size:12px; color:var(--ink-soft); line-height:1.8; max-width:420px; font-weight:300; }
 
-  .work__hero{ margin:4px 0 0; border:1px solid var(--line); background:var(--paper-2); overflow:hidden; box-shadow:0 2px 10px rgba(42,38,32,.05); }
+  .work__hero{ margin:2px 0 0; border:1px solid var(--line); background:var(--paper-2); overflow:hidden; box-shadow:0 1px 8px rgba(44,40,35,.05); }
   .work__hero img{ display:block; width:100%; height:auto; }
 
-  .page-strip{ margin-top:24px; }
-  .page-strip__label{ font-size:10.5px; letter-spacing:1.5px; color:var(--ink-faint); margin-bottom:11px; }
-  .page-strip__grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
-  .page-strip__item{ position:relative; border:1px solid var(--line); background:var(--paper-2); overflow:hidden; }
-  .page-strip__item img{ display:block; width:100%; height:108px; object-fit:cover; }
-  .page-strip__item .ps-num{ position:absolute; left:8px; bottom:6px; font-family:var(--latin); font-size:12px; color:#fff; text-shadow:0 1px 3px rgba(0,0,0,.5); }
-
   /* ---------- photography ---------- */
-  .photo-topnum{ font-family:var(--latin); font-size:46px; font-weight:500; color:var(--faint); line-height:.8; }
-  .photo-title{ font-family:var(--serif); font-size:27px; font-weight:600; margin:9px 0 9px; letter-spacing:1px; }
-  .photo-caption{ font-size:14px; color:var(--ink-soft); line-height:1.8; max-width:450px; margin-bottom:22px; }
-  .photo-feature{ border:1px solid var(--line); overflow:hidden; margin-bottom:18px; background:var(--paper-2); box-shadow:0 2px 10px rgba(42,38,32,.05); }
-  .photo-feature img{ display:block; width:100%; height:438px; object-fit:cover; }
+  .photo-topnum{ font-family:var(--latin); font-size:40px; font-weight:500; color:var(--faint); line-height:.8; }
+  .photo-title{ font-family:var(--serif); font-size:23px; font-weight:600; margin:8px 0 8px; letter-spacing:.5px; }
+  .photo-caption{ font-size:12.5px; color:var(--ink-soft); line-height:1.85; max-width:440px; margin-bottom:22px; font-weight:300; }
+  .photo-feature{ border:1px solid var(--line); overflow:hidden; margin-bottom:16px; background:var(--paper-2); box-shadow:0 1px 8px rgba(44,40,35,.05); }
+  .photo-feature img{ display:block; width:100%; height:400px; object-fit:cover; }
   .photo-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
   .photo-grid figure{ margin:0; border:1px solid var(--line); overflow:hidden; background:var(--paper-2); }
-  .photo-grid img{ display:block; width:100%; height:124px; object-fit:cover; }
-  .photo-grid figcaption{ font-size:10px; color:var(--ink-faint); padding:7px 9px; letter-spacing:.5px; }
+  .photo-grid img{ display:block; width:100%; height:118px; object-fit:cover; }
+  .photo-grid figcaption{ font-size:9.5px; color:var(--ink-faint); padding:6px 8px; letter-spacing:.4px; }
 
   /* ---------- cover (editorial) ---------- */
-  .cover{ padding:64px 70px; display:flex; flex-direction:column; justify-content:space-between; align-items:stretch; text-align:left; }
-  .cover__toprule{ display:flex; justify-content:space-between; align-items:center; font-size:10.5px; letter-spacing:3px; color:var(--ink-faint); border-top:1px solid var(--ink); padding-top:12px; }
-  .cover__mid{ flex:1; display:flex; flex-direction:column; justify-content:center; padding:30px 0; }
+  .cover{ padding:72px 68px; display:flex; flex-direction:column; justify-content:space-between; align-items:stretch; text-align:left; }
+  .cover__toprule{ display:flex; justify-content:space-between; align-items:center; font-size:9.5px; letter-spacing:3px; color:var(--ink-faint); border-top:1px solid var(--line); padding-top:12px; }
+  .cover__mid{ flex:1; display:flex; flex-direction:column; justify-content:center; padding:48px 0; }
   .cover__eyebrow{ font-family:var(--latin); font-style:italic; font-size:20px; color:var(--brand); letter-spacing:1px; }
-  .cover__title{ font-family:var(--serif); font-size:84px; font-weight:700; margin:18px 0 14px; letter-spacing:10px; line-height:1; }
-  .cover__title-en{ font-family:var(--latin); font-size:30px; font-style:italic; color:var(--ink-soft); }
-  .cover__rule{ width:72px; height:3px; background:var(--brand); margin:34px 0; }
-  .cover__lead{ font-size:14.5px; color:var(--ink-soft); line-height:1.95; max-width:430px; text-wrap:pretty; }
-  .cover__link{ display:inline-flex; align-items:center; gap:10px; margin-top:36px; font-size:13px; letter-spacing:3px; color:var(--ink); text-decoration:none; font-weight:500; border-bottom:1.5px solid var(--brand); padding-bottom:6px; width:fit-content; }
-  .cover__link:hover{ color:var(--brand); }
-  .cover__botrule{ display:flex; justify-content:space-between; align-items:center; font-size:10.5px; letter-spacing:3px; color:var(--ink-faint); border-bottom:1px solid var(--ink); padding-bottom:12px; }
+  .cover__title{ font-family:var(--serif); font-size:74px; font-weight:700; margin:22px 0 10px; letter-spacing:10px; line-height:1; }
+  .cover__title-en{ font-family:var(--latin); font-size:26px; font-style:italic; color:var(--ink-soft); }
+  .cover__rule{ width:60px; height:2px; background:var(--brand); margin:40px 0; }
+  .cover__lead{ font-size:13.5px; color:var(--ink-soft); line-height:2.1; max-width:400px; font-weight:300; text-wrap:pretty; }
+  .cover__cta{ display:flex; align-items:center; gap:14px; margin-top:46px; }
+  .cover__link{
+    display:inline-flex; align-items:center; gap:11px;
+    font-family:var(--nav-sans); font-size:13.5px; letter-spacing:2.5px; color:#fff;
+    background:var(--brand); text-decoration:none; font-weight:500;
+    padding:15px 30px; border-radius:40px; width:fit-content;
+    box-shadow:0 8px 22px rgba(168,84,47,.30); transition:transform .22s ease, box-shadow .22s ease, background .22s ease;
+  }
+  .cover__link:hover{ background:#934526; transform:translateY(-2px); box-shadow:0 12px 28px rgba(168,84,47,.40); }
+  .cover__link .arrow{ transition:transform .22s ease; font-size:15px; }
+  .cover__link:hover .arrow{ transform:translateX(5px); }
+  .cover__hint{ font-family:var(--nav-sans); font-size:10px; letter-spacing:1.5px; color:var(--ink-faint); }
+  .cover__botrule{ display:flex; justify-content:space-between; align-items:center; font-size:9.5px; letter-spacing:3px; color:var(--ink-faint); border-bottom:1px solid var(--line); padding-bottom:12px; }
 
   /* ---------- footer ---------- */
   .page__footer{
-    position:absolute; left:0; right:0; bottom:24px;
+    position:absolute; left:0; right:0; bottom:22px;
     display:flex; align-items:center; justify-content:space-between;
-    padding:0 56px;
-    font-size:10px; color:var(--ink-faint); letter-spacing:1.5px;
+    padding:0 50px;
+    font-size:9.5px; color:var(--ink-faint); letter-spacing:1.5px;
   }
-  .page__footer .pf-left{ display:flex; align-items:center; gap:18px; }
-  .page__footer .pf-name{ font-family:var(--latin); letter-spacing:1px; }
-  .page__footer .pf-link{ color:var(--brand); text-decoration:none; font-size:10.5px; letter-spacing:1.5px; font-weight:600; }
+  .page__footer .pf-link{ color:var(--brand); text-decoration:none; font-size:10px; letter-spacing:1.5px; font-weight:600; }
   .page__footer .pf-link:hover{ text-decoration:underline; }
 </style>
 </head>
@@ -168,17 +160,6 @@
         </ul>
       </div>
     </nav>
-    <div class="sidebar__footer">
-      <a class="sidebar__social" href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2.04c-3.2.69-3.87-1.36-3.87-1.36-.52-1.33-1.27-1.68-1.27-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.34.95.1-.74.4-1.24.73-1.53-2.55-.29-5.23-1.27-5.23-5.66 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.17.91-.25 1.89-.38 2.86-.39.97.01 1.95.14 2.86.39 2.18-1.48 3.14-1.17 3.14-1.17.62 1.59.23 2.76.11 3.05.73.8 1.18 1.82 1.18 3.07 0 4.4-2.69 5.36-5.25 5.65.41.36.78 1.07.78 2.16v3.2c0 .31.21.67.8.55C20.21 21.39 23.5 17.07 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
-        GitHub
-      </a>
-      <span class="sidebar__social is-muted">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="m3 7 9 6 9-6"/></svg>
-        Email
-      </span>
-      <div class="sidebar__copy">© 2026 Shang Wenting</div>
-    </div>
   </div>
 </div>
 
@@ -187,14 +168,17 @@
   <!-- = our cover goes in a full page -->
   <section class="page page--cover">
     <div class="cover">
-      <div class="cover__toprule"><span>尚文蜓 · 作品典藏</span><span>2024 — 2026</span></div>
+      <div class="cover__toprule"><span>PORTFOLIO COLLECTION</span><span>2024 — 2026</span></div>
       <div class="cover__mid">
-        <div class="cover__eyebrow">Portfolio Collection</div>
+        <div class="cover__eyebrow">Product Design · Data · Photography</div>
         <div class="cover__title">尚文蜓</div>
         <div class="cover__title-en">Shang Wenting</div>
         <div class="cover__rule"></div>
         <p class="cover__lead">安克产品设计、股票产品设计、独立项目与路上的摄影 —— 一份关于「定义功能、推动落地、结构化观察」的作品集合。</p>
-        <a class="cover__link" href="#p-voc">查看作品 →</a>
+        <div class="cover__cta">
+          <a class="cover__link" href="#p-voc">查看作品 <span class="arrow">→</span></a>
+          <span class="cover__hint">11 个完整项目 · 点击进入</span>
+        </div>
       </div>
       <div class="cover__botrule"><span>PRODUCT DESIGN</span><span>DATA</span><span>PHOTOGRAPHY</span></div>
     </div>
@@ -212,16 +196,7 @@
         </div>
       </div>
       <figure class="work__hero"><img src="assets/pdf_hi/voc_p1.png" alt="VOC 自动化报告" /></figure>
-      <div class="page-strip">
-        <div class="page-strip__label">VOC 自动化报告 · 4 页</div>
-        <div class="page-strip__grid">
-          <div class="page-strip__item"><img src="assets/pdf_hi/voc_p1.png" alt="v1" /><span class="ps-num">01</span></div>
-          <div class="page-strip__item"><img src="assets/pdf_hi/voc_p2.png" alt="v2" /><span class="ps-num">02</span></div>
-          <div class="page-strip__item"><img src="assets/pdf_hi/voc_p3.png" alt="v3" /><span class="ps-num">03</span></div>
-          <div class="page-strip__item"><img src="assets/pdf_hi/voc_p4.png" alt="v4" /><span class="ps-num">04</span></div>
-        </div>
-      </div>
-      <div class="page__footer"><span class="pf-left"><span class="pf-name">尚文蜓 · 作品典藏</span><a class="pf-link" href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">查看完整作品 →</a></span><span class="pg">02 / 13</span></div>
+      <div class="page__footer"><a class="pf-link" href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">查看完整作品 →</a><span class="pg">02 / 13</span></div>
     </div>
   </section>
 
@@ -237,14 +212,7 @@
         </div>
       </div>
       <figure class="work__hero"><img src="assets/pdf_hi/ankerx_p1.png" alt="XTest 需求文档" /></figure>
-      <div class="page-strip">
-        <div class="page-strip__label">需求文档 · 2 页</div>
-        <div class="page-strip__grid">
-          <div class="page-strip__item"><img src="assets/pdf_hi/ankerx_p1.png" alt="x1" /><span class="ps-num">01</span></div>
-          <div class="page-strip__item"><img src="assets/pdf_hi/ankerx_p2.png" alt="x2" /><span class="ps-num">02</span></div>
-        </div>
-      </div>
-      <div class="page__footer"><span class="pf-left"><span class="pf-name">尚文蜓 · 作品典藏</span><a class="pf-link" href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">查看完整作品 →</a></span><span class="pg">03 / 13</span></div>
+      <div class="page__footer"><a class="pf-link" href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">查看完整作品 →</a><span class="pg">03 / 13</span></div>
     </div>
   </section>
 
@@ -260,14 +228,7 @@
         </div>
       </div>
       <figure class="work__hero"><img src="assets/docx_images/wk_018.png" alt="Axure 设备寄送流程原型" /></figure>
-      <div class="page-strip">
-        <div class="page-strip__label">Axure 原型 · 关键页面</div>
-        <div class="page-strip__grid">
-          <div class="page-strip__item"><img src="assets/docx_images/wk_018.png" alt="a1" /><span class="ps-num">01</span></div>
-          <div class="page-strip__item"><img src="assets/docx_images/wk_017.png" alt="a2" /><span class="ps-num">02</span></div>
-        </div>
-      </div>
-      <div class="page__footer"><span class="pf-left"><span class="pf-name">尚文蜓 · 作品典藏</span><a class="pf-link" href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">查看完整作品 →</a></span><span class="pg">04 / 13</span></div>
+      <div class="page__footer"><a class="pf-link" href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">查看完整作品 →</a><span class="pg">04 / 13</span></div>
     </div>
   </section>
 
@@ -283,15 +244,7 @@
         </div>
       </div>
       <figure class="work__hero"><img src="assets/pdf_hi/light_p1.png" alt="股票 APP 功能设计" /></figure>
-      <div class="page-strip">
-        <div class="page-strip__label">功能设计稿 · 3 页</div>
-        <div class="page-strip__grid">
-          <div class="page-strip__item"><img src="assets/pdf_hi/light_p1.png" alt="l1" /><span class="ps-num">01</span></div>
-          <div class="page-strip__item"><img src="assets/pdf_hi/light_p2.png" alt="l2" /><span class="ps-num">02</span></div>
-          <div class="page-strip__item"><img src="assets/pdf_hi/light_p3.png" alt="l3" /><span class="ps-num">03</span></div>
-        </div>
-      </div>
-      <div class="page__footer"><span class="pf-left"><span class="pf-name">尚文蜓 · 作品典藏</span><a class="pf-link" href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">查看完整作品 →</a></span><span class="pg">05 / 13</span></div>
+      <div class="page__footer"><a class="pf-link" href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">查看完整作品 →</a><span class="pg">05 / 13</span></div>
     </div>
   </section>
 
@@ -307,7 +260,7 @@
         </div>
       </div>
       <figure class="work__hero"><img src="assets/pdf_hi/asset_p1.png" alt="股票 APP 资产分析" /></figure>
-      <div class="page__footer"><span class="pf-left"><span class="pf-name">尚文蜓 · 作品典藏</span><a class="pf-link" href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">查看完整作品 →</a></span><span class="pg">06 / 13</span></div>
+      <div class="page__footer"><a class="pf-link" href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">查看完整作品 →</a><span class="pg">06 / 13</span></div>
     </div>
   </section>
 
@@ -323,14 +276,7 @@
         </div>
       </div>
       <figure class="work__hero"><img src="assets/pdf_hi/pi_p1.png" alt="股票中台 PI 授权过期" /></figure>
-      <div class="page-strip">
-        <div class="page-strip__label">PI 授权续签 · 2 页</div>
-        <div class="page-strip__grid">
-          <div class="page-strip__item"><img src="assets/pdf_hi/pi_p1.png" alt="p1" /><span class="ps-num">01</span></div>
-          <div class="page-strip__item"><img src="assets/pdf_hi/pi_p2.png" alt="p2" /><span class="ps-num">02</span></div>
-        </div>
-      </div>
-      <div class="page__footer"><span class="pf-left"><span class="pf-name">尚文蜓 · 作品典藏</span><a class="pf-link" href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">查看完整作品 →</a></span><span class="pg">07 / 13</span></div>
+      <div class="page__footer"><a class="pf-link" href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">查看完整作品 →</a><span class="pg">07 / 13</span></div>
     </div>
   </section>
 
@@ -346,16 +292,7 @@
         </div>
       </div>
       <figure class="work__hero"><img src="assets/pdf_pages/guolian_p1.png" alt="鼎泰高科深度研究" /></figure>
-      <div class="page-strip">
-        <div class="page-strip__label">研究报告 · 完整 24 页</div>
-        <div class="page-strip__grid">
-          <div class="page-strip__item"><img src="assets/pdf_pages/guolian_p1.png" alt="g1" /><span class="ps-num">01</span></div>
-          <div class="page-strip__item"><img src="assets/pdf_pages/guolian_p8.png" alt="g8" /><span class="ps-num">08</span></div>
-          <div class="page-strip__item"><img src="assets/pdf_pages/guolian_p16.png" alt="g16" /><span class="ps-num">16</span></div>
-          <div class="page-strip__item"><img src="assets/pdf_pages/guolian_p24.png" alt="g24" /><span class="ps-num">24</span></div>
-        </div>
-      </div>
-      <div class="page__footer"><span class="pf-left"><span class="pf-name">尚文蜓 · 作品典藏</span><a class="pf-link" href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">查看完整作品 →</a></span><span class="pg">08 / 13</span></div>
+      <div class="page__footer"><a class="pf-link" href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">查看完整作品 →</a><span class="pg">08 / 13</span></div>
     </div>
   </section>
 
@@ -371,7 +308,7 @@
         </div>
       </div>
       <figure class="work__hero"><img src="assets/portfolio_pngs/tableau_dashboard.jpg" alt="Tableau 业务看板" /></figure>
-      <div class="page__footer"><span class="pf-left"><span class="pf-name">尚文蜓 · 作品典藏</span><a class="pf-link" href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">查看完整作品 →</a></span><span class="pg">09 / 13</span></div>
+      <div class="page__footer"><a class="pf-link" href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">查看完整作品 →</a><span class="pg">09 / 13</span></div>
     </div>
   </section>
 
@@ -387,7 +324,7 @@
         </div>
       </div>
       <figure class="work__hero"><img src="assets/portfolio_pngs/导出页面自 105尚文蜓202330181270课程论文.png" alt="LSTM 股价预测课程论文" /></figure>
-      <div class="page__footer"><span class="pf-left"><span class="pf-name">尚文蜓 · 作品典藏</span><a class="pf-link" href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">查看完整作品 →</a></span><span class="pg">10 / 13</span></div>
+      <div class="page__footer"><a class="pf-link" href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">查看完整作品 →</a><span class="pg">10 / 13</span></div>
     </div>
   </section>
 
@@ -403,7 +340,7 @@
         </div>
       </div>
       <figure class="work__hero"><img src="assets/portfolio_pngs/20240725121334.png" alt="Python 进销存管理系统" /></figure>
-      <div class="page__footer"><span class="pf-left"><span class="pf-name">尚文蜓 · 作品典藏</span><a class="pf-link" href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">查看完整作品 →</a></span><span class="pg">11 / 13</span></div>
+      <div class="page__footer"><a class="pf-link" href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">查看完整作品 →</a><span class="pg">11 / 13</span></div>
     </div>
   </section>
 
@@ -427,7 +364,7 @@
         <figure><img src="assets/photo/微信图片_20260805194602_29_5.jpg" alt="塔影" /><figcaption>黔东南 · 黄岗侗寨</figcaption></figure>
         <figure><img src="assets/photo/微信图片_20260805194602_33_5.jpg" alt="湖光" /><figcaption>四川 · 九寨沟</figcaption></figure>
       </div>
-      <div class="page__footer"><span class="pf-left"><span class="pf-name">尚文蜓 · 作品典藏</span><a class="pf-link" href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">查看完整作品 →</a></span><span class="pg">12 / 13</span></div>
+      <div class="page__footer"><a class="pf-link" href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">查看完整作品 →</a><span class="pg">12 / 13</span></div>
     </div>
   </section>
 
@@ -451,7 +388,7 @@
         <figure><img src="assets/photo/photo_doc_3.jpg" alt="穹丘" /><figcaption>乌兰察布 · 火山</figcaption></figure>
         <figure><img src="assets/photo/photo_doc_4.jpg" alt="云湖" /><figcaption>新疆 · 赛里木湖</figcaption></figure>
       </div>
-      <div class="page__footer"><span class="pf-left"><span class="pf-name">尚文蜓 · 作品典藏</span><a class="pf-link" href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">查看完整作品 →</a></span><span class="pg">13 / 13</span></div>
+      <div class="page__footer"><a class="pf-link" href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">查看完整作品 →</a><span class="pg">13 / 13</span></div>
     </div>
   </section>
 
