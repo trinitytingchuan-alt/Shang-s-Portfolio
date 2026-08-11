@@ -1,4 +1,16 @@
 <!DOCTYPE html>
+<!--
+  ============================================================
+  PDF 设计规则 (standing rules — 强约束，后续任何重做必须遵守)
+  1. 左侧导航栏不得为黑色，必须为浅色（白/暖白）。
+  2. 每个项目页只展示「首页 / 第一张」代表图，不罗列多页缩略图。
+  3. 左侧导航栏必须有设计感：分组标题 + 模板字体（衬线）+ 合理密度，
+     不得稀疏、不得用无设计的丑字体。
+  4. 每页底部插入可点击超链接，跳转到完整 HTML 作品
+     （当前指向 GitHub 主页，待用户给出个人作品集 URL 后替换）。
+  5. 整体留白充足、层级清晰，文字不得堆叠挤压。
+  ============================================================
+-->
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8" />
@@ -36,64 +48,62 @@
   .page:last-child{ page-break-after:auto; }
   .page--cover{ align-items:center; justify-content:center; }
 
-  /* ---------- light sidebar ---------- */
+  /* ---------- light sidebar (redesigned) ---------- */
   .sidebar{
-    flex:0 0 220px; width:220px;
+    flex:0 0 234px; width:234px;
     background:var(--paper-2); color:var(--ink);
     border-right:1px solid var(--line);
-    padding:46px 26px 34px;
+    padding:46px 30px 34px;
     display:flex; flex-direction:column;
   }
-  /* 左上角个人介绍已移除：侧栏只保留导航与底部联系信息 */
+  .sidebar__head{ margin-bottom:40px; }
+  .sidebar__kicker{ font-family:var(--latin); font-size:12px; font-style:italic; letter-spacing:3px; color:var(--brand); }
+  .sidebar__title{ font-family:var(--serif); font-size:23px; font-weight:600; letter-spacing:4px; color:var(--ink); margin-top:8px; }
+  .sidebar__rule{ width:42px; height:2px; background:var(--brand); margin-top:16px; }
 
   .sidebar__nav{ flex:1; }
   .nav-group{ margin-bottom:30px; }
   .nav-group__title{
-    font-size:10.5px; font-weight:600; letter-spacing:3px;
-    color:var(--brand); padding-bottom:10px; margin-bottom:14px;
+    font-family:var(--serif); font-size:13px; font-weight:600; letter-spacing:2px;
+    color:var(--brand); padding-bottom:10px; margin-bottom:6px;
     border-bottom:1px solid var(--line);
   }
   .nav-group__list{ list-style:none; margin:0; padding:0; }
   .nav-link{
-    display:flex; align-items:baseline; gap:11px;
-    padding:8px 0; text-decoration:none; color:var(--ink-soft);
-    font-size:12.5px; line-height:1.45; transition:color .2s;
+    display:flex; align-items:baseline; gap:12px;
+    padding:10px 0; text-decoration:none; color:var(--ink-soft);
+    font-family:var(--serif); font-size:14px; line-height:1.4;
+    border-bottom:1px solid var(--line); transition:color .2s;
   }
+  .nav-link:last-child{ border-bottom:none; }
   .nav-link:hover{ color:var(--brand); }
-  .nav-link__num{ font-family:var(--latin); font-size:13px; color:var(--faint); min-width:20px; }
+  .nav-link__num{ font-family:var(--latin); font-size:15px; font-weight:600; color:var(--brand); min-width:22px; }
 
-  .sidebar__footer{ margin-top:30px; padding-top:20px; border-top:1px solid var(--line); }
+  .sidebar__footer{ margin-top:30px; padding-top:22px; border-top:1px solid var(--line); }
   .sidebar__social{ display:flex; align-items:center; gap:8px; color:var(--ink-soft); font-size:11.5px; text-decoration:none; padding:4px 0; }
   .sidebar__social:hover{ color:var(--brand); }
   .sidebar__social.is-muted{ opacity:.6; }
   .sidebar__copy{ font-size:10px; color:var(--ink-faint); margin-top:12px; letter-spacing:.5px; }
 
   /* ---------- content ---------- */
-  .content{ flex:1; padding:56px 62px 72px; position:relative; display:flex; flex-direction:column; }
+  .content{ flex:1; padding:58px 64px 74px; position:relative; display:flex; flex-direction:column; }
   .content__top{
     display:flex; align-items:flex-start; gap:24px;
-    border-bottom:1px solid var(--line); padding-bottom:26px; margin-bottom:34px;
+    border-bottom:1px solid var(--line); padding-bottom:28px; margin-bottom:38px;
   }
-  .content__topnum{ font-family:var(--latin); font-size:52px; font-weight:500; color:var(--faint); line-height:.78; letter-spacing:1px; }
+  .content__topnum{ font-family:var(--latin); font-size:54px; font-weight:500; color:var(--faint); line-height:.78; letter-spacing:1px; }
   .content__head{ flex:1; padding-top:6px; }
   .work__tag{ font-size:11px; letter-spacing:3px; color:var(--brand); font-weight:600; }
   .work__title{ font-family:var(--serif); font-size:28px; font-weight:600; margin:14px 0 16px; color:var(--ink); line-height:1.3; letter-spacing:1px; }
-  .work__sub{ font-size:13px; color:var(--ink-soft); line-height:1.9; max-width:440px; }
+  .work__sub{ font-size:13px; color:var(--ink-soft); line-height:1.95; max-width:440px; }
 
-  .work__hero{ margin:6px 0 0; border:1px solid var(--line); background:var(--paper-2); overflow:hidden; box-shadow:0 2px 12px rgba(42,38,32,.05); }
-  .work__hero img{ display:block; width:100%; height:auto; }
-
-  .page-strip{ margin-top:38px; }
-  .page-strip__label{ font-size:10.5px; letter-spacing:2px; color:var(--ink-faint); margin-bottom:16px; }
-  .page-strip__grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
-  .page-strip__item{ position:relative; border:1px solid var(--line); background:var(--paper-2); overflow:hidden; }
-  .page-strip__item img{ display:block; width:100%; height:108px; object-fit:cover; }
-  .page-strip__item .ps-num{ position:absolute; left:8px; bottom:6px; font-family:var(--latin); font-size:12px; color:#fff; text-shadow:0 1px 3px rgba(0,0,0,.5); }
+  .work__hero{ margin:6px 0 0; border:1px solid var(--line); background:var(--paper-2); overflow:hidden; }
+  .work__hero img{ display:block; width:100%; height:566px; object-fit:cover; box-shadow:0 2px 12px rgba(42,38,32,.05); }
 
   /* ---------- photography ---------- */
-  .photo-topnum{ font-family:var(--latin); font-size:52px; font-weight:500; color:var(--faint); line-height:.78; }
+  .photo-topnum{ font-family:var(--latin); font-size:54px; font-weight:500; color:var(--faint); line-height:.78; }
   .photo-title{ font-family:var(--serif); font-size:28px; font-weight:600; margin:14px 0 16px; letter-spacing:1px; }
-  .photo-caption{ font-size:14px; color:var(--ink-soft); line-height:1.9; max-width:450px; margin-bottom:32px; }
+  .photo-caption{ font-size:14px; color:var(--ink-soft); line-height:1.95; max-width:450px; margin-bottom:34px; }
   .photo-feature{ border:1px solid var(--line); overflow:hidden; margin-bottom:30px; background:var(--paper-2); box-shadow:0 2px 12px rgba(42,38,32,.05); }
   .photo-feature img{ display:block; width:100%; height:418px; object-fit:cover; }
   .photo-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
@@ -120,14 +130,21 @@
     display:flex; align-items:center; justify-content:center;
     font-size:10px; color:var(--ink-faint); letter-spacing:1.5px;
   }
-  .page__footer .pg{ position:absolute; right:56px; }
+  .page__footer .pg{ position:absolute; right:64px; }
+  .footer-link{ position:absolute; left:64px; bottom:22px; font-size:10px; letter-spacing:1px; color:var(--brand); text-decoration:underline; text-underline-offset:2px; }
+  .footer-link:hover{ color:var(--ink); }
 </style>
 </head>
 <body>
 
-<!-- ===================== NAV TEMPLATE (light) ===================== -->
+<!-- ===================== NAV TEMPLATE (light, redesigned) ===================== -->
 <div id="nav-template" style="display:none">
   <div class="sidebar">
+    <div class="sidebar__head">
+      <div class="sidebar__kicker">Portfolio</div>
+      <div class="sidebar__title">作品集合集</div>
+      <div class="sidebar__rule"></div>
+    </div>
     <nav class="sidebar__nav">
       <div class="nav-group">
         <div class="nav-group__title">安克产品设计</div>
@@ -205,15 +222,6 @@
         </div>
       </div>
       <figure class="work__hero"><img src="assets/pdf_hi/voc_p1.png" alt="VOC 自动化报告" /></figure>
-      <div class="page-strip">
-        <div class="page-strip__label">VOC 自动化报告 · 4 页</div>
-        <div class="page-strip__grid">
-          <div class="page-strip__item"><img src="assets/pdf_hi/voc_p1.png" alt="v1" /><span class="ps-num">01</span></div>
-          <div class="page-strip__item"><img src="assets/pdf_hi/voc_p2.png" alt="v2" /><span class="ps-num">02</span></div>
-          <div class="page-strip__item"><img src="assets/pdf_hi/voc_p3.png" alt="v3" /><span class="ps-num">03</span></div>
-          <div class="page-strip__item"><img src="assets/pdf_hi/voc_p4.png" alt="v4" /><span class="ps-num">04</span></div>
-        </div>
-      </div>
       <div class="page__footer"><span>尚文蜓 · 作品集合集</span><span class="pg">02 / 13</span></div>
     </div>
   </section>
@@ -230,13 +238,6 @@
         </div>
       </div>
       <figure class="work__hero"><img src="assets/pdf_hi/ankerx_p1.png" alt="XTest 需求文档" /></figure>
-      <div class="page-strip">
-        <div class="page-strip__label">需求文档 · 2 页</div>
-        <div class="page-strip__grid">
-          <div class="page-strip__item"><img src="assets/pdf_hi/ankerx_p1.png" alt="x1" /><span class="ps-num">01</span></div>
-          <div class="page-strip__item"><img src="assets/pdf_hi/ankerx_p2.png" alt="x2" /><span class="ps-num">02</span></div>
-        </div>
-      </div>
       <div class="page__footer"><span>尚文蜓 · 作品集合集</span><span class="pg">03 / 13</span></div>
     </div>
   </section>
@@ -253,13 +254,6 @@
         </div>
       </div>
       <figure class="work__hero"><img src="assets/docx_images/wk_018.png" alt="Axure 设备寄送流程原型" /></figure>
-      <div class="page-strip">
-        <div class="page-strip__label">Axure 原型 · 关键页面</div>
-        <div class="page-strip__grid">
-          <div class="page-strip__item"><img src="assets/docx_images/wk_018.png" alt="a1" /><span class="ps-num">01</span></div>
-          <div class="page-strip__item"><img src="assets/docx_images/wk_017.png" alt="a2" /><span class="ps-num">02</span></div>
-        </div>
-      </div>
       <div class="page__footer"><span>尚文蜓 · 作品集合集</span><span class="pg">04 / 13</span></div>
     </div>
   </section>
@@ -276,14 +270,6 @@
         </div>
       </div>
       <figure class="work__hero"><img src="assets/pdf_hi/light_p1.png" alt="股票 APP 功能设计" /></figure>
-      <div class="page-strip">
-        <div class="page-strip__label">功能设计稿 · 3 页</div>
-        <div class="page-strip__grid">
-          <div class="page-strip__item"><img src="assets/pdf_hi/light_p1.png" alt="l1" /><span class="ps-num">01</span></div>
-          <div class="page-strip__item"><img src="assets/pdf_hi/light_p2.png" alt="l2" /><span class="ps-num">02</span></div>
-          <div class="page-strip__item"><img src="assets/pdf_hi/light_p3.png" alt="l3" /><span class="ps-num">03</span></div>
-        </div>
-      </div>
       <div class="page__footer"><span>尚文蜓 · 作品集合集</span><span class="pg">05 / 13</span></div>
     </div>
   </section>
@@ -316,13 +302,6 @@
         </div>
       </div>
       <figure class="work__hero"><img src="assets/pdf_hi/pi_p1.png" alt="股票中台 PI 授权过期" /></figure>
-      <div class="page-strip">
-        <div class="page-strip__label">PI 授权续签 · 2 页</div>
-        <div class="page-strip__grid">
-          <div class="page-strip__item"><img src="assets/pdf_hi/pi_p1.png" alt="p1" /><span class="ps-num">01</span></div>
-          <div class="page-strip__item"><img src="assets/pdf_hi/pi_p2.png" alt="p2" /><span class="ps-num">02</span></div>
-        </div>
-      </div>
       <div class="page__footer"><span>尚文蜓 · 作品集合集</span><span class="pg">07 / 13</span></div>
     </div>
   </section>
@@ -339,15 +318,6 @@
         </div>
       </div>
       <figure class="work__hero"><img src="assets/pdf_pages/guolian_p1.png" alt="鼎泰高科深度研究" /></figure>
-      <div class="page-strip">
-        <div class="page-strip__label">研究报告 · 完整 24 页</div>
-        <div class="page-strip__grid">
-          <div class="page-strip__item"><img src="assets/pdf_pages/guolian_p1.png" alt="g1" /><span class="ps-num">01</span></div>
-          <div class="page-strip__item"><img src="assets/pdf_pages/guolian_p8.png" alt="g8" /><span class="ps-num">08</span></div>
-          <div class="page-strip__item"><img src="assets/pdf_pages/guolian_p16.png" alt="g16" /><span class="ps-num">16</span></div>
-          <div class="page-strip__item"><img src="assets/pdf_pages/guolian_p24.png" alt="g24" /><span class="ps-num">24</span></div>
-        </div>
-      </div>
       <div class="page__footer"><span>尚文蜓 · 作品集合集</span><span class="pg">08 / 13</span></div>
     </div>
   </section>
@@ -458,6 +428,15 @@
       wrap.innerHTML = tpl.trim();
       var aside = wrap.firstChild;
       p.insertBefore(aside, p.firstChild);
+    });
+    // 每页底部插入「查看完整作品」超链接（点击跳转完整 HTML 作品）
+    document.querySelectorAll('.page__footer').forEach(function(f){
+      var a = document.createElement('a');
+      a.href = 'https://github.com/trinitytingchuan-alt';
+      a.target = '_blank'; a.rel = 'noopener';
+      a.className = 'footer-link';
+      a.textContent = '查看完整作品 →';
+      f.appendChild(a);
     });
   })();
 </script>
