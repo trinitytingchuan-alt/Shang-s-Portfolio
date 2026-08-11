@@ -5,4 +5,6 @@ libpng warning: iCCP: known incorrect sRGB profile
 libpng warning: iCCP: known incorrect sRGB profile
 libpng warning: iCCP: known incorrect sRGB profile
 libpng warning: iCCP: known incorrect sRGB profile
-10698658 bytes written to file C:\Users\Administrator\Desktop\zg\workbuddy\_collection.pdf
+[10288:41020:0811/111214.204:ERROR:google_apis\gcm\engine\registration_request.cc:291] Registration response error message: PHONE_REGISTRATION_ERROR
+[10288:41020:0811/111214.205:ERROR:google_apis\gcm\engine\registration_request.cc:291] Registration response error message: PHONE_REGISTRATION_ERROR
+10761200 bytes written to file C:\Users\Administrator\Desktop\zg\workbuddy\_collection.pdf
