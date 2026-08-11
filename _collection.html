@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>尚文蜓 · 作品集合集 | Portfolio Collection</title>
+<title>尚文蜓 · 作品典藏 | Portfolio Collection</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Sans+SC:wght@300;400;500;600&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -75,11 +75,11 @@
   .content{ flex:1; padding:50px 56px 66px; position:relative; display:flex; flex-direction:column; }
   .content__top{
     display:flex; align-items:flex-start; gap:22px;
-    border-bottom:1px solid var(--line); padding-bottom:20px; margin-bottom:24px;
+    border-bottom:1px solid var(--line); padding-bottom:20px; margin-top:34px; margin-bottom:24px;
   }
   .content__topnum{ font-family:var(--latin); font-size:46px; font-weight:500; color:var(--faint); line-height:.8; letter-spacing:1px; }
   .content__head{ flex:1; padding-top:4px; }
-  .work__tag{ font-size:11px; letter-spacing:2.5px; color:var(--brand); font-weight:600; }
+  .work__tag{ position:absolute; top:50px; right:56px; text-align:right; font-size:11px; letter-spacing:2.5px; color:var(--brand); font-weight:600; }
   .work__title{ font-family:var(--serif); font-size:27px; font-weight:600; margin:9px 0 9px; color:var(--ink); line-height:1.25; letter-spacing:1px; }
   .work__sub{ font-size:13px; color:var(--ink-soft); line-height:1.75; max-width:430px; }
 
@@ -120,22 +120,21 @@
   /* ---------- footer ---------- */
   .page__footer{
     position:absolute; left:0; right:0; bottom:24px;
-    display:flex; align-items:center; justify-content:center;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0 56px;
     font-size:10px; color:var(--ink-faint); letter-spacing:1.5px;
   }
-  .page__footer .pg{ position:absolute; right:56px; }
+  .page__footer .pf-left{ display:flex; align-items:center; gap:18px; }
+  .page__footer .pf-name{ font-family:var(--latin); letter-spacing:1px; }
+  .page__footer .pf-link{ color:var(--brand); text-decoration:none; font-size:10.5px; letter-spacing:1.5px; font-weight:600; }
+  .page__footer .pf-link:hover{ text-decoration:underline; }
 </style>
 </head>
 <body>
 
 <!-- ===================== NAV TEMPLATE (light) ===================== -->
 <div id="nav-template" style="display:none">
-  <div class="sidebar">
-    <div class="sidebar__brand">
-      <div class="sidebar__logo">尚文蜓</div>
-      <div class="sidebar__role">Product Manager</div>
-      <div class="sidebar__subtitle">Portfolio · 2024 — 2026</div>
-    </div>
+    <div class="sidebar">
     <nav class="sidebar__nav">
       <div class="nav-group">
         <div class="nav-group__title">安克产品设计</div>
@@ -188,7 +187,7 @@
   <!-- = our cover goes in a full page -->
   <section class="page page--cover">
     <div class="cover">
-      <div class="cover__toprule"><span>尚文蜓 · 作品集合集</span><span>2024 — 2026</span></div>
+      <div class="cover__toprule"><span>尚文蜓 · 作品典藏</span><span>2024 — 2026</span></div>
       <div class="cover__mid">
         <div class="cover__eyebrow">Portfolio Collection</div>
         <div class="cover__title">尚文蜓</div>
@@ -222,7 +221,7 @@
           <div class="page-strip__item"><img src="assets/pdf_hi/voc_p4.png" alt="v4" /><span class="ps-num">04</span></div>
         </div>
       </div>
-      <div class="page__footer"><span>尚文蜓 · 作品集合集</span><span class="pg">02 / 13</span></div>
+      <div class="page__footer"><span class="pf-left"><span class="pf-name">尚文蜓 · 作品典藏</span><a class="pf-link" href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">查看完整作品 →</a></span><span class="pg">02 / 13</span></div>
     </div>
   </section>
 
@@ -245,7 +244,7 @@
           <div class="page-strip__item"><img src="assets/pdf_hi/ankerx_p2.png" alt="x2" /><span class="ps-num">02</span></div>
         </div>
       </div>
-      <div class="page__footer"><span>尚文蜓 · 作品集合集</span><span class="pg">03 / 13</span></div>
+      <div class="page__footer"><span class="pf-left"><span class="pf-name">尚文蜓 · 作品典藏</span><a class="pf-link" href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">查看完整作品 →</a></span><span class="pg">03 / 13</span></div>
     </div>
   </section>
 
@@ -268,7 +267,7 @@
           <div class="page-strip__item"><img src="assets/docx_images/wk_017.png" alt="a2" /><span class="ps-num">02</span></div>
         </div>
       </div>
-      <div class="page__footer"><span>尚文蜓 · 作品集合集</span><span class="pg">04 / 13</span></div>
+      <div class="page__footer"><span class="pf-left"><span class="pf-name">尚文蜓 · 作品典藏</span><a class="pf-link" href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">查看完整作品 →</a></span><span class="pg">04 / 13</span></div>
     </div>
   </section>
 
@@ -292,7 +291,7 @@
           <div class="page-strip__item"><img src="assets/pdf_hi/light_p3.png" alt="l3" /><span class="ps-num">03</span></div>
         </div>
       </div>
-      <div class="page__footer"><span>尚文蜓 · 作品集合集</span><span class="pg">05 / 13</span></div>
+      <div class="page__footer"><span class="pf-left"><span class="pf-name">尚文蜓 · 作品典藏</span><a class="pf-link" href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">查看完整作品 →</a></span><span class="pg">05 / 13</span></div>
     </div>
   </section>
 
@@ -308,7 +307,7 @@
         </div>
       </div>
       <figure class="work__hero"><img src="assets/pdf_hi/asset_p1.png" alt="股票 APP 资产分析" /></figure>
-      <div class="page__footer"><span>尚文蜓 · 作品集合集</span><span class="pg">06 / 13</span></div>
+      <div class="page__footer"><span class="pf-left"><span class="pf-name">尚文蜓 · 作品典藏</span><a class="pf-link" href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">查看完整作品 →</a></span><span class="pg">06 / 13</span></div>
     </div>
   </section>
 
@@ -331,7 +330,7 @@
           <div class="page-strip__item"><img src="assets/pdf_hi/pi_p2.png" alt="p2" /><span class="ps-num">02</span></div>
         </div>
       </div>
-      <div class="page__footer"><span>尚文蜓 · 作品集合集</span><span class="pg">07 / 13</span></div>
+      <div class="page__footer"><span class="pf-left"><span class="pf-name">尚文蜓 · 作品典藏</span><a class="pf-link" href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">查看完整作品 →</a></span><span class="pg">07 / 13</span></div>
     </div>
   </section>
 
@@ -356,7 +355,7 @@
           <div class="page-strip__item"><img src="assets/pdf_pages/guolian_p24.png" alt="g24" /><span class="ps-num">24</span></div>
         </div>
       </div>
-      <div class="page__footer"><span>尚文蜓 · 作品集合集</span><span class="pg">08 / 13</span></div>
+      <div class="page__footer"><span class="pf-left"><span class="pf-name">尚文蜓 · 作品典藏</span><a class="pf-link" href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">查看完整作品 →</a></span><span class="pg">08 / 13</span></div>
     </div>
   </section>
 
@@ -372,7 +371,7 @@
         </div>
       </div>
       <figure class="work__hero"><img src="assets/portfolio_pngs/tableau_dashboard.jpg" alt="Tableau 业务看板" /></figure>
-      <div class="page__footer"><span>尚文蜓 · 作品集合集</span><span class="pg">09 / 13</span></div>
+      <div class="page__footer"><span class="pf-left"><span class="pf-name">尚文蜓 · 作品典藏</span><a class="pf-link" href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">查看完整作品 →</a></span><span class="pg">09 / 13</span></div>
     </div>
   </section>
 
@@ -388,7 +387,7 @@
         </div>
       </div>
       <figure class="work__hero"><img src="assets/portfolio_pngs/导出页面自 105尚文蜓202330181270课程论文.png" alt="LSTM 股价预测课程论文" /></figure>
-      <div class="page__footer"><span>尚文蜓 · 作品集合集</span><span class="pg">10 / 13</span></div>
+      <div class="page__footer"><span class="pf-left"><span class="pf-name">尚文蜓 · 作品典藏</span><a class="pf-link" href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">查看完整作品 →</a></span><span class="pg">10 / 13</span></div>
     </div>
   </section>
 
@@ -404,7 +403,7 @@
         </div>
       </div>
       <figure class="work__hero"><img src="assets/portfolio_pngs/20240725121334.png" alt="Python 进销存管理系统" /></figure>
-      <div class="page__footer"><span>尚文蜓 · 作品集合集</span><span class="pg">11 / 13</span></div>
+      <div class="page__footer"><span class="pf-left"><span class="pf-name">尚文蜓 · 作品典藏</span><a class="pf-link" href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">查看完整作品 →</a></span><span class="pg">11 / 13</span></div>
     </div>
   </section>
 
@@ -428,7 +427,7 @@
         <figure><img src="assets/photo/微信图片_20260805194602_29_5.jpg" alt="塔影" /><figcaption>黔东南 · 黄岗侗寨</figcaption></figure>
         <figure><img src="assets/photo/微信图片_20260805194602_33_5.jpg" alt="湖光" /><figcaption>四川 · 九寨沟</figcaption></figure>
       </div>
-      <div class="page__footer"><span>尚文蜓 · 作品集合集</span><span class="pg">12 / 13</span></div>
+      <div class="page__footer"><span class="pf-left"><span class="pf-name">尚文蜓 · 作品典藏</span><a class="pf-link" href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">查看完整作品 →</a></span><span class="pg">12 / 13</span></div>
     </div>
   </section>
 
@@ -452,7 +451,7 @@
         <figure><img src="assets/photo/photo_doc_3.jpg" alt="穹丘" /><figcaption>乌兰察布 · 火山</figcaption></figure>
         <figure><img src="assets/photo/photo_doc_4.jpg" alt="云湖" /><figcaption>新疆 · 赛里木湖</figcaption></figure>
       </div>
-      <div class="page__footer"><span>尚文蜓 · 作品集合集</span><span class="pg">13 / 13</span></div>
+      <div class="page__footer"><span class="pf-left"><span class="pf-name">尚文蜓 · 作品典藏</span><a class="pf-link" href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">查看完整作品 →</a></span><span class="pg">13 / 13</span></div>
     </div>
   </section>
 
