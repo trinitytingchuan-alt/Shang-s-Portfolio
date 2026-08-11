@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  4567 精华版 PDF — 设计规则(强约束)
+  1. 只含原 HTML 中编号 4567 的主要作品：
+     04 股票APP·功能设计 / 05 股票APP·资产分析 / 06 股票中台·PI续签 / 07 鼎泰高科
+  2. 每个作品只一页，取「字最多 / 信息量最大」的代表页放大展示。
+  3. 摄影两页，排版清晰、图片尽量放大。
+  4. 左侧导航栏为浅色、有设计感；每页底部有可点击超链接跳转完整作品。
+  5. 留白充足、层级清晰、配色统一(暖纸+墨色+赤陶)。
+  ============================================================
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>尚文蜓 · 作品集 4567 | Portfolio Essence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Sans+SC:wght@300;400;500;600&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#f7f3ec;
+    --paper-2:#ffffff;
+    --ink:#292520;
+    --ink-soft:#6d655a;
+    --ink-faint:#a79d8e;
+    --line:#e6dfd3;
+    --brand:#b5532e;
+    --faint:#d8cebd;
+    --serif:"Noto Serif SC",Georgia,serif;
+    --sans:"Noto Sans SC",system-ui,sans-serif;
+    --latin:"Cormorant Garamond",Georgia,serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:#e2dbcd;color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;}
+  @page{ size:A4; margin:0; }
+  .doc{ width:793px; margin:0 auto; }
+
+  .page{
+    width:793px; min-height:1122px;
+    background:var(--paper);
+    page-break-after:always;
+    display:flex; overflow:hidden; position:relative;
+  }
+  .page:last-child{ page-break-after:auto; }
+  .page--cover{ align-items:center; justify-content:center; }
+
+  /* ---------- 浅色侧栏 ---------- */
+  .sidebar{
+    flex:0 0 216px; width:216px;
+    background:var(--paper-2); color:var(--ink);
+    border-right:1px solid var(--line);
+    padding:44px 26px 34px;
+    display:flex; flex-direction:column;
+  }
+  .sidebar__head{ margin-bottom:34px; }
+  .sidebar__kicker{ font-family:var(--latin); font-size:12px; font-style:italic; letter-spacing:3px; color:var(--brand); }
+  .sidebar__title{ font-family:var(--serif); font-size:22px; font-weight:600; letter-spacing:4px; color:var(--ink); margin-top:8px; }
+  .sidebar__rule{ width:38px; height:2px; background:var(--brand); margin-top:15px; }
+
+  .sidebar__nav{ flex:1; }
+  .nav-group{ margin-bottom:26px; }
+  .nav-group__title{
+    font-family:var(--serif); font-size:12.5px; font-weight:600; letter-spacing:2px;
+    color:var(--brand); padding-bottom:9px; margin-bottom:4px;
+    border-bottom:1px solid var(--line);
+  }
+  .nav-group__list{ list-style:none; margin:0; padding:0; }
+  .nav-link{
+    display:flex; align-items:baseline; gap:11px;
+    padding:9px 0; text-decoration:none; color:var(--ink-soft);
+    font-family:var(--serif); font-size:13.5px; line-height:1.4;
+    border-bottom:1px solid var(--line); transition:color .2s;
+  }
+  .nav-link:last-child{ border-bottom:none; }
+  .nav-link:hover{ color:var(--brand); }
+  .nav-link__num{ font-family:var(--latin); font-size:14px; font-weight:600; color:var(--brand); min-width:20px; }
+
+  .sidebar__footer{ margin-top:28px; padding-top:20px; border-top:1px solid var(--line); }
+  .sidebar__social{ display:flex; align-items:center; gap:8px; color:var(--ink-soft); font-size:11px; text-decoration:none; padding:4px 0; }
+  .sidebar__social:hover{ color:var(--brand); }
+  .sidebar__social.is-muted{ opacity:.6; }
+  .sidebar__copy{ font-size:9.5px; color:var(--ink-faint); margin-top:12px; letter-spacing:.5px; }
+
+  /* ---------- 内容 ---------- */
+  .content{ flex:1; padding:54px 58px 70px; position:relative; display:flex; flex-direction:column; }
+  .content__top{
+    display:flex; align-items:flex-start; gap:22px;
+    border-bottom:1px solid var(--line); padding-bottom:24px; margin-bottom:30px;
+  }
+  .content__topnum{ font-family:var(--latin); font-size:52px; font-weight:500; color:var(--faint); line-height:.78; letter-spacing:1px; }
+  .content__head{ flex:1; padding-top:6px; }
+  .work__tag{ font-size:10.5px; letter-spacing:3px; color:var(--brand); font-weight:600; }
+  .work__title{ font-family:var(--serif); font-size:27px; font-weight:600; margin:13px 0 15px; color:var(--ink); line-height:1.3; letter-spacing:1px; }
+  .work__sub{ font-size:13px; color:var(--ink-soft); line-height:1.9; max-width:430px; }
+
+  .work__hero{ flex:1; margin:0; border:1px solid var(--line); background:var(--paper-2); overflow:hidden; box-shadow:0 2px 12px rgba(41,37,32,.06); display:flex; }
+  .work__hero img{ display:block; width:100%; height:auto; object-fit:contain; align-self:center; }
+  .work__cap{ font-size:10px; color:var(--ink-faint); letter-spacing:1.5px; margin-top:14px; }
+
+  /* ---------- 摄影 ---------- */
+  .photo-topnum{ font-family:var(--latin); font-size:52px; font-weight:500; color:var(--faint); line-height:.78; }
+  .photo-title{ font-family:var(--serif); font-size:27px; font-weight:600; margin:13px 0 15px; letter-spacing:1px; }
+  .photo-caption{ font-size:14px; color:var(--ink-soft); line-height:1.9; max-width:450px; margin-bottom:28px; }
+  .photo-feature{ flex:1; border:1px solid var(--line); overflow:hidden; margin-bottom:26px; background:var(--paper-2); box-shadow:0 2px 12px rgba(41,37,32,.06); display:flex; }
+  .photo-feature img{ display:block; width:100%; height:100%; min-height:440px; object-fit:cover; }
+  .photo-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .photo-grid figure{ margin:0; border:1px solid var(--line); overflow:hidden; background:var(--paper-2); }
+  .photo-grid img{ display:block; width:100%; height:132px; object-fit:cover; }
+  .photo-grid figcaption{ font-size:9.5px; color:var(--ink-faint); padding:8px 10px; letter-spacing:.5px; }
+
+  /* ---------- 封面 ---------- */
+  .cover{ padding:72px 76px; display:flex; flex-direction:column; justify-content:space-between; align-items:stretch; text-align:left; }
+  .cover__toprule{ display:flex; justify-content:space-between; align-items:center; font-size:10.5px; letter-spacing:3px; color:var(--ink-faint); border-top:1px solid var(--ink); padding-top:14px; }
+  .cover__mid{ flex:1; display:flex; flex-direction:column; justify-content:center; padding:40px 0; }
+  .cover__eyebrow{ font-family:var(--latin); font-style:italic; font-size:21px; color:var(--brand); letter-spacing:1px; }
+  .cover__title{ font-family:var(--serif); font-size:76px; font-weight:700; margin:22px 0 16px; letter-spacing:8px; line-height:1; }
+  .cover__title-en{ font-family:var(--latin); font-size:28px; font-style:italic; color:var(--ink-soft); }
+  .cover__rule{ width:68px; height:3px; background:var(--brand); margin:38px 0; }
+  .cover__lead{ font-size:14px; color:var(--ink-soft); line-height:2; max-width:420px; text-wrap:pretty; }
+  .cover__link{ display:inline-flex; align-items:center; gap:10px; margin-top:36px; font-size:13px; letter-spacing:3px; color:var(--ink); text-decoration:none; font-weight:500; border-bottom:1.5px solid var(--brand); padding-bottom:6px; width:fit-content; }
+  .cover__link:hover{ color:var(--brand); }
+  .cover__botrule{ display:flex; justify-content:space-between; align-items:center; font-size:10.5px; letter-spacing:3px; color:var(--ink-faint); border-bottom:1px solid var(--ink); padding-bottom:14px; }
+
+  /* ---------- 页脚 ---------- */
+  .page__footer{
+    position:absolute; left:0; right:0; bottom:24px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:9.5px; color:var(--ink-faint); letter-spacing:1.5px;
+  }
+  .page__footer .pg{ position:absolute; right:58px; }
+  .footer-link{ position:absolute; left:58px; bottom:22px; font-size:9.5px; letter-spacing:1px; color:var(--brand); text-decoration:underline; text-underline-offset:2px; }
+  .footer-link:hover{ color:var(--ink); }
+</style>
+</head>
+<body>
+
+<!-- ===================== NAV TEMPLATE ===================== -->
+<div id="nav-template" style="display:none">
+  <div class="sidebar">
+    <div class="sidebar__head">
+      <div class="sidebar__kicker">Portfolio</div>
+      <div class="sidebar__title">作品集 4567</div>
+      <div class="sidebar__rule"></div>
+    </div>
+    <nav class="sidebar__nav">
+      <div class="nav-group">
+        <div class="nav-group__title">股票产品设计</div>
+        <ul class="nav-group__list">
+          <li><a class="nav-link" href="#p-stock-app"><span class="nav-link__num">04</span><span>股票 APP · 功能设计</span></a></li>
+          <li><a class="nav-link" href="#p-stock-asset"><span class="nav-link__num">05</span><span>股票 APP · 资产分析</span></a></li>
+          <li><a class="nav-link" href="#p-stock-pi"><span class="nav-link__num">06</span><span>股票中台 · PI 续签</span></a></li>
+        </ul>
+      </div>
+      <div class="nav-group">
+        <div class="nav-group__title">独立项目</div>
+        <ul class="nav-group__list">
+          <li><a class="nav-link" href="#p-guolian"><span class="nav-link__num">07</span><span>鼎泰高科 · 行业研究报告</span></a></li>
+        </ul>
+      </div>
+      <div class="nav-group">
+        <div class="nav-group__title">摄影</div>
+        <ul class="nav-group__list">
+          <li><a class="nav-link" href="#p-photo-1"><span class="nav-link__num">11</span><span>摄影合集 · 一</span></a></li>
+          <li><a class="nav-link" href="#p-photo-2"><span class="nav-link__num">12</span><span>摄影合集 · 二</span></a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="sidebar__footer">
+      <a class="sidebar__social" href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2.04c-3.2.69-3.87-1.36-3.87-1.36-.52-1.33-1.27-1.68-1.27-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.34.95.1-.74.4-1.24.73-1.53-2.55-.29-5.23-1.27-5.23-5.66 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.17.91-.25 1.89-.38 2.86-.39.97.01 1.95.14 2.86.39 2.18-1.48 3.14-1.17 3.14-1.17.62 1.59.23 2.76.11 3.05.73.8 1.18 1.82 1.18 3.07 0 4.4-2.69 5.36-5.25 5.65.41.36.78 1.07.78 2.16v3.2c0 .31.21.67.8.55C20.21 21.39 23.5 17.07 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+        GitHub
+      </a>
+      <span class="sidebar__social is-muted">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="m3 7 9 6 9-6"/></svg>
+        Email
+      </span>
+      <div class="sidebar__copy">© 2026 Shang Wenting</div>
+    </div>
+  </div>
+</div>
+
+<div class="doc">
+
+  <!-- ===================== COVER ===================== -->
+  <section class="page page--cover">
+    <div class="cover">
+      <div class="cover__toprule"><span>尚文蜓 · 作品集</span><span>2024 — 2026</span></div>
+      <div class="cover__mid">
+        <div class="cover__eyebrow">Portfolio · Essence</div>
+        <div class="cover__title">尚文蜓</div>
+        <div class="cover__title-en">Shang Wenting</div>
+        <div class="cover__rule"></div>
+        <p class="cover__lead">股票产品设计 × 独立项目 × 摄影 —— 从功能定义、交互设计到产业研究，用产品思维做事的精选合集。</p>
+        <a class="cover__link" href="#p-stock-app">查看作品 →</a>
+      </div>
+      <div class="cover__botrule"><span>PRODUCT</span><span>DESIGN</span><span>DATA</span><span>PHOTO</span></div>
+    </div>
+  </section>
+
+  <!-- ===================== 04 股票 APP · 功能设计 ===================== -->
+  <section class="page" id="p-stock-app" data-nav>
+    <div class="content">
+      <div class="content__top">
+        <div class="content__topnum">04</div>
+        <div class="content__head">
+          <div class="work__tag">股票产品设计 · APP 端</div>
+          <h2 class="work__title">股票 APP · 功能设计</h2>
+          <p class="work__sub">数据中台 + APP 端联动设计 · 覆盖数据可视化、规则配置、用户运营。</p>
+        </div>
+      </div>
+      <figure class="work__hero"><img src="assets/pdf_hi/light_p2.png" alt="股票 APP 功能设计 · 代表页" /></figure>
+      <div class="work__cap">功能设计稿 · 功能定义与交互 · 代表页</div>
+      <div class="page__footer"><span>尚文蜓 · 作品集 4567</span><span class="pg">02 / 07</span></div>
+    </div>
+  </section>
+
+  <!-- ===================== 05 股票 APP · 资产分析 ===================== -->
+  <section class="page" id="p-stock-asset" data-nav>
+    <div class="content">
+      <div class="content__top">
+        <div class="content__topnum">05</div>
+        <div class="content__head">
+          <div class="work__tag">股票产品设计 · 资产分析</div>
+          <h2 class="work__title">股票 APP · 资产分析</h2>
+          <p class="work__sub">用户资产数据可视化 · 存量与变动趋势展示。</p>
+        </div>
+      </div>
+      <figure class="work__hero"><img src="assets/pdf_hi/asset_p1.png" alt="股票 APP 资产分析" /></figure>
+      <div class="work__cap">资产分析 · 数据可视化</div>
+      <div class="page__footer"><span>尚文蜓 · 作品集 4567</span><span class="pg">03 / 07</span></div>
+    </div>
+  </section>
+
+  <!-- ===================== 06 股票中台 · PI 续签 ===================== -->
+  <section class="page" id="p-stock-pi" data-nav>
+    <div class="content">
+      <div class="content__top">
+        <div class="content__topnum">06</div>
+        <div class="content__head">
+          <div class="work__tag">股票产品设计 · 中台</div>
+          <h2 class="work__title">股票中台 · PI 授权过期与续签</h2>
+          <p class="work__sub">合规监测 · 用户触达 · 续签闭环 · 弹窗与提示页全流程设计。</p>
+        </div>
+      </div>
+      <figure class="work__hero"><img src="assets/pdf_hi/pi_p1.png" alt="股票中台 PI 授权续签 · 代表页" /></figure>
+      <div class="work__cap">PI 授权续签 · 弹窗与提示页全流程</div>
+      <div class="page__footer"><span>尚文蜓 · 作品集 4567</span><span class="pg">04 / 07</span></div>
+    </div>
+  </section>
+
+  <!-- ===================== 07 鼎泰高科 ===================== -->
+  <section class="page" id="p-guolian" data-nav>
+    <div class="content">
+      <div class="content__top">
+        <div class="content__topnum">07</div>
+        <div class="content__head">
+          <div class="work__tag">实习项目 · 行业研究</div>
+          <h2 class="work__title">鼎泰高科 (301377) 已发表的行业研究报告</h2>
+          <p class="work__sub">结构化论证产业趋势 · 完成深度研究报告撰写 · 刀具产业链结构拆解。</p>
+        </div>
+      </div>
+      <figure class="work__hero"><img src="assets/pdf_pages/guolian_p1.png" alt="鼎泰高科深度研究 · 代表页" /></figure>
+      <div class="work__cap">研究报告 · 完整 24 页 · 代表页</div>
+      <div class="page__footer"><span>尚文蜓 · 作品集 4567</span><span class="pg">05 / 07</span></div>
+    </div>
+  </section>
+
+  <!-- ===================== 11 摄影 · 一 ===================== -->
+  <section class="page" id="p-photo-1" data-nav>
+    <div class="content">
+      <div class="content__top">
+        <div class="photo-topnum">11</div>
+        <div class="content__head">
+          <div class="work__tag">旅行摄影</div>
+          <h2 class="photo-title">摄影合集 · 一</h2>
+          <p class="photo-caption">记录当下，是另一种生活方式的产品设计。</p>
+        </div>
+      </div>
+      <div class="photo-feature"><img src="assets/photo/微信图片_20260805194602_22_5.jpg" alt="鼓楼" /></div>
+      <div class="photo-grid">
+        <figure><img src="assets/photo/photo_doc_2.jpg" alt="青峦" /><figcaption>伊犁 · 果子沟</figcaption></figure>
+        <figure><img src="assets/photo/微信图片_20260805194602_19_5.jpg" alt="雪境" /><figcaption>威海 · 下雪的海边</figcaption></figure>
+        <figure><img src="assets/photo/微信图片_20260805194602_32_5.jpg" alt="巷晚" /><figcaption>京都 · 秘境街道</figcaption></figure>
+      </div>
+      <div class="page__footer"><span>尚文蜓 · 作品集 4567</span><span class="pg">06 / 07</span></div>
+    </div>
+  </section>
+
+  <!-- ===================== 12 摄影 · 二 ===================== -->
+  <section class="page" id="p-photo-2" data-nav>
+    <div class="content">
+      <div class="content__top">
+        <div class="photo-topnum">12</div>
+        <div class="content__head">
+          <div class="work__tag">旅行摄影</div>
+          <h2 class="photo-title">摄影合集 · 二</h2>
+          <p class="photo-caption">永远旅行在路上，用好奇心探索世界的广度与深度。</p>
+        </div>
+      </div>
+      <div class="photo-feature"><img src="assets/photo/DSC04912.jpg" alt="行云" /></div>
+      <div class="photo-grid">
+        <figure><img src="assets/photo/DSC04238.jpg" alt="静湖" /><figcaption>飞机视角 · 雪山冰川</figcaption></figure>
+        <figure><img src="assets/photo/微信图片_20260805194602_31_5.jpg" alt="行旅" /><figcaption>大阪 · 铁轨</figcaption></figure>
+        <figure><img src="assets/photo/DSC04718.jpg" alt="旷野" /><figcaption>昌都 · 然乌胡</figcaption></figure>
+      </div>
+      <div class="page__footer"><span>尚文蜓 · 作品集 4567</span><span class="pg">07 / 07</span></div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  (function(){
+    var tpl = document.getElementById('nav-template').innerHTML;
+    document.querySelectorAll('.page[data-nav]').forEach(function(p){
+      var wrap = document.createElement('div');
+      wrap.innerHTML = tpl.trim();
+      p.insertBefore(wrap.firstChild, p.firstChild);
+    });
+    // 底部「查看完整作品」超链接
+    document.querySelectorAll('.page__footer').forEach(function(f){
+      var a = document.createElement('a');
+      a.href = 'https://github.com/trinitytingchuan-alt';
+      a.target = '_blank'; a.rel = 'noopener';
+      a.className = 'footer-link';
+      a.textContent = '查看完整作品 →';
+      f.appendChild(a);
+    });
+  })();
+</script>
+</body>
+</html>
