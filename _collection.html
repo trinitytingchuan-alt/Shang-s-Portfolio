@@ -6,7 +6,7 @@
 <title>尚文蜓 · Portfolio Collection</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500;600&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Marcellus&family=Noto+Sans+SC:wght@300;400;500&family=Noto+Serif+SC:wght@300;400;500;600&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet" />
 <style>
   :root{
     --paper:#f7f3ec;
@@ -17,11 +17,11 @@
     --line:#e7dfd1;
     --brand:#a8542f;
     --faint:#ddd3c2;
-    /* 全站使用本地细线字体（不依赖网络，打印时不会回退成微软雅黑） */
-    --serif:"Noto Serif SC",Georgia,"SimSun",serif;
-    --sans:"Noto Sans SC","Noto Sans SC DemiLight",system-ui,sans-serif;
-    --nav-sans:"Noto Sans SC","Noto Sans SC DemiLight",system-ui,sans-serif;
-    --latin:"Cormorant Garamond","Noto Serif SC",Georgia,serif;
+    /* 字体策略：Google 高级字体在前（有网时用），本地 Noto 在后兜底（离线打印不回落微软雅黑） */
+    --serif:"Noto Serif SC","ZCOOL XiaoWei",Georgia,"SimSun",serif;
+    --sans:"Noto Sans SC",system-ui,"Microsoft YaHei",sans-serif;
+    --nav-sans:"Noto Serif SC","ZCOOL XiaoWei","Noto Sans SC",serif;
+    --latin:"Cormorant Garamond","Marcellus",Georgia,serif;
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;background:#e4ddd0;color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;}
@@ -47,21 +47,21 @@
     display:flex; flex-direction:column;
   }
   .sidebar__nav{ flex:1; }
-  .nav-group{ margin-bottom:20px; }
+  .nav-group{ margin-bottom:22px; }
   .nav-group__title{
-    font-family:var(--nav-sans); font-size:8px; font-weight:400; letter-spacing:2.2px;
-    text-transform:uppercase; color:var(--brand); padding-bottom:6px; margin-bottom:6px;
+    font-family:var(--nav-sans); font-size:9px; font-weight:500; letter-spacing:2.5px;
+    color:var(--brand); padding-bottom:7px; margin-bottom:8px;
     border-bottom:1px solid var(--line);
   }
   .nav-group__list{ list-style:none; margin:0; padding:0; }
   .nav-link{
     display:flex; align-items:baseline; gap:8px;
-    padding:3.5px 0; text-decoration:none; color:var(--ink-soft);
-    font-family:var(--nav-sans); font-size:9.5px; font-weight:300; line-height:1.4; letter-spacing:.3px;
+    padding:4px 0; text-decoration:none; color:var(--ink-soft);
+    font-family:var(--nav-sans); font-size:10.5px; font-weight:300; line-height:1.5; letter-spacing:.5px;
     transition:color .2s, transform .2s;
   }
   .nav-link:hover{ color:var(--brand); transform:translateX(2px); }
-  .nav-link__num{ font-family:var(--nav-sans); font-size:8.5px; font-weight:300; color:var(--faint); min-width:15px; letter-spacing:.5px; }
+  .nav-link__num{ font-family:var(--latin); font-style:italic; font-size:12px; font-weight:400; color:var(--faint); min-width:18px; letter-spacing:0; }
 
   /* ---------- content ---------- */
   .content{ flex:1; padding:74px 52px 40px; position:relative; display:flex; flex-direction:column; }
@@ -82,12 +82,12 @@
   .photo-topnum{ font-family:var(--latin); font-size:38px; font-weight:500; color:var(--faint); line-height:.8; }
   .photo-title{ font-family:var(--serif); font-size:23px; font-weight:500; margin:8px 0 8px; letter-spacing:.5px; }
   .photo-caption{ font-size:11.5px; color:var(--ink-soft); line-height:1.85; max-width:440px; margin-bottom:20px; font-weight:300; }
-  .photo-feature{ flex:1; border:1px solid var(--line); overflow:hidden; margin-bottom:16px; background:var(--paper-2); box-shadow:0 1px 8px rgba(44,40,35,.05); min-height:0; }
-  .photo-feature img{ display:block; width:100%; height:100%; min-height:340px; object-fit:cover; }
-  .photo-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
-  .photo-grid figure{ margin:0; border:1px solid var(--line); overflow:hidden; background:var(--paper-2); }
-  .photo-grid img{ display:block; width:100%; height:118px; object-fit:cover; }
-  .photo-grid figcaption{ font-size:9px; color:var(--ink-faint); padding:6px 8px; letter-spacing:.4px; font-weight:300; }
+  .photo-feature{ flex:1.2; border:1px solid var(--line); overflow:hidden; margin-bottom:18px; background:#efe9dd; box-shadow:0 1px 8px rgba(44,40,35,.05); min-height:0; display:flex; align-items:center; justify-content:center; }
+  .photo-feature img{ display:block; width:100%; height:auto; max-height:100%; object-fit:contain; }
+  .photo-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .photo-grid figure{ margin:0; border:1px solid var(--line); overflow:hidden; background:#efe9dd; }
+  .photo-grid img{ display:block; width:100%; height:180px; object-fit:contain; }
+  .photo-grid figcaption{ font-size:9px; color:var(--ink-soft); padding:7px 9px; letter-spacing:.4px; font-weight:300; background:var(--paper-2); }
 
   /* ---------- cover (editorial) ---------- */
   .cover{ padding:74px 70px; display:flex; flex-direction:column; justify-content:space-between; align-items:stretch; text-align:left; }
@@ -177,8 +177,8 @@
         <div class="cover__rule"></div>
         <p class="cover__lead">安克产品设计、股票产品设计、独立项目与路上的摄影 —— 一份关于「定义功能、推动落地、结构化观察」的作品集合。</p>
         <div class="cover__cta">
-          <a class="cover__link" href="#p-voc">查看作品 <span class="arrow">→</span></a>
-          <span class="cover__hint">11 个完整项目 · 点击进入</span>
+          <a class="cover__link" href="index.html" target="_blank" rel="noopener">打开网页作品集 <span class="arrow">→</span></a>
+          <span class="cover__hint">完整交互版 · 新窗口打开</span>
         </div>
       </div>
       <div class="cover__botrule"><span>PRODUCT DESIGN</span><span>DATA</span><span>PHOTOGRAPHY</span></div>
