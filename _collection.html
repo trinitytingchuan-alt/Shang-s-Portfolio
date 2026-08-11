@@ -75,19 +75,19 @@
   .work__title{ font-family:var(--serif); font-size:23px; font-weight:500; margin:8px 0 8px; color:var(--ink); line-height:1.3; letter-spacing:.5px; }
   .work__sub{ font-size:11.5px; color:var(--ink-soft); line-height:1.8; max-width:420px; font-weight:300; }
 
-  .work__hero{ flex:1; margin:2px 0 0; min-height:0; border:1px solid var(--line); background:var(--paper-2); overflow:hidden; box-shadow:0 1px 8px rgba(44,40,35,.05); display:flex; align-items:center; justify-content:center; }
+  .work__hero{ flex:1; margin:2px 0 0; min-height:0; overflow:hidden; display:flex; align-items:center; justify-content:center; }
   .work__hero img{ display:block; width:100%; height:auto; object-fit:contain; }
 
   /* ---------- photography ---------- */
   .photo-topnum{ font-family:var(--latin); font-size:38px; font-weight:500; color:var(--faint); line-height:.8; }
   .photo-title{ font-family:var(--serif); font-size:23px; font-weight:500; margin:8px 0 8px; letter-spacing:.5px; }
   .photo-caption{ font-size:11.5px; color:var(--ink-soft); line-height:1.85; max-width:440px; margin-bottom:20px; font-weight:300; }
-  .photo-feature{ flex:1.2; border:1px solid var(--line); overflow:hidden; margin-bottom:18px; background:#efe9dd; box-shadow:0 1px 8px rgba(44,40,35,.05); min-height:0; display:flex; align-items:center; justify-content:center; }
+  .photo-feature{ flex:1.5; overflow:hidden; margin-bottom:16px; min-height:0; display:flex; align-items:center; justify-content:center; }
   .photo-feature img{ display:block; width:100%; height:auto; max-height:100%; object-fit:contain; }
   .photo-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
-  .photo-grid figure{ margin:0; border:1px solid var(--line); overflow:hidden; background:#efe9dd; }
-  .photo-grid img{ display:block; width:100%; height:180px; object-fit:contain; }
-  .photo-grid figcaption{ font-size:9px; color:var(--ink-soft); padding:7px 9px; letter-spacing:.4px; font-weight:300; background:var(--paper-2); }
+  .photo-grid figure{ margin:0; overflow:hidden; display:flex; flex-direction:column; }
+  .photo-grid img{ display:block; width:100%; height:215px; object-fit:contain; }
+  .photo-grid figcaption{ font-size:9px; color:var(--ink-faint); padding:7px 2px 0; letter-spacing:.4px; font-weight:300; text-align:center; }
 
   /* ---------- cover (editorial) ---------- */
   .cover{ padding:74px 70px; display:flex; flex-direction:column; justify-content:space-between; align-items:stretch; text-align:left; }
@@ -110,6 +110,16 @@
   .cover__link .arrow{ transition:transform .22s ease; font-size:15px; }
   .cover__link:hover .arrow{ transform:translateX(5px); }
   .cover__hint{ font-family:var(--nav-sans); font-size:10px; letter-spacing:1.5px; color:var(--ink-faint); font-weight:300; }
+  .cover__altlink{
+    display:inline-flex; align-items:center; gap:9px; margin-top:22px;
+    font-family:var(--nav-sans); font-size:11.5px; letter-spacing:1.8px; color:var(--ink);
+    text-decoration:none; font-weight:400; padding-bottom:5px; width:fit-content;
+    border-bottom:1px solid var(--line); transition:color .2s, border-color .2s;
+  }
+  .cover__altlink:hover{ color:var(--brand); border-color:var(--brand); }
+  .cover__altlink .tag{ font-size:8px; letter-spacing:1.5px; color:var(--brand); border:1px solid var(--brand); border-radius:20px; padding:2px 8px; font-weight:500; }
+  .cover__altlink .arrow{ transition:transform .2s ease; }
+  .cover__altlink:hover .arrow{ transform:translateX(4px); }
   .cover__botrule{ display:flex; justify-content:space-between; align-items:center; font-size:9px; letter-spacing:3px; color:var(--ink-faint); font-weight:300; border-bottom:1px solid var(--line); padding-bottom:12px; }
 
   /* ---------- footer ---------- */
@@ -180,6 +190,7 @@
           <a class="cover__link" href="index.html" target="_blank" rel="noopener">打开网页作品集 <span class="arrow">→</span></a>
           <span class="cover__hint">完整交互版 · 新窗口打开</span>
         </div>
+        <a class="cover__altlink" href="https://trinitytingchuan-alt.github.io/Competitive-Analysis/" target="_blank" rel="noopener"><span class="tag">报告</span>红果短剧竞品分析 <span class="arrow">→</span></a>
       </div>
       <div class="cover__botrule"><span>PRODUCT DESIGN</span><span>DATA</span><span>PHOTOGRAPHY</span></div>
     </div>
