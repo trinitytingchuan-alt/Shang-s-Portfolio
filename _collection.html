@@ -6,27 +6,23 @@
 <title>尚文蜓 · 作品集合集 | Portfolio Collection</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500;600&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Sans+SC:wght@300;400;500;600&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <style>
   :root{
-    --paper:#f6f3ee;
-    --paper-2:#fffdfa;
-    --ink:#232019;
-    --ink-soft:#6a6359;
-    --ink-faint:#a59d90;
-    --line:#e6e0d6;
-    --brand:#c2633f;
-    --faint:#dcd4c8;
-    --sidebar:#1d1b16;
-    --side-text:#efe9df;
-    --side-muted:#a59c8f;
-    --side-line:rgba(255,255,255,.10);
+    --paper:#faf7f1;
+    --paper-2:#ffffff;
+    --ink:#2a2620;
+    --ink-soft:#6f685c;
+    --ink-faint:#a89e8e;
+    --line:#e7e0d4;
+    --brand:#b5532e;
+    --faint:#d9cfbf;
     --serif:"Noto Serif SC",Georgia,serif;
-    --sans:"Noto Sans SC","Inter",system-ui,sans-serif;
+    --sans:"Noto Sans SC",system-ui,sans-serif;
     --latin:"Cormorant Garamond",Georgia,serif;
   }
   *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;background:#e3ddd2;color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;}
+  html,body{margin:0;padding:0;background:#e4ddd0;color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;}
   @page{ size:A4; margin:0; }
   .doc{ width:793px; margin:0 auto; }
 
@@ -38,102 +34,101 @@
     display:flex; overflow:hidden; position:relative;
   }
   .page:last-child{ page-break-after:auto; }
-  .page--cover{ align-items:center; justify-content:center; text-align:center; }
+  .page--cover{ align-items:center; justify-content:center; }
 
-  /* ---------- sidebar ---------- */
+  /* ---------- light sidebar ---------- */
   .sidebar{
-    flex:0 0 248px; width:248px;
-    background:var(--sidebar); color:var(--side-text);
-    padding:50px 32px 34px;
+    flex:0 0 232px; width:232px;
+    background:var(--paper-2); color:var(--ink);
+    border-right:1px solid var(--line);
+    padding:48px 30px 36px;
     display:flex; flex-direction:column;
   }
-  .sidebar__brand{ margin-bottom:40px; }
-  .sidebar__logo{ font-family:var(--serif); font-size:27px; font-weight:600; letter-spacing:3px; color:#fff; }
-  .sidebar__role{ font-family:var(--latin); font-size:17px; font-style:italic; color:var(--brand); margin-top:5px; letter-spacing:.5px; }
-  .sidebar__subtitle{ font-size:11px; color:var(--side-muted); margin-top:7px; letter-spacing:1.5px; }
+  .sidebar__brand{ margin-bottom:36px; }
+  .sidebar__logo{ font-family:var(--serif); font-size:25px; font-weight:600; letter-spacing:4px; color:var(--ink); }
+  .sidebar__role{ font-family:var(--latin); font-size:17px; font-style:italic; color:var(--brand); margin-top:6px; letter-spacing:.5px; }
+  .sidebar__subtitle{ font-size:10.5px; color:var(--ink-faint); margin-top:8px; letter-spacing:2px; }
 
   .sidebar__nav{ flex:1; }
-  .nav-group{ margin-bottom:26px; }
+  .nav-group{ margin-bottom:22px; }
   .nav-group__title{
-    font-size:12.5px; font-weight:600; letter-spacing:2px;
-    color:#d8d0c4; padding-bottom:9px; margin-bottom:11px;
-    border-bottom:1px solid var(--side-line);
+    font-size:11px; font-weight:600; letter-spacing:2.5px;
+    color:var(--ink-soft); padding-bottom:8px; margin-bottom:9px;
+    border-bottom:1px solid var(--line);
   }
   .nav-group__list{ list-style:none; margin:0; padding:0; }
   .nav-link{
     display:flex; align-items:baseline; gap:10px;
-    padding:7px 0; text-decoration:none; color:var(--side-muted);
-    font-size:13px; line-height:1.45;
+    padding:6px 0; text-decoration:none; color:var(--ink-soft);
+    font-size:12.5px; line-height:1.4; transition:color .2s;
   }
-  .nav-link:hover{ color:#fff; }
-  .nav-link__num{ font-family:var(--latin); font-size:14px; color:var(--brand); min-width:20px; }
+  .nav-link:hover{ color:var(--brand); }
+  .nav-link__num{ font-family:var(--latin); font-size:13px; color:var(--faint); min-width:20px; }
 
-  .sidebar__footer{ margin-top:30px; padding-top:22px; border-top:1px solid var(--side-line); }
-  .sidebar__social{ display:flex; align-items:center; gap:8px; color:var(--side-muted); font-size:12px; text-decoration:none; padding:4px 0; }
-  .sidebar__social:hover{ color:#fff; }
-  .sidebar__social.is-muted{ opacity:.55; }
-  .sidebar__copy{ font-size:10.5px; color:var(--side-muted); margin-top:12px; letter-spacing:.5px; }
+  .sidebar__footer{ margin-top:24px; padding-top:20px; border-top:1px solid var(--line); }
+  .sidebar__social{ display:flex; align-items:center; gap:8px; color:var(--ink-soft); font-size:11.5px; text-decoration:none; padding:3px 0; }
+  .sidebar__social:hover{ color:var(--brand); }
+  .sidebar__social.is-muted{ opacity:.6; }
+  .sidebar__copy{ font-size:10px; color:var(--ink-faint); margin-top:10px; letter-spacing:.5px; }
 
   /* ---------- content ---------- */
-  .content{ flex:1; padding:54px 58px 70px; position:relative; display:flex; flex-direction:column; }
+  .content{ flex:1; padding:50px 56px 66px; position:relative; display:flex; flex-direction:column; }
   .content__top{
-    display:flex; align-items:flex-start; gap:20px;
-    border-bottom:1px solid var(--line); padding-bottom:18px; margin-bottom:22px;
+    display:flex; align-items:flex-start; gap:22px;
+    border-bottom:1px solid var(--line); padding-bottom:20px; margin-bottom:24px;
   }
-  .content__topnum{ font-family:var(--latin); font-size:34px; font-weight:500; color:var(--faint); line-height:.9; }
-  .content__head{ flex:1; }
-  .work__tag{ font-size:11.5px; letter-spacing:2px; color:var(--brand); font-weight:600; }
-  .work__title{ font-family:var(--serif); font-size:26px; font-weight:600; margin:7px 0 7px; color:var(--ink); line-height:1.2; }
-  .work__sub{ font-size:13px; color:var(--ink-soft); line-height:1.6; max-width:440px; }
+  .content__topnum{ font-family:var(--latin); font-size:46px; font-weight:500; color:var(--faint); line-height:.8; letter-spacing:1px; }
+  .content__head{ flex:1; padding-top:4px; }
+  .work__tag{ font-size:11px; letter-spacing:2.5px; color:var(--brand); font-weight:600; }
+  .work__title{ font-family:var(--serif); font-size:27px; font-weight:600; margin:9px 0 9px; color:var(--ink); line-height:1.25; letter-spacing:1px; }
+  .work__sub{ font-size:13px; color:var(--ink-soft); line-height:1.75; max-width:430px; }
 
-  .work__hero{ margin:8px 0 0; border:1px solid var(--line); background:var(--paper-2); border-radius:2px; overflow:hidden; box-shadow:0 1px 2px rgba(35,32,25,.05); }
+  .work__hero{ margin:4px 0 0; border:1px solid var(--line); background:var(--paper-2); overflow:hidden; box-shadow:0 2px 10px rgba(42,38,32,.05); }
   .work__hero img{ display:block; width:100%; height:auto; }
 
   .page-strip{ margin-top:24px; }
-  .page-strip__label{ font-size:11px; letter-spacing:1px; color:var(--ink-faint); margin-bottom:11px; }
-  .page-strip__grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:11px; }
-  .page-strip__item{ position:relative; border:1px solid var(--line); background:var(--paper-2); border-radius:2px; overflow:hidden; }
-  .page-strip__item img{ display:block; width:100%; height:104px; object-fit:cover; }
-  .page-strip__item .ps-num{ position:absolute; left:7px; bottom:5px; font-family:var(--latin); font-size:12px; color:#fff; text-shadow:0 1px 3px rgba(0,0,0,.55); }
+  .page-strip__label{ font-size:10.5px; letter-spacing:1.5px; color:var(--ink-faint); margin-bottom:11px; }
+  .page-strip__grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+  .page-strip__item{ position:relative; border:1px solid var(--line); background:var(--paper-2); overflow:hidden; }
+  .page-strip__item img{ display:block; width:100%; height:108px; object-fit:cover; }
+  .page-strip__item .ps-num{ position:absolute; left:8px; bottom:6px; font-family:var(--latin); font-size:12px; color:#fff; text-shadow:0 1px 3px rgba(0,0,0,.5); }
 
   /* ---------- photography ---------- */
-  .photo-topnum{ font-family:var(--latin); font-size:34px; font-weight:500; color:var(--faint); line-height:.9; }
-  .photo-title{ font-family:var(--serif); font-size:26px; font-weight:600; margin:7px 0 8px; }
-  .photo-caption{ font-size:14px; color:var(--ink-soft); line-height:1.7; max-width:450px; margin-bottom:20px; }
-  .photo-feature{ border:1px solid var(--line); border-radius:2px; overflow:hidden; margin-bottom:18px; background:var(--paper-2); box-shadow:0 1px 2px rgba(35,32,25,.05); }
-  .photo-feature img{ display:block; width:100%; height:430px; object-fit:cover; }
-  .photo-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:11px; }
-  .photo-grid figure{ margin:0; border:1px solid var(--line); border-radius:2px; overflow:hidden; background:var(--paper-2); }
-  .photo-grid img{ display:block; width:100%; height:120px; object-fit:cover; }
-  .photo-grid figcaption{ font-size:10px; color:var(--ink-faint); padding:6px 8px; }
+  .photo-topnum{ font-family:var(--latin); font-size:46px; font-weight:500; color:var(--faint); line-height:.8; }
+  .photo-title{ font-family:var(--serif); font-size:27px; font-weight:600; margin:9px 0 9px; letter-spacing:1px; }
+  .photo-caption{ font-size:14px; color:var(--ink-soft); line-height:1.8; max-width:450px; margin-bottom:22px; }
+  .photo-feature{ border:1px solid var(--line); overflow:hidden; margin-bottom:18px; background:var(--paper-2); box-shadow:0 2px 10px rgba(42,38,32,.05); }
+  .photo-feature img{ display:block; width:100%; height:438px; object-fit:cover; }
+  .photo-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  .photo-grid figure{ margin:0; border:1px solid var(--line); overflow:hidden; background:var(--paper-2); }
+  .photo-grid img{ display:block; width:100%; height:124px; object-fit:cover; }
+  .photo-grid figcaption{ font-size:10px; color:var(--ink-faint); padding:7px 9px; letter-spacing:.5px; }
 
-  /* ---------- cover ---------- */
-  .cover__inner{ max-width:580px; }
-  .cover__eyebrow{ font-family:var(--latin); font-style:italic; font-size:19px; color:var(--brand); letter-spacing:1.5px; }
-  .cover__title{ font-family:var(--serif); font-size:66px; font-weight:700; margin:16px 0 8px; letter-spacing:6px; }
-  .cover__title-en{ font-family:var(--latin); font-size:27px; font-style:italic; color:var(--ink-soft); }
-  .cover__rule{ width:64px; height:2px; background:var(--brand); margin:32px auto; }
-  .cover__lead{ font-size:14.5px; color:var(--ink-soft); line-height:1.8; max-width:440px; margin:0 auto 36px; }
-  .cover__btn{
-    display:inline-block; padding:15px 42px; border:1.5px solid var(--ink);
-    border-radius:40px; font-size:14px; letter-spacing:3px; color:var(--ink);
-    text-decoration:none; font-weight:500;
-  }
-  .cover__btn:hover{ background:var(--ink); color:var(--paper); }
-  .cover__meta{ margin-top:44px; font-size:11px; color:var(--ink-faint); letter-spacing:3px; }
+  /* ---------- cover (editorial) ---------- */
+  .cover{ padding:64px 70px; display:flex; flex-direction:column; justify-content:space-between; align-items:stretch; text-align:left; }
+  .cover__toprule{ display:flex; justify-content:space-between; align-items:center; font-size:10.5px; letter-spacing:3px; color:var(--ink-faint); border-top:1px solid var(--ink); padding-top:12px; }
+  .cover__mid{ flex:1; display:flex; flex-direction:column; justify-content:center; padding:30px 0; }
+  .cover__eyebrow{ font-family:var(--latin); font-style:italic; font-size:20px; color:var(--brand); letter-spacing:1px; }
+  .cover__title{ font-family:var(--serif); font-size:84px; font-weight:700; margin:18px 0 14px; letter-spacing:10px; line-height:1; }
+  .cover__title-en{ font-family:var(--latin); font-size:30px; font-style:italic; color:var(--ink-soft); }
+  .cover__rule{ width:72px; height:3px; background:var(--brand); margin:34px 0; }
+  .cover__lead{ font-size:14.5px; color:var(--ink-soft); line-height:1.95; max-width:430px; text-wrap:pretty; }
+  .cover__link{ display:inline-flex; align-items:center; gap:10px; margin-top:36px; font-size:13px; letter-spacing:3px; color:var(--ink); text-decoration:none; font-weight:500; border-bottom:1.5px solid var(--brand); padding-bottom:6px; width:fit-content; }
+  .cover__link:hover{ color:var(--brand); }
+  .cover__botrule{ display:flex; justify-content:space-between; align-items:center; font-size:10.5px; letter-spacing:3px; color:var(--ink-faint); border-bottom:1px solid var(--ink); padding-bottom:12px; }
 
   /* ---------- footer ---------- */
   .page__footer{
     position:absolute; left:0; right:0; bottom:24px;
     display:flex; align-items:center; justify-content:center;
-    font-size:10.5px; color:var(--ink-faint); letter-spacing:1px;
+    font-size:10px; color:var(--ink-faint); letter-spacing:1.5px;
   }
-  .page__footer .pg{ position:absolute; right:58px; }
+  .page__footer .pg{ position:absolute; right:56px; }
 </style>
 </head>
 <body>
 
-<!-- ===================== NAV TEMPLATE ===================== -->
+<!-- ===================== NAV TEMPLATE (light) ===================== -->
 <div id="nav-template" style="display:none">
   <div class="sidebar">
     <div class="sidebar__brand">
@@ -190,16 +185,19 @@
 
 <div class="doc">
 
-  <!-- ===================== COVER ===================== -->
+  <!-- = our cover goes in a full page -->
   <section class="page page--cover">
-    <div class="cover__inner">
-      <div class="cover__eyebrow">Portfolio Collection</div>
-      <div class="cover__title">尚文蜓</div>
-      <div class="cover__title-en">Shang Wenting</div>
-      <div class="cover__rule"></div>
-      <p class="cover__lead">安克产品设计、股票产品设计、独立项目与路上的摄影 —— 一份关于「定义功能、推动落地、结构化观察」的作品集合。</p>
-      <a class="cover__btn" href="#p-voc">查看作品 →</a>
-      <div class="cover__meta">PRODUCT DESIGN · DATA · PHOTOGRAPHY · 2024—2026</div>
+    <div class="cover">
+      <div class="cover__toprule"><span>尚文蜓 · 作品集合集</span><span>2024 — 2026</span></div>
+      <div class="cover__mid">
+        <div class="cover__eyebrow">Portfolio Collection</div>
+        <div class="cover__title">尚文蜓</div>
+        <div class="cover__title-en">Shang Wenting</div>
+        <div class="cover__rule"></div>
+        <p class="cover__lead">安克产品设计、股票产品设计、独立项目与路上的摄影 —— 一份关于「定义功能、推动落地、结构化观察」的作品集合。</p>
+        <a class="cover__link" href="#p-voc">查看作品 →</a>
+      </div>
+      <div class="cover__botrule"><span>PRODUCT DESIGN</span><span>DATA</span><span>PHOTOGRAPHY</span></div>
     </div>
   </section>
 
