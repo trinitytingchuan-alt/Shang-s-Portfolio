@@ -5,4 +5,4 @@ libpng warning: iCCP: known incorrect sRGB profile
 libpng warning: iCCP: known incorrect sRGB profile
 libpng warning: iCCP: known incorrect sRGB profile
 libpng warning: iCCP: known incorrect sRGB profile
-[32688:43476:0811/105837.378:ERROR:components\headless\command_handler\headless_command_handler.cc:266] Failed to write file C:\Users\Administrator\Desktop\zg\workbuddy\_collection.pdf: 另一个程序正在使用此文件，进程无法访问。 (0x20)
+10698658 bytes written to file C:\Users\Administrator\Desktop\zg\workbuddy\_collection.pdf
