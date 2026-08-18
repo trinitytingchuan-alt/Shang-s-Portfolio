@@ -1134,6 +1134,15 @@ button {
   transform: translateY(0);
 }
 
+.photo-item--wide {
+  column-span: all;
+  margin: 0 0 22px;
+}
+
+.photo-item--wide img {
+  max-height: 84vh;
+}
+
 /* ============================================
    Interests
    ============================================ */
@@ -1376,7 +1385,10 @@ a.contact__item:hover .contact__value {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 24px;
   z-index: 2;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0));
+  pointer-events: none;
 }
 
 .modal__counter {
@@ -1385,6 +1397,18 @@ a.contact__item:hover .contact__value {
   font-family: var(--font-en);
   font-style: italic;
   letter-spacing: 0.08em;
+}
+
+.modal__caption {
+  flex: 1;
+  text-align: center;
+  color: rgba(250, 248, 245, 0.92);
+  font-family: var(--font-display);
+  font-size: 15px;
+  letter-spacing: 0.14em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .modal__close {
@@ -1401,6 +1425,7 @@ a.contact__item:hover .contact__value {
   transition: background var(--duration-fast) var(--ease-out);
   font-weight: 300;
   line-height: 1;
+  pointer-events: auto;
 }
 
 .modal__close:hover {

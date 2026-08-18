@@ -117,6 +117,7 @@
   const modalPrev = document.querySelector('.modal__nav--prev');
   const modalNext = document.querySelector('.modal__nav--next');
   const modalStage = document.getElementById('modal-stage');
+  const modalCaption = document.getElementById('modal-caption');
 
   let gallery = [];
   let galleryIndex = 0;
@@ -139,6 +140,7 @@
     const item = gallery[galleryIndex];
     modalImg.src = item.src;
     modalImg.alt = item.alt || '';
+    if (modalCaption) modalCaption.textContent = item.alt || '';
     if (modalCounter) {
       modalCounter.textContent =
         gallery.length > 1 ? `${galleryIndex + 1} / ${gallery.length}` : '';
