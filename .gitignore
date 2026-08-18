@@ -8,3 +8,6 @@ _chrome*/
 # 系统/编辑器文件
 Thumbs.db
 .DS_Store
+
+# web-design-engineer 技能运行时产物（依赖/审计，非作品集源码）
+skills/
