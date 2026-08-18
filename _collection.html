@@ -136,6 +136,12 @@
   .cover__altlink:hover .arrow{ transform:translateX(4px); }
   .cover__botrule{ display:flex; justify-content:space-between; align-items:center; font-size:9px; letter-spacing:3px; color:var(--ink-faint); font-weight:300; border-bottom:1px solid var(--line); padding-bottom:12px; }
 
+  /* ---------- cover personal photos ---------- */
+  .cover__photos-label{ font-family:var(--latin); font-style:italic; font-size:12px; color:var(--brand); letter-spacing:.5px; margin:32px 0 12px; }
+  .cover__photos{ display:grid; grid-template-columns:repeat(3,1fr); gap:9px; }
+  .cover__photos figure{ margin:0; overflow:hidden; aspect-ratio:1/1; border-radius:6px; border:1px solid var(--line); background:var(--ink); }
+  .cover__photos img{ display:block; width:100%; height:100%; object-fit:cover; }
+
   /* ---------- footer ---------- */
   .page__footer{
     position:absolute; left:0; right:0; bottom:18px;
@@ -149,6 +155,10 @@
 </head>
 <body>
 
+<!-- ===================== LOCKED PORTFOLIO PUBLIC URL (DO NOT CHANGE) =====================
+     所有「查看完整作品」「打开网页作品集」链接固定指向：
+     https://trinitytingchuan-alt.github.io/Shang-s-Portfolio/
+     此地址由用户于 2026-08-11 指定并永久锁定，严禁改动。 -->
 <!-- ===================== NAV TEMPLATE (light) ===================== -->
 <div id="nav-template" style="display:none">
     <div class="sidebar">
@@ -176,12 +186,13 @@
           <li><a class="nav-link" href="#p-tableau"><span class="nav-link__num">08</span><span>每日业务情况总览看板</span></a></li>
           <li><a class="nav-link" href="#p-lstm"><span class="nav-link__num">09</span><span>基于 LSTM 的股价时间序列预测</span></a></li>
           <li><a class="nav-link" href="#p-inventory"><span class="nav-link__num">10</span><span>Python 进销存管理系统</span></a></li>
+          <li><a class="nav-link" href="#p-strategy"><span class="nav-link__num">11</span><span>企业中长期战略规划</span></a></li>
         </ul>
       </div>
       <div class="nav-group">
         <div class="nav-group__title">摄影</div>
         <ul class="nav-group__list">
-          <li><a class="nav-link" href="#p-photo"><span class="nav-link__num">11</span><span>摄影合集</span></a></li>
+          <li><a class="nav-link" href="#p-photo"><span class="nav-link__num">12</span><span>摄影合集</span></a></li>
         </ul>
       </div>
     </nav>
@@ -206,6 +217,15 @@
         <a class="cover__altlink" href="https://trinitytingchuan-alt.github.io/Competitive-Analysis/" target="_blank" rel="noopener"><span class="tag">报告</span>AI Agent 红果短剧竞品分析 <span class="arrow">→</span></a>
       </div>
       <p class="cover__lead">安克产品设计、股票产品设计、独立项目与路上的摄影 —— 一份关于「定义功能、推动落地、结构化观察」的作品集合。</p>
+      <div class="cover__photos-label">OFF DUTY · 镜头外的我</div>
+      <div class="cover__photos">
+        <figure><img src="assets/photo/me/303153c2fe8ff5c9ba67d9c2846c5160.jpg" alt="个人照" /></figure>
+        <figure><img src="assets/photo/me/3206b30ed5acc90e0d8584e8724720c3.jpg" alt="个人照" /></figure>
+        <figure><img src="assets/photo/me/8267ebda74bb9f27f24f17806a591442.jpg" alt="个人照" /></figure>
+        <figure><img src="assets/photo/me/aff4e9751ddfe68da7a2ec8cbb5170b0.jpg" alt="个人照" /></figure>
+        <figure><img src="assets/photo/me/c5bdd17582a30fa237b2d2c92995801f.jpg" alt="个人照" /></figure>
+        <figure><img src="assets/photo/me/d19057a5a98253b09e41f8b1094ab435.jpg" alt="个人照" /></figure>
+      </div>
       <div class="cover__botrule"><span>PRODUCT DESIGN</span><span>DATA</span><span>PHOTOGRAPHY</span></div>
     </div>
   </section>
@@ -222,7 +242,7 @@
         </div>
       </div>
       <figure class="work__hero"><img src="assets/pdf_hi/voc_p1.png" alt="VOC 自动化报告" /></figure>
-      <div class="page__footer"><a class="pf-link" href="https://trinitytingchuan-alt.github.io/Shang-s-Portfolio/" target="_blank" rel="noopener">查看完整作品 →</a><span class="pg">02 / 13</span></div>
+      <div class="page__footer"><a class="pf-link" href="https://trinitytingchuan-alt.github.io/Shang-s-Portfolio/" target="_blank" rel="noopener">查看完整作品 →</a><span class="pg">02 / 14</span></div>
     </div>
   </section>
 
@@ -238,7 +258,7 @@
         </div>
       </div>
       <figure class="work__hero"><img src="assets/pdf_hi/ankerx_p1.png" alt="XTest 需求文档" /></figure>
-      <div class="page__footer"><a class="pf-link" href="https://trinitytingchuan-alt.github.io/Shang-s-Portfolio/" target="_blank" rel="noopener">查看完整作品 →</a><span class="pg">03 / 13</span></div>
+      <div class="page__footer"><a class="pf-link" href="https://trinitytingchuan-alt.github.io/Shang-s-Portfolio/" target="_blank" rel="noopener">查看完整作品 →</a><span class="pg">03 / 14</span></div>
     </div>
   </section>
 
@@ -254,7 +274,7 @@
         </div>
       </div>
       <figure class="work__hero"><img src="assets/docx_images/wk_018.png" alt="Axure 设备寄送流程原型" /></figure>
-      <div class="page__footer"><a class="pf-link" href="https://trinitytingchuan-alt.github.io/Shang-s-Portfolio/" target="_blank" rel="noopener">查看完整作品 →</a><span class="pg">04 / 13</span></div>
+      <div class="page__footer"><a class="pf-link" href="https://trinitytingchuan-alt.github.io/Shang-s-Portfolio/" target="_blank" rel="noopener">查看完整作品 →</a><span class="pg">04 / 14</span></div>
     </div>
   </section>
 
@@ -270,7 +290,7 @@
         </div>
       </div>
       <figure class="work__hero"><img src="assets/pdf_hi/light_p1.png" alt="股票 APP 功能设计" /></figure>
-      <div class="page__footer"><a class="pf-link" href="https://trinitytingchuan-alt.github.io/Shang-s-Portfolio/" target="_blank" rel="noopener">查看完整作品 →</a><span class="pg">05 / 13</span></div>
+      <div class="page__footer"><a class="pf-link" href="https://trinitytingchuan-alt.github.io/Shang-s-Portfolio/" target="_blank" rel="noopener">查看完整作品 →</a><span class="pg">05 / 14</span></div>
     </div>
   </section>
 
@@ -286,7 +306,7 @@
         </div>
       </div>
       <figure class="work__hero"><img src="assets/pdf_hi/asset_p1.png" alt="股票 APP 资产分析" /></figure>
-      <div class="page__footer"><a class="pf-link" href="https://trinitytingchuan-alt.github.io/Shang-s-Portfolio/" target="_blank" rel="noopener">查看完整作品 →</a><span class="pg">06 / 13</span></div>
+      <div class="page__footer"><a class="pf-link" href="https://trinitytingchuan-alt.github.io/Shang-s-Portfolio/" target="_blank" rel="noopener">查看完整作品 →</a><span class="pg">06 / 14</span></div>
     </div>
   </section>
 
@@ -302,7 +322,7 @@
         </div>
       </div>
       <figure class="work__hero"><img src="assets/pdf_hi/pi_p1.png" alt="股票中台 PI 授权过期" /></figure>
-      <div class="page__footer"><a class="pf-link" href="https://trinitytingchuan-alt.github.io/Shang-s-Portfolio/" target="_blank" rel="noopener">查看完整作品 →</a><span class="pg">07 / 13</span></div>
+      <div class="page__footer"><a class="pf-link" href="https://trinitytingchuan-alt.github.io/Shang-s-Portfolio/" target="_blank" rel="noopener">查看完整作品 →</a><span class="pg">07 / 14</span></div>
     </div>
   </section>
 
@@ -318,7 +338,7 @@
         </div>
       </div>
       <figure class="work__hero"><img src="assets/pdf_pages/guolian_p1.png" alt="鼎泰高科深度研究" /></figure>
-      <div class="page__footer"><a class="pf-link" href="https://trinitytingchuan-alt.github.io/Shang-s-Portfolio/" target="_blank" rel="noopener">查看完整作品 →</a><span class="pg">08 / 13</span></div>
+      <div class="page__footer"><a class="pf-link" href="https://trinitytingchuan-alt.github.io/Shang-s-Portfolio/" target="_blank" rel="noopener">查看完整作品 →</a><span class="pg">08 / 14</span></div>
     </div>
   </section>
 
@@ -334,7 +354,7 @@
         </div>
       </div>
       <figure class="work__hero"><img src="assets/portfolio_pngs/tableau_dashboard.jpg" alt="Tableau 业务看板" /></figure>
-      <div class="page__footer"><a class="pf-link" href="https://trinitytingchuan-alt.github.io/Shang-s-Portfolio/" target="_blank" rel="noopener">查看完整作品 →</a><span class="pg">09 / 13</span></div>
+      <div class="page__footer"><a class="pf-link" href="https://trinitytingchuan-alt.github.io/Shang-s-Portfolio/" target="_blank" rel="noopener">查看完整作品 →</a><span class="pg">09 / 14</span></div>
     </div>
   </section>
 
@@ -350,7 +370,7 @@
         </div>
       </div>
       <figure class="work__hero"><img src="assets/portfolio_pngs/导出页面自 105尚文蜓202330181270课程论文.png" alt="LSTM 股价预测课程论文" /></figure>
-      <div class="page__footer"><a class="pf-link" href="https://trinitytingchuan-alt.github.io/Shang-s-Portfolio/" target="_blank" rel="noopener">查看完整作品 →</a><span class="pg">10 / 13</span></div>
+      <div class="page__footer"><a class="pf-link" href="https://trinitytingchuan-alt.github.io/Shang-s-Portfolio/" target="_blank" rel="noopener">查看完整作品 →</a><span class="pg">10 / 14</span></div>
     </div>
   </section>
 
@@ -366,7 +386,22 @@
         </div>
       </div>
       <figure class="work__hero"><img src="assets/portfolio_pngs/20240725121334.png" alt="Python 进销存管理系统" /></figure>
-      <div class="page__footer"><a class="pf-link" href="https://trinitytingchuan-alt.github.io/Shang-s-Portfolio/" target="_blank" rel="noopener">查看完整作品 →</a><span class="pg">11 / 13</span></div>
+      <div class="page__footer"><a class="pf-link" href="https://trinitytingchuan-alt.github.io/Shang-s-Portfolio/" target="_blank" rel="noopener">查看完整作品 →</a><span class="pg">11 / 14</span></div>
+    </div>
+  </section>
+
+  <section class="page" id="p-strategy" data-nav>
+    <div class="content">
+      <div class="content__top">
+        <div class="content__topnum">11</div>
+        <div class="content__head">
+          <div class="work__tag">独立项目 · 企业战略</div>
+          <h2 class="work__title">企业中长期战略规划</h2>
+          <p class="work__sub">面向电力企业的中长期发展战略设计：从总体概览、顶层设计到业务规划、重点任务、损益预测与投资重点的系统化蓝图。</p>
+        </div>
+      </div>
+      <figure class="work__hero"><img src="assets/strategy/strategy_overview.png" alt="企业中长期战略规划总览" /></figure>
+      <div class="page__footer"><a class="pf-link" href="https://trinitytingchuan-alt.github.io/Shang-s-Portfolio/" target="_blank" rel="noopener">查看完整作品 →</a><span class="pg">12 / 14</span></div>
     </div>
   </section>
 
@@ -374,7 +409,7 @@
   <section class="page" id="p-photo" data-nav>
     <div class="content">
       <div class="content__top">
-        <div class="photo-topnum">11</div>
+        <div class="photo-topnum">12</div>
         <div class="content__head">
           <div class="work__tag">旅行摄影</div>
           <h2 class="photo-title">摄影合集</h2>
@@ -392,7 +427,7 @@
         <figure><img src="assets/photo/微信图片_20260805194602_29_5.jpg" alt="塔影" /><figcaption>黔东南 · 黄岗侗寨</figcaption></figure>
         <figure><img src="assets/photo/微信图片_20260805194602_33_5.jpg" alt="湖光" /><figcaption>四川 · 九寨沟</figcaption></figure>
       </div>
-      <div class="page__footer"><a class="pf-link" href="https://trinitytingchuan-alt.github.io/Shang-s-Portfolio/" target="_blank" rel="noopener">查看完整作品 →</a><span class="pg">12 / 13</span></div>
+      <div class="page__footer"><a class="pf-link" href="https://trinitytingchuan-alt.github.io/Shang-s-Portfolio/" target="_blank" rel="noopener">查看完整作品 →</a><span class="pg">13 / 14</span></div>
     </div>
   </section>
 
@@ -400,7 +435,7 @@
   <section class="page" data-nav>
     <div class="content">
       <div class="content__top">
-        <div class="photo-topnum">11</div>
+        <div class="photo-topnum">12</div>
         <div class="content__head">
           <div class="work__tag">旅行摄影</div>
           <h2 class="photo-title">摄影合集</h2>
@@ -418,7 +453,7 @@
         <figure><img src="assets/photo/photo_doc_3.jpg" alt="穹丘" /><figcaption>乌兰察布 · 火山</figcaption></figure>
         <figure><img src="assets/photo/photo_doc_4.jpg" alt="云湖" /><figcaption>新疆 · 赛里木湖</figcaption></figure>
       </div>
-      <div class="page__footer"><a class="pf-link" href="https://trinitytingchuan-alt.github.io/Shang-s-Portfolio/" target="_blank" rel="noopener">查看完整作品 →</a><span class="pg">13 / 13</span></div>
+      <div class="page__footer"><a class="pf-link" href="https://trinitytingchuan-alt.github.io/Shang-s-Portfolio/" target="_blank" rel="noopener">查看完整作品 →</a><span class="pg">14 / 14</span></div>
     </div>
   </section>
 
