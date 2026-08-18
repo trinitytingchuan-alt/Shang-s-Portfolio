@@ -336,15 +336,22 @@ button {
 
 .section__num {
   font-family: var(--font-en);
-  font-size: 20px;
-  font-weight: 600;
-  color: var(--color-accent);
-  font-style: italic;
-  letter-spacing: 0.02em;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-muted);
+  letter-spacing: 0.3em;
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   line-height: 1;
+}
+
+.section__num::before {
+  content: "";
+  width: 32px;
+  height: 1px;
+  background: var(--color-muted);
+  opacity: 0.55;
 }
 
 .section__num::before {
@@ -415,7 +422,7 @@ button {
   border: 1px solid var(--color-line-soft);
   background: var(--color-bg-soft);
   box-shadow: 0 40px 80px -48px rgba(26, 24, 22, 0.5);
-  cursor: zoom-in;
+  cursor: pointer;
   transition: transform var(--duration-base) var(--ease-out),
               box-shadow var(--duration-base) var(--ease-out),
               border-color var(--duration-base) var(--ease-out);
@@ -425,7 +432,8 @@ button {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform var(--duration-slow) var(--ease-out);
+  transition: transform var(--duration-slow) var(--ease-out),
+              opacity var(--duration-base) var(--ease-out);
 }
 
 .hero__portrait:hover {
@@ -436,6 +444,24 @@ button {
 
 .hero__portrait:hover img {
   transform: scale(1.04);
+}
+
+.hero__portrait-hint {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: rgba(250, 248, 245, 0.9);
+  opacity: 0.32;
+  pointer-events: none;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  transition: opacity var(--duration-base) var(--ease-out);
+}
+
+.hero__portrait:hover .hero__portrait-hint {
+  opacity: 0.62;
 }
 
 @media (max-width: 880px) {
@@ -631,62 +657,7 @@ button {
   font-weight: 500;
 }
 
-/* About — Off Duty personal photos */
-.about__offduty {
-  margin-top: 56px;
-  padding-top: 48px;
-  border-top: 1px solid var(--color-line-soft);
-}
 
-.about__offduty-label {
-  font-family: var(--font-en);
-  font-style: italic;
-  font-size: 15px;
-  color: var(--color-accent);
-  letter-spacing: 0.04em;
-  margin-bottom: 20px;
-}
-
-.about__photos {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-}
-
-.about__photo {
-  margin: 0;
-  overflow: hidden;
-  aspect-ratio: 1 / 1;
-  border-radius: 6px;
-  border: 1px solid var(--color-line-soft);
-  background: var(--color-bg-soft);
-  cursor: zoom-in;
-  transition: transform var(--duration-base) var(--ease-out),
-              box-shadow var(--duration-base) var(--ease-out),
-              border-color var(--duration-base) var(--ease-out);
-}
-
-.about__photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform var(--duration-slow) var(--ease-out);
-}
-
-.about__photo:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 16px 32px -18px rgba(26, 24, 22, 0.4);
-  border-color: var(--color-accent-soft);
-}
-
-.about__photo:hover img {
-  transform: scale(1.04);
-}
-
-@media (max-width: 600px) {
-  .about__photos { grid-template-columns: repeat(2, 1fr); }
-}
 
 /* ============================================
    Capabilities
@@ -713,12 +684,12 @@ button {
 
 .capability__num {
   font-family: var(--font-en);
-  font-size: 16px;
-  font-style: italic;
-  color: var(--color-accent);
-  font-weight: 600;
+  font-size: 14px;
+  font-style: normal;
+  color: var(--color-muted);
+  font-weight: 500;
   margin-bottom: 12px;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.16em;
 }
 
 .capability__title {
@@ -793,13 +764,24 @@ button {
 
 .stage__num {
   font-family: var(--font-en);
-  font-size: 28px;
-  font-style: italic;
-  color: var(--color-accent);
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  font-size: 18px;
+  font-style: normal;
+  color: var(--color-muted);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   padding-top: 2px;
   line-height: 1;
+}
+
+.stage__num::before {
+  content: "";
+  width: 24px;
+  height: 1px;
+  background: var(--color-muted);
+  opacity: 0.55;
 }
 
 .stage__title {

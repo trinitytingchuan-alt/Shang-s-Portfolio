@@ -252,3 +252,43 @@
     });
   });
 })();
+
+/* ---------- Hero portrait: click to cycle through personal photos ---------- */
+document.addEventListener('DOMContentLoaded', () => {
+  const portrait = document.getElementById('heroPortrait');
+  if (!portrait) return;
+  const img = portrait.querySelector('img');
+  const hint = portrait.querySelector('.hero__portrait-hint');
+  const photos = [
+    'assets/photo/me/303153c2fe8ff5c9ba67d9c2846c5160.jpg',
+    'assets/photo/me/3206b30ed5acc90e0d8584e8724720c3.jpg',
+    'assets/photo/me/8267ebda74bb9f27f24f17806a591442.jpg',
+    'assets/photo/me/c5bdd17582a30fa237b2d2c92995801f.jpg',
+    'assets/photo/me/d19057a5a98253b09e41f8b1094ab435.jpg'
+  ];
+  const total = photos.length;
+  let idx = 0;
+  const pad = (n) => String(n).padStart(2, '0');
+
+  const swap = () => {
+    img.style.opacity = '0';
+    setTimeout(() => {
+      img.src = photos[idx];
+      img.style.opacity = '1';
+      if (hint) hint.textContent = pad(idx + 1) + ' / ' + pad(total);
+    }, 180);
+  };
+
+  const advance = () => {
+    idx = (idx + 1) % total;
+    swap();
+  };
+
+  portrait.addEventListener('click', advance);
+  portrait.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      advance();
+    }
+  });
+});
