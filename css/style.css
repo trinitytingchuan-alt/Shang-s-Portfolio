@@ -1181,6 +1181,21 @@ button {
   max-height: 84vh;
 }
 
+.photo-row {
+  display: flex;
+  gap: 22px;
+  margin-top: 0;
+}
+
+.photo-row .photo-item {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.photo-row .photo-item img {
+  max-height: 58vh;
+}
+
 /* ============================================
    Interests
    ============================================ */
