@@ -22,6 +22,7 @@
   --font-display: 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', serif;
   --font-body: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-en: 'Cormorant Garamond', 'Times New Roman', serif;
+  --font-num: 'Playfair Display', 'Cormorant Garamond', 'Times New Roman', serif;
   --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
 
   /* Spacing (8pt base) */
@@ -335,32 +336,14 @@ button {
 }
 
 .section__num {
-  font-family: var(--font-en);
+  font-family: var(--font-num);
   font-size: clamp(22px, 2.3vw, 30px);
-  font-weight: 400;
+  font-weight: 500;
   color: var(--color-fg);
   letter-spacing: 0.02em;
   display: inline-flex;
   align-items: center;
-  gap: 12px;
   line-height: 1;
-}
-
-.section__num::before {
-  content: "";
-  width: 32px;
-  height: 1px;
-  background: var(--color-muted);
-  opacity: 0.55;
-}
-
-.section__num::before {
-  content: "";
-  width: 8px;
-  height: 8px;
-  background: var(--color-accent);
-  border-radius: 2px;
-  flex: none;
 }
 
 /* Photography — oversized editorial index numeral, simple + a single design accent */
@@ -369,7 +352,7 @@ button {
 }
 
 .section--photography .section__num--display {
-  font-family: var(--font-en);
+  font-family: var(--font-num);
   font-size: clamp(64px, 9vw, 110px);
   font-weight: 400;
   color: var(--color-accent);
@@ -791,7 +774,7 @@ button {
 }
 
 .stage__num {
-  font-family: var(--font-en);
+  font-family: var(--font-num);
   font-size: clamp(20px, 1.9vw, 24px);
   font-style: normal;
   color: var(--color-muted);
@@ -799,17 +782,8 @@ button {
   letter-spacing: 0.02em;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
   padding-top: 2px;
   line-height: 1;
-}
-
-.stage__num::before {
-  content: "";
-  width: 24px;
-  height: 1px;
-  background: var(--color-muted);
-  opacity: 0.55;
 }
 
 .stage__title {
