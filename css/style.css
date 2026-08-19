@@ -1177,6 +1177,13 @@ button {
   margin: 0 0 22px;
 }
 
+/* 强制右列从本图开始：使赛里木湖稳定落在左列底部 */
+.photo-item--right-start {
+  break-before: column;
+  page-break-before: always;
+  -webkit-column-break-before: always;
+}
+
 .photo-item--wide img {
   max-height: 84vh;
 }
@@ -1692,6 +1699,9 @@ a.contact__item:hover .contact__value {
   .photo-item {
     margin-bottom: 16px;
     border-radius: 10px;
+  }
+  .photo-item--right-start {
+    break-before: auto;
   }
   .stage__stats {
     grid-template-columns: 1fr 1fr;
