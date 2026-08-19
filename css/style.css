@@ -363,12 +363,12 @@ button {
   flex: none;
 }
 
-/* Photography — oversized editorial index numeral */
+/* Photography — oversized editorial index numeral (inline style on element is authoritative) */
 .section--photography .section__header {
   align-items: center;
 }
 
-.section--photography .section__num {
+.section--photography .section__num--display {
   font-family: var(--font-en);
   font-size: clamp(52px, 7vw, 84px);
   font-weight: 400;
@@ -379,7 +379,7 @@ button {
   transform: translateY(-2px);
 }
 
-.section--photography .section__num::before {
+.section--photography .section__num--display::before {
   content: none;
 }
 
