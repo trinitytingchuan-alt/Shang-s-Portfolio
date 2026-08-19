@@ -363,24 +363,32 @@ button {
   flex: none;
 }
 
-/* Photography — oversized editorial index numeral (inline style on element is authoritative) */
+/* Photography — oversized editorial index numeral, simple + a single design accent */
 .section--photography .section__header {
-  align-items: center;
+  align-items: flex-end;
 }
 
 .section--photography .section__num--display {
   font-family: var(--font-en);
-  font-size: clamp(52px, 7vw, 84px);
+  font-size: clamp(64px, 9vw, 110px);
   font-weight: 400;
   color: var(--color-accent);
   letter-spacing: 0.01em;
-  line-height: 0.9;
-  gap: 0;
-  transform: translateY(-2px);
+  line-height: 0.82;
+  display: inline-block;
+  position: relative;
+  transform: translateY(6px);
 }
 
-.section--photography .section__num--display::before {
-  content: none;
+.section--photography .section__num--display::after {
+  content: "";
+  position: absolute;
+  left: 2px;
+  bottom: 0;
+  width: 54px;
+  height: 2px;
+  background: var(--color-accent);
+  opacity: 0.65;
 }
 
 .section__title {
