@@ -1112,25 +1112,8 @@ button {
    ============================================ */
 .photo-grid {
   margin-top: 56px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 22px;
-}
-
-.photo-col {
-  flex: 1 1 calc(50% - 11px);
-  display: flex;
-  flex-direction: column;
-  gap: 22px;
-}
-
-.photo-grid .photo-item {
-  margin-bottom: 0;
-}
-
-.photo-grid .photo-item--wide {
-  flex: 1 1 100%;
-  column-span: none;
+  column-count: 2;
+  column-gap: 22px;
 }
 
 .photo-item {
@@ -1190,7 +1173,7 @@ button {
 }
 
 .photo-item--wide {
-  flex: 1 1 100%;
+  column-span: all;
   margin: 0 0 22px;
 }
 
@@ -1703,11 +1686,8 @@ a.contact__item:hover .contact__value {
 
 @media (max-width: 600px) {
   .photo-grid {
-    gap: 16px;
-  }
-
-  .photo-col {
-    flex: 1 1 100%;
+    column-count: 1;
+    column-gap: 16px;
   }
   .photo-item {
     margin-bottom: 16px;
