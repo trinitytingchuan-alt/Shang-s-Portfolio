@@ -353,25 +353,12 @@ button {
 
 .section--photography .section__num--display {
   font-family: var(--font-num);
-  font-size: clamp(64px, 9vw, 110px);
+  font-size: clamp(38px, 4.5vw, 52px);
   font-weight: 400;
   color: var(--color-accent);
   letter-spacing: 0.01em;
-  line-height: 0.82;
+  line-height: 1;
   display: inline-block;
-  position: relative;
-  transform: translateY(6px);
-}
-
-.section--photography .section__num--display::after {
-  content: "";
-  position: absolute;
-  left: 2px;
-  bottom: 0;
-  width: 54px;
-  height: 2px;
-  background: var(--color-accent);
-  opacity: 0.65;
 }
 
 .section__title {
