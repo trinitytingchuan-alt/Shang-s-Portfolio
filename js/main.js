@@ -123,9 +123,9 @@
   let galleryIndex = 0;
   let isZoomed = false;
 
-  function openModal(src, alt, group) {
+  function openModal(src, alt, caption, group) {
     if (!modal || !modalImg) return;
-    gallery = group && group.length ? group : [{ src, alt }];
+    gallery = group && group.length ? group : [{ src, alt, caption }];
     galleryIndex = gallery.findIndex((g) => g.src === src);
     if (galleryIndex < 0) galleryIndex = 0;
     renderModalImage();
@@ -140,7 +140,7 @@
     const item = gallery[galleryIndex];
     modalImg.src = item.src;
     modalImg.alt = item.alt || '';
-    if (modalCaption) modalCaption.textContent = item.alt || '';
+    if (modalCaption) modalCaption.textContent = item.caption || '';
     if (modalCounter) {
       modalCounter.textContent =
         gallery.length > 1 ? `${galleryIndex + 1} / ${gallery.length}` : '';
@@ -178,6 +178,8 @@
       e.preventDefault();
       const src = el.getAttribute('data-modal');
       const alt = el.getAttribute('data-alt') || '';
+      const caption =
+        el.querySelector('.photo-item__caption')?.textContent || alt;
       const groupAttr = el.getAttribute('data-group');
       let group = null;
       if (groupAttr) {
@@ -186,9 +188,12 @@
         ).map((g) => ({
           src: g.getAttribute('data-modal'),
           alt: g.getAttribute('data-alt') || '',
+          caption:
+            g.querySelector('.photo-item__caption')?.textContent ||
+            g.getAttribute('data-alt') || '',
         }));
       }
-      openModal(src, alt, group);
+      openModal(src, alt, caption, group);
     });
   });
 

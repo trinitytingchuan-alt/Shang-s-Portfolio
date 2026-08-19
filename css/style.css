@@ -1460,15 +1460,23 @@ a.contact__item:hover .contact__value {
 }
 
 .modal__caption {
-  flex: 1;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 46px 28px 20px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
   text-align: center;
-  color: rgba(250, 248, 245, 0.92);
+  background: linear-gradient(to top, rgba(16, 14, 12, 0.78), rgba(16, 14, 12, 0) 100%);
+  color: #f4efe9;
   font-family: var(--font-display);
   font-size: 15px;
-  letter-spacing: 0.14em;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  letter-spacing: 0.22em;
+  text-indent: 0.22em;
+  pointer-events: none;
+  z-index: 3;
 }
 
 .modal__close {
