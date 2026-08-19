@@ -336,13 +336,13 @@ button {
 
 .section__num {
   font-family: var(--font-en);
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--color-muted);
-  letter-spacing: 0.3em;
+  font-size: clamp(22px, 2.3vw, 30px);
+  font-weight: 400;
+  color: var(--color-fg);
+  letter-spacing: 0.02em;
   display: inline-flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   line-height: 1;
 }
 
@@ -792,11 +792,11 @@ button {
 
 .stage__num {
   font-family: var(--font-en);
-  font-size: 18px;
+  font-size: clamp(20px, 1.9vw, 24px);
   font-style: normal;
   color: var(--color-muted);
   font-weight: 500;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.02em;
   display: inline-flex;
   align-items: center;
   gap: 10px;
