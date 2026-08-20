@@ -9,5 +9,8 @@ _chrome*/
 Thumbs.db
 .DS_Store
 
+# 本地预览服务器脚本（运行时用，非作品集源码）
+_serve.py
+
 # web-design-engineer 技能运行时产物（依赖/审计，非作品集源码）
 skills/
