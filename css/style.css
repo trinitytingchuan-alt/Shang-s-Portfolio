@@ -941,8 +941,8 @@ button {
   border-radius: 4px;
   margin-bottom: 24px;
   cursor: zoom-in;
-  /* 半屏展示：显示整图内容，不铺满全屏 */
-  height: 64vh;
+  /* 大图展示：约占七成屏高，清晰呈现图中文字 */
+  height: 72vh;
   display: flex;
   align-items: center;
   justify-content: center;
