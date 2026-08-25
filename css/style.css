@@ -347,7 +347,7 @@ button {
 .main {
   padding: 0;
   min-width: 0;
-  height: 100vh;
+  min-height: 100vh;
   overflow-y: auto;
   scroll-behavior: smooth;
 }
@@ -439,11 +439,11 @@ button {
    Hero
    ============================================ */
 .hero {
-  padding-top: 32px;
-  padding-bottom: 40px;
+  padding-top: 8px;
+  padding-bottom: 36px;
   display: grid;
   grid-template-columns: 1.5fr 0.9fr;
-  gap: 28px 64px;
+  gap: 24px 64px;
   align-items: center;
 }
 
@@ -545,12 +545,12 @@ button {
 
 .hero__title {
   font-family: var(--font-display);
-  font-size: clamp(36px, 5vw, 72px);
+  font-size: clamp(27px, 3.75vw, 54px);
   font-weight: 700;
   line-height: 1.0;
   letter-spacing: -0.035em;
   color: var(--color-fg);
-  margin-bottom: 28px;
+  margin-bottom: 24px;
 }
 
 .hero__title em {
