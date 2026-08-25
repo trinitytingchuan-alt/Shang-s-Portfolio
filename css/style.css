@@ -439,11 +439,11 @@ button {
    Hero
    ============================================ */
 .hero {
-  padding-top: 48px;
-  padding-bottom: 48px;
+  padding-top: 32px;
+  padding-bottom: 40px;
   display: grid;
   grid-template-columns: 1.5fr 0.9fr;
-  gap: 32px 64px;
+  gap: 28px 64px;
   align-items: center;
 }
 
@@ -522,7 +522,7 @@ button {
   color: var(--color-fg-soft);
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  margin-bottom: 22px;
+  margin-bottom: 16px;
   padding: 8px 16px;
   border: 1px solid var(--color-line);
   border-radius: 100px;
@@ -1461,9 +1461,9 @@ a.contact__item:hover .contact__value {
   display: none;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   backdrop-filter: blur(12px);
-  padding: 80px 80px 100px;
+  padding: 0 80px 100px;
 }
 
 .modal.is-open {
@@ -1477,17 +1477,18 @@ a.contact__item:hover .contact__value {
 }
 
 .modal__topbar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  padding: 18px 32px;
+  order: -1;
+  position: relative;
+  top: auto;
+  left: auto;
+  right: auto;
+  width: 100%;
+  padding: 20px 32px 6px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 24px;
   z-index: 2;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0));
   pointer-events: none;
 }
 
@@ -1500,23 +1501,26 @@ a.contact__item:hover .contact__value {
 }
 
 .modal__caption {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  padding: 20px 28px 46px;
-  display: flex;
-  align-items: flex-start;
+  order: 0;
+  width: 100%;
+  max-width: 880px;
+  padding: 14px 32px 16px;
+  margin: 0 auto;
+  display: none;
+  align-items: center;
   justify-content: center;
   text-align: center;
-  background: linear-gradient(to bottom, rgba(16, 14, 12, 0.78), rgba(16, 14, 12, 0) 100%);
-  color: #f4efe9;
+  color: rgba(244, 239, 233, 0.82);
   font-family: var(--font-display);
-  font-size: 15px;
-  letter-spacing: 0.22em;
-  text-indent: 0.22em;
+  font-size: 14px;
+  letter-spacing: 0.16em;
+  text-indent: 0.16em;
+  line-height: 1.6;
   pointer-events: none;
-  z-index: 3;
+}
+
+.modal__caption:not(:empty) {
+  display: flex;
 }
 
 .modal__close {
