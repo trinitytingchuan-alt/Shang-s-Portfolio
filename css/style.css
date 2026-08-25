@@ -1463,7 +1463,7 @@ a.contact__item:hover .contact__value {
   align-items: center;
   justify-content: flex-start;
   backdrop-filter: blur(12px);
-  padding: 0 40px 56px;
+  padding: 0 24px 40px;
 }
 
 .modal.is-open {
@@ -1483,7 +1483,7 @@ a.contact__item:hover .contact__value {
   left: auto;
   right: auto;
   width: 100%;
-  padding: 20px 32px 6px;
+  padding: 12px 32px 4px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1504,7 +1504,7 @@ a.contact__item:hover .contact__value {
   order: 0;
   width: 100%;
   max-width: 880px;
-  padding: 14px 32px 16px;
+  padding: 6px 32px 8px;
   margin: 0 auto;
   display: none;
   align-items: center;
@@ -1515,7 +1515,7 @@ a.contact__item:hover .contact__value {
   font-size: 14px;
   letter-spacing: 0.16em;
   text-indent: 0.16em;
-  line-height: 1.6;
+  line-height: 1.3;
   pointer-events: none;
 }
 
@@ -1572,7 +1572,7 @@ a.contact__item:hover .contact__value {
 .modal__stage.is-zoomed img {
   max-width: none;
   max-height: none;
-  transform: scale(2);
+  transform: scale(1.5);
   transform-origin: top left;
 }
 
