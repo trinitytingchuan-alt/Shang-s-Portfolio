@@ -1463,7 +1463,7 @@ a.contact__item:hover .contact__value {
   align-items: center;
   justify-content: flex-start;
   backdrop-filter: blur(12px);
-  padding: 0 80px 100px;
+  padding: 0 40px 56px;
 }
 
 .modal.is-open {

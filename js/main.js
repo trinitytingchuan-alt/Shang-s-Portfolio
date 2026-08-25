@@ -226,15 +226,20 @@
     if (r && img) img.style.aspectRatio = String(r);
   });
 
-  /* ---------- 左侧导航点击 → 右侧平滑滚动定位（长滚动交互） ---------- */
-  const mainEl = document.querySelector('.main');
-
+  /* ---------- 左侧导航点击 → 右侧平滑滚动定位 ---------- */
   function scrollToId(id) {
-    if (!mainEl || !id) return;
     const el = document.getElementById(id);
     if (!el) return;
-    const top = el.getBoundingClientRect().top - mainEl.getBoundingClientRect().top + mainEl.scrollTop - 24;
-    mainEl.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    // 优先使用 .main 滚动容器，否则退回整页 window 滚动
+    const mainEl = document.querySelector('.main');
+    const mainScrolls = mainEl && mainEl.scrollHeight > mainEl.clientHeight + 4;
+    if (mainScrolls) {
+      const top = el.getBoundingClientRect().top - mainEl.getBoundingClientRect().top + mainEl.scrollTop - 24;
+      mainEl.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    } else {
+      const y = el.getBoundingClientRect().top + window.scrollY - 24;
+      window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+    }
   }
 
   // 点击主链接：定位到对应栏目（子阶段自然包含在作品集内）
