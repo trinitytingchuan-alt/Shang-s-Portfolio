@@ -256,6 +256,47 @@
       scrollToId(id);
     });
   });
+
+  /* ---------- 侧栏邮箱：点击复制 ---------- */
+  const copyEmail = document.getElementById('copyEmail');
+  if (copyEmail) {
+    const email = copyEmail.getAttribute('data-email') || '';
+    const hint = document.getElementById('copyHint');
+    const copy = () => {
+      if (!email) return;
+      const done = () => {
+        if (hint) {
+          hint.textContent = '已复制';
+          hint.classList.add('is-copied');
+          setTimeout(() => {
+            hint.textContent = '点击复制';
+            hint.classList.remove('is-copied');
+          }, 1600);
+        }
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(done).catch(() => fallbackCopy(email, done));
+      } else {
+        fallbackCopy(email, done);
+      }
+    };
+    copyEmail.addEventListener('click', copy);
+    copyEmail.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); copy(); }
+    });
+  }
+
+  function fallbackCopy(text, cb) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); } catch (err) {}
+    document.body.removeChild(ta);
+    if (cb) cb();
+  }
 })();
 
 /* ---------- Hero portrait: click to cycle through personal photos ---------- */
