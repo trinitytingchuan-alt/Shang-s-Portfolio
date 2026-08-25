@@ -1483,7 +1483,7 @@ a.contact__item:hover .contact__value {
   left: auto;
   right: auto;
   width: 100%;
-  padding: 12px 32px 4px;
+  padding: 10px 32px 4px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1501,15 +1501,14 @@ a.contact__item:hover .contact__value {
 }
 
 .modal__caption {
-  order: 0;
-  width: 100%;
-  max-width: 880px;
-  padding: 6px 32px 8px;
-  margin: 0 auto;
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 0 16px;
   display: none;
-  align-items: center;
-  justify-content: center;
   text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   color: rgba(244, 239, 233, 0.82);
   font-family: var(--font-display);
   font-size: 14px;
@@ -1520,7 +1519,7 @@ a.contact__item:hover .contact__value {
 }
 
 .modal__caption:not(:empty) {
-  display: flex;
+  display: block;
 }
 
 .modal__close {
@@ -1572,7 +1571,7 @@ a.contact__item:hover .contact__value {
 .modal__stage.is-zoomed img {
   max-width: none;
   max-height: none;
-  transform: scale(1.5);
+  transform: scale(1.25);
   transform-origin: top left;
 }
 
