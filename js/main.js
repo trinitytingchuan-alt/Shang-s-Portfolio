@@ -27,15 +27,16 @@
   });
 
   function setActiveNav() {
-    const scroller = document.querySelector('.main');
-    if (!scroller) return;
-    const scrollY = scroller.scrollTop + 200;
-    const mainTop = scroller.getBoundingClientRect().top;
+    // 滚动容器现为整页 window（.main 已非滚动容器，min-height:100vh）
+    const mainEl = document.querySelector('.main');
+    const mainTopDoc =
+      (mainEl ? mainEl.getBoundingClientRect().top : 0) + window.scrollY;
+    const scrollY = window.scrollY + 200;
     let currentId = null;
     let bestTop = -Infinity;
     for (const s of sections) {
-      // 元素相对 .main 内容顶部的绝对偏移（视口坐标 → 内容坐标）
-      const top = s.el.getBoundingClientRect().top - mainTop + scroller.scrollTop;
+      // 元素相对页面顶部的绝对文档偏移
+      const top = s.el.getBoundingClientRect().top + window.scrollY - mainTopDoc;
       // 取横切线（scrollY）所在：已进入横切线且 offset 最大的 section
       if (top <= scrollY && top > bestTop) {
         bestTop = top;
@@ -61,15 +62,13 @@
     }
   }
 
-  const mainScroller = document.querySelector('.main');
-  if (mainScroller) {
-    mainScroller.addEventListener('scroll', setActiveNav, { passive: true });
-  }
+  // 滚动容器为整页 window（.main 已非滚动容器），监听 window 滚动
+  window.addEventListener('scroll', setActiveNav, { passive: true });
+  window.addEventListener('resize', setActiveNav, { passive: true });
   setActiveNav();
 
-  /* ---------- Reveal on scroll (在 .main 滚动容器内生效) ---------- */
+  /* ---------- Reveal on scroll (整页 window 滚动，root 用视口) ---------- */
   const reveals = document.querySelectorAll('.reveal');
-  const revealRoot = document.querySelector('.main') || null;
   if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver(
       (entries) => {
@@ -80,7 +79,7 @@
           }
         });
       },
-      { root: revealRoot, rootMargin: '-40px 0px', threshold: 0.05 }
+      { root: null, rootMargin: '-40px 0px', threshold: 0.05 }
     );
     reveals.forEach((el) => io.observe(el));
   } else {

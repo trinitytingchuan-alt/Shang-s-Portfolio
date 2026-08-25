@@ -1,0 +1,21 @@
+{
+  "name": "workbuddy",
+  "version": "1.0.0",
+  "description": "静态作品集网站（纯 HTML/CSS/JS，无任何构建依赖），部署到公网后任何人可点击查看。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trinitytingchuan-alt/Shang-s-Portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/trinitytingchuan-alt/Shang-s-Portfolio/issues"
+  },
+  "homepage": "https://github.com/trinitytingchuan-alt/Shang-s-Portfolio#readme"
+}
