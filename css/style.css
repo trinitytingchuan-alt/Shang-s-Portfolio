@@ -933,6 +933,13 @@ button {
   line-height: 1.6;
 }
 
+.work__sub-line2 {
+  display: inline-block;
+  margin-top: 4px;
+  color: var(--color-fg);
+  font-weight: 500;
+}
+
 .work__hero {
   position: relative;
   overflow: hidden;
