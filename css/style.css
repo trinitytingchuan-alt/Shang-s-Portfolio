@@ -936,8 +936,7 @@ button {
 .work__sub-line2 {
   display: inline-block;
   margin-top: 4px;
-  color: var(--color-fg);
-  font-weight: 500;
+  color: var(--color-fg-soft);
 }
 
 .work__hero {
