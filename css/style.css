@@ -439,7 +439,7 @@ button {
    Hero
    ============================================ */
 .hero {
-  padding-top: 8px;
+  padding-top: 32px;
   padding-bottom: 40px;
   display: grid;
   grid-template-columns: 1.5fr 0.9fr;
@@ -942,7 +942,7 @@ button {
   margin-bottom: 24px;
   cursor: zoom-in;
   /* 半屏展示：显示整图内容，不铺满全屏 */
-  height: 55vh;
+  height: 60vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1105,8 +1105,8 @@ button {
 
 .page-strip__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(76px, 84px));
+  gap: 8px;
 }
 
 .page-strip__item {
