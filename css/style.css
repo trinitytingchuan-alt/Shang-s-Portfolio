@@ -439,7 +439,7 @@ button {
    Hero
    ============================================ */
 .hero {
-  padding-top: 8px;
+  padding-top: 56px;
   padding-bottom: 36px;
   display: grid;
   grid-template-columns: 1.5fr 0.9fr;
