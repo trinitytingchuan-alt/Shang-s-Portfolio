@@ -1558,15 +1558,12 @@ a.contact__item:hover .contact__value {
   justify-content: center;
   overflow: auto;
   cursor: zoom-in;
-  padding: 16px 72px 88px;
-  box-sizing: border-box;
 }
 
 .modal__stage.is-zoomed {
   cursor: zoom-out;
   align-items: flex-start;
   justify-content: flex-start;
-  padding: 16px 72px 88px;
 }
 
 .modal__stage img {
@@ -1575,6 +1572,10 @@ a.contact__item:hover .contact__value {
   object-fit: contain;
   box-shadow: 0 24px 80px -24px rgba(0, 0, 0, 0.6);
   transition: transform var(--duration-base) var(--ease-out);
+}
+
+.modal__stage:not(.is-zoomed) img {
+  margin-top: -24px;
 }
 
 .modal__stage.is-zoomed img {
