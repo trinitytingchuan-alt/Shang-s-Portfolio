@@ -145,7 +145,7 @@
     const item = gallery[galleryIndex];
     modalImg.src = item.src;
     modalImg.alt = item.alt || '';
-    if (modalCaption) modalCaption.textContent = cleanCaption(item.caption);
+    if (modalCaption) modalCaption.textContent = item.captionClean || cleanCaption(item.caption || '');
     if (modalCounter) {
       modalCounter.textContent =
         gallery.length > 1 ? `${galleryIndex + 1} / ${gallery.length}` : '';
@@ -177,34 +177,37 @@
     modalStage && modalStage.classList.toggle('is-zoomed', isZoomed);
   }
 
-  // 构造一个项目的图集：work__hero（若有，作为编号1）+ 同 group 的 page-strip__item
-  // 保证 hero 只出现一次、编号从 1 开始、向右跳转即到缩略图编号 2
+  // 构造一个项目的图集：仅用 page-strip__item 的完整序列（p1, p2, p3...）。
+  // work__hero 是 p1 的放大形态，不重复加入；点 hero 时按 src 命中 page-strip 的第 1 张。
+  // 这样预览编号与缩略图编号完全一致：第1张=hero图，向右跳转=缩略图编号2。
+  // 无 page-strip 的项目（仅有 hero）：退化为 hero 单图。
   function buildGallery(trigger) {
     const groupAttr = trigger.getAttribute('data-group');
     if (!groupAttr) return null;
     const article = trigger.closest('article') || trigger.closest('.work') || document;
-    const hero = article.querySelector('.work__hero[data-group="' + groupAttr + '"]');
     const items = Array.from(
       article.querySelectorAll('.page-strip__item[data-group="' + groupAttr + '"]')
     );
-    const list = [];
-    if (hero) {
-      list.push({
-        src: hero.getAttribute('data-modal'),
-        alt: hero.getAttribute('data-alt') || '',
-        caption: hero.getAttribute('data-alt') || '',
-      });
-    }
-    items.forEach((g) => {
-      list.push({
+    if (items.length) {
+      return items.map((g) => ({
         src: g.getAttribute('data-modal'),
         alt: g.getAttribute('data-alt') || '',
         caption:
           g.querySelector('.photo-item__caption')?.textContent ||
           g.getAttribute('data-alt') || '',
-      });
-    });
-    return list.length ? list.map((g) => ({ ...g, caption: cleanCaption(g.caption) })) : null;
+        captionClean: cleanCaption(
+          g.querySelector('.photo-item__caption')?.textContent ||
+          g.getAttribute('data-alt') || ''
+        ),
+      }));
+    }
+    // 没有缩略图：仅有 hero 的项目，单图预览
+    const hero = article.querySelector('.work__hero[data-group="' + groupAttr + '"]');
+    if (hero) {
+      const alt = hero.getAttribute('data-alt') || '';
+      return [{ src: hero.getAttribute('data-modal'), alt, caption: alt, captionClean: cleanCaption(alt) }];
+    }
+    return null;
   }
 
   // Bind every [data-modal] element
