@@ -122,6 +122,12 @@
   let galleryIndex = 0;
   let isZoomed = false;
 
+  // 预览顶栏只显示文档名，去掉末尾「· 页面 N」冗余描述（页码由计数器标识）
+  function cleanCaption(text) {
+    if (!text) return '';
+    return text.replace(/\s*·\s*页面\s*\d+\s*$/u, '').trim();
+  }
+
   function openModal(src, alt, caption, group) {
     if (!modal || !modalImg) return;
     gallery = group && group.length ? group : [{ src, alt, caption }];
@@ -139,7 +145,7 @@
     const item = gallery[galleryIndex];
     modalImg.src = item.src;
     modalImg.alt = item.alt || '';
-    if (modalCaption) modalCaption.textContent = item.caption || '';
+    if (modalCaption) modalCaption.textContent = cleanCaption(item.caption);
     if (modalCounter) {
       modalCounter.textContent =
         gallery.length > 1 ? `${galleryIndex + 1} / ${gallery.length}` : '';
@@ -179,6 +185,7 @@
       const alt = el.getAttribute('data-alt') || '';
       const caption =
         el.querySelector('.photo-item__caption')?.textContent || alt;
+      const cleanAlt = cleanCaption(alt);
       const groupAttr = el.getAttribute('data-group');
       let group = null;
       if (groupAttr) {
@@ -190,9 +197,9 @@
           caption:
             g.querySelector('.photo-item__caption')?.textContent ||
             g.getAttribute('data-alt') || '',
-        }));
+        })).map((g) => ({ ...g, caption: cleanCaption(g.caption) }));
       }
-      openModal(src, alt, caption, group);
+      openModal(src, cleanAlt, cleanCaption(caption), group);
     });
   });
 
