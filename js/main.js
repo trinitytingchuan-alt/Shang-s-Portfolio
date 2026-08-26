@@ -177,6 +177,36 @@
     modalStage && modalStage.classList.toggle('is-zoomed', isZoomed);
   }
 
+  // 构造一个项目的图集：work__hero（若有，作为编号1）+ 同 group 的 page-strip__item
+  // 保证 hero 只出现一次、编号从 1 开始、向右跳转即到缩略图编号 2
+  function buildGallery(trigger) {
+    const groupAttr = trigger.getAttribute('data-group');
+    if (!groupAttr) return null;
+    const article = trigger.closest('article') || trigger.closest('.work') || document;
+    const hero = article.querySelector('.work__hero[data-group="' + groupAttr + '"]');
+    const items = Array.from(
+      article.querySelectorAll('.page-strip__item[data-group="' + groupAttr + '"]')
+    );
+    const list = [];
+    if (hero) {
+      list.push({
+        src: hero.getAttribute('data-modal'),
+        alt: hero.getAttribute('data-alt') || '',
+        caption: hero.getAttribute('data-alt') || '',
+      });
+    }
+    items.forEach((g) => {
+      list.push({
+        src: g.getAttribute('data-modal'),
+        alt: g.getAttribute('data-alt') || '',
+        caption:
+          g.querySelector('.photo-item__caption')?.textContent ||
+          g.getAttribute('data-alt') || '',
+      });
+    });
+    return list.length ? list.map((g) => ({ ...g, caption: cleanCaption(g.caption) })) : null;
+  }
+
   // Bind every [data-modal] element
   document.querySelectorAll('[data-modal]').forEach((el) => {
     el.addEventListener('click', (e) => {
@@ -186,19 +216,7 @@
       const caption =
         el.querySelector('.photo-item__caption')?.textContent || alt;
       const cleanAlt = cleanCaption(alt);
-      const groupAttr = el.getAttribute('data-group');
-      let group = null;
-      if (groupAttr) {
-        group = Array.from(
-          document.querySelectorAll(`[data-group="${groupAttr}"]`)
-        ).map((g) => ({
-          src: g.getAttribute('data-modal'),
-          alt: g.getAttribute('data-alt') || '',
-          caption:
-            g.querySelector('.photo-item__caption')?.textContent ||
-            g.getAttribute('data-alt') || '',
-        })).map((g) => ({ ...g, caption: cleanCaption(g.caption) }));
-      }
+      const group = buildGallery(el);
       openModal(src, cleanAlt, cleanCaption(caption), group);
     });
   });
