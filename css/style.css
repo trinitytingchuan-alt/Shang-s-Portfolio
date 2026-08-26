@@ -1558,12 +1558,15 @@ a.contact__item:hover .contact__value {
   justify-content: center;
   overflow: auto;
   cursor: zoom-in;
+  padding: 16px 72px 88px;
+  box-sizing: border-box;
 }
 
 .modal__stage.is-zoomed {
   cursor: zoom-out;
   align-items: flex-start;
   justify-content: flex-start;
+  padding: 16px 72px 88px;
 }
 
 .modal__stage img {
