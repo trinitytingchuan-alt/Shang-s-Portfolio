@@ -160,16 +160,10 @@ button {
 
 .sidebar__nav {
   flex: 1;
-  min-height: 0;
-  overflow-y: auto;
-  scrollbar-width: none;
+  overflow: visible;
   margin: 0 -8px;
   padding: 0 8px;
 }
-
-.sidebar__nav::-webkit-scrollbar { width: 0; height: 0; }
-
-.sidebar__nav::-webkit-scrollbar { width: 0; }
 
 .sidebar__nav-list {
   list-style: none;
