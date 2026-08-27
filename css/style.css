@@ -159,13 +159,16 @@ button {
 }
 
 .sidebar__nav {
-  flex: 1;
-  overflow: visible;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
   margin: 0 -8px;
   padding: 0 8px;
+  scrollbar-width: none;
 }
 
-.sidebar__nav::-webkit-scrollbar { width: 0; }
+.sidebar__nav::-webkit-scrollbar { width: 0; height: 0; }
 
 .sidebar__nav-list {
   list-style: none;
@@ -262,7 +265,8 @@ button {
 
 .sidebar__copy {
   font-family: var(--font-en);
-  font-size: 11px;
+  font-size: 12px;
+  font-style: italic;
   font-weight: 400;
   letter-spacing: 0.04em;
   color: var(--color-muted);
