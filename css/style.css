@@ -61,7 +61,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  overflow-anchor: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
