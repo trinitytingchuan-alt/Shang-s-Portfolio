@@ -323,6 +323,36 @@
     document.body.removeChild(ta);
     if (cb) cb();
   }
+
+  /* ---------- Ctrl+滚轮缩放后保持当前视口居中 ----------
+     浏览器对整页缩放的滚动锚定在「缩小」场景易失效，会把视口
+     跳到其他 section。此处在缩放发生前记录视口中心的文档 Y，
+     缩放完成后将 scrollY 拉回，使原内容点重新回到视口中央，
+     从而始终停留在当前页面（不跑偏、不跳页）。 */
+  let zoomAnchorY = null;
+  let zoomTimer = null;
+  window.addEventListener(
+    'wheel',
+    (e) => {
+      if (!e.ctrlKey) return;
+      zoomAnchorY = window.scrollY + window.innerHeight / 2;
+      clearTimeout(zoomTimer);
+      zoomTimer = setTimeout(() => {
+        if (zoomAnchorY == null) return;
+        const maxY = Math.max(
+          0,
+          document.documentElement.scrollHeight - window.innerHeight
+        );
+        const target = Math.min(
+          maxY,
+          Math.max(0, zoomAnchorY - window.innerHeight / 2)
+        );
+        window.scrollTo(0, target);
+        zoomAnchorY = null;
+      }, 80);
+    },
+    { passive: true }
+  );
 })();
 
 /* ---------- Hero portrait: click to cycle through personal photos ---------- */
