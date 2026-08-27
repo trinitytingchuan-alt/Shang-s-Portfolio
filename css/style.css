@@ -260,6 +260,15 @@ button {
   gap: 6px;
 }
 
+.sidebar__copy {
+  font-family: var(--font-en);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--color-muted);
+  line-height: 1.5;
+}
+
 .sidebar__social {
   display: flex;
   align-items: center;
