@@ -1592,7 +1592,7 @@ a.contact__item:hover .contact__value {
 }
 
 .modal__stage img {
-  max-width: 66.67vw;
+  max-width: calc(100% - 88px);
   max-height: 100%;
   object-fit: contain;
   box-shadow: 0 24px 80px -24px rgba(0, 0, 0, 0.6);
@@ -1763,6 +1763,9 @@ a.contact__item:hover .contact__value {
   }
   .modal__stage {
     padding-left: 56px;
+  }
+  .modal__stage img {
+    max-width: calc(100% - 56px);
   }
   .modal__nav--prev { left: 8px; }
   .modal__nav--next { right: 8px; }
