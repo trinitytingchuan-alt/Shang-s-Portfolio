@@ -1605,7 +1605,7 @@ a.contact__item:hover .contact__value {
 .modal__stage.is-zoomed img {
   max-width: none;
   max-height: none;
-  transform: scale(2);
+  transform: scale(1.3);
   transform-origin: top left;
 }
 
