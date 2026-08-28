@@ -1587,7 +1587,7 @@ a.contact__item:hover .contact__value {
 .modal__stage.is-zoomed {
   cursor: zoom-out;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 .modal__stage img {
@@ -1603,10 +1603,8 @@ a.contact__item:hover .contact__value {
 }
 
 .modal__stage.is-zoomed img {
-  max-width: none;
+  max-width: 66.67vw;
   max-height: none;
-  transform: scale(2);
-  transform-origin: top left;
 }
 
 .modal__nav {
