@@ -1594,6 +1594,7 @@ a.contact__item:hover .contact__value {
   max-width: 33.33vw;
   max-height: 100%;
   object-fit: contain;
+  transform-origin: top left;
   box-shadow: 0 24px 80px -24px rgba(0, 0, 0, 0.6);
   transition: transform var(--duration-base) var(--ease-out);
 }
@@ -1603,8 +1604,19 @@ a.contact__item:hover .contact__value {
 }
 
 .modal__stage.is-zoomed img {
-  max-width: 66.67vw;
+  max-width: 75vw;
   max-height: none;
+}
+
+/* 投资测算：单页预览（未放大）放大到现在的两倍 */
+.modal__stage--preview-wide:not(.is-zoomed) img {
+  max-width: 66.67vw;
+}
+
+/* Ctrl+滚轮自由缩放时，改为左上锚定以便滚动查看 */
+.modal__stage.is-manual {
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 
 .modal__nav {

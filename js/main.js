@@ -121,6 +121,7 @@
   let gallery = [];
   let galleryIndex = 0;
   let isZoomed = false;
+  let manualScale = 1;
 
   // 预览顶栏只显示文档名，去掉末尾「· 页面 N」冗余描述（页码由计数器标识）
   function cleanCaption(text) {
@@ -128,11 +129,12 @@
     return text.replace(/\s*·\s*页面\s*\d+\s*$/u, '').trim();
   }
 
-  function openModal(src, alt, caption, group) {
+  function openModal(src, alt, caption, group, groupName) {
     if (!modal || !modalImg) return;
     gallery = group && group.length ? group : [{ src, alt, caption }];
     galleryIndex = gallery.findIndex((g) => g.src === src);
     if (galleryIndex < 0) galleryIndex = 0;
+    if (modalStage) modalStage.classList.toggle('modal__stage--preview-wide', groupName === 'bgy-inv');
     renderModalImage();
     modal.classList.add('is-open');
     document.body.style.overflow = 'hidden';
@@ -155,6 +157,8 @@
     if (modalNext) modalNext.style.display = showNav ? 'flex' : 'none';
     // Reset zoom on new image
     isZoomed = false;
+    manualScale = 1;
+    applyManualScale();
     modalStage && modalStage.classList.remove('is-zoomed');
   }
 
@@ -169,7 +173,12 @@
     modal.classList.remove('is-open');
     document.body.style.overflow = '';
     isZoomed = false;
-    modalStage && modalStage.classList.remove('is-zoomed');
+    manualScale = 1;
+    applyManualScale();
+    if (modalStage) {
+      modalStage.classList.remove('is-zoomed');
+      modalStage.classList.remove('modal__stage--preview-wide');
+    }
   }
 
   function toggleZoom() {
@@ -220,7 +229,8 @@
         el.querySelector('.photo-item__caption')?.textContent || alt;
       const cleanAlt = cleanCaption(alt);
       const group = buildGallery(el);
-      openModal(src, cleanAlt, cleanCaption(caption), group);
+      const groupName = el.getAttribute('data-group');
+      openModal(src, cleanAlt, cleanCaption(caption), group, groupName);
     });
   });
 
@@ -228,6 +238,23 @@
   if (modalPrev) modalPrev.addEventListener('click', () => navModal(-1));
   if (modalNext) modalNext.addEventListener('click', () => navModal(1));
   if (modalStage) modalStage.addEventListener('click', toggleZoom);
+
+  // 手动缩放状态：Ctrl/⌘ + 滚轮自由控制图片大小（在默认/放大宽度基础上叠加）
+  function applyManualScale() {
+    if (!modalImg) return;
+    const active = Math.abs(manualScale - 1) >= 0.001;
+    modalImg.style.transform = active ? 'scale(' + manualScale + ')' : '';
+    if (modalStage) modalStage.classList.toggle('is-manual', active);
+  }
+  if (modalStage) {
+    modalStage.addEventListener('wheel', (e) => {
+      if (!e.ctrlKey && !e.metaKey) return;
+      e.preventDefault();
+      const factor = e.deltaY < 0 ? 1.12 : 1 / 1.12;
+      manualScale = Math.min(6, Math.max(0.4, manualScale * factor));
+      applyManualScale();
+    }, { passive: false });
+  }
   if (modal) {
     modal.addEventListener('click', (e) => {
       // Close when clicking backdrop (but not image/stage)
