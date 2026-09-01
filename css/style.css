@@ -1163,19 +1163,6 @@ button {
   object-position: top center;
 }
 
-/* 直接引用源 PDF 原文件（不做二次渲染），由浏览器原生渲染，避免转图造成的文字失真 */
-.work__hero--pdf {
-  cursor: default;
-}
-
-.work__hero--pdf iframe,
-.page-strip__item--pdf iframe {
-  width: 100%;
-  height: 100%;
-  border: 0;
-  display: block;
-  background: var(--color-bg-soft);
-}
 
 .page-strip__num {
   position: absolute;
