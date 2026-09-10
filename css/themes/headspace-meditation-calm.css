@@ -200,13 +200,18 @@ html.resume-theme {
 .resume-theme .hero > *,
 .resume-theme .contact > * { position: relative; z-index: 1; }
 
-/* ---------------- 章节页眉：圆角编号 + 圆润标题 ---------------- */
+/* ---------------- 章节页眉：圆角编号 + 圆润标题 ----------------
+   注意：基线 .section 已有 padding: 96px 88px，我上一版又给 header 加了
+   64px 内边距，两者叠加成 160px 巨空白。这里改为「接管」而非「叠加」：
+   由 section 统一控制留白，header 不再自带上下 padding。
+   留白纪律：96px 上 / 88px 左右（8pt 网格，8×12 / 8×11） */
 .resume-theme .section__header {
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 40px 40px 20px;
-  border-bottom: 1px solid rgba(244, 165, 115, 0.18);
+  margin-bottom: 40px;
+  padding: 0;
+  border-bottom: none;
 }
 .resume-theme .section__num,
 .resume-theme .section__num--display {
@@ -248,7 +253,7 @@ html.resume-theme {
   margin-left: auto;
   opacity: 0.7;
 }
-.resume-theme .section__lede { padding: 20px 40px 6px; max-width: 62ch; color: var(--hs-ink-soft); }
+.resume-theme .section__lede { padding: 0; margin-bottom: 48px; max-width: 64ch; color: var(--hs-ink-soft); line-height: 1.8; }
 .resume-theme .section__lede strong { color: var(--hs-ink); font-weight: 700; }
 .resume-theme .stage__intro p,
 .resume-theme .stage__desc,
@@ -458,38 +463,29 @@ html.resume-theme {
 }
 .resume-theme .hero::after { display: none; }
 
-/* 章节页眉横线：5 色 → 单色暖珊瑚 */
+/* 删除测试：章节顶部的横线是纯装饰，删除后设计不变差 → 删掉
+   （章节的层级已经由「编号 + 标题 + 英文小标」三件套表达清楚，
+     再加一条横线属于重复强调） */
 .resume-theme .section__header::before,
-.resume-theme .works .section__header::before {
-  background: var(--hs-coral) !important;
-  height: 3px !important;
-  border-radius: var(--r-pill);
-  opacity: 0.85;
-}
-/* 标题下的「橙 → 紫」渐变下划线 → 单色暖珊瑚 */
-.resume-theme .section__title::after {
-  background: var(--hs-coral) !important;
-  opacity: 0.7;
-}
-/* hero 底部那串彩色圆点（橙 + 薰衣草紫）→ 统一成暖珊瑚 */
+.resume-theme .works .section__header::before { display: none; }
+/* 同理：标题下的渐变下划线也属装饰性重复强调 → 删掉 */
+.resume-theme .section__title::after { display: none; }
+/* hero 底部那串彩色圆点（橙 + 薰衣草紫）→ 收成单色细线 */
 .resume-theme .hero__rule::after {
-  background-image:
-    radial-gradient(circle at 14px 50%, rgba(244, 165, 115, 0.9) 0 6px, transparent 7px),
-    radial-gradient(circle at 40px 50%, rgba(244, 165, 115, 0.6) 0 4px, transparent 5px),
-    radial-gradient(circle at 62px 50%, rgba(244, 165, 115, 0.35) 0 3px, transparent 4px) !important;
+  width: 64px !important;
+  height: 2px !important;
+  border-radius: var(--r-pill);
+  background: var(--hs-coral) !important;
+  opacity: 0.6;
 }
 /* 卡片上的同心圆纹 → 收掉（避免与呼吸圆叠成"同心圆"） */
 .resume-theme .section::after,
 .resume-theme .works::after { display: none; }
-/* 卡片钩线：3 色 → 由该节 pop 色统一（每屏仍只 2 色） */
+/* 卡片上的彩色渐变钩线/竖线（基线用 3 色渐变画在卡片顶边或左边）
+   → 删除测试：卡片已经有边框 + 阴影表达边界，这条线是重复装饰 → 删掉 */
 .resume-theme .capability::before,
 .resume-theme .interest::before,
-.resume-theme .honor::before {
-  background: var(--sec-pop, var(--hs-coral)) !important;
-  height: 3px !important;
-  border-radius: var(--r-pill);
-  opacity: 0.8;
-}
+.resume-theme .honor::before { display: none; }
 
 /* ============================================================
    能力 / 爱好 / 荣誉 卡片：奶油面 + 大圆角 + 暖阴影
@@ -499,7 +495,8 @@ html.resume-theme {
 .resume-theme .interest,
 .resume-theme .honor {
   position: relative;
-  padding: 32px 28px 30px;
+  /* 8pt 网格纪律：统一 padding 40px，不再 32/28/30 混用 */
+  padding: 40px;
   border-radius: var(--r-lg);
   border: 1px solid rgba(244, 165, 115, 0.16);
   background: var(--hs-cream);
@@ -507,19 +504,34 @@ html.resume-theme {
   overflow: hidden;
   transition: transform 600ms var(--hs-ease), box-shadow 600ms var(--hs-ease);
 }
-/* 卡片左上角一枚奶油圆点装饰（保持圆形语言，不做花哨高光） */
+/* 删除测试：卡片右上角的装饰圆对信息传达零贡献，删除后设计不变差 → 删掉 */
 .resume-theme .capability::after,
 .resume-theme .interest::after,
-.resume-theme .honor::after {
-  content: '';
-  position: absolute;
-  top: -26px; right: -26px;
-  width: 96px; height: 96px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 40% 40%,
-    rgba(255, 226, 197, 0.9) 0%,
-    rgba(255, 226, 197, 0) 70%);
-  pointer-events: none;
+.resume-theme .honor::after { display: none; }
+
+/* ============================================================
+   留白修复（critique #5）
+   基线把卡片用 border-right/bottom 拼成无间隙表格（gap: 0），
+   一旦给了圆角和阴影就会「卡片贴卡片」，读起来极累。
+   这里把网格真正分开，gap 走 8pt 网格的 32px。
+   ============================================================ */
+.resume-theme .capability,
+.resume-theme .interest,
+.resume-theme .honor {
+  border-right: none;
+  border-bottom: none;
+}
+.resume-theme .capability { border: 1px solid rgba(244, 165, 115, 0.16); }
+.resume-theme .interest { border: 1px solid rgba(244, 165, 115, 0.16); }
+.resume-theme .honor { border: 1px solid rgba(244, 165, 115, 0.16); }
+
+.resume-theme .capabilities__grid,
+.resume-theme .interests__grid,
+.resume-theme .honors__grid {
+  gap: 32px !important;
+  border-top: none !important;
+  border-left: none !important;
+  margin-top: 40px !important;
 }
 /* 悬浮：轻柔上浮（配方：hover lifts 有 buoyant 感，但无弹跳） */
 .resume-theme .capability:hover,
@@ -548,6 +560,11 @@ html.resume-theme {
   padding-left: 20px;
   font-family: var(--font-display);
   font-weight: 700;
+  /* 层级修复：卡片标题 20px/700 对正文 15px，比例 1.33×，
+     配合字重与颜色形成明确的两级（正文用 ink-soft，标题用 ink） */
+  font-size: 20px;
+  line-height: 1.4;
+  letter-spacing: -0.005em;
   color: var(--hs-ink);
 }
 /* 标题前的圆形色点（圆形语言） */
@@ -566,21 +583,46 @@ html.resume-theme {
 .resume-theme .interest__desc,
 .resume-theme .honor__desc { color: var(--hs-ink-soft); }
 
-/* 技能标签 / 药丸 */
+/* 卡片内部节奏：标题 → 正文 → 标签，统一 16 / 24 的 8pt 间隔
+   （原来是靠默认 margin 各走各的，读起来没有呼吸） */
+.resume-theme .capability__title,
+.resume-theme .interest__title,
+.resume-theme .honor__title { margin-bottom: 16px; }
+.resume-theme .capability__desc,
+.resume-theme .interest__desc,
+.resume-theme .honor__desc { margin-bottom: 24px; line-height: 1.75; }
+
+/* 技能标签：从"40+ 个橘色药丸"收敛为「无底色的 · 分隔文字」
+   理由：装饰压过内容（critique #8）；标签是辅助信息，不该与标题争视觉重量 */
 .resume-theme .capability__tags li,
 .resume-theme .capability__tag,
 .resume-theme .interest__tag,
 .resume-theme .honor__tag,
 .resume-theme .tag {
+  position: relative;
   font-family: var(--font-body);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
-  color: var(--hs-ink-soft);
-  background: var(--hs-peach);
-  border: 1px solid rgba(244, 165, 115, 0.24);
-  border-radius: var(--r-pill);
-  padding: 5px 14px;
+  letter-spacing: 0.01em;
+  color: var(--hs-coral-deep);
+  background: none;
+  border: none;
+  border-radius: 0;
+  padding: 0 12px 0 0;
 }
+/* 用 · 做分隔，取代色块 */
+.resume-theme .capability__tags li::after,
+.resume-theme .capability__tag::after {
+  content: '·';
+  position: absolute;
+  right: 4px;
+  color: rgba(244, 165, 115, 0.55);
+}
+.resume-theme .capability__tags li:last-child::after,
+.resume-theme .capability__tag:last-child::after { display: none; }
+/* 标签行间距也给足 */
+.resume-theme .capability__tags,
+.resume-theme .capability__taglist { gap: 8px 4px; margin-top: 0; }
 
 /* ============================================================
    作品区：图片卡片大圆角 + 暖阴影
