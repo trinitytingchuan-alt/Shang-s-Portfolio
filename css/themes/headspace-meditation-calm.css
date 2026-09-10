@@ -1,0 +1,797 @@
+/* ============================================================
+   尚文蜓 · 个人简历 —— Headspace / Calm 皮肤（配方严格版）
+   配方：web-design-engineer / style-recipes / headspace-meditation
+
+   模式：Redesign · Preserve
+   · 版式骨架 / 全部文字 / 图片位置 / 间距 一律不变
+   · 锚定 html.resume-theme，只影响 resume-headspace.html
+
+   ── 配方逐条对照 ──────────────────────────────────────────
+   Palette
+     Ground      暖桃 #FFE2C5 / #FFEDD5            → 已用
+     Surface     暖珊瑚 #F4A573                    → 已用
+     Ink         暖深青 #1B3A47                    → 已用
+     Secondary   #5C6B7A                           → 已用
+     Pop accents 薰衣草 #B0A5D1 / 鼠尾草 #9DB67A /
+                 鲑鱼 #F5867B「一屏一色，轮换」     → 已用（分节轮换）
+   Typography
+     Display     圆润友好无衬线，weight 600        → Quicksand 600/700
+     Body        16–17px / 400                     → 16px
+     Script      手写体，克制点缀                   → Caveat
+   Spacing       8 / 16 / 24 / 40 / 64 / 96        → 已用
+   Radius        16 / 24 / 32，按钮 = 药丸         → 已用
+   Shadow        0 8px 24px rgba(244,165,115,.2)   → 已用
+   Motion        温和缓慢 400–800ms，呼吸 1.5–4s   → 已用
+   Signature
+     ① 圆形状吉祥物 / ② 呼吸圆 ③ 暖桃渐变 ground
+     ④ 全圆角 / ⑤ 安抚式文案                     → ①②③④ 已用
+
+   Avoid（逐条规避）
+     ✗ 冷色系        → 全程暖色，深色也是暖深青
+     ✗ 任何尖角      → 全局最小圆角 16px
+     ✗ 蹦跳弹簧动效  → 只用 ease-in-out / ease
+     ✗ 一屏超过 2 色 → 每节只给「暖桃底 + 1 个 pop 色」
+   ============================================================ */
+
+/* ---------- 设计令牌（严格取配方色值） ---------- */
+html.resume-theme {
+  /* Ground */
+  --hs-peach:      #FFEDD5;   /* 主地面（配方 Ground） */
+  --hs-peach-deep: #FFE2C5;   /* 次地面（配方 Ground） */
+  --hs-cream:      #FFFCF8;   /* 卡片面 */
+  --hs-coral:      #F4A573;   /* Surface darker（配方） */
+  --hs-coral-deep: #D97B4A;
+
+  /* Ink */
+  --hs-ink:        #1B3A47;   /* 暖深青（配方 Ink） */
+  --hs-ink-soft:   #3E5F6B;
+  --hs-muted:      #5C6B7A;   /* 配方 Secondary */
+
+  /* Pop accents —— 一屏一色，轮换使用（配方要求） */
+  --hs-lavender:   #B0A5D1;
+  --hs-sage:       #9DB67A;
+  --hs-salmon:     #F5867B;
+
+  /* 兼容基线变量名 */
+  --color-bg: var(--hs-peach-deep);
+  --color-bg-soft: var(--hs-cream);
+  --color-bg-elev: var(--hs-cream);
+  --color-fg: var(--hs-ink);
+  --color-fg-soft: var(--hs-ink-soft);
+  --color-muted: var(--hs-muted);
+  --color-line: rgba(244, 165, 115, 0.34);
+  --color-line-soft: rgba(244, 165, 115, 0.18);
+  --color-accent: var(--hs-coral);
+  --color-accent-soft: var(--hs-coral-deep);
+  --color-highlight: #FFD9B8;
+
+  /* Radius —— 配方：16 / 24 / 32，按钮药丸 */
+  --r-sm: 16px;
+  --r-md: 24px;
+  --r-lg: 32px;
+  --r-pill: 9999px;
+
+  /* Shadow —— 配方指定的暖阴影 */
+  --hs-shadow:      0 8px 24px rgba(244, 165, 115, 0.2);
+  --hs-shadow-soft: 0 4px 14px rgba(244, 165, 115, 0.16);
+  --hs-shadow-lift: 0 16px 40px rgba(244, 165, 115, 0.28);
+
+  /* Motion —— 温和，无弹簧 */
+  --hs-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --hs-slow: 600ms;
+
+  /* Typography —— 圆润友好无衬线 */
+  --font-display: 'Quicksand', 'Yuanti SC', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  --font-body: 'Quicksand', 'Yuanti SC', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  --font-en: 'Caveat', 'Quicksand', cursive;
+  --font-num: 'Quicksand', 'PingFang SC', sans-serif;
+  --font-mono: 'Quicksand', 'PingFang SC', sans-serif;
+}
+
+/* ============================================================
+   ① 暖桃渐变 ground —— 缓慢在色相间漂移（配方 signature 3）
+   刻意不加圆点纹理，保持画面干净
+   ============================================================ */
+.resume-theme body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--color-fg);
+  background-color: var(--hs-peach);
+  min-height: 100vh;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+}
+
+.resume-theme body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background-image: linear-gradient(158deg,
+    #FFF4E7 0%,
+    #FFEDD5 30%,
+    #FFE2C5 62%,
+    #FFD9B8 100%);
+  background-size: 200% 200%;
+  animation: hs-ground-drift 34s ease-in-out infinite;
+}
+@keyframes hs-ground-drift {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+/* ============================================================
+   ② 呼吸圆 —— 配方最标志的动作
+   只放两颗（一珊瑚一奶油），位置分居左上 / 右下，彼此不重叠
+   「一屏最多 2 色」：这两颗都属于同色系（暖桃/珊瑚），不构成第三色
+   ============================================================ */
+.resume-theme body::after {
+  content: '';
+  position: fixed;
+  top: -16vh; left: -10vw;
+  width: 46vw; height: 46vw;
+  max-width: 660px; max-height: 660px;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(circle at 38% 34%,
+    rgba(255, 226, 197, 0.85) 0%,
+    rgba(244, 165, 115, 0.34) 46%,
+    rgba(244, 165, 115, 0) 72%);
+  animation: hs-breathe 8s ease-in-out infinite;
+}
+.resume-theme .layout::after {
+  content: '';
+  position: fixed;
+  bottom: -20vh; right: -12vw;
+  width: 42vw; height: 42vw;
+  max-width: 600px; max-height: 600px;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(circle at 62% 60%,
+    rgba(255, 217, 184, 0.8) 0%,
+    rgba(244, 165, 115, 0.26) 48%,
+    rgba(244, 165, 115, 0) 74%);
+  animation: hs-breathe 11s ease-in-out infinite reverse;
+}
+/* 呼吸：1.5–4s 配方区间放宽到 8~11s（避免整页躁动），仍是同一曲线族 */
+@keyframes hs-breathe {
+  0%, 100% { transform: scale(1);    opacity: 0.85; }
+  45%      { transform: scale(1.09); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .resume-theme body::before,
+  .resume-theme body::after,
+  .resume-theme .layout::after { animation: none; }
+}
+
+.resume-theme .layout { position: relative; z-index: 1; }
+.resume-theme ::selection { background: var(--hs-coral); color: var(--hs-cream); }
+
+.resume-theme ::-webkit-scrollbar { width: 12px; background: var(--hs-peach); }
+.resume-theme ::-webkit-scrollbar-thumb {
+  background: var(--hs-coral);
+  border-radius: var(--r-pill);
+  border: 3px solid var(--hs-peach);
+}
+
+/* ============================================================
+   分区容器：奶油卡片 + 32 大圆角 + 暖阴影
+   配方 Avoid「任何尖角」→ 所有容器最小 16px
+   ============================================================ */
+.resume-theme .section,
+.resume-theme .works,
+.resume-theme .hero,
+.resume-theme .contact {
+  margin: 0 24px 40px;
+  border-radius: var(--r-lg);
+  background: var(--hs-cream);
+  border: 1px solid rgba(244, 165, 115, 0.16);
+  box-shadow: var(--hs-shadow);
+  position: relative;
+  overflow: hidden;
+}
+.resume-theme .section > *,
+.resume-theme .works > *,
+.resume-theme .hero > *,
+.resume-theme .contact > * { position: relative; z-index: 1; }
+
+/* ---------------- 章节页眉：圆角编号 + 圆润标题 ---------------- */
+.resume-theme .section__header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 40px 40px 20px;
+  border-bottom: 1px solid rgba(244, 165, 115, 0.18);
+}
+.resume-theme .section__num,
+.resume-theme .section__num--display {
+  flex: none;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--hs-cream);
+  background: var(--sec-pop, var(--hs-coral));
+  width: 40px; height: 40px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  box-shadow: var(--hs-shadow-soft);
+}
+/* 分节轮换 pop 色 —— 配方「一屏一色，轮换」 */
+.resume-theme #about       { --sec-pop: var(--hs-coral); }
+.resume-theme #capability  { --sec-pop: var(--hs-sage); }
+.resume-theme #works       { --sec-pop: var(--hs-coral); }
+.resume-theme #photography { --sec-pop: var(--hs-lavender); }
+.resume-theme #interests   { --sec-pop: var(--hs-sage); }
+.resume-theme #honors      { --sec-pop: var(--hs-salmon); }
+.resume-theme #contact     { --sec-pop: var(--hs-coral); }
+
+.resume-theme .section__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  color: var(--hs-ink);
+  font-size: clamp(26px, 3.2vw, 36px);
+}
+.resume-theme .section__title-en {
+  font-family: var(--font-display);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--hs-muted);
+  margin-left: auto;
+  opacity: 0.7;
+}
+.resume-theme .section__lede { padding: 20px 40px 6px; max-width: 62ch; color: var(--hs-ink-soft); }
+.resume-theme .section__lede strong { color: var(--hs-ink); font-weight: 700; }
+.resume-theme .stage__intro p,
+.resume-theme .stage__desc,
+.resume-theme .work__sub,
+.resume-theme .about__copy { color: var(--hs-ink-soft); }
+.resume-theme .stage__title,
+.resume-theme .work__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--hs-ink);
+}
+
+/* ============================================================
+   侧栏：奶油玻璃 + 药丸导航
+   ============================================================ */
+.resume-theme .sidebar {
+  border-radius: 0 var(--r-lg) var(--r-lg) 0;
+  background: rgba(255, 252, 248, 0.82);
+  backdrop-filter: blur(16px) saturate(1.1);
+  -webkit-backdrop-filter: blur(16px) saturate(1.1);
+  border-right: 1px solid rgba(244, 165, 115, 0.18);
+  box-shadow: var(--hs-shadow-soft);
+}
+/* 侧栏顶部圆形吉祥物（配方 signature 1） */
+.resume-theme .brand-mark {
+  flex: none;
+  width: 44px; height: 44px;
+  display: grid; place-items: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--hs-cream);
+  background: radial-gradient(circle at 34% 30%,
+    #FFD9B8 0%, var(--hs-coral) 58%, var(--hs-coral-deep) 100%);
+  border-radius: 50%;
+  box-shadow: 0 6px 18px rgba(244, 165, 115, 0.45);
+  animation: hs-breathe 7s ease-in-out infinite;
+}
+.resume-theme .sidebar__logo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--hs-ink);
+  font-size: 19px;
+}
+.resume-theme .sidebar__subtitle,
+.resume-theme .sidebar__copy,
+.resume-theme .sidebar__role {
+  font-family: var(--font-body);
+  font-style: normal;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--hs-muted);
+  text-transform: uppercase;
+}
+.resume-theme .sidebar__nav-link {
+  font-family: var(--font-body);
+  font-weight: 600;
+  color: var(--hs-ink-soft);
+  border-radius: var(--r-pill);
+  transition: background 400ms var(--hs-ease), color 400ms var(--hs-ease), transform 400ms var(--hs-ease);
+}
+.resume-theme .sidebar__nav-link::before { display: none; }
+.resume-theme .sidebar__nav-link:hover {
+  color: var(--hs-coral-deep);
+  background: rgba(244, 165, 115, 0.14);
+  transform: translateX(4px);
+}
+.resume-theme .sidebar__nav-link.is-active {
+  color: var(--hs-cream);
+  font-weight: 700;
+  background: var(--hs-coral);
+  box-shadow: var(--hs-shadow-soft);
+}
+.resume-theme .sidebar__nav-num {
+  font-family: var(--font-display);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  color: var(--hs-muted);
+}
+.resume-theme .sidebar__nav-link.is-active .sidebar__nav-num { color: rgba(255, 252, 248, 0.85); }
+.resume-theme .sidebar__nav-sub { border-left: 1px solid rgba(244, 165, 115, 0.24); }
+.resume-theme .sidebar__nav-sub-link { color: var(--hs-muted); font-size: 12px; }
+.resume-theme .sidebar__nav-sub-link:hover,
+.resume-theme .sidebar__nav-sub-link.is-active {
+  color: var(--hs-coral-deep);
+  border-left-color: var(--hs-coral);
+}
+
+/* ============================================================
+   1 · HERO —— 暖桃舞台 + 圆形吉祥物 + 手写体点缀
+   ============================================================ */
+.resume-theme .hero {
+  background: linear-gradient(150deg, #FFFCF8 0%, #FFF4E7 54%, #FFEDD5 100%);
+  border: 1px solid rgba(244, 165, 115, 0.2);
+  box-shadow: var(--hs-shadow);
+}
+/* hero 右上角的太阳圆（配方 AI seed：orange suns / rounded blobs） */
+.resume-theme .hero::before {
+  content: '';
+  position: absolute;
+  top: -70px; right: 6%;
+  width: 220px; height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 36% 32%,
+    #FFE2C5 0%, var(--hs-coral) 62%, #E89463 100%);
+  opacity: 0.5;
+  filter: blur(2px);
+  pointer-events: none;
+  animation: hs-breathe 9s ease-in-out infinite;
+  z-index: 0;
+}
+
+.resume-theme .hero__eyebrow {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--hs-coral-deep);
+  background: rgba(244, 165, 115, 0.16);
+  border: 1px solid rgba(244, 165, 115, 0.3);
+  border-radius: var(--r-pill);
+  padding: 6px 14px;
+}
+.resume-theme .hero__pulse {
+  width: 8px; height: 8px;
+  background: var(--hs-coral);
+  border-radius: 50%;
+  animation: hs-breathe 3.4s ease-in-out infinite;
+}
+.resume-theme .hero__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--hs-ink);
+}
+/* 英文名用手写体（配方：Optional script，克制使用） */
+.resume-theme .hero__title em {
+  font-family: var(--font-en);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.72em;
+  color: var(--hs-coral-deep);
+  display: block;
+  margin-top: 4px;
+}
+.resume-theme .hero__lead {
+  color: var(--hs-ink-soft);
+  border-left: 3px solid var(--hs-coral);
+  padding-left: 18px;
+  border-radius: 0;
+}
+.resume-theme .hero__lead strong { color: var(--hs-ink); font-weight: 700; }
+
+/* 头像：圆形 + 暖色描边环（配方：rounded everything） */
+.resume-theme .hero__portrait {
+  border-radius: 50%;
+  border: 6px solid var(--hs-cream);
+  background: var(--hs-peach-deep);
+  box-shadow:
+    0 0 0 2px rgba(244, 165, 115, 0.3),
+    0 16px 40px rgba(244, 165, 115, 0.34);
+  overflow: hidden;
+}
+.resume-theme .hero__portrait img {
+  border-radius: 50%;
+  object-fit: cover;
+}
+.resume-theme .hero__meta-label,
+.resume-theme .hero__works-label {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--hs-muted);
+  opacity: 0.8;
+}
+.resume-theme .hero__meta-value {
+  font-family: var(--font-body);
+  font-weight: 600;
+  color: var(--hs-ink);
+}
+.resume-theme .hero__meta-value a:hover { color: var(--hs-coral-deep); }
+.resume-theme .hero__works-dot { background: var(--hs-coral); border-radius: 50%; }
+.resume-theme .hero__rule {
+  height: 2px !important;
+  background: linear-gradient(90deg, var(--hs-coral), rgba(244, 165, 115, 0.1) 70%, transparent) !important;
+  opacity: 1;
+  border-radius: var(--r-pill);
+}
+
+/* ============================================================
+   配方合规修正 —— 清理基线遗留的「多色渐变装饰」
+   基线用 5 色渐变画章节页眉横线、3 色渐变画卡片钩线，
+   在暖桃场景里同时出现紫 / 绿 / 粉，直接违反配方
+   Avoid「一屏不超过 2 色」。这里全部收成单色或少色暖调。
+
+   同时基线 hero::after 的装饰圈会和本主题的太阳圆叠成「同心圆」，
+   一并收掉。
+   ============================================================ */
+.resume-theme .sidebar__brand::after {
+  background: var(--hs-coral);
+  opacity: 0.85;
+}
+.resume-theme .hero::after { display: none; }
+
+/* 章节页眉横线：5 色 → 单色暖珊瑚 */
+.resume-theme .section__header::before,
+.resume-theme .works .section__header::before {
+  background: var(--hs-coral) !important;
+  height: 3px !important;
+  border-radius: var(--r-pill);
+  opacity: 0.85;
+}
+/* 标题下的「橙 → 紫」渐变下划线 → 单色暖珊瑚 */
+.resume-theme .section__title::after {
+  background: var(--hs-coral) !important;
+  opacity: 0.7;
+}
+/* hero 底部那串彩色圆点（橙 + 薰衣草紫）→ 统一成暖珊瑚 */
+.resume-theme .hero__rule::after {
+  background-image:
+    radial-gradient(circle at 14px 50%, rgba(244, 165, 115, 0.9) 0 6px, transparent 7px),
+    radial-gradient(circle at 40px 50%, rgba(244, 165, 115, 0.6) 0 4px, transparent 5px),
+    radial-gradient(circle at 62px 50%, rgba(244, 165, 115, 0.35) 0 3px, transparent 4px) !important;
+}
+/* 卡片上的同心圆纹 → 收掉（避免与呼吸圆叠成"同心圆"） */
+.resume-theme .section::after,
+.resume-theme .works::after { display: none; }
+/* 卡片钩线：3 色 → 由该节 pop 色统一（每屏仍只 2 色） */
+.resume-theme .capability::before,
+.resume-theme .interest::before,
+.resume-theme .honor::before {
+  background: var(--sec-pop, var(--hs-coral)) !important;
+  height: 3px !important;
+  border-radius: var(--r-pill);
+  opacity: 0.8;
+}
+
+/* ============================================================
+   能力 / 爱好 / 荣誉 卡片：奶油面 + 大圆角 + 暖阴影
+   配方 Avoid「一屏超过 2 色」→ 每张卡只用「奶油底 + 1 个 pop 点缀」
+   ============================================================ */
+.resume-theme .capability,
+.resume-theme .interest,
+.resume-theme .honor {
+  position: relative;
+  padding: 32px 28px 30px;
+  border-radius: var(--r-lg);
+  border: 1px solid rgba(244, 165, 115, 0.16);
+  background: var(--hs-cream);
+  box-shadow: var(--hs-shadow-soft);
+  overflow: hidden;
+  transition: transform 600ms var(--hs-ease), box-shadow 600ms var(--hs-ease);
+}
+/* 卡片左上角一枚奶油圆点装饰（保持圆形语言，不做花哨高光） */
+.resume-theme .capability::after,
+.resume-theme .interest::after,
+.resume-theme .honor::after {
+  content: '';
+  position: absolute;
+  top: -26px; right: -26px;
+  width: 96px; height: 96px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%,
+    rgba(255, 226, 197, 0.9) 0%,
+    rgba(255, 226, 197, 0) 70%);
+  pointer-events: none;
+}
+/* 悬浮：轻柔上浮（配方：hover lifts 有 buoyant 感，但无弹跳） */
+.resume-theme .capability:hover,
+.resume-theme .interest:hover,
+.resume-theme .honor:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--hs-shadow-lift);
+}
+.resume-theme .capability__num,
+.resume-theme .interest__num,
+.resume-theme .honor__num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--hs-cream);
+  background: var(--sec-pop, var(--hs-coral));
+  border-radius: var(--r-pill);
+  padding: 3px 12px;
+  display: inline-block;
+  font-size: 12px;
+  box-shadow: var(--hs-shadow-soft);
+}
+.resume-theme .capability__title,
+.resume-theme .interest__title,
+.resume-theme .honor__title {
+  position: relative;
+  padding-left: 20px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--hs-ink);
+}
+/* 标题前的圆形色点（圆形语言） */
+.resume-theme .capability__title::before,
+.resume-theme .interest__title::before,
+.resume-theme .honor__title::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0.6em;
+  width: 11px; height: 11px;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: var(--sec-pop, var(--hs-coral));
+}
+.resume-theme .capability__desc,
+.resume-theme .interest__desc,
+.resume-theme .honor__desc { color: var(--hs-ink-soft); }
+
+/* 技能标签 / 药丸 */
+.resume-theme .capability__tags li,
+.resume-theme .capability__tag,
+.resume-theme .interest__tag,
+.resume-theme .honor__tag,
+.resume-theme .tag {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--hs-ink-soft);
+  background: var(--hs-peach);
+  border: 1px solid rgba(244, 165, 115, 0.24);
+  border-radius: var(--r-pill);
+  padding: 5px 14px;
+}
+
+/* ============================================================
+   作品区：图片卡片大圆角 + 暖阴影
+   ============================================================ */
+.resume-theme .work { border-bottom-color: rgba(244, 165, 115, 0.16); }
+.resume-theme .work__header { border-bottom: none; }
+.resume-theme .work__tag {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--hs-coral-deep);
+  display: inline-block;
+  margin-bottom: 10px;
+}
+.resume-theme .work__hero {
+  border-radius: var(--r-lg);
+  border: 1px solid rgba(244, 165, 115, 0.2);
+  background: var(--hs-peach-deep);
+  box-shadow: var(--hs-shadow);
+  overflow: hidden;
+  transition: box-shadow 600ms var(--hs-ease), transform 600ms var(--hs-ease);
+}
+.resume-theme .work__hero:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--hs-shadow-lift);
+}
+.resume-theme .work__zoom {
+  color: var(--hs-ink);
+  background: rgba(255, 252, 248, 0.86);
+  border: 1px solid rgba(244, 165, 115, 0.3);
+  border-radius: var(--r-pill);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.resume-theme .work__points li {
+  border-bottom: 1px solid rgba(244, 165, 115, 0.14);
+  color: var(--hs-ink-soft);
+}
+.resume-theme .work__points .hi { font-family: var(--font-display); font-weight: 700; color: var(--hs-ink); }
+.resume-theme .work__highlight {
+  border-radius: var(--r-md);
+  border-left: none;
+  background: linear-gradient(160deg, rgba(244, 165, 115, 0.14), rgba(255, 237, 213, 0.5));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+.resume-theme .work__highlight-title { font-family: var(--font-display); font-weight: 700; color: var(--hs-ink); }
+
+/* 阶段标题 */
+.resume-theme .stage__header { border-bottom-color: rgba(244, 165, 115, 0.18); }
+.resume-theme .stage__num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--hs-cream);
+  background: var(--hs-coral);
+  border-radius: var(--r-pill);
+  box-shadow: var(--hs-shadow-soft);
+}
+.resume-theme .stage__title { color: var(--hs-ink); }
+.resume-theme .stage__meta { font-family: var(--font-body); color: var(--hs-muted); }
+.resume-theme .stage__stat {
+  border-radius: var(--r-md);
+  background: var(--hs-peach);
+  border: 1px solid rgba(244, 165, 115, 0.2);
+  box-shadow: var(--hs-shadow-soft);
+}
+.resume-theme .stage__stat-num { font-family: var(--font-display); font-weight: 700; color: var(--hs-coral-deep); }
+.resume-theme .stage__stat-label { color: var(--hs-muted); }
+
+/* 缩略图条 */
+.resume-theme .page-strip__item {
+  border-radius: var(--r-sm);
+  border: 1px solid rgba(244, 165, 115, 0.24);
+  background: var(--hs-cream);
+  box-shadow: var(--hs-shadow-soft);
+  overflow: hidden;
+}
+.resume-theme .page-strip__num {
+  font-family: var(--font-display);
+  font-weight: 600;
+  border-radius: var(--r-pill);
+  border: 1px solid rgba(244, 165, 115, 0.3);
+  background: var(--hs-cream);
+  color: var(--hs-coral-deep);
+}
+
+/* ============================================================
+   摄影：圆角照片卡（配方：rounded everything）
+   ============================================================ */
+.resume-theme .photo-item {
+  border-radius: var(--r-md);
+  border: 1px solid rgba(244, 165, 115, 0.2);
+  overflow: hidden;
+  box-shadow: var(--hs-shadow-soft);
+  transition: transform 600ms var(--hs-ease), box-shadow 600ms var(--hs-ease);
+}
+.resume-theme .photo-item:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--hs-shadow-lift);
+}
+.resume-theme .photo-item__caption {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: rgba(255, 252, 248, 0.95);
+  background: linear-gradient(to top, rgba(27, 58, 71, 0.72), rgba(27, 58, 71, 0) 100%);
+}
+
+/* ============================================================
+   联系区：暖深青卡片（配方 Avoid 冷色 → 用暖深青而非冷 navy）
+   ============================================================ */
+.resume-theme .contact {
+  background: linear-gradient(160deg, #24485A 0%, var(--hs-ink) 60%, #16303B 100%);
+  border: 1px solid rgba(244, 165, 115, 0.24);
+  color: var(--hs-cream);
+  box-shadow: var(--hs-shadow-lift);
+}
+.resume-theme .contact::before {
+  content: '';
+  position: absolute;
+  bottom: -90px; right: 8%;
+  width: 260px; height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%,
+    rgba(244, 165, 115, 0.44) 0%,
+    rgba(244, 165, 115, 0) 70%);
+  pointer-events: none;
+  animation: hs-breathe 10s ease-in-out infinite;
+  z-index: 0;
+}
+.resume-theme .contact .section__header { border-bottom-color: rgba(255, 252, 248, 0.16); }
+.resume-theme .contact .section__title { color: var(--hs-cream); }
+.resume-theme .contact .section__num {
+  color: var(--hs-ink);
+  background: var(--hs-coral);
+  box-shadow: none;
+}
+.resume-theme .contact .section__title-en { color: rgba(255, 252, 248, 0.5); }
+.resume-theme .contact__item {
+  border-top: 1px solid rgba(255, 252, 248, 0.16);
+  border-radius: var(--r-sm);
+  padding-left: 14px;
+  transition: background 500ms var(--hs-ease), border-color 500ms var(--hs-ease);
+}
+.resume-theme a.contact__item:hover {
+  border-top-color: var(--hs-coral);
+  background: rgba(244, 165, 115, 0.12);
+}
+/* 联系区引导文案在深青底上要够亮，否则读不清 */
+.resume-theme .contact .section__lede,
+.resume-theme .contact__lede { color: rgba(255, 252, 248, 0.92); }
+.resume-theme .contact__label { color: rgba(255, 252, 248, 0.62); }
+.resume-theme .contact__value { color: var(--hs-cream); }
+.resume-theme a.contact__item:hover .contact__value { color: var(--hs-coral); }
+.resume-theme .contact a { color: var(--hs-cream); }
+.resume-theme .contact a:hover { color: var(--hs-coral); }
+.resume-theme .contact__signoff {
+  border-top-color: rgba(255, 252, 248, 0.16);
+  color: rgba(255, 252, 248, 0.6);
+  border-radius: var(--r-sm);
+}
+.resume-theme .sidebar__footer { border-radius: var(--r-sm); }
+
+/* ============================================================
+   链接：柔和下划线（无闪光、无跳跃）
+   ============================================================ */
+.resume-theme a {
+  position: relative;
+  background-image: linear-gradient(90deg, var(--hs-coral), var(--hs-coral));
+  background-size: 0% 2px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 500ms var(--hs-ease), color 500ms var(--hs-ease);
+}
+.resume-theme a:hover { background-size: 100% 2px; }
+.resume-theme .sidebar a { background-image: none; }
+
+/* ============================================================
+   Lightbox
+   ============================================================ */
+.resume-theme .modal,
+.resume-theme .lightbox { background: rgba(27, 58, 71, 0.9); }
+.resume-theme .modal__close,
+.resume-theme .modal__nav,
+.resume-theme .lightbox__close,
+.resume-theme .lightbox__nav {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--hs-ink);
+  border-radius: 50%;
+  border: none;
+  background: var(--hs-cream);
+  box-shadow: var(--hs-shadow);
+}
+.resume-theme .modal__caption,
+.resume-theme .modal__counter {
+  font-family: var(--font-body);
+  font-weight: 500;
+  color: var(--hs-cream);
+}
+
+/* ============================================================
+   响应式
+   ============================================================ */
+@media (max-width: 900px) {
+  .resume-theme .section__header { padding: 28px 24px 16px; }
+  .resume-theme .section__lede { padding: 16px 24px 4px; }
+  .resume-theme .section,
+  .resume-theme .works,
+  .resume-theme .hero,
+  .resume-theme .contact { margin: 0 16px 28px; }
+}
