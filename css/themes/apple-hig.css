@@ -1,0 +1,444 @@
+/* ============================================================
+   尚文蜓 · 个人简历 —— Apple HIG 官网风
+   配方：web-design-engineer / style-recipes / apple-hig
+   模式：Redesign · Preserve
+   · 版式骨架 / 全部文字 / 图片位置一律不变，只换视觉语言
+   · Signature moves：系统字体栈（SF Pro / 苹方）、无衬线粗标题紧字距、
+     大圆角、毛玻璃、苹果蓝单一强调色、纯白 + 近黑灰阶
+   · 锚定 html.resume-theme → 只影响 resume.html
+   ============================================================ */
+
+/* ---------- 设计令牌 ---------- */
+html.resume-theme {
+  --ap-blue: #0071e3;
+  --ap-blue-dark: #0060c9;
+  --ap-ink: #1d1d1f;
+  --ap-gray: #6e6e73;
+  --ap-gray-2: #86868b;
+  --ap-line: #d2d2d7;
+  --ap-surface: #fbfbfd;
+  --ap-surface-2: #f5f5f7;
+
+  --color-bg: #FFFFFF;
+  --color-bg-soft: var(--ap-surface-2);
+  --color-bg-elev: #FFFFFF;
+  --color-fg: var(--ap-ink);
+  --color-fg-soft: #424245;
+  --color-muted: var(--ap-gray);
+  --color-line: var(--ap-line);
+  --color-line-soft: #e8e8ed;
+  --color-accent: var(--ap-blue);
+  --color-accent-soft: #2997ff;
+  --color-accent-deep: var(--ap-blue-dark);
+  --color-highlight: #e8f1fd;
+
+  --font-display: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro SC',
+                  'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  --font-body: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro SC',
+               'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  --font-en: var(--font-display);
+  --font-num: var(--font-display);
+  --font-mono: 'SF Mono', ui-monospace, 'JetBrains Mono', Menlo, Consolas, monospace;
+
+  --ap-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05), 0 4px 14px rgba(0, 0, 0, 0.045);
+  --ap-shadow-md: 0 2px 6px rgba(0, 0, 0, 0.06), 0 12px 32px rgba(0, 0, 0, 0.075);
+  --ap-ease: cubic-bezier(0.28, 0.11, 0.32, 1);
+}
+
+/* ============================================================
+   地面：纯白 / 极浅灰
+   ============================================================ */
+.resume-theme body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-fg);
+  background: #FFFFFF;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.resume-theme .layout { position: relative; z-index: 1; }
+.resume-theme ::selection { background: rgba(0, 113, 227, 0.18); color: var(--ap-ink); }
+
+/* ============================================================
+   分区面板：极浅灰面 + 大圆角（Apple 的"卡片分段"）
+   ============================================================ */
+.resume-theme .section,
+.resume-theme .hero,
+.resume-theme .works {
+  background: var(--ap-surface);
+  border: 1px solid var(--ap-line);
+  border-radius: 28px;
+  margin: 0 24px 24px;
+}
+.resume-theme .hero,
+.resume-theme .works { background: #FFFFFF; }
+
+/* ============================================================
+   标题：无衬线 700、紧字距、大字号（Apple 官网 hero 处理）
+   ============================================================ */
+.resume-theme .section__title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.4vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--ap-ink);
+}
+.resume-theme .hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(34px, 4.6vw, 60px);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 1.05;
+  color: var(--ap-ink);
+}
+.resume-theme .hero__title em {
+  font-family: var(--font-display);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.4em;
+  letter-spacing: -0.01em;
+  margin-top: 14px;
+  color: var(--ap-gray);
+}
+.resume-theme .section__title-en {
+  font-family: var(--font-display);
+  font-style: normal;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ap-gray-2);
+}
+
+/* ---------- 编号 → 苹果蓝胶囊徽章 ---------- */
+.resume-theme .section__num,
+.resume-theme .section__num--display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  color: #FFFFFF;
+  background: var(--ap-blue);
+  border-radius: 980px;
+  box-shadow: none;
+}
+.resume-theme .section__num { font-size: 13px; padding: 6px 14px; }
+.resume-theme .section__num--display { font-size: clamp(20px, 2.2vw, 26px); padding: 9px 20px; }
+
+.resume-theme .stage__title,
+.resume-theme .work__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.022em;
+  color: var(--ap-ink);
+}
+.resume-theme .stage__num { font-family: var(--font-display); font-size: 16px; font-weight: 600; color: var(--ap-blue); }
+.resume-theme .section__lede,
+.resume-theme .hero__lead,
+.resume-theme .stage__intro p,
+.resume-theme .stage__desc {
+  font-family: var(--font-body);
+  color: var(--ap-gray);
+  font-size: 17px;
+  line-height: 1.5;
+  letter-spacing: 0.004em;
+}
+.resume-theme .about__copy,
+.resume-theme .work__sub,
+.resume-theme .capability__desc,
+.resume-theme .honor__desc,
+.resume-theme .interest__note,
+.resume-theme .work__points li { line-height: 1.75; }
+
+/* ============================================================
+   侧栏：毛玻璃（保持浅色）
+   ============================================================ */
+.resume-theme .sidebar {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-right: 1px solid var(--ap-line);
+  box-shadow: none;
+}
+.resume-theme .sidebar__logo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ap-ink);
+}
+.resume-theme .sidebar__subtitle,
+.resume-theme .sidebar__copy {
+  font-family: var(--font-display);
+  font-style: normal;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ap-gray-2);
+}
+.resume-theme .sidebar__nav-link {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 13.5px;
+  color: var(--ap-gray);
+  border-radius: 980px;
+}
+.resume-theme .sidebar__nav-link::before {
+  content: '';
+  position: absolute;
+  left: -14px; top: 50%;
+  width: 3px; height: 14px;
+  transform: translateY(-50%);
+  border-radius: 980px;
+  background: var(--ap-blue);
+  opacity: 0;
+  transition: opacity 220ms var(--ap-ease);
+}
+.resume-theme .sidebar__nav-link.is-active::before { opacity: 1; }
+.resume-theme .sidebar__nav-link.is-active { color: var(--ap-ink); font-weight: 600; }
+.resume-theme .sidebar__nav-link:hover { color: var(--ap-ink); }
+.resume-theme .sidebar__nav-num { font-family: var(--font-display); font-style: normal; font-size: 11px; font-weight: 500; color: var(--ap-gray-2); }
+.resume-theme .sidebar__nav-link.is-active .sidebar__nav-num { color: var(--ap-blue); }
+.resume-theme .sidebar__nav-sub { border-left: 1px solid var(--ap-line); }
+.resume-theme .sidebar__nav-sub-link { font-family: var(--font-body); color: var(--ap-gray-2); }
+.resume-theme .sidebar__nav-sub-link:hover,
+.resume-theme .sidebar__nav-sub-link.is-active { color: var(--ap-blue); border-left-color: var(--ap-blue); }
+
+/* ---------- Hero 细节 ---------- */
+.resume-theme .hero__eyebrow {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  color: var(--ap-blue);
+  background: transparent;
+  border: none;
+  border-radius: 980px;
+  padding: 0;
+  box-shadow: none;
+}
+.resume-theme .hero__pulse {
+  width: 7px; height: 7px;
+  background: var(--ap-blue);
+  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.16);
+}
+.resume-theme .hero__portrait {
+  border-radius: 24px;
+  border: none;
+  background: var(--ap-surface-2);
+  box-shadow: var(--ap-shadow-md);
+}
+.resume-theme .hero__portrait:hover { box-shadow: 0 4px 10px rgba(0,0,0,.07), 0 20px 44px rgba(0,0,0,.11); }
+.resume-theme .hero__meta-label,
+.resume-theme .hero__works-label {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ap-gray-2);
+}
+.resume-theme .hero__meta-value { font-family: var(--font-body); font-weight: 500; }
+.resume-theme .hero__meta-value a:hover { color: var(--ap-blue); border-bottom-color: var(--ap-blue); }
+.resume-theme .hero__works-dot { background: var(--ap-blue); }
+
+/* ============================================================
+   卡片：独立圆角卡 + gap（无网格线）
+   ============================================================ */
+.resume-theme .capabilities,
+.resume-theme .interests__grid,
+.resume-theme .honors { border: none; gap: 18px; }
+
+.resume-theme .capability,
+.resume-theme .interest,
+.resume-theme .honor {
+  background: #FFFFFF;
+  border: 1px solid var(--ap-line);
+  border-radius: 18px;
+  padding: 28px 24px;
+  box-shadow: var(--ap-shadow-sm);
+  transition: transform 340ms var(--ap-ease),
+              box-shadow 340ms var(--ap-ease),
+              border-color 340ms var(--ap-ease);
+}
+.resume-theme .capability:hover,
+.resume-theme .interest:hover,
+.resume-theme .honor:hover {
+  transform: translateY(-3px);
+  border-color: transparent;
+  box-shadow: var(--ap-shadow-md);
+}
+
+.resume-theme .capability__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 26px;
+  padding: 0 10px;
+  margin-bottom: 14px;
+  border-radius: 980px;
+  background: var(--color-highlight);
+  color: var(--ap-blue);
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+.resume-theme .honor__level {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ap-blue);
+}
+.resume-theme .capability__title,
+.resume-theme .honor__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.016em;
+  color: var(--ap-ink);
+}
+.resume-theme .capability__title { font-size: 19px; }
+.resume-theme .honor__date { font-family: var(--font-display); font-style: normal; font-size: 12px; color: var(--ap-gray-2); }
+
+.resume-theme .capability__tag {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ap-gray);
+  border: 1px solid var(--ap-line);
+  background: var(--ap-surface-2);
+  border-radius: 980px;
+  padding: 5px 12px;
+}
+
+/* ---------- 作品区 ---------- */
+.resume-theme .stage__meta { font-family: var(--font-body); font-size: 13px; color: var(--ap-gray-2); }
+.resume-theme .work__tag {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ap-blue);
+}
+.resume-theme .work__header { border-bottom: 1px solid var(--ap-line); }
+.resume-theme .work__hero {
+  border-radius: 18px;
+  border: none;
+  background: var(--ap-surface-2);
+  box-shadow: var(--ap-shadow-sm);
+}
+.resume-theme .work__zoom {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  color: var(--ap-ink);
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border: none;
+  border-radius: 980px;
+  padding: 8px 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.resume-theme .work__points { border-top: 1px solid var(--ap-line); }
+.resume-theme .work__points li { border-bottom: 1px solid var(--color-line-soft); }
+.resume-theme .work__points .hi { font-family: var(--font-display); font-weight: 600; color: var(--ap-blue); }
+.resume-theme .work__highlights { border-top: 1px solid var(--ap-line); }
+.resume-theme .work__highlight { border-right: 1px solid var(--color-line-soft); }
+.resume-theme .work__highlight-num { font-family: var(--font-display); font-style: normal; font-size: 15px; font-weight: 600; color: var(--ap-blue); }
+.resume-theme .work__highlight-title { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.012em; }
+.resume-theme .stage__stat { border-left: 2px solid var(--ap-blue); }
+.resume-theme .stage__stat-num { font-family: var(--font-display); font-weight: 600; color: var(--ap-ink); letter-spacing: -0.02em; }
+.resume-theme .stage__stat-num span { color: var(--ap-blue); }
+.resume-theme .stage__stat-label { font-family: var(--font-display); font-weight: 500; letter-spacing: 0.1em; color: var(--ap-gray-2); }
+
+.resume-theme .page-strip__label { font-family: var(--font-display); font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ap-gray-2); }
+.resume-theme .page-strip__item {
+  border: 1px solid var(--ap-line);
+  border-radius: 8px;
+  box-shadow: none;
+}
+.resume-theme .page-strip__item:hover { border-color: var(--ap-blue); }
+.resume-theme .page-strip__num { font-family: var(--font-display); font-weight: 500; background: rgba(29, 29, 31, 0.72); border-radius: 980px; }
+
+/* ---------- 摄影 ---------- */
+.resume-theme .photo-item {
+  border-radius: 18px;
+  box-shadow: var(--ap-shadow-sm);
+}
+.resume-theme .photo-item:hover { box-shadow: var(--ap-shadow-md); }
+.resume-theme .photo-item__caption {
+  font-family: var(--font-body);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-indent: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.62), rgba(0, 0, 0, 0) 100%);
+}
+
+/* ---------- 联系区：Apple 纯黑区块 ---------- */
+.resume-theme .contact {
+  background: #000000;
+  border: none;
+  border-radius: 28px;
+  margin: 0 24px 24px;
+  color: #f5f5f7;
+}
+.resume-theme .contact .section__title { color: #f5f5f7; }
+.resume-theme .contact .section__num { background: var(--ap-blue); color: #FFFFFF; }
+.resume-theme .contact .section__title-en { color: var(--ap-gray-2); }
+.resume-theme .section__lede--dark { color: var(--ap-gray-2); }
+.resume-theme .contact__item { border-top-color: #333336; }
+.resume-theme a.contact__item:hover { border-top-color: var(--ap-blue); }
+.resume-theme .contact__label { font-family: var(--font-display); font-weight: 500; letter-spacing: 0.1em; color: #86868b; }
+.resume-theme .contact__value { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.012em; color: #f5f5f7; }
+.resume-theme a.contact__item:hover .contact__value { color: #2997ff; }
+.resume-theme .contact__signoff { border-top-color: #2c2c2e; color: #86868b; font-family: var(--font-body); }
+.resume-theme .contact__signoff-meta { font-family: var(--font-display); font-style: normal; font-size: 12px; }
+
+/* ---------- Lightbox：毛玻璃深色 ---------- */
+.resume-theme .modal {
+  background: rgba(0, 0, 0, 0.82);
+  backdrop-filter: saturate(180%) blur(24px);
+  -webkit-backdrop-filter: saturate(180%) blur(24px);
+}
+.resume-theme .modal__close,
+.resume-theme .modal__nav {
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border: none;
+  color: #FFFFFF;
+  border-radius: 50%;
+  box-shadow: none;
+}
+.resume-theme .modal__close:hover,
+.resume-theme .modal__nav:hover { background: rgba(255, 255, 255, 0.28); }
+.resume-theme .modal__close svg { display: block; }
+.resume-theme .modal__counter,
+.resume-theme .modal__caption,
+.resume-theme .modal__hint { font-family: var(--font-body); font-style: normal; letter-spacing: 0.01em; text-indent: 0; color: #f5f5f7; }
+.resume-theme .modal__counter { font-family: var(--font-display); font-weight: 500; }
+.resume-theme .modal__hint kbd { font-family: var(--font-mono); border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.28); }
+.resume-theme .modal__stage img {
+  border-radius: 14px;
+  border: none;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6);
+}
+
+/* ---------- 浮起菜单按钮 ---------- */
+.resume-theme .sidebar__toggle {
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border: 1px solid var(--ap-line);
+  box-shadow: var(--ap-shadow-sm);
+  color: var(--ap-ink);
+}

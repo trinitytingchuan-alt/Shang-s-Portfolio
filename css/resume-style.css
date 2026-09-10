@@ -1,0 +1,17 @@
+/* ============================================================
+   尚文蜓 · 个人简历 —— 风格切换入口（Switch）
+   ------------------------------------------------------------
+   用法：只改下面这一行 @import，即可整体切换风格。
+   每个风格都是独立文件，互不覆盖，随时可切回来。
+
+   可用风格（css/themes/）：
+     y2k-retrofuturism.css   Y2K 千禧复古未来 / Frutiger Aero
+     headspace-meditation.css Headspace 冥想疗愈（暖桃珊瑚）
+     apple-hig.css           Apple 官网风（SF Pro / 苹果蓝）
+
+   新增风格：在 css/themes/ 建文件，然后把下面改掉即可。
+   约束：所有风格文件锚定 html.resume-theme，只影响 resume.html，
+        index.html（原始作品集）永不受影响。
+   ============================================================ */
+
+@import url("themes/headspace-meditation.css");
