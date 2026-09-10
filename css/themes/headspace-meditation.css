@@ -1,15 +1,18 @@
-/* ============================================
-   尚文蜓 · 个人简历 —— Headspace / Calm 风格皮肤（增强版 UI 设计）
+/* ============================================================
+   尚文蜓 · 个人简历 —— Headspace / Calm 风格皮肤（增强版 UI 设计 v2）
+   配方：web-design-engineer / style-recipes / headspace-meditation
    模式：Redesign · Preserve
    · 版式骨架 / 全部文字 / 图片位置一律不变
-   · 视觉语言 = headspace-meditation 全套 Signature moves：
-     ① 暖桃渐变地面缓慢漂移  ② 圆点纹理质感  ③ 呼吸同心圆（标志性）
-     ④ 手绘感 blob 漂浮      ⑤ 吉祥物圆角色（抽象圆+圆点，不画人脸）
-     ⑥ 全圆角 / 药丸         ⑦ 卡片层次（顶部渐变条 + 柔光 + 左侧色条）
-     ⑧ 温和缓动（无弹跳）    ⑨ 柔和暖阴影
-   · 配方约束：暖色调（深色区也用暖深青）、杜绝尖角、每场景 ≤2 主色
-   · 锚定 html.resume-theme → 只在 resume.html 生效，index.html 不受影响
-   ============================================ */
+   · Signature moves 全量落地：
+     ① 暖桃渐变地面缓慢漂移   ② 圆点纹理质感
+     ③ 呼吸同心圆（标志性）    ④ 手绘感 blob 漂浮
+     ⑤ 吉祥物圆角色群          ⑥ 全圆角 / 药丸
+     ⑦ 卡片层次（渐变底 + 内高光 + 光环 + 色条）
+     ⑧ 温和缓动（无弹跳）      ⑨ 柔和暖阴影
+   v2 增强：卡片不再是平面白块 —— 增加illustration 圆点阵、
+   内嵌光环、渐变底色分层、hero 全幅角色插画带、大字号水位数字
+   · 锚定 html.resume-theme → 只影响 resume.html
+   ============================================================ */
 
 /* ---------- 设计令牌 ---------- */
 html.resume-theme {
@@ -21,12 +24,13 @@ html.resume-theme {
   --color-muted: #5C6B7A;
   --color-line: rgba(244, 165, 115, 0.38);
   --color-line-soft: rgba(244, 165, 115, 0.2);
-  --color-accent: #F4A573;          /* warm coral */
-  --color-accent-soft: #F5867B;     /* salmon */
+  --color-accent: #F4A573;
+  --color-accent-soft: #F5867B;
   --color-accent-deep: #D97B4A;
   --color-highlight: #FFD9B8;
   --pop-lavender: #B0A5D1;
   --pop-sage: #9DB67A;
+  --pop-salmon: #F5867B;
 
   --font-display: 'Quicksand', 'Yuanti SC', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
   --font-body: 'Quicksand', 'Yuanti SC', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
@@ -36,7 +40,7 @@ html.resume-theme {
 }
 
 /* ============================================================
-   ① 地面：暖桃渐变 + ② 圆点纹理质感 + 缓慢色相漂移
+   ① 地面：暖桃渐变 + ② 圆点纹理 + 缓慢色相漂移
    ============================================================ */
 .resume-theme body {
   font-family: var(--font-body);
@@ -56,7 +60,7 @@ html.resume-theme {
   50%      { background-position: 0 0, 100% 50%; }
 }
 
-/* ---------- ④ 手绘感 blob（不规则圆角 + 模糊 + 缓慢漂浮） ---------- */
+/* ---------- ④ 手绘感 blob 漂浮 ---------- */
 .resume-theme body::before,
 .resume-theme body::after,
 .resume-theme .layout::before,
@@ -83,13 +87,13 @@ html.resume-theme {
 .resume-theme .layout::before {
   width: 300px; height: 300px;
   top: 24%; left: -90px;
-  background: rgba(157, 182, 122, 0.34);      /* sage */
+  background: rgba(157, 182, 122, 0.34);
   animation: drift1 26s ease-in-out infinite;
 }
 .resume-theme .layout::after {
   width: 270px; height: 270px;
   bottom: 10%; right: -70px;
-  background: rgba(245, 134, 123, 0.3);       /* salmon */
+  background: rgba(245, 134, 123, 0.3);
   animation: drift2 32s ease-in-out infinite;
 }
 @keyframes breathe {
@@ -116,12 +120,13 @@ html.resume-theme {
 .resume-theme ::selection { background: var(--color-highlight); color: var(--color-fg); }
 
 /* ============================================================
-   ⑦ 分区面板：全圆角 + 柔和暖阴影
+   ⑦ 分区面板：全圆角 + 柔和暖阴影 + 顶部装饰带
    ============================================================ */
 .resume-theme .section,
 .resume-theme .hero,
 .resume-theme .works {
-  background: rgba(255, 252, 247, 0.86);
+  position: relative;
+  background: rgba(255, 252, 247, 0.88);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(244, 165, 115, 0.22);
@@ -131,14 +136,74 @@ html.resume-theme {
   box-shadow: 0 8px 24px rgba(244, 165, 115, 0.2);
 }
 
+/* 分区顶部虹彩装饰带 */
+.resume-theme .section > .section__header::before,
+.resume-theme .works > .section__header::before {
+  content: '';
+  position: absolute;
+  top: -26px; left: 0; right: 0;
+  height: 5px;
+  border-radius: 9999px;
+  background: linear-gradient(90deg,
+    #F4A573 0%, #F8B98D 22%, #B0A5D1 52%, #9DB67A 78%, #F5867B 100%);
+  opacity: 0.6;
+}
+.resume-theme .section__header { position: relative; }
+
+/* 分区右上角"水印圆环群"—— 让每个板块都有背景插画，不再是空白色块 */
+.resume-theme .section::after,
+.resume-theme .works::after,
+.resume-theme .section--photography::after {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgba(244, 165, 115, 0.14) 0 26%,
+    transparent 27% 33%,
+    rgba(244, 165, 115, 0.1) 34% 44%,
+    transparent 45% 51%,
+    rgba(176, 165, 209, 0.09) 52% 60%,
+    transparent 61%);
+  pointer-events: none;
+  z-index: 0;
+}
+/* 分区左下角圆点阵纹理 */
+.resume-theme .section {
+  background-image:
+    radial-gradient(rgba(244, 165, 115, 0.2) 1.4px, transparent 1.5px);
+  background-size: 20px 20px;
+  background-position: 0 100%;
+  background-repeat: repeat-x;
+  background-size: 20px 20px;
+}
+.resume-theme .section > * { position: relative; z-index: 1; }
+
+/* 作品集大区：暖桃底 + 更强插画感 */
+.resume-theme .works {
+  background:
+    linear-gradient(170deg, #FFFBF6 0%, #FFF6EC 55%, #FFEFDF 100%);
+  background-image:
+    radial-gradient(rgba(244, 165, 115, 0.22) 1.6px, transparent 1.7px),
+    linear-gradient(170deg, #FFFBF6 0%, #FFF6EC 55%, #FFEFDF 100%);
+  background-size: 22px 22px, 100% 100%;
+}
+
+/* 摄影区：深一档暖底，与前后板块形成节奏 */
+.resume-theme .section--photography {
+  background-image:
+    radial-gradient(rgba(244, 165, 115, 0.2) 1.4px, transparent 1.5px),
+    linear-gradient(168deg, #FFF7EF 0%, #FFEBDC 100%);
+  background-size: 20px 20px, 100% 100%;
+}
+
 /* ============================================================
-   ③ 呼吸同心圆 + ⑤ 吉祥物圆角色（抽象圆点群，不画人脸）
-   放在 hero 背景层，内容之上之下分离，不影响任何现有元素
+   ③ 呼吸同心圆 + ⑤ 吉祥物圆角色（hero 背景层）
    ============================================================ */
 .resume-theme .hero { position: relative; overflow: hidden; }
 .resume-theme .hero > * { position: relative; z-index: 1; }
 
-/* 呼吸同心圆：多层圆环缓慢缩放 */
 .resume-theme .hero::before {
   content: '';
   position: absolute;
@@ -160,7 +225,6 @@ html.resume-theme {
   pointer-events: none;
 }
 
-/* 抽象圆角色：橙色大圆 + 柔光 + 环绕小圆点（Headspace 角色以圆构成） */
 .resume-theme .hero::after {
   content: '';
   position: absolute;
@@ -208,7 +272,6 @@ html.resume-theme {
   line-height: 1.1;
   color: #1B3A47;
 }
-/* 唯一一处手写体（sparingly） */
 .resume-theme .hero__title em {
   font-family: var(--font-en);
   font-style: normal;
@@ -228,7 +291,7 @@ html.resume-theme {
   color: var(--color-muted);
 }
 
-/* ---------- 编号药丸：立体化（渐变 + 内高光 + 呼吸） ---------- */
+/* ---------- 编号药丸：立体化 ---------- */
 .resume-theme .section__num,
 .resume-theme .section__num--display {
   font-family: var(--font-num);
@@ -370,64 +433,149 @@ html.resume-theme {
 .resume-theme .hero__meta-value a:hover { color: var(--color-accent-deep); border-bottom-color: var(--color-accent); }
 .resume-theme .hero__works-dot { background: var(--color-accent); }
 
+/* Hero 底部插画带：一排圆角色/气泡，Headspace 的标志性插画语汇
+   用 hero__rule 承载（原本只是一条细线），不新增 DOM、不移动文字 */
+.resume-theme .hero__rule {
+  position: relative;
+  height: 6px !important;
+  margin-top: 34px !important;
+  border: none !important;
+  border-radius: 9999px;
+  background: linear-gradient(90deg,
+    #F4A573 0%, #F8B98D 30%, #B0A5D1 62%, #9DB67A 100%) !important;
+  opacity: 0.85;
+}
+.resume-theme .hero__rule::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 18px;
+  width: 100%; height: 42px;
+  background-image:
+    radial-gradient(circle at 14px 21px, rgba(244, 165, 115, 0.85) 0 12px, transparent 13px),
+    radial-gradient(circle at 52px 26px, rgba(176, 165, 209, 0.7) 0 8px, transparent 9px),
+    radial-gradient(circle at 84px 19px, rgba(157, 182, 122, 0.7) 0 10px, transparent 11px),
+    radial-gradient(circle at 118px 25px, rgba(245, 134, 123, 0.68) 0 7px, transparent 8px),
+    radial-gradient(circle at 148px 20px, rgba(244, 165, 115, 0.6) 0 9px, transparent 10px);
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) { .resume-theme .hero__rule::after { animation: none; } }
+
+/* 侧栏导航：当前项药丸底（更有 UI 感） */
+.resume-theme .sidebar__nav-link.is-active {
+  background: linear-gradient(100deg, rgba(244, 165, 115, 0.18), rgba(244, 165, 115, 0.05));
+  padding-left: 14px;
+  margin-left: -14px;
+}
+.resume-theme .sidebar__nav-link.is-active .sidebar__nav-num {
+  background: var(--color-accent);
+  color: #FFFFFF;
+  border-radius: 9999px;
+  padding: 1px 7px;
+}
+.resume-theme .sidebar__brand {
+  position: relative;
+  padding-bottom: 22px;
+}
+.resume-theme .sidebar__brand::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 8px;
+  width: 54px; height: 4px;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #F4A573, rgba(176, 165, 209, 0.8));
+}
+
+/* 作品区图片：统一柔光相框（让图片区也像"设计过的卡片"） */
+.resume-theme .work {
+  position: relative;
+}
+
+/* 荣誉/爱好 小标题的圆点前缀 */
+.resume-theme .interest__title,
+.resume-theme .honor__title {
+  position: relative;
+  padding-left: 15px;
+}
+.resume-theme .interest__title::before,
+.resume-theme .honor__title::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0.55em;
+  width: 8px; height: 8px;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: linear-gradient(160deg, #F8B98D, #F4A573);
+  box-shadow: 0 0 0 3px rgba(244, 165, 115, 0.16);
+}
+
 /* ============================================================
-   ⑦ 卡片层次：顶部渐变条 + 右上角柔光 + 左侧色条（轮换）
+   ⑦ 卡片：分层渐变底 + 顶部色条 + 内嵌光环 + 圆点阵纹理
+   —— 不再是一块平面白，而是有插画感的"柔和卡片"
    ============================================================ */
 .resume-theme .capabilities,
 .resume-theme .interests__grid,
-.resume-theme .honors { border: none; gap: 16px; }
+.resume-theme .honors { border: none; gap: 18px; }
 
 .resume-theme .capability,
 .resume-theme .interest,
 .resume-theme .honor {
   position: relative;
   overflow: hidden;
-  background: var(--color-bg-elev);
-  border: 1px solid rgba(244, 165, 115, 0.22);
-  border-radius: 24px;
-  padding: 28px 24px;
-  box-shadow: 0 8px 24px rgba(244, 165, 115, 0.16);
+  background:
+    linear-gradient(168deg, #FFFFFF 0%, #FFF9F3 42%, #FFF3E6 100%);
+  border: 1px solid rgba(244, 165, 115, 0.26);
+  border-radius: 26px;
+  padding: 30px 26px 28px;
+  box-shadow:
+    0 10px 26px rgba(244, 165, 115, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
   transition: transform 640ms cubic-bezier(0.22, 0.61, 0.36, 1),
               box-shadow 640ms cubic-bezier(0.22, 0.61, 0.36, 1),
               border-color 640ms cubic-bezier(0.22, 0.61, 0.36, 1);
 }
-/* 顶部柔和渐变条 */
+
+/* 顶部色条 */
 .resume-theme .capability::before,
 .resume-theme .interest::before,
 .resume-theme .honor::before {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #F4A573, #F8B98D 45%, rgba(176, 165, 209, 0.85));
-  border-radius: 24px 24px 0 0;
+  height: 5px;
+  background: linear-gradient(90deg, #F4A573, #F8B98D 48%, rgba(176, 165, 209, 0.9));
 }
-/* 右上角柔光圆 */
+
+/* 内嵌装饰：右上柔光 + 右下圆点阵（插画感） */
 .resume-theme .capability::after,
 .resume-theme .interest::after,
 .resume-theme .honor::after {
   content: '';
   position: absolute;
-  top: -46px; right: -46px;
-  width: 160px; height: 160px;
+  right: -50px; top: -50px;
+  width: 210px; height: 210px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(244, 165, 115, 0.2), transparent 70%);
+  background:
+    radial-gradient(circle at 62% 62%, rgba(244, 165, 115, 0.22) 0 24%, transparent 62%),
+    radial-gradient(rgba(244, 165, 115, 0.32) 1.5px, transparent 1.6px);
+  background-size: 100% 100%, 15px 15px;
   pointer-events: none;
 }
-/* 左侧色条轮换（用 inset 阴影实现，不产生位移） */
+
+/* 左侧色条轮换 */
 .resume-theme .capability:nth-child(2n) {
-  box-shadow: inset 4px 0 0 rgba(176, 165, 209, 0.65), 0 8px 24px rgba(244, 165, 115, 0.16);
+  box-shadow: inset 5px 0 0 rgba(176, 165, 209, 0.75), 0 10px 26px rgba(244, 165, 115, 0.18);
 }
 .resume-theme .capability:nth-child(2n+1) {
-  box-shadow: inset 4px 0 0 rgba(244, 165, 115, 0.7), 0 8px 24px rgba(244, 165, 115, 0.16);
+  box-shadow: inset 5px 0 0 rgba(244, 165, 115, 0.8), 0 10px 26px rgba(244, 165, 115, 0.18);
 }
-.resume-theme .honor:nth-child(3n+1) { box-shadow: inset 4px 0 0 rgba(244, 165, 115, 0.7), 0 8px 24px rgba(244, 165, 115, 0.16); }
-.resume-theme .honor:nth-child(3n+2) { box-shadow: inset 4px 0 0 rgba(176, 165, 209, 0.65), 0 8px 24px rgba(244, 165, 115, 0.16); }
-.resume-theme .honor:nth-child(3n+3) { box-shadow: inset 4px 0 0 rgba(157, 182, 122, 0.65), 0 8px 24px rgba(244, 165, 115, 0.16); }
-.resume-theme .interest:nth-child(4n+1) { box-shadow: inset 4px 0 0 rgba(244, 165, 115, 0.7), 0 8px 24px rgba(244, 165, 115, 0.16); }
-.resume-theme .interest:nth-child(4n+2) { box-shadow: inset 4px 0 0 rgba(157, 182, 122, 0.65), 0 8px 24px rgba(244, 165, 115, 0.16); }
-.resume-theme .interest:nth-child(4n+3) { box-shadow: inset 4px 0 0 rgba(176, 165, 209, 0.65), 0 8px 24px rgba(244, 165, 115, 0.16); }
-.resume-theme .interest:nth-child(4n+4) { box-shadow: inset 4px 0 0 rgba(245, 134, 123, 0.6), 0 8px 24px rgba(244, 165, 115, 0.16); }
+.resume-theme .honor:nth-child(3n+1) { box-shadow: inset 5px 0 0 rgba(244, 165, 115, 0.8), 0 10px 26px rgba(244, 165, 115, 0.18); }
+.resume-theme .honor:nth-child(3n+2) { box-shadow: inset 5px 0 0 rgba(176, 165, 209, 0.75), 0 10px 26px rgba(244, 165, 115, 0.18); }
+.resume-theme .honor:nth-child(3n+3) { box-shadow: inset 5px 0 0 rgba(157, 182, 122, 0.75), 0 10px 26px rgba(244, 165, 115, 0.18); }
+.resume-theme .interest:nth-child(4n+1) { box-shadow: inset 5px 0 0 rgba(244, 165, 115, 0.8), 0 10px 26px rgba(244, 165, 115, 0.18); }
+.resume-theme .interest:nth-child(4n+2) { box-shadow: inset 5px 0 0 rgba(157, 182, 122, 0.75), 0 10px 26px rgba(244, 165, 115, 0.18); }
+.resume-theme .interest:nth-child(4n+3) { box-shadow: inset 5px 0 0 rgba(176, 165, 209, 0.75), 0 10px 26px rgba(244, 165, 115, 0.18); }
+.resume-theme .interest:nth-child(4n+4) { box-shadow: inset 5px 0 0 rgba(245, 134, 123, 0.7), 0 10px 26px rgba(244, 165, 115, 0.18); }
 
 .resume-theme .capability:hover,
 .resume-theme .interest:hover,
@@ -436,19 +584,46 @@ html.resume-theme {
   border-color: rgba(157, 182, 122, 0.55);
 }
 
-/* 序号 → 圆形柔和徽章 */
+/* ---------- 序号 → 圆形柔和徽章（带呼吸光环） ---------- */
 .resume-theme .capability__num {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 34px;
-  height: 30px;
-  padding: 0 11px;
-  margin-bottom: 14px;
+  min-width: 38px;
+  height: 32px;
+  padding: 0 12px;
+  margin-bottom: 16px;
   border-radius: 9999px;
-  background: rgba(244, 165, 115, 0.18);
+  background: linear-gradient(160deg, #FFF0E2, #FDD9BC);
+  border: 1px solid rgba(244, 165, 115, 0.4);
   color: var(--color-accent-deep);
+  font-family: var(--font-num);
+  font-weight: 700;
+  box-shadow:
+    0 6px 14px rgba(244, 165, 115, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
+
+/* ---------- 卡片标题：加左侧点缀圆 ---------- */
+.resume-theme .capability__title,
+.resume-theme .honor__title { font-family: var(--font-display); font-weight: 600; color: #1B3A47; }
+.resume-theme .capability__title {
+  position: relative;
+  font-size: 21px;
+  padding-left: 16px;
+  line-height: 1.35;
+}
+.resume-theme .capability__title::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0.52em;
+  width: 9px; height: 9px;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: linear-gradient(160deg, #F8B98D, #F4A573);
+  box-shadow: 0 0 0 4px rgba(244, 165, 115, 0.16);
+}
+.resume-theme .honor__date { font-family: var(--font-display); font-style: normal; font-size: 12px; color: var(--color-muted); }
 .resume-theme .honor__level {
   font-family: var(--font-display);
   font-size: 11px;
@@ -457,12 +632,8 @@ html.resume-theme {
   text-transform: uppercase;
   color: var(--color-accent-deep);
 }
-.resume-theme .capability__title,
-.resume-theme .honor__title { font-family: var(--font-display); font-weight: 600; color: #1B3A47; }
-.resume-theme .capability__title { font-size: 20px; }
-.resume-theme .honor__date { font-family: var(--font-display); font-style: normal; font-size: 12px; color: var(--color-muted); }
 
-/* 标签 → 淡紫药丸 */
+/* ---------- 标签 → 淡紫药丸 ---------- */
 .resume-theme .capability__tag {
   font-family: var(--font-body);
   font-size: 11px;
@@ -474,7 +645,9 @@ html.resume-theme {
   padding: 5px 13px;
 }
 
-/* ---------- 作品区 ---------- */
+/* ============================================================
+   作品区
+   ============================================================ */
 .resume-theme .stage__meta { font-family: var(--font-body); font-size: 13px; color: var(--color-muted); }
 .resume-theme .work__tag {
   font-family: var(--font-display);
@@ -485,8 +658,6 @@ html.resume-theme {
   color: var(--color-accent-deep);
 }
 .resume-theme .work__header { border-bottom: 1px solid rgba(244, 165, 115, 0.3); }
-
-/* 图片容器：圆角 + 角落柔光（柔光只落边角，不遮挡图内文字） */
 .resume-theme .work__hero {
   border-radius: 28px;
   border: 1px solid rgba(244, 165, 115, 0.3);
@@ -502,7 +673,6 @@ html.resume-theme {
   background: radial-gradient(circle, rgba(244, 165, 115, 0.16), transparent 70%);
   pointer-events: none;
 }
-
 .resume-theme .work__zoom {
   font-family: var(--font-body);
   font-size: 12px;
@@ -523,21 +693,46 @@ html.resume-theme {
 .resume-theme .work__highlight { border-right: 1px solid rgba(244, 165, 115, 0.3); }
 .resume-theme .work__highlight-num { font-family: var(--font-num); font-style: normal; font-size: 15px; font-weight: 700; color: var(--color-accent-deep); }
 .resume-theme .work__highlight-title { font-family: var(--font-display); font-weight: 600; }
-.resume-theme .stage__stat { border-left: 2px solid rgba(244, 165, 115, 0.5); }
-.resume-theme .stage__stat-num { font-family: var(--font-num); font-weight: 700; color: var(--color-accent-deep); }
+
+/* ---------- 统计数字：药丸卡片化（原为裸文字+左边线） ---------- */
+.resume-theme .stage__stat {
+  position: relative;
+  border-left: none;
+  padding: 14px 20px;
+  border-radius: 20px;
+  background: linear-gradient(160deg, #FFF7EF, #FFEBD8);
+  box-shadow: 0 8px 20px rgba(244, 165, 115, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+.resume-theme .stage__stat::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 14px; bottom: 14px;
+  width: 4px;
+  border-radius: 9999px;
+  background: linear-gradient(180deg, #F4A573, #B0A5D1);
+}
+.resume-theme .stage__stat-num {
+  font-family: var(--font-num);
+  font-weight: 700;
+  font-size: clamp(28px, 3.2vw, 38px);
+  letter-spacing: -0.02em;
+  color: var(--color-accent-deep);
+}
 .resume-theme .stage__stat-num span { color: var(--color-accent-soft); }
-.resume-theme .stage__stat-label { font-family: var(--font-display); font-weight: 600; letter-spacing: 0.12em; color: var(--color-muted); }
+.resume-theme .stage__stat-label { font-family: var(--font-display); font-weight: 700; letter-spacing: 0.12em; color: #7A5A48; }
 
 .resume-theme .page-strip__label { font-family: var(--font-display); font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-muted); }
 .resume-theme .page-strip__item {
   border: 1px solid rgba(244, 165, 115, 0.3);
-  border-radius: 12px;
+  border-radius: 14px;
   box-shadow: 0 6px 14px rgba(244, 165, 115, 0.2);
 }
 .resume-theme .page-strip__item:hover { border-color: var(--color-accent-deep); }
 .resume-theme .page-strip__num { font-family: var(--font-num); background: rgba(27, 58, 71, 0.78); border-radius: 9999px; }
 
-/* ---------- 摄影 ---------- */
+/* ============================================================
+   摄影
+   ============================================================ */
 .resume-theme .photo-item {
   border-radius: 28px;
   box-shadow: 0 12px 30px -14px rgba(244, 165, 115, 0.5);
@@ -551,7 +746,9 @@ html.resume-theme {
   background: linear-gradient(to top, rgba(27, 58, 71, 0.8), rgba(27, 58, 71, 0) 100%);
 }
 
-/* ---------- 联系区：暖深青 + 柔和光晕（非冷藏蓝） ---------- */
+/* ============================================================
+   联系区：暖深青 + 柔和光晕
+   ============================================================ */
 .resume-theme .contact {
   position: relative;
   overflow: hidden;
@@ -585,7 +782,9 @@ html.resume-theme {
 .resume-theme .contact__signoff { border-top-color: rgba(255, 244, 230, 0.2); color: rgba(255, 244, 230, 0.6); font-family: var(--font-body); }
 .resume-theme .contact__signoff-meta { font-family: var(--font-display); font-style: normal; font-size: 12px; }
 
-/* ---------- Lightbox：暖深色柔和 ---------- */
+/* ============================================================
+   Lightbox
+   ============================================================ */
 .resume-theme .modal {
   background: rgba(24, 48, 58, 0.96);
   backdrop-filter: blur(20px);
