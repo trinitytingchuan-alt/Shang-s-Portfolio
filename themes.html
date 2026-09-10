@@ -100,24 +100,40 @@
     <h1>个人简历 · 风格总览</h1>
     <p>所有风格共用同一份版式骨架、同一套文字与图片位置，只有视觉语言不同。风格之间互不覆盖，可随时切换。</p>
     <div class="note">
-      <strong>两套体系并存</strong>：①「同骨架换皮肤」——<code>resume.html</code> + <code>css/themes/</code> 下的 Headspace / Y2K / Apple，改一行 <code>@import</code> 即可切换；②「独立新页」——<code>resume-active-theory.html</code> 为自包含整页，拥有完全不同的版式与叙事结构。<br />
+      <strong>三套体系并存</strong>：①「同骨架换皮肤」——<code>resume.html</code> + <code>css/themes/</code> 下的 Headspace / Y2K / Apple，改一行 <code>@import</code> 即可切换；②「同骨架新皮肤」——<code>resume-active-theory-v2.html</code> 用 Active Theory 视觉但沿用原排版；③「独立分镜页」——<code>resume-active-theory.html</code> 为自包含整页，版式改为分镜式叙事。<br />
       <strong>原始作品集</strong>：<code>index.html</code> + <code>css/style.css</code>，始终独立、从未被修改。
     </div>
   </div>
 
   <div class="grid">
 
-    <a class="card" href="resume-active-theory.html">
+    <a class="card" href="resume-active-theory-v2.html">
       <div class="card__swatch" style="background: radial-gradient(ellipse at 30% 20%, #0d3a4a 0%, #050507 62%);">
         <i style="background:#00E0FF"></i><i style="background:#7C5CFF"></i><i style="background:#F2F4FF"></i>
       </div>
       <div class="card__body">
         <span class="card__badge card__badge--on">最新版本</span>
-        <h2>Active Theory 电影感</h2>
-        <p>深黑画布 + 单一 candy cyan 强调色、全幅巨型标题、零圆角、粒子场与体积光、分镜式滚动叙事，收尾一张最大冲击帧。</p>
+        <h2>Active Theory 电影感 · 沿用原排版</h2>
+        <p>深黑画布 + 单一 candy cyan 强调色、零圆角、硬朗 Archivo 标题、等宽编号、1px 边框分层、底边能量条。沿用原简历骨架与位置，元素 X/宽度与原版逐像素一致。</p>
         <div class="card__meta">
           <b>字体</b> Archivo / Inter / JetBrains Mono<br />
           <b>配方</b> active-theory（Cinematic WebGL）<br />
+          <b>文件</b> resume-active-theory-v2.html
+        </div>
+        <span class="card__go">查看此风格 →</span>
+      </div>
+    </a>
+
+    <a class="card" href="resume-active-theory.html">
+      <div class="card__swatch" style="background: radial-gradient(ellipse at 30% 20%, #0d3a4a 0%, #050507 62%);">
+        <i style="background:#00E0FF"></i><i style="background:#7C5CFF"></i><i style="background:#F2F4FF"></i>
+      </div>
+      <div class="card__body">
+        <span class="card__badge card__badge--off">分镜独立版</span>
+        <h2>Active Theory · 独立分镜版</h2>
+        <p>自包含整页，版式改为分镜式滚动叙事（每个 section 是电影场景）。适合作为作品集「电影发布页」独立传播。</p>
+        <div class="card__meta">
+          <b>字体</b> Archivo / Inter / JetBrains Mono<br />
           <b>文件</b> resume-active-theory.html
         </div>
         <span class="card__go">查看此风格 →</span>

@@ -1,0 +1,586 @@
+/* ============================================================
+   尚文蜓 · 个人简历 —— Active Theory (Cinematic) 皮肤 v2
+   配方：web-design-engineer / style-recipes / active-theory
+   模式：Redesign · Preserve（严格版）
+   · 版式骨架 / 全部文字 / 图片位置 / 间距 一律不变
+   · 只换视觉语言：深黑画布 + candy cyan 单一强调色 + 零圆角
+     + 硬朗 grotesque 标题 + 粒子场 / 体积光 + 电影感图片处理
+   · 不新增 DOM、不改布局，背景层全部 position:fixed + z-index:0
+   · 锚定 html.resume-theme，独立于其它主题，互不覆盖
+   ============================================================ */
+
+/* ---------- 设计令牌 ---------- */
+html.resume-theme {
+  /* 深黑（带冷蓝投射，配方要求 tinted neutral，不用纯灰） */
+  --color-bg: #050507;
+  --color-bg-soft: #0B0B12;
+  --color-bg-elev: #101018;
+  --color-fg: #EAF0FF;
+  --color-fg-soft: #A7B2D2;
+  --color-muted: #616B88;
+  --color-line: rgba(0, 224, 255, 0.18);
+  --color-line-soft: rgba(0, 224, 255, 0.09);
+  --color-accent: #00E0FF;          /* candy cyan —— 唯一强调色 */
+  --color-accent-soft: #7C5CFF;     /* 辅助紫，仅小面积 */
+  --color-accent-deep: #00B4CC;
+  --color-highlight: rgba(0, 224, 255, 0.12);
+
+  --font-display: 'Archivo', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  --font-body: 'Inter', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  --font-en: 'Archivo', 'PingFang SC', sans-serif;
+  --font-num: 'JetBrains Mono', ui-monospace, 'SF Mono', Consolas, monospace;
+  --font-mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+}
+
+/* ============================================================
+   零圆角 —— 配方硬性要求（全局，不改布局）
+   ============================================================ */
+.resume-theme * { border-radius: 0 !important; }
+
+/* ============================================================
+   地面：深黑 + 粒子星尘场 + 体积光（固定背景层，不占位）
+   ============================================================ */
+.resume-theme body {
+  font-family: var(--font-body);
+  color: var(--color-fg);
+  background-color: #050507;
+  background-image:
+    radial-gradient(1.5px 1.5px at 14% 18%, rgba(0,224,255,0.55), transparent 60%),
+    radial-gradient(1.1px 1.1px at 68% 12%, rgba(124,92,255,0.5), transparent 60%),
+    radial-gradient(1.7px 1.7px at 38% 62%, rgba(255,255,255,0.35), transparent 60%),
+    radial-gradient(1.2px 1.2px at 86% 52%, rgba(0,224,255,0.45), transparent 60%),
+    radial-gradient(1px 1px at 8% 78%, rgba(124,92,255,0.45), transparent 60%),
+    radial-gradient(1.4px 1.4px at 58% 86%, rgba(0,224,255,0.35), transparent 60%);
+  background-attachment: fixed;
+}
+
+/* 两道斜向体积光 + 扫描线 + 暗角（纯装饰，不影响布局） */
+.resume-theme body::before,
+.resume-theme body::after,
+.resume-theme .layout::before,
+.resume-theme .layout::after {
+  content: '';
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+}
+.resume-theme body::before {
+  top: -18vh; left: -14vw;
+  width: 56vw; height: 136vh;
+  background: linear-gradient(180deg, rgba(0,224,255,0.16), transparent 60%);
+  transform: rotate(13deg);
+  filter: blur(54px);
+  animation: atSway 26s ease-in-out infinite;
+}
+.resume-theme body::after {
+  top: -14vh; right: -16vw;
+  width: 52vw; height: 130vh;
+  background: linear-gradient(180deg, rgba(124,92,255,0.14), transparent 58%);
+  transform: rotate(-11deg);
+  filter: blur(58px);
+  animation: atSway 32s ease-in-out infinite reverse;
+}
+/* 扫描线（银幕质感） */
+.resume-theme .layout::before {
+  inset: 0;
+  background: repeating-linear-gradient(to bottom,
+    rgba(255,255,255,0.016) 0 1px, transparent 1px 3px);
+  mix-blend-mode: overlay;
+}
+/* 暗角 */
+.resume-theme .layout::after {
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 40%, transparent 42%, rgba(0,0,0,0.55) 100%);
+}
+@keyframes atSway {
+  0%, 100% { opacity: 0.5; transform: rotate(13deg) translateX(0); }
+  50%      { opacity: 0.78; transform: rotate(10deg) translateX(3vw); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .resume-theme body::before, .resume-theme body::after { animation: none; }
+}
+
+.resume-theme .layout { position: relative; z-index: 1; }
+.resume-theme ::selection { background: var(--color-accent); color: #000; }
+
+/* ============================================================
+   分区面板：1px 边框分层（Active Theory 不用 CSS 投影）
+   ============================================================ */
+.resume-theme .section,
+.resume-theme .hero,
+.resume-theme .works {
+  /* 盒模型沿用 Headspace 皮肤，保证元素位置逐像素一致 */
+  margin: 0 24px 28px;
+  background: linear-gradient(170deg, rgba(16,16,24,0.9), rgba(8,8,13,0.86));
+  border: 1px solid var(--color-line);
+  border-bottom: none;
+  box-shadow: none;
+}
+/* 顶部一条青色扫描线，作为板块分隔（不占位） */
+.resume-theme .section { position: relative; }
+.resume-theme .section::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* ============================================================
+   标题：硬朗 grotesque + 字距收紧（不改字号/不移位）
+   ============================================================ */
+.resume-theme .section__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  color: var(--color-fg);
+}
+.resume-theme .hero__title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: -0.045em;
+  color: #FFFFFF;
+}
+/* 英文副标：描边处理，体现 full-bleed type 语汇 */
+.resume-theme .hero__title em {
+  font-family: var(--font-en);
+  font-style: normal;
+  font-size: 0.66em;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: transparent;
+  -webkit-text-stroke: 1.3px var(--color-accent);
+}
+.resume-theme .section__title-en {
+  font-family: var(--font-num);
+  font-style: normal;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+.resume-theme .stage__title,
+.resume-theme .work__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.028em;
+  color: var(--color-fg);
+}
+.resume-theme .section__lede,
+.resume-theme .hero__lead,
+.resume-theme .stage__intro p,
+.resume-theme .stage__desc,
+.resume-theme .about__copy,
+.resume-theme .work__sub { color: var(--color-fg-soft); }
+.resume-theme .section__lede--dark { color: var(--color-fg-soft); }
+
+/* ---------- 编号：等宽字 + 青色描边方块 ---------- */
+.resume-theme .section__num,
+.resume-theme .section__num--display {
+  font-family: var(--font-num);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--color-accent);
+  background: rgba(0, 224, 255, 0.08);
+  border: 1px solid rgba(0, 224, 255, 0.42);
+  box-shadow: none;
+}
+.resume-theme .stage__num {
+  font-family: var(--font-num);
+  font-weight: 500;
+  color: var(--color-accent);
+}
+
+/* ============================================================
+   侧栏：深黑玻璃（保持浅色约束改为深色，因整体为深黑画布）
+   ============================================================ */
+.resume-theme .sidebar {
+  background: rgba(6, 6, 11, 0.82);
+  backdrop-filter: blur(18px) saturate(1.2);
+  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+  border-right: 1px solid var(--color-line);
+  box-shadow: none;
+}
+.resume-theme .sidebar__logo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--color-fg);
+}
+.resume-theme .sidebar__subtitle,
+.resume-theme .sidebar__copy {
+  font-family: var(--font-num);
+  font-style: normal;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+.resume-theme .sidebar__nav-link {
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: var(--color-fg-soft);
+}
+/* 激活指示：左侧青色竖条（原为圆点） */
+.resume-theme .sidebar__nav-link::before {
+  width: 2px; height: 14px;
+  border-radius: 0 !important;
+  background: var(--color-accent);
+  box-shadow: 0 0 10px rgba(0, 224, 255, 0.8);
+}
+.resume-theme .sidebar__nav-link.is-active { color: var(--color-accent); font-weight: 600; }
+.resume-theme .sidebar__nav-link:hover { color: var(--color-accent); }
+.resume-theme .sidebar__nav-num {
+  font-family: var(--font-num);
+  font-style: normal;
+  font-size: 11px;
+  color: var(--color-muted);
+}
+.resume-theme .sidebar__nav-link.is-active .sidebar__nav-num { color: var(--color-accent); }
+.resume-theme .sidebar__nav-sub { border-left: 1px solid var(--color-line); }
+.resume-theme .sidebar__nav-sub-link { color: var(--color-muted); }
+.resume-theme .sidebar__nav-sub-link:hover,
+.resume-theme .sidebar__nav-sub-link.is-active { color: var(--color-accent); border-left-color: var(--color-accent); }
+
+/* ---------- Hero 细节 ---------- */
+.resume-theme .hero__eyebrow {
+  font-family: var(--font-num);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  background: rgba(0, 224, 255, 0.08);
+  border: 1px solid rgba(0, 224, 255, 0.32);
+  box-shadow: none;
+}
+.resume-theme .hero__pulse {
+  width: 7px; height: 7px;
+  background: var(--color-accent);
+  box-shadow: 0 0 10px var(--color-accent), 0 0 20px rgba(0,224,255,0.6);
+}
+.resume-theme .hero__portrait {
+  border: 1px solid var(--color-line);
+  background: var(--color-bg-soft);
+  box-shadow: none;
+  /* 电影感：轻微去饱和，悬停显影 */
+  filter: saturate(0.82) contrast(1.06);
+  transition: filter 620ms ease;
+}
+.resume-theme .hero__portrait:hover { filter: saturate(1.02) contrast(1.02); }
+.resume-theme .hero__meta-label,
+.resume-theme .hero__works-label {
+  font-family: var(--font-num);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+.resume-theme .hero__meta-value { font-family: var(--font-body); font-weight: 500; }
+.resume-theme .hero__meta-value a:hover { color: var(--color-accent); border-bottom-color: var(--color-accent); }
+.resume-theme .hero__works-dot { background: var(--color-accent); box-shadow: 0 0 8px rgba(0,224,255,0.9); }
+.resume-theme .hero__rule { background: linear-gradient(90deg, var(--color-accent), transparent) !important; opacity: 0.6; }
+
+/* ============================================================
+   卡片：1px 边框 + 悬停底边能量条（物理感，不位移）
+   ============================================================ */
+/* 网格间距沿用 Headspace */
+.resume-theme .capabilities,
+.resume-theme .interests__grid,
+.resume-theme .honors { border: none; gap: 18px; }
+
+.resume-theme .capability,
+.resume-theme .interest,
+.resume-theme .honor {
+  position: relative;
+  padding: 30px 26px 28px;
+  background: linear-gradient(168deg, rgba(18,18,27,0.82), rgba(10,10,16,0.78));
+  border: 1px solid var(--color-line);
+  box-shadow: none;
+  transition: background 420ms ease, border-color 420ms ease;
+}
+.resume-theme .capability::before,
+.resume-theme .interest::before,
+.resume-theme .honor::before {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%; height: 2px;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-accent-soft));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 520ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.resume-theme .capability:hover,
+.resume-theme .interest:hover,
+.resume-theme .honor:hover {
+  background: linear-gradient(168deg, rgba(24,24,35,0.9), rgba(14,14,22,0.86));
+  border-color: rgba(0, 224, 255, 0.4);
+}
+.resume-theme .capability:hover::before,
+.resume-theme .interest:hover::before,
+.resume-theme .honor:hover::before { transform: scaleX(1); }
+/* 移除原主题的顶/角色条伪元素（改用底边能量条） */
+.resume-theme .capability::after,
+.resume-theme .interest::after,
+.resume-theme .honor::after { display: none; }
+
+.resume-theme .capability__num {
+  font-family: var(--font-num);
+  font-weight: 500;
+  color: var(--color-accent);
+  background: rgba(0, 224, 255, 0.08);
+  border: 1px solid rgba(0, 224, 255, 0.3);
+  box-shadow: none;
+}
+.resume-theme .capability__title,
+.resume-theme .interest__title,
+.resume-theme .honor__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.022em;
+  color: var(--color-fg);
+}
+/* 移除原主题标题前的圆点（Active Theory 无圆角装饰） */
+.resume-theme .capability__title::before,
+.resume-theme .interest__title::before,
+.resume-theme .honor__title::before { display: none; }
+/* 保留 Headspace 的左缩进，避免标题文字位置移动 */
+.resume-theme .capability__title { padding-left: 16px; font-size: 21px; }
+.resume-theme .interest__title,
+.resume-theme .honor__title { padding-left: 15px; }
+
+.resume-theme .capability__desc,
+.resume-theme .interest__note,
+.resume-theme .honor__desc { color: var(--color-fg-soft); }
+.resume-theme .honor__level {
+  font-family: var(--font-num);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+.resume-theme .honor__date {
+  font-family: var(--font-num);
+  font-style: normal;
+  font-size: 11px;
+  color: var(--color-muted);
+}
+.resume-theme .capability__tag {
+  font-family: var(--font-num);
+  font-size: 10.5px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--color-fg-soft);
+  border: 1px solid var(--color-line);
+  background: rgba(0, 224, 255, 0.05);
+}
+.resume-theme .cell:hover .capability__tag,
+.resume-theme .capability:hover .capability__tag {
+  border-color: rgba(0, 224, 255, 0.38);
+  color: var(--color-accent);
+}
+
+/* ============================================================
+   作品区
+   ============================================================ */
+.resume-theme .stage__meta { font-family: var(--font-body); color: var(--color-muted); }
+.resume-theme .work__tag {
+  font-family: var(--font-num);
+  font-size: 10.5px;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+.resume-theme .work__header { border-bottom: 1px solid var(--color-line); }
+
+/* 图片：电影感调色 + 悬停显影（不改位置尺寸） */
+.resume-theme .work__hero {
+  border: 1px solid var(--color-line);
+  background: var(--color-bg-soft);
+  box-shadow: none;
+}
+.resume-theme .work__hero img {
+  filter: saturate(0.8) contrast(1.05) brightness(0.9);
+  transition: filter 620ms ease;
+}
+.resume-theme .work__hero:hover img { filter: saturate(1) contrast(1.02) brightness(1); }
+.resume-theme .work__hero::after {
+  background: linear-gradient(180deg, rgba(0,224,255,0.05), transparent 46%);
+}
+
+.resume-theme .work__zoom {
+  font-family: var(--font-num);
+  font-size: 10.5px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #050507;
+  background: var(--color-accent);
+  border: none;
+  box-shadow: 0 0 18px rgba(0, 224, 255, 0.5);
+}
+.resume-theme .work__points { border-top: 1px solid var(--color-line); }
+.resume-theme .work__points li { border-bottom: 1px solid var(--color-line-soft); color: var(--color-fg-soft); }
+.resume-theme .work__points .hi { font-family: var(--font-display); font-weight: 700; color: var(--color-accent); }
+.resume-theme .work__highlights { border-top: 1px solid var(--color-line); }
+.resume-theme .work__highlight { border-right: 1px solid var(--color-line-soft); }
+.resume-theme .work__highlight-num {
+  font-family: var(--font-num);
+  font-style: normal;
+  font-weight: 500;
+  color: var(--color-accent);
+}
+.resume-theme .work__highlight-title { font-family: var(--font-display); font-weight: 600; color: var(--color-fg); }
+
+/* 统计块：去掉原药丸底，改为左侧青线 + 青色数字 */
+.resume-theme .stage__stat {
+  padding: 14px 20px;
+  background: none;
+  border-left: none;
+  /* 用 inset 阴影画竖条，避免 border 改变盒模型宽度 */
+  box-shadow: inset 2px 0 0 var(--color-accent);
+}
+.resume-theme .stage__stat::before { display: none; }
+.resume-theme .stage__stat-num {
+  font-family: var(--font-num);
+  font-size: clamp(28px, 3.2vw, 38px);
+  font-weight: 500;
+  color: var(--color-accent);
+}
+.resume-theme .stage__stat-num span { color: var(--color-accent-soft); }
+.resume-theme .stage__stat-label {
+  font-family: var(--font-num);
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.resume-theme .page-strip__label {
+  font-family: var(--font-num);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+.resume-theme .page-strip__item {
+  border: 1px solid var(--color-line);
+  box-shadow: none;
+}
+.resume-theme .page-strip__item img { filter: saturate(0.7) brightness(0.78); transition: filter 420ms ease; }
+.resume-theme .page-strip__item:hover img { filter: saturate(1) brightness(1); }
+.resume-theme .page-strip__item:hover { border-color: var(--color-accent); }
+.resume-theme .page-strip__num {
+  font-family: var(--font-num);
+  background: rgba(5,5,7,0.86);
+  border: 1px solid var(--color-line);
+  color: var(--color-accent);
+}
+
+/* ============================================================
+   摄影：电影感去饱和 + 悬停显影
+   ============================================================ */
+.resume-theme .photo-item { box-shadow: none; }
+.resume-theme .photo-item img {
+  filter: saturate(0.62) brightness(0.78) contrast(1.08);
+  transition: filter 620ms ease;
+}
+.resume-theme .photo-item:hover img { filter: saturate(1.05) brightness(1); }
+.resume-theme .photo-item__caption {
+  font-family: var(--font-num);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: linear-gradient(to top, rgba(2,2,4,0.92), rgba(2,2,4,0) 100%);
+}
+
+/* ============================================================
+   联系区：纯黑 + 青色光晕（收尾的最大冲击帧）
+   ============================================================ */
+.resume-theme .contact {
+  margin: 0 24px 28px;
+  background: #000000;
+  border: 1px solid var(--color-line);
+  color: var(--color-fg);
+  box-shadow: none;
+}
+.resume-theme .contact::before {
+  background: radial-gradient(circle, rgba(0,224,255,0.20), transparent 66%);
+  filter: blur(40px);
+}
+.resume-theme .contact .section__title { color: #FFFFFF; }
+.resume-theme .contact .section__num {
+  background: rgba(0, 224, 255, 0.1);
+  border: 1px solid rgba(0, 224, 255, 0.4);
+  color: var(--color-accent);
+}
+.resume-theme .contact .section__title-en { color: var(--color-muted); }
+.resume-theme .contact__item { border-top-color: var(--color-line); }
+.resume-theme a.contact__item:hover { border-top-color: var(--color-accent); }
+.resume-theme .contact__label {
+  font-family: var(--font-num);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+.resume-theme .contact__value { font-family: var(--font-body); font-weight: 500; color: var(--color-fg); }
+.resume-theme a.contact__item:hover .contact__value { color: var(--color-accent); }
+.resume-theme .contact__signoff { border-top-color: var(--color-line); color: var(--color-muted); font-family: var(--font-body); }
+.resume-theme .contact__signoff-meta {
+  font-family: var(--font-num);
+  font-style: normal;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+}
+
+/* ============================================================
+   Lightbox
+   ============================================================ */
+.resume-theme .modal {
+  background: rgba(2, 2, 4, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+.resume-theme .modal__close,
+.resume-theme .modal__nav {
+  background: rgba(16, 16, 24, 0.9);
+  border: 1px solid var(--color-line);
+  color: var(--color-fg);
+  box-shadow: none;
+}
+.resume-theme .modal__close:hover,
+.resume-theme .modal__nav:hover {
+  background: rgba(0, 224, 255, 0.1);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+.resume-theme .modal__close svg { display: block; }
+.resume-theme .modal__counter { font-family: var(--font-num); color: var(--color-accent); }
+.resume-theme .modal__caption,
+.resume-theme .modal__hint { font-family: var(--font-body); color: var(--color-fg-soft); }
+.resume-theme .modal__hint kbd { font-family: var(--font-mono); border: 1px solid var(--color-line); }
+.resume-theme .modal__stage img {
+  border: 1px solid var(--color-line);
+  box-shadow: none;
+}
+
+/* ---------- 浮起菜单按钮 ---------- */
+.resume-theme .sidebar__toggle {
+  background: rgba(10, 10, 16, 0.9);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-line);
+  box-shadow: none;
+  color: var(--color-accent);
+}
