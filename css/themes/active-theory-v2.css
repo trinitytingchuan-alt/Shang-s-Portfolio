@@ -69,8 +69,10 @@ html.resume-theme {
 .resume-theme * { border-radius: 0 !important; }
 
 /* ============================================================
-   全幅深黑画布 + 糖果色发光
-   配方 "full-bleed canvas" / "key light from one direction"
+   全幅画布：hero 电影帧（青→雾→青绿→黄绿→琥珀→珊瑚）
+   + 下方深色内容画布
+   配方 "deep black / full-bleed canvas / key light from one direction"
+   参考版式：顶栏 · 全幅 3 行巨字 · 底部品类行
    ============================================================ */
 .resume-theme body {
   font-family: var(--font-body);
@@ -81,8 +83,7 @@ html.resume-theme {
   -webkit-font-smoothing: antialiased;
 }
 
-/* 全幅画布：单一方向主光（左上青）+ 侧逆光（右下珊瑚）
-   + 冷调底色，糖果色只作为"光"存在，不铺成粉彩 */
+/* 深色内容画布：冷调深渊 + 糖果色光（不用纯灰，gray-with-cast） */
 .resume-theme body::before {
   content: '';
   position: fixed;
@@ -91,16 +92,39 @@ html.resume-theme {
   pointer-events: none;
   background-color: var(--at-black);
   background-image:
-    /* key light —— 左上青 */
-    radial-gradient(ellipse 62% 48% at 6% -6%,  rgba(0, 229, 255, 0.28) 0%, transparent 62%),
-    /* 次光 —— 右上紫 */
-    radial-gradient(ellipse 52% 42% at 92% 2%,  rgba(138, 107, 255, 0.24) 0%, transparent 60%),
-    /* 侧逆光 —— 右下珊瑚 */
-    radial-gradient(ellipse 58% 46% at 96% 86%, rgba(255, 77, 109, 0.20) 0%, transparent 62%),
-    /* 底部余晖 —— 琥珀 */
-    radial-gradient(ellipse 50% 34% at 34% 104%, rgba(255, 176, 32, 0.13) 0%, transparent 64%),
-    /* 冷调深渊，防止出现纯黑死区 */
+    radial-gradient(ellipse 62% 48% at 6% -6%,  rgba(0, 229, 255, 0.22) 0%, transparent 62%),
+    radial-gradient(ellipse 52% 42% at 92% 2%,  rgba(138, 107, 255, 0.20) 0%, transparent 60%),
+    radial-gradient(ellipse 58% 46% at 96% 86%, rgba(255, 77, 109, 0.16) 0%, transparent 62%),
+    radial-gradient(ellipse 50% 34% at 34% 104%, rgba(255, 176, 32, 0.11) 0%, transparent 64%),
     linear-gradient(168deg, #0E0E16 0%, #0A0A10 46%, #08080D 100%);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+/* hero 电影帧 —— 全幅糖果渐变，覆盖首屏（参考图的 actual 底色） */
+.resume-theme .hero::before {
+  content: '';
+  position: fixed;
+  left: 0; right: 0; top: 0;
+  height: 100vh;
+  z-index: -3;
+  pointer-events: none;
+  background-color: #0E0E16;
+  background-image:
+    /* 左上 —— 青 */
+    radial-gradient(ellipse 54% 56% at 8% 20%,  rgba(0, 194, 215, 0.88) 0%, transparent 62%),
+    /* 左中 —— 雾青 */
+    radial-gradient(ellipse 42% 46% at 22% 34%, rgba(0, 168, 186, 0.62) 0%, transparent 66%),
+    /* 中 —— 青绿 */
+    radial-gradient(ellipse 46% 42% at 42% 22%, rgba(107, 196, 148, 0.58) 0%, transparent 64%),
+    /* 中右 —— 黄绿 */
+    radial-gradient(ellipse 46% 44% at 62% 24%, rgba(200, 232, 75, 0.62) 0%, transparent 62%),
+    /* 右 —— 琥珀 */
+    radial-gradient(ellipse 50% 48% at 80% 30%, rgba(242, 165, 58, 0.72) 0%, transparent 62%),
+    /* 右上 —— 珊瑚 */
+    radial-gradient(ellipse 48% 42% at 97% 16%, rgba(239, 106, 58, 0.68) 0%, transparent 62%),
+    /* 兜底：底部压回深色，避免整屏漂白 */
+    linear-gradient(180deg, transparent 42%, rgba(14, 14, 22, 0.72) 84%, #0E0E16 100%);
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
@@ -328,6 +352,91 @@ html.resume-theme {
 .resume-theme .sidebar__nav-sub-link.is-active { color: var(--candy-cyan); border-left-color: var(--candy-cyan); }
 
 /* ============================================================
+   站点式顶栏 / 页脚（参考版式的 top meta 与 bottom meta 行）
+   ============================================================ */
+.resume-theme .at-topbar {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin: 0 24px 0;
+  padding: 20px 88px 14px;
+}
+.resume-theme .at-topbar__brand { display: flex; align-items: baseline; gap: 10px; }
+.resume-theme .at-topbar__mark {
+  font-family: var(--font-num);
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(10, 10, 15, 0.62);
+}
+.resume-theme .at-topbar__name {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #0A0A0F;
+}
+.resume-theme .at-topbar__meta {
+  font-family: var(--font-num);
+  font-size: 9px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(10, 10, 15, 0.55);
+}
+.resume-theme .at-topbar__nav {
+  margin-left: auto;
+  display: flex;
+  gap: 20px;
+}
+.resume-theme .at-topbar__nav a {
+  font-family: var(--font-num);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(10, 10, 15, 0.72);
+  position: relative;
+}
+.resume-theme .at-topbar__nav a::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 100%; bottom: -3px;
+  height: 1px;
+  background: #0A0A0F;
+  transition: right 320ms ease;
+}
+.resume-theme .at-topbar__nav a:hover::after { right: 0; }
+
+.resume-theme .at-footer {
+  position: relative;
+  z-index: 2;
+  margin: 0 24px 34px;
+  padding: 26px 88px 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.09);
+}
+.resume-theme .at-footer__row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-num);
+  font-size: 9.5px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+.resume-theme .at-footer__mark { color: rgba(244, 245, 248, 0.72); }
+.resume-theme .at-footer__note {
+  margin-top: 8px;
+  font-family: var(--font-num);
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  color: rgba(244, 245, 248, 0.3);
+}
+
+/* ============================================================
    Hero —— 全幅冲击帧（配方 signature move）
    ============================================================ */
 .resume-theme .hero__eyebrow {
@@ -336,59 +445,95 @@ html.resume-theme {
   font-weight: 500;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--at-black);
-  background: var(--candy-lime);
-  border: none;
-  box-shadow: 0 0 26px -6px var(--candy-lime);
+  color: rgba(8, 10, 14, 0.82);
+  background: rgba(255, 255, 255, 0.42);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: none;
 }
 .resume-theme .hero__pulse {
   width: 7px; height: 7px;
-  background: var(--candy-lime);
-  box-shadow: 0 0 12px var(--candy-lime);
+  background: #C8E84B;
+  box-shadow: 0 0 0 3px rgba(200, 232, 75, 0.32);
 }
-.resume-theme .hero__title {
+
+/* ---------- 全幅 3 行巨字（参考版式的核心） ---------- */
+.resume-theme .at-display {
+  /* 参考图是居中的窄栏大字：限制行宽 + 左内缩，避免长行提前折行 */
+  max-width: min(560px, 100%);
+  margin: 20px 0 30px;
+  padding-left: 0.24em;
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: clamp(54px, 7.6vw, 118px);
-  letter-spacing: -0.055em;
-  line-height: 0.88;
-  color: #FFFFFF;
+  font-size: clamp(34px, 4.6vw, 66px);
+  line-height: 0.94;
+  letter-spacing: -0.045em;
   text-transform: uppercase;
+  color: #FFFFFF;
+}
+.resume-theme .at-display span { display: block; }
+/* 第 1 行：小一号（参考图 "A STORM"） */
+.resume-theme .at-display__l1 { font-size: 0.6em; letter-spacing: -0.02em; }
+/* 第 2 行：最大（参考图 "PRECEDES"） */
+.resume-theme .at-display__l2 { margin-left: 0.14em; }
+/* 第 3 行：黄绿斜体，右移（参考图 "EVERY"） */
+.resume-theme .at-display__l3 {
+  margin-left: 0.3em;
+  font-style: italic;
+  color: #C8E84B;
+  letter-spacing: -0.03em;
+}
+/* 底部细描边小字行（参考图 "EVERY" 下方那行极小说明） */
+.resume-theme .hero__title {
+  font-family: var(--font-num);
+  font-weight: 400;
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  line-height: 1.6;
+  color: rgba(10, 10, 15, 0.72);
+  text-transform: uppercase;
+  max-width: 46ch;
 }
 .resume-theme .hero__title em {
-  font-family: var(--font-en);
-  font-style: italic;
-  font-weight: 900;
-  font-size: 0.6em;
-  letter-spacing: -0.012em;
-  text-transform: uppercase;
-  color: var(--at-hue);
-  -webkit-text-stroke: 0;
-  display: block;
-  margin-top: 2px;
-}
-/* hero 是全幅画布 —— 英文副标改为糖果色发光描边，压出"电影字幕"感 */
-.resume-theme .hero__lead {
-  color: rgba(244, 245, 248, 0.86);
+  font-family: var(--font-num);
+  font-style: normal;
   font-weight: 400;
-  border-left-color: var(--candy-cyan);
-  box-shadow: inset 2px 0 0 var(--candy-cyan);
+  font-size: 1em;
+  display: inline;
+  margin-left: 0.5em;
+  color: rgba(10, 10, 15, 0.72);
+  -webkit-text-stroke: 0;
 }
+/* hero 正文压在全幅电影帧上：深色字 + 局部柔化底，保证可读 */
+.resume-theme .hero__lead {
+  color: rgba(10, 10, 15, 0.92);
+  font-weight: 450;
+  padding: 14px 18px;
+  max-width: 52ch;
+  background: rgba(255, 255, 255, 0.34);
+  backdrop-filter: blur(10px) saturate(1.1);
+  -webkit-backdrop-filter: blur(10px) saturate(1.1);
+  border-left: 2px solid rgba(10, 10, 15, 0.72);
+  box-shadow: none;
+}
+.resume-theme .hero__lead strong { color: #0A0A0F; font-weight: 700; }
 .resume-theme .hero__meta-label,
 .resume-theme .hero__works-label {
   font-family: var(--font-num);
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 400;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--color-muted);
+  color: rgba(10, 10, 15, 0.5);
 }
-.resume-theme .hero__meta-value { font-family: var(--font-body); font-weight: 500; color: #FFFFFF; }
-.resume-theme .hero__meta-value a:hover { color: var(--candy-cyan); border-bottom-color: var(--candy-cyan); }
-.resume-theme .hero__works-dot { background: var(--at-hue); }
+.resume-theme .hero__meta-value { font-family: var(--font-body); font-weight: 500; color: #0A0A0F; }
+.resume-theme .hero__meta-value a:hover { color: #0A0A0F; border-bottom-color: #0A0A0F; }
+.resume-theme .hero__works-label { color: rgba(10, 10, 15, 0.5); }
+.resume-theme .hero__works-dot { background: #0A0A0F; }
 .resume-theme .hero__rule {
   height: 1px !important;
-  background: linear-gradient(90deg, var(--candy-cyan), rgba(255, 255, 255, 0.1) 60%, transparent) !important;
+  background: linear-gradient(90deg, rgba(10, 10, 15, 0.5), rgba(10, 10, 15, 0.06) 60%, transparent) !important;
   opacity: 1;
 }
 /* 头像：1px 描边 + 环绕辉光（层次来自光，不是 CSS 投影） */
