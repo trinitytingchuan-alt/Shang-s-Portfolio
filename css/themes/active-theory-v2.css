@@ -20,10 +20,17 @@ html.resume-theme {
   --color-muted: #616B88;
   --color-line: rgba(0, 224, 255, 0.18);
   --color-line-soft: rgba(0, 224, 255, 0.09);
-  --color-accent: #00E0FF;          /* candy cyan —— 唯一强调色 */
-  --color-accent-soft: #7C5CFF;     /* 辅助紫，仅小面积 */
+  --color-accent: #00E0FF;          /* candy cyan —— 主强调色 */
+  --color-accent-soft: #7C5CFF;     /* candy violet */
   --color-accent-deep: #00B4CC;
   --color-highlight: rgba(0, 224, 255, 0.12);
+
+  /* candy colours 色群 —— brief 要求"糖果色们"，非单色 */
+  --candy-cyan:    #00E0FF;
+  --candy-magenta: #FF3D9A;
+  --candy-lime:    #B4FF3A;
+  --candy-violet:  #7C5CFF;
+  --candy-orange:  #FF7A35;
 
   --font-display: 'Archivo', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
   --font-body: 'Inter', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
@@ -46,11 +53,13 @@ html.resume-theme {
   background-color: #050507;
   background-image:
     radial-gradient(1.5px 1.5px at 14% 18%, rgba(0,224,255,0.55), transparent 60%),
-    radial-gradient(1.1px 1.1px at 68% 12%, rgba(124,92,255,0.5), transparent 60%),
+    radial-gradient(1.2px 1.2px at 68% 12%, rgba(255,61,154,0.5), transparent 60%),
     radial-gradient(1.7px 1.7px at 38% 62%, rgba(255,255,255,0.35), transparent 60%),
-    radial-gradient(1.2px 1.2px at 86% 52%, rgba(0,224,255,0.45), transparent 60%),
-    radial-gradient(1px 1px at 8% 78%, rgba(124,92,255,0.45), transparent 60%),
-    radial-gradient(1.4px 1.4px at 58% 86%, rgba(0,224,255,0.35), transparent 60%);
+    radial-gradient(1.3px 1.3px at 86% 52%, rgba(180,255,58,0.42), transparent 60%),
+    radial-gradient(1px 1px at 8% 78%, rgba(124,92,255,0.48), transparent 60%),
+    radial-gradient(1.4px 1.4px at 58% 86%, rgba(0,224,255,0.35), transparent 60%),
+    radial-gradient(1.1px 1.1px at 26% 40%, rgba(255,122,53,0.4), transparent 60%),
+    radial-gradient(1.6px 1.6px at 78% 72%, rgba(255,61,154,0.34), transparent 60%);
   background-attachment: fixed;
 }
 
@@ -183,11 +192,51 @@ html.resume-theme {
   font-family: var(--font-num);
   font-weight: 500;
   letter-spacing: 0.1em;
-  color: var(--color-accent);
+  color: var(--candy-cyan);
   background: rgba(0, 224, 255, 0.08);
   border: 1px solid rgba(0, 224, 255, 0.42);
   box-shadow: none;
 }
+
+/* candy colours：每个板块分配一种糖果色（编号 / 标题装饰 / 分隔线） */
+.resume-theme #about .section__num,
+.resume-theme #about .section__num--display {
+  color: var(--candy-cyan);
+  background: rgba(0,224,255,0.09);
+  border-color: rgba(0,224,255,0.45);
+}
+.resume-theme #capability .section__num {
+  color: var(--candy-magenta);
+  background: rgba(255,61,154,0.09);
+  border-color: rgba(255,61,154,0.45);
+}
+.resume-theme #works .section__num {
+  color: var(--candy-lime);
+  background: rgba(180,255,58,0.09);
+  border-color: rgba(180,255,58,0.45);
+}
+.resume-theme #photography .section__num--display {
+  color: var(--candy-violet);
+  background: rgba(124,92,255,0.1);
+  border-color: rgba(124,92,255,0.48);
+}
+.resume-theme #interests .section__num {
+  color: var(--candy-orange);
+  background: rgba(255,122,53,0.09);
+  border-color: rgba(255,122,53,0.45);
+}
+.resume-theme #honors .section__num {
+  color: var(--candy-cyan);
+  background: rgba(0,224,255,0.09);
+  border-color: rgba(0,224,255,0.45);
+}
+/* 板块顶部扫描线同步该板块糖果色 */
+.resume-theme #about::after        { background: linear-gradient(90deg, transparent, var(--candy-cyan), transparent); }
+.resume-theme #capability::after   { background: linear-gradient(90deg, transparent, var(--candy-magenta), transparent); }
+.resume-theme #works::after        { background: linear-gradient(90deg, transparent, var(--candy-lime), transparent); }
+.resume-theme #photography::after  { background: linear-gradient(90deg, transparent, var(--candy-violet), transparent); }
+.resume-theme #interests::after    { background: linear-gradient(90deg, transparent, var(--candy-orange), transparent); }
+.resume-theme #honors::after       { background: linear-gradient(90deg, transparent, var(--candy-cyan), transparent); }
 .resume-theme .stage__num {
   font-family: var(--font-num);
   font-weight: 500;
@@ -311,10 +360,31 @@ html.resume-theme {
   position: absolute;
   left: 0; bottom: 0;
   width: 100%; height: 2px;
-  background: linear-gradient(90deg, var(--color-accent), var(--color-accent-soft));
+  background: linear-gradient(90deg, var(--candy-cyan), var(--candy-violet));
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 520ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+/* energy bar 按序轮换糖果色 */
+.resume-theme .capability:nth-child(4n+1)::before,
+.resume-theme .interest:nth-child(4n+1)::before,
+.resume-theme .honor:nth-child(4n+1)::before {
+  background: linear-gradient(90deg, var(--candy-cyan), rgba(124,92,255,0.7));
+}
+.resume-theme .capability:nth-child(4n+2)::before,
+.resume-theme .interest:nth-child(4n+2)::before,
+.resume-theme .honor:nth-child(4n+2)::before {
+  background: linear-gradient(90deg, var(--candy-magenta), rgba(255,122,53,0.7));
+}
+.resume-theme .capability:nth-child(4n+3)::before,
+.resume-theme .interest:nth-child(4n+3)::before,
+.resume-theme .honor:nth-child(4n+3)::before {
+  background: linear-gradient(90deg, var(--candy-lime), rgba(0,224,255,0.7));
+}
+.resume-theme .capability:nth-child(4n+4)::before,
+.resume-theme .interest:nth-child(4n+4)::before,
+.resume-theme .honor:nth-child(4n+4)::before {
+  background: linear-gradient(90deg, var(--candy-violet), rgba(255,61,154,0.7));
 }
 .resume-theme .capability:hover,
 .resume-theme .interest:hover,
@@ -386,6 +456,11 @@ html.resume-theme {
   border-color: rgba(0, 224, 255, 0.38);
   color: var(--color-accent);
 }
+/* 标签按序使用糖果色描边，呼应 candy colours */
+.resume-theme .capability__tag:nth-child(4n+1) { border-color: rgba(0,224,255,0.34); }
+.resume-theme .capability__tag:nth-child(4n+2) { border-color: rgba(255,61,154,0.34); }
+.resume-theme .capability__tag:nth-child(4n+3) { border-color: rgba(180,255,58,0.32); }
+.resume-theme .capability__tag:nth-child(4n+4) { border-color: rgba(124,92,255,0.36); }
 
 /* ============================================================
    作品区
