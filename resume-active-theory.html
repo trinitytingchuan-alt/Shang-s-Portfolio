@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<!-- ============================================================
+     resume-active-theory.html
+     Active Theory (Cinematic WebGL) 风格 —— 独立新版本
+     · 英文版 style-recipes / active-theory
+     · 深黑画布 + 单一 candy cyan 强调色 + 全幅大字 + 零圆角
+     · 内容沿用本体简历（图片路径/文案与原项目一一对应）
+     · 不影响 index.html / resume.html 及既有三套主题
+     ============================================================ -->
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>尚文蜓 · 简历 | Shang Wenting — Portfolio</title>
+<meta name="description" content="尚文蜓 · 产品设计 / 数据分析 · 从需求洞察到产品落地的全链路实践" />
+<meta name="author" content="Shang Wenting" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23050507'/><circle cx='50' cy='50' r='18' fill='%2300E0FF'/></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" /></noscript>
+
+<style>
+/* ============================================================
+   1. TOKENS
+   ============================================================ */
+:root {
+  --void:        #050507;
+  --black:       #0A0A0F;
+  --panel:       #101018;
+  --panel-2:     #16161F;
+  --line:        rgba(140, 160, 255, 0.14);
+  --line-soft:   rgba(140, 160, 255, 0.07);
+
+  --accent:      #00E0FF;
+  --accent-2:    #7C5CFF;
+  --accent-deep: #0098B8;
+
+  --fg:          #F2F4FF;
+  --fg-soft:     #A8B0D0;
+  --muted:       #6B7394;
+
+  --display: 'Archivo', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --body:    'Inter', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  --mono:    'JetBrains Mono', ui-monospace, 'SF Mono', Consolas, monospace;
+
+  --gut: clamp(20px, 4vw, 64px);
+  --maxw: 1240px;
+}
+
+* { box-sizing: border-box; }
+
+/* 零圆角 —— 配方硬性要求 */
+* { border-radius: 0 !important; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--void);
+  color: var(--fg);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection { background: var(--accent); color: #000; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+
+/* ============================================================
+   2. 全局画布层：粒子场 + 体积光 + 扫描线 + 暗角
+   （替代 WebGL，用 CSS 合成实现同等氛围）
+   ============================================================ */
+.stage {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.stage::before,
+.stage::after {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  background-image:
+    radial-gradient(1.6px 1.6px at 18% 22%, rgba(0,224,255,0.9), transparent 60%),
+    radial-gradient(1.2px 1.2px at 72% 14%, rgba(124,92,255,0.75), transparent 60%),
+    radial-gradient(1.8px 1.8px at 42% 68%, rgba(255,255,255,0.6), transparent 60%),
+    radial-gradient(1.1px 1.1px at 88% 58%, rgba(0,224,255,0.7), transparent 60%),
+    radial-gradient(1.4px 1.4px at 8% 82%, rgba(0,224,255,0.45), transparent 60%),
+    radial-gradient(1px 1px at 62% 88%, rgba(124,92,255,0.8), transparent 60%),
+    radial-gradient(1.5px 1.5px at 30% 44%, rgba(255,255,255,0.45), transparent 60%),
+    radial-gradient(1.2px 1.2px at 92% 30%, rgba(0,224,255,0.55), transparent 60%);
+  animation: drift 68s linear infinite;
+  opacity: 0.85;
+}
+.stage::after {
+  background-image:
+    radial-gradient(1px 1px at 12% 52%, rgba(255,255,255,0.5), transparent 60%),
+    radial-gradient(1.3px 1.3px at 56% 34%, rgba(0,224,255,0.6), transparent 60%),
+    radial-gradient(1px 1px at 78% 76%, rgba(124,92,255,0.6), transparent 60%),
+    radial-gradient(1.6px 1.6px at 36% 12%, rgba(0,224,255,0.4), transparent 60%);
+  animation-duration: 104s;
+  animation-direction: reverse;
+  opacity: 0.7;
+}
+@keyframes drift {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(-3%, 2%, 0) scale(1.06); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+.stage__beam {
+  position: absolute;
+  width: 60vw; height: 140vh;
+  top: -20vh;
+  filter: blur(56px);
+  opacity: 0.5;
+}
+.stage__beam--a {
+  left: -12vw;
+  background: linear-gradient(180deg, rgba(0,224,255,0.30), transparent 62%);
+  transform: rotate(14deg);
+  animation: sway 26s ease-in-out infinite;
+}
+.stage__beam--b {
+  right: -14vw;
+  background: linear-gradient(180deg, rgba(124,92,255,0.26), transparent 58%);
+  transform: rotate(-12deg);
+  animation: sway 32s ease-in-out infinite reverse;
+}
+@keyframes sway {
+  0%, 100% { transform: rotate(14deg) translateX(0); opacity: 0.42; }
+  50%      { transform: rotate(11deg) translateX(4vw); opacity: 0.62; }
+}
+
+.stage__scan {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(to bottom, rgba(255,255,255,0.018) 0 1px, transparent 1px 3px);
+  mix-blend-mode: overlay;
+}
+.stage__vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 42%, transparent 34%, rgba(0,0,0,0.72) 100%);
+}
+@media (prefers-reduced-motion: reduce) {
+  .stage::before, .stage::after, .stage__beam { animation: none; }
+}
+
+/* ============================================================
+   3. 布局骨架
+   ============================================================ */
+.shell { position: relative; z-index: 1; }
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); }
+
+.topbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 14px var(--gut);
+  background: rgba(5, 5, 7, 0.62);
+  backdrop-filter: blur(16px) saturate(1.3);
+  -webkit-backdrop-filter: blur(16px) saturate(1.3);
+  border-bottom: 1px solid var(--line-soft);
+}
+.topbar__brand {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-family: var(--display);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  font-size: 15px;
+}
+.topbar__brand span {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.topbar__nav { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+.topbar__nav a {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-soft);
+  padding: 6px 12px;
+  border: 1px solid transparent;
+  transition: color 260ms ease, border-color 260ms ease, background 260ms ease;
+}
+.topbar__nav a:hover {
+  color: var(--accent);
+  border-color: var(--line);
+  background: rgba(0, 224, 255, 0.05);
+}
+.topbar__dot {
+  width: 7px; height: 7px;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent), 0 0 22px rgba(0,224,255,0.6);
+  animation: pulse 2.6s ease-in-out infinite;
+  flex: none;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1;    transform: scale(1); }
+  50%      { opacity: 0.45; transform: scale(0.78); }
+}
+
+/* ============================================================
+   4. HERO —— 全幅大字
+   ============================================================ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 150px 0 90px;
+  overflow: hidden;
+}
+.hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 32px;
+}
+.hero__eyebrow::before {
+  content: '';
+  width: 46px; height: 1px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+}
+.hero__title {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: clamp(64px, 15.5vw, 236px);
+  line-height: 0.84;
+  letter-spacing: -0.045em;
+  background: linear-gradient(100deg, #FFFFFF 0%, #FFFFFF 38%, var(--accent) 50%, #FFFFFF 62%, #FFFFFF 100%);
+  background-size: 260% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: sweep 7s ease-in-out infinite;
+}
+@keyframes sweep {
+  0%, 100% { background-position: 130% 0; }
+  50%      { background-position: -30% 0; }
+}
+.hero__title .line { display: block; }
+.hero__title .en {
+  display: block;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(26px, 4.4vw, 66px);
+  letter-spacing: 0.02em;
+  line-height: 1;
+  margin-top: 20px;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1.4px var(--accent);
+}
+
+.hero__lede {
+  margin: 44px 0 0;
+  max-width: 640px;
+  font-size: clamp(15px, 1.35vw, 18px);
+  line-height: 1.75;
+  color: var(--fg-soft);
+  border-left: 1px solid var(--line);
+  padding-left: 24px;
+}
+.hero__lede strong { color: var(--fg); font-weight: 600; }
+
+.hero__strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1px;
+  margin: 64px 0 0;
+  background: var(--line-soft);
+  border: 1px solid var(--line-soft);
+}
+.hero__cell { background: rgba(10, 10, 15, 0.72); padding: 20px 22px; }
+.hero__cell dt {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.hero__cell dd {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: -0.005em;
+  color: var(--fg);
+  word-break: break-all;
+}
+.hero__cell dd a:hover { color: var(--accent); }
+
+.hero__cue {
+  position: absolute;
+  left: var(--gut);
+  bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.hero__cue i {
+  width: 1px; height: 42px;
+  background: linear-gradient(180deg, var(--accent), transparent);
+  animation: cue 2.4s ease-in-out infinite;
+}
+@keyframes cue {
+  0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
+  50%      { opacity: 1;   transform: scaleY(1); }
+}
+
+/* ============================================================
+   5. 场景（Scene）
+   ============================================================ */
+.scene {
+  position: relative;
+  padding: clamp(72px, 9vw, 140px) 0;
+  border-top: 1px solid var(--line-soft);
+}
+.scene__head {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(16px, 3vw, 40px);
+  margin-bottom: clamp(36px, 5vw, 68px);
+}
+.scene__no {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  padding-top: 14px;
+  flex: none;
+  min-width: 58px;
+}
+.scene__title {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: clamp(34px, 6.4vw, 88px);
+  line-height: 0.94;
+  letter-spacing: -0.04em;
+}
+.scene__title small {
+  display: block;
+  font-family: var(--mono);
+  font-weight: 400;
+  font-size: clamp(10px, 1vw, 12px);
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 16px;
+}
+.scene__intro {
+  max-width: 620px;
+  margin: 0 0 0 auto;
+  font-size: 15.5px;
+  line-height: 1.8;
+  color: var(--fg-soft);
+  padding-top: 16px;
+}
+@media (max-width: 860px) {
+  .scene__head { flex-wrap: wrap; }
+  .scene__intro { margin: 0; padding-top: 0; }
+}
+
+/* ============================================================
+   6. 数据网格
+   ============================================================ */
+.matrix {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.cell {
+  position: relative;
+  background: linear-gradient(165deg, rgba(16,16,24,0.94), rgba(10,10,15,0.9));
+  padding: clamp(26px, 3vw, 40px);
+  overflow: hidden;
+  transition: background 420ms ease;
+}
+.cell::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%; height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 520ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.cell:hover::after { transform: scaleX(1); }
+.cell:hover { background: linear-gradient(165deg, rgba(22,22,31,0.96), rgba(14,14,20,0.94)); }
+
+.cell__no {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.22em;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 20px;
+}
+.cell__title {
+  margin: 0 0 14px;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(19px, 1.8vw, 24px);
+  line-height: 1.24;
+  letter-spacing: -0.022em;
+}
+.cell__body {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.78;
+  color: var(--fg-soft);
+}
+.cell__body strong { color: var(--fg); font-weight: 600; }
+.cell__tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 22px; }
+.cell__tags span {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  color: var(--fg-soft);
+  border: 1px solid var(--line);
+  padding: 4px 10px;
+  transition: color 220ms ease, border-color 220ms ease;
+}
+.cell:hover .cell__tags span { border-color: rgba(0,224,255,0.32); color: var(--fg); }
+
+/* ============================================================
+   7. 作品集 —— 全幅分镜
+   ============================================================ */
+.reel { display: flex; flex-direction: column; gap: clamp(48px, 6vw, 96px); }
+
+.work {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.28fr);
+  gap: clamp(24px, 4vw, 56px);
+  align-items: start;
+}
+@media (max-width: 900px) { .work { grid-template-columns: 1fr; } }
+
+.work__meta { position: sticky; top: 96px; }
+@media (max-width: 900px) { .work__meta { position: static; } }
+
+.work__idx {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.24em;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 18px;
+}
+.work__title {
+  margin: 0 0 12px;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(24px, 3vw, 42px);
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+}
+.work__sub { font-size: 14px; line-height: 1.75; color: var(--muted); margin: 0 0 22px; }
+.work__desc {
+  font-size: 14.5px;
+  line-height: 1.8;
+  color: var(--fg-soft);
+  margin: 0 0 26px;
+  padding-left: 18px;
+  border-left: 1px solid var(--line);
+}
+.work__stats { display: flex; flex-wrap: wrap; gap: 1px; background: var(--line-soft); border: 1px solid var(--line-soft); }
+.work__stat { flex: 1 1 90px; background: var(--panel); padding: 14px 16px; }
+.work__stat b {
+  display: block;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(20px, 2.1vw, 30px);
+  letter-spacing: -0.03em;
+  color: var(--accent);
+  line-height: 1.1;
+}
+.work__stat span {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.work__frames { display: flex; flex-direction: column; gap: 14px; }
+.frame {
+  position: relative;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  overflow: hidden;
+}
+.frame img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: saturate(0.86) contrast(1.06) brightness(0.92);
+  transition: filter 620ms ease, transform 900ms cubic-bezier(0.22,0.61,0.36,1);
+}
+.frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,224,255,0.09), transparent 40%, rgba(5,5,7,0.34));
+  pointer-events: none;
+  transition: opacity 620ms ease;
+}
+.frame:hover img { filter: saturate(1.02) contrast(1.02) brightness(1); transform: scale(1.018); }
+.frame:hover::after { opacity: 0.4; }
+
+.strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.strip a {
+  position: relative;
+  background: var(--panel);
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  cursor: pointer;
+}
+.strip img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: top;
+  filter: saturate(0.6) brightness(0.78);
+  transition: filter 420ms ease;
+}
+.strip a:hover img { filter: saturate(1.05) brightness(1); }
+.strip b {
+  position: absolute;
+  left: 6px; bottom: 5px;
+  font-family: var(--mono);
+  font-size: 9px;
+  color: rgba(255,255,255,0.72);
+  letter-spacing: 0.1em;
+}
+
+/* ============================================================
+   8. 摄影墙
+   ============================================================ */
+.wall {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.wall figure {
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  background: var(--panel);
+  cursor: pointer;
+}
+.wall img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: saturate(0.64) brightness(0.8) contrast(1.06);
+  transition: filter 620ms ease, transform 900ms cubic-bezier(0.22,0.61,0.36,1);
+}
+.wall figure:hover img { filter: saturate(1.05) brightness(1); transform: scale(1.05); }
+.wall figcaption {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 26px 14px 12px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.86);
+  background: linear-gradient(to top, rgba(5,5,7,0.88), transparent);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 420ms ease, transform 420ms ease;
+}
+.wall figure:hover figcaption { opacity: 1; transform: none; }
+
+/* ============================================================
+   9. 收尾 —— 最大冲击帧
+   ============================================================ */
+.finale {
+  position: relative;
+  min-height: 78vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(80px, 10vw, 160px) 0;
+  border-top: 1px solid var(--line-soft);
+  overflow: hidden;
+}
+.finale__glow {
+  position: absolute;
+  left: 50%; top: 54%;
+  width: min(120vw, 1200px);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(0,224,255,0.20) 0%, rgba(124,92,255,0.12) 34%, transparent 66%);
+  filter: blur(46px);
+  pointer-events: none;
+  animation: breathe 12s ease-in-out infinite;
+}
+@keyframes breathe {
+  0%, 100% { opacity: 0.66; transform: translate(-50%, -50%) scale(1); }
+  50%      { opacity: 1;    transform: translate(-50%, -50%) scale(1.1); }
+}
+.finale__title {
+  position: relative;
+  margin: 0 0 34px;
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: clamp(42px, 10vw, 152px);
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  background: linear-gradient(100deg, #FFFFFF 0%, #FFFFFF 40%, var(--accent) 52%, #FFFFFF 64%, #FFFFFF 100%);
+  background-size: 240% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: sweep 8s ease-in-out infinite;
+}
+.finale__title small {
+  display: block;
+  font-family: var(--mono);
+  font-weight: 400;
+  font-size: clamp(10px, 1.1vw, 13px);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+  -webkit-text-fill-color: var(--muted);
+  margin-top: 20px;
+}
+
+.contacts {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  margin: 0;
+}
+.contacts a, .contacts div {
+  background: rgba(10,10,15,0.8);
+  padding: 22px 24px;
+  display: block;
+  transition: background 320ms ease;
+}
+.contacts a:hover { background: rgba(0,224,255,0.07); }
+.contacts dt {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 9px;
+}
+.contacts dd {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 14.5px;
+  color: var(--fg);
+  word-break: break-all;
+}
+.contacts a:hover dd { color: var(--accent); }
+
+.finale__foot {
+  position: relative;
+  margin-top: 56px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line-soft);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ============================================================
+   10. Lightbox
+   ============================================================ */
+.lb {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(5,5,7,0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: clamp(16px, 4vw, 60px);
+}
+.lb.on { display: flex; }
+.lb img { max-width: 92vw; max-height: 84vh; object-fit: contain; border: 1px solid var(--line); }
+.lb__x, .lb__p, .lb__n {
+  position: absolute;
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: var(--fg-soft);
+  background: rgba(16,16,24,0.9);
+  border: 1px solid var(--line);
+  padding: 12px 16px;
+  transition: color 220ms ease, border-color 220ms ease, background 220ms ease;
+}
+.lb__x:hover, .lb__p:hover, .lb__n:hover { color: var(--accent); border-color: var(--accent); background: rgba(0,224,255,0.08); }
+.lb__x { top: 22px; right: 22px; }
+.lb__p { left: 22px; top: 50%; transform: translateY(-50%); }
+.lb__n { right: 22px; top: 50%; transform: translateY(-50%); }
+.lb__cap {
+  position: absolute;
+  left: 50%; bottom: 24px;
+  transform: translateX(-50%);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* ============================================================
+   11. 滚动显影
+   ============================================================ */
+.rv { opacity: 0; transform: translateY(26px); transition: opacity 900ms cubic-bezier(0.22,0.61,0.36,1), transform 900ms cubic-bezier(0.22,0.61,0.36,1); }
+.rv.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .rv { opacity: 1 !important; transform: none !important; }
+  .hero__title, .finale__title { animation: none; background: none; -webkit-text-fill-color: var(--fg); color: var(--fg); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ============ 画布层 ============ -->
+<div class="stage" aria-hidden="true">
+  <div class="stage__beam stage__beam--a"></div>
+  <div class="stage__beam stage__beam--b"></div>
+  <div class="stage__scan"></div>
+  <div class="stage__vignette"></div>
+</div>
+
+<!-- ============ 顶部导条 ============ -->
+<header class="topbar">
+  <div class="topbar__brand">
+    <i class="topbar__dot"></i>
+    尚文蜓 <span>Shang Wenting</span>
+  </div>
+  <nav class="topbar__nav">
+    <a href="#profile">简介</a>
+    <a href="#capability">能力</a>
+    <a href="#works">作品</a>
+    <a href="#photography">摄影</a>
+    <a href="#interests">爱好</a>
+    <a href="#honors">荣誉</a>
+    <a href="#contact">联系</a>
+  </nav>
+</header>
+
+<main class="shell">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero wrap" id="hero">
+    <div class="hero__eyebrow">Product Design · Data-Driven · 2024 — 2026</div>
+
+    <h1 class="hero__title">
+      <span class="line">尚文蜓</span>
+      <span class="en">Shang Wenting</span>
+    </h1>
+
+    <p class="hero__lede">
+      作品集记录我在<strong>快手</strong>、<strong>安克创新</strong>等产品与运营实践，记录从需求拆解、产品设计及运营迭代全流程 —— 核心能力是围绕用户诉求与业务目标，依托数据分析驱动<strong>需求拆解、竞品分析、用户研究、产品设计、运营策略</strong>等。
+    </p>
+
+    <dl class="hero__strip">
+      <div class="hero__cell">
+        <dt>电话</dt>
+        <dd>13249086026</dd>
+      </div>
+      <div class="hero__cell">
+        <dt>邮箱</dt>
+        <dd><a href="mailto:trinity_ting@163.com">trinity_ting@163.com</a></dd>
+      </div>
+      <div class="hero__cell">
+        <dt>GitHub</dt>
+        <dd><a href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">@trinitytingchuan-alt →</a></dd>
+      </div>
+      <div class="hero__cell">
+        <dt>本硕 211</dt>
+        <dd>暨南大学 · 辽宁大学</dd>
+      </div>
+    </dl>
+
+    <div class="hero__cue"><i></i> Scroll</div>
+  </section>
+
+  <!-- ============ 01 简介 ============ -->
+  <section class="scene wrap" id="profile">
+    <div class="scene__head rv">
+      <div class="scene__no">01</div>
+      <div>
+        <h2 class="scene__title">简介<small>Profile</small></h2>
+      </div>
+      <p class="scene__intro">
+        我是尚文蜓，保研暨南大学金融科技硕士、辽宁大学金融学本科双一流专业。中共党员，连续两年获国家励志奖学金，获全国大学生数学建模竞赛省一等奖。
+      </p>
+    </div>
+
+    <div class="matrix rv">
+      <div class="cell">
+        <span class="cell__no">MASTER · 硕士核心课程</span>
+        <h3 class="cell__title">机器学习 97 · Python 93</h3>
+        <p class="cell__body">
+          数据挖掘 <strong>92</strong>、区块链 <strong>94</strong>、财务报表分析 <strong>93</strong>。
+          以数据科学与金融工程的交叉训练，支撑起对业务问题的量化拆解能力。
+        </p>
+      </div>
+      <div class="cell">
+        <span class="cell__no">BACHELOR · 本科数理基础</span>
+        <h3 class="cell__title">四门数学均分 95+</h3>
+        <p class="cell__body">
+          高数上下均满分。主修计量经济学 <strong>100</strong>、概率论 <strong>94</strong>、宏观经济学 <strong>97</strong>、微观经济学 <strong>96</strong>、会计学 <strong>92</strong>。
+        </p>
+      </div>
+      <div class="cell">
+        <span class="cell__no">CHAIN · 产品商业化全链条</span>
+        <h3 class="cell__title">从洞察到落地的完整闭环</h3>
+        <p class="cell__body">
+          具备战略与投资规划、产品设计、运营增长经验；基于全局视角穿透各业务逻辑，进行需求拆解、用户研究、竞品对标，完成财务测算与产品设计，输出运营方案，并<strong>以业务洞察、用户反馈、数据分析驱动产品与策略迭代。</strong>
+        </p>
+      </div>
+      <div class="cell">
+        <span class="cell__no">HARDWARE · 电子产品热爱</span>
+        <h3 class="cell__title">40 余种影像设备</h3>
+        <p class="cell__body">
+          持有影像设备（微单 / 无人机 / 运动相机 / Pocket 等）40 余种电子产品，喜欢研究底层架构与逻辑，掌握整机软硬件核心规格，持续追踪技术创新与产品演进，能够从技术角度及用户需求出发理解对比产品体验。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 02 核心能力 ============ -->
+  <section class="scene wrap" id="capability">
+    <div class="scene__head rv">
+      <div class="scene__no">02</div>
+      <div>
+        <h2 class="scene__title">核心能力<small>Capability</small></h2>
+      </div>
+      <p class="scene__intro">
+        以下四项能力贯穿过去所有工作 —— 用综合能力，支撑产品设计与运营优化。
+      </p>
+    </div>
+
+    <div class="matrix rv">
+      <div class="cell">
+        <span class="cell__no">— I</span>
+        <h3 class="cell__title">功能定义 &amp; 逻辑设计</h3>
+        <p class="cell__body">独立完成从用户需求洞察到功能设计落地的全链路闭环：业务场景拆解、用户路径梳理、功能方案输出、原型设计、PRD 撰写。让功能有用户价值、可被理解、可被开发、可被验证。</p>
+        <div class="cell__tags"><span>需求分析</span><span>功能设计</span><span>原型设计</span><span>PRD 撰写</span><span>价值落地</span></div>
+      </div>
+      <div class="cell">
+        <span class="cell__no">— II</span>
+        <h3 class="cell__title">数据分析 &amp; 策略调整</h3>
+        <p class="cell__body">SQL 取数分析、Tableau 看板搭建；用 ROI / 转化率 / 漏斗等指标推动产品迭代。完成数据监控 → 策略调整。</p>
+        <div class="cell__tags"><span>Python</span><span>SQL</span><span>Tableau</span><span>Excel</span><span>数据分析</span></div>
+      </div>
+      <div class="cell">
+        <span class="cell__no">— III</span>
+        <h3 class="cell__title">行业洞察 &amp; 商业分析</h3>
+        <p class="cell__body">深度拆解行业底层逻辑，贯通市场‑竞品‑用户‑产品全链条挖掘机会点；完成需求研判、市场进入策略与商业化方案，输出可落地的分析与策略文档。</p>
+        <div class="cell__tags"><span>行业研究</span><span>财务测算</span><span>竞品分析</span><span>用户需求研判</span><span>机会识别</span></div>
+      </div>
+      <div class="cell">
+        <span class="cell__no">— IV</span>
+        <h3 class="cell__title">AI 工程化实践</h3>
+        <p class="cell__body">主动探索提高工作效率，开发竞品分析、策划报告生成等 Agent，基于 Claude Code、Codex 等 AI 工具，将业务拆解为标准化工作流，多 Agent 协作完成需求拆解、信息采集、分析推理、报告产出等全链路执行，并设计门禁机制、固化基线、自行回测迭代，保障输出成果质量标准化统一；单份报告节省人工整理工作时长 <strong>5 小时</strong>。</p>
+        <div class="cell__tags"><span>AI Agent</span><span>QA 质量阀门</span><span>Agent team</span><span>能回填</span><span>Harness</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 03 作品集 ============ -->
+  <section class="scene wrap" id="works">
+    <div class="scene__head rv">
+      <div class="scene__no">03</div>
+      <div>
+        <h2 class="scene__title">作品集<small>Selected Works</small></h2>
+      </div>
+      <p class="scene__intro">
+        按「安克产品设计 → 快手广告投放 → 碧桂园投资研策 → 独立项目」组织。点击任意设计图可全屏查看，多页文档通过左右箭头翻页。
+      </p>
+    </div>
+
+    <div class="reel">
+
+      <!-- ---- Anker · VOC 自动化报告 ---- -->
+      <article class="work rv">
+        <div class="work__meta">
+          <span class="work__idx">WORK 01 / ANKER</span>
+          <h3 class="work__title">用户测试自动化报告</h3>
+          <p class="work__sub">VOC 洞察 · 2024.10 — 2025.3</p>
+          <div class="work__stats">
+            <div class="work__stat"><b>10×</b><span>报告产出提效</span></div>
+          </div>
+        </div>
+        <div class="work__frames">
+          <p class="work__desc">针对各产线 β 测试标准不一、人工统计测试数据低效的痛点，搭建自动化报告链路，统一全产品线测试与调研规范。</p>
+          <figure class="frame" data-lb="assets/pdf_hi/voc_p1.png" data-cap="用户测试自动化报告 · 第 1 页">
+            <img src="assets/pdf_hi/voc_p1.png" alt="Anker 用户测试自动化报告" loading="lazy" />
+          </figure>
+          <div class="strip">
+            <a data-lb="assets/pdf_hi/voc_p1.png" data-cap="VOC 报告 第 1 页"><img src="assets/pdf_hi/voc_p1.png" alt="VOC 1" loading="lazy" /><b>01</b></a>
+            <a data-lb="assets/pdf_hi/voc_p2.png" data-cap="VOC 报告 第 2 页"><img src="assets/pdf_hi/voc_p2.png" alt="VOC 2" loading="lazy" /><b>02</b></a>
+            <a data-lb="assets/pdf_hi/voc_p3.png" data-cap="VOC 报告 第 3 页"><img src="assets/pdf_hi/voc_p3.png" alt="VOC 3" loading="lazy" /><b>03</b></a>
+            <a data-lb="assets/pdf_hi/voc_p4.png" data-cap="VOC 报告 第 4 页"><img src="assets/pdf_hi/voc_p4.png" alt="VOC 4" loading="lazy" /><b>04</b></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- ---- Anker · 用户测试平台功能设计 ---- -->
+      <article class="work rv">
+        <div class="work__meta">
+          <span class="work__idx">WORK 02 / ANKER</span>
+          <h3 class="work__title">用户测试平台 · 功能设计</h3>
+          <p class="work__sub">XTest 平台 · 核心功能设计</p>
+          <div class="work__stats">
+            <div class="work__stat"><b>150+</b><span>需求 / BUG</span></div>
+            <div class="work__stat"><b>37%</b><span>测试效率提升</span></div>
+          </div>
+        </div>
+        <div class="work__frames">
+          <p class="work__desc">搭建公司级用户测试平台，统一全产品线测试与调研规范，实现全流程自动化闭环。以下为独立定义的核心功能设计。</p>
+          <figure class="frame" data-lb="assets/pdf_hi/ankerx_p1.png" data-cap="用户测试平台 · 功能设计 第 1 页">
+            <img src="assets/pdf_hi/ankerx_p1.png" alt="Anker 用户测试平台功能设计" loading="lazy" />
+          </figure>
+          <div class="strip">
+            <a data-lb="assets/pdf_hi/ankerx_p1.png" data-cap="功能设计 第 1 页"><img src="assets/pdf_hi/ankerx_p1.png" alt="1" loading="lazy" /><b>01</b></a>
+            <a data-lb="assets/pdf_hi/ankerx_p2.png" data-cap="功能设计 第 2 页"><img src="assets/pdf_hi/ankerx_p2.png" alt="2" loading="lazy" /><b>02</b></a>
+            <a data-lb="assets/docx_images/wk_018.png" data-cap="功能设计 第 3 页"><img src="assets/docx_images/wk_018.png" alt="3" loading="lazy" /><b>03</b></a>
+            <a data-lb="assets/docx_images/wk_017.png" data-cap="功能设计 第 4 页"><img src="assets/docx_images/wk_017.png" alt="4" loading="lazy" /><b>04</b></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- ---- 快手 · C 端补贴策略 ---- -->
+      <article class="work rv">
+        <div class="work__meta">
+          <span class="work__idx">WORK 03 / KUAISHOU</span>
+          <h3 class="work__title">C 端补贴策略优化</h3>
+          <p class="work__sub">AB Test · 策略实验</p>
+        </div>
+        <div class="work__frames">
+          <p class="work__desc">围绕 C 端补贴投放策略，设计并推进 A/B 实验，以实验数据驱动补贴策略的调整与优化。</p>
+          <figure class="frame" data-lb="assets/ks/ks_c_abtest_p1.png" data-cap="C 端补贴策略优化 · AB Test">
+            <img src="assets/ks/ks_c_abtest_p1.png" alt="快手 C 端补贴策略优化" loading="lazy" />
+          </figure>
+        </div>
+      </article>
+
+      <!-- ---- 快手 · 客户投放复盘 ---- -->
+      <article class="work rv">
+        <div class="work__meta">
+          <span class="work__idx">WORK 04 / KUAISHOU</span>
+          <h3 class="work__title">客户投放复盘及运营优化</h3>
+          <p class="work__sub">投放复盘 · 4 页文档</p>
+          <div class="work__stats">
+            <div class="work__stat"><b>4</b><span>页复盘文档</span></div>
+          </div>
+        </div>
+        <div class="work__frames">
+          <p class="work__desc">面向广告主投放效果，完成从数据表现、素材诊断到投放策略调整的复盘输出，形成可复用的运营优化路径。</p>
+          <figure class="frame" data-lb="assets/ks/ks_b_review_p1.png" data-cap="客户投放复盘及运营优化 · 第 1 页">
+            <img src="assets/ks/ks_b_review_p1.png" alt="快手客户投放复盘" loading="lazy" />
+          </figure>
+          <div class="strip">
+            <a data-lb="assets/ks/ks_b_review_p1.png" data-cap="客户投放复盘 第 1 页"><img src="assets/ks/ks_b_review_p1.png" alt="1" loading="lazy" /><b>01</b></a>
+            <a data-lb="assets/ks/ks_b_review_p2.png" data-cap="客户投放复盘 第 2 页"><img src="assets/ks/ks_b_review_p2.png" alt="2" loading="lazy" /><b>02</b></a>
+            <a data-lb="assets/ks/ks_b_review_p3.png" data-cap="客户投放复盘 第 3 页"><img src="assets/ks/ks_b_review_p3.png" alt="3" loading="lazy" /><b>03</b></a>
+            <a data-lb="assets/ks/ks_b_review_p4.png" data-cap="客户投放复盘 第 4 页"><img src="assets/ks/ks_b_review_p4.png" alt="4" loading="lazy" /><b>04</b></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- ---- 碧桂园 · 市场研究与产品定位 ---- -->
+      <article class="work rv">
+        <div class="work__meta">
+          <span class="work__idx">WORK 05 / BIGUILT</span>
+          <h3 class="work__title">商业市场研究与产品定位策划</h3>
+          <p class="work__sub">投资研策 · 市场研究与产品定位</p>
+        </div>
+        <div class="work__frames">
+          <p class="work__desc">宠物经济等市场研究，明确用户前沿消费趋势，设计产品模型与运营方案；市场分析、竞品分析、客群分析，进行产品定位策划，并制定产品市场运营方案。</p>
+          <figure class="frame" data-lb="assets/bgy/pet_economy_p1.png" data-cap="宠物经济研究与产品设计">
+            <img src="assets/bgy/pet_economy_p1.png" alt="宠物经济研究与产品设计" loading="lazy" />
+          </figure>
+          <div class="strip">
+            <a data-lb="assets/bgy/pet_economy_p1.png" data-cap="宠物经济研究与产品设计"><img src="assets/bgy/pet_economy_p1.png" alt="1" loading="lazy" /><b>01</b></a>
+            <a data-lb="assets/bgy/bgy_market_p1.png" data-cap="市场研究"><img src="assets/bgy/bgy_market_p1.png" alt="2" loading="lazy" /><b>02</b></a>
+            <a data-lb="assets/bgy/bgy_positioning_p1.png" data-cap="产品定位策划"><img src="assets/bgy/bgy_positioning_p1.png" alt="3" loading="lazy" /><b>03</b></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- ---- 碧桂园 · 投资测算 ---- -->
+      <article class="work rv">
+        <div class="work__meta">
+          <span class="work__idx">WORK 06 / BIGUILT</span>
+          <h3 class="work__title">投资测算与可行性分析</h3>
+          <p class="work__sub">投资研策 · 投资测算</p>
+        </div>
+        <div class="work__frames">
+          <p class="work__desc">结合业态层级、客流价值、市场行情，进行成本 / 收入 / 工程改造 / 利润测算 · 敏感性分析与投资回报。</p>
+          <figure class="frame" data-lb="assets/bgy/bgy_invest_1.png" data-cap="投资测算与可行性分析 · 第 1 页">
+            <img src="assets/bgy/bgy_invest_1.png" alt="投资测算与可行性分析" loading="lazy" />
+          </figure>
+          <div class="strip">
+            <a data-lb="assets/bgy/bgy_invest_1.png" data-cap="投资测算 第 1 页"><img src="assets/bgy/bgy_invest_1.png" alt="1" loading="lazy" /><b>01</b></a>
+            <a data-lb="assets/bgy/bgy_invest_2.png" data-cap="投资测算 第 2 页"><img src="assets/bgy/bgy_invest_2.png" alt="2" loading="lazy" /><b>02</b></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- ---- 独立项目 · 战略规划 ---- -->
+      <article class="work rv">
+        <div class="work__meta">
+          <span class="work__idx">WORK 07 / PROJECT</span>
+          <h3 class="work__title">电力企业中长期发展战略规划与科技创新规划</h3>
+          <p class="work__sub">战略规划 · 100+ 页</p>
+        </div>
+        <div class="work__frames">
+          <p class="work__desc">面向电力企业中长期发展，完成从顶层设计、市场研判、重点任务到效益测算与数据看板的整体规划输出。</p>
+          <figure class="frame" data-lb="assets/strategy/strategy_overview.png" data-cap="战略规划总体概览">
+            <img src="assets/strategy/strategy_overview.png" alt="战略规划总体概览" loading="lazy" />
+          </figure>
+          <div class="strip">
+            <a data-lb="assets/strategy/strategy_overview.png" data-cap="总体概览"><img src="assets/strategy/strategy_overview.png" alt="概览" loading="lazy" /><b>01</b></a>
+            <a data-lb="assets/strategy/strategy_01_topdesign.png" data-cap="顶层设计"><img src="assets/strategy/strategy_01_topdesign.png" alt="顶层设计" loading="lazy" /><b>02</b></a>
+            <a data-lb="assets/strategy/strategy_02_market.png" data-cap="市场研判"><img src="assets/strategy/strategy_02_market.png" alt="市场研判" loading="lazy" /><b>03</b></a>
+            <a data-lb="assets/strategy/strategy_03_tasks.png" data-cap="重点任务"><img src="assets/strategy/strategy_03_tasks.png" alt="重点任务" loading="lazy" /><b>04</b></a>
+            <a data-lb="assets/strategy/strategy_04_profit.png" data-cap="效益测算"><img src="assets/strategy/strategy_04_profit.png" alt="效益测算" loading="lazy" /><b>05</b></a>
+            <a data-lb="assets/strategy/strategy_05_tableau.png" data-cap="数据看板"><img src="assets/strategy/strategy_05_tableau.png" alt="数据看板" loading="lazy" /><b>06</b></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- ---- 独立项目 · 券商行研 ---- -->
+      <article class="work rv">
+        <div class="work__meta">
+          <span class="work__idx">WORK 08 / PROJECT</span>
+          <h3 class="work__title">鼎泰高科 (301377) 深度行业研究报告</h3>
+          <p class="work__sub">券商行研 · 已发表</p>
+        </div>
+        <div class="work__frames">
+          <p class="work__desc">完成公司深度研究报告，覆盖行业格局、竞争壁垒、财务表现与估值判断，形成完整的投资研究结论。</p>
+          <figure class="frame" data-lb="assets/pdf_pages/guolian_p1.png" data-cap="鼎泰高科深度行业研究报告 · 第 1 页">
+            <img src="assets/pdf_pages/guolian_p1.png" alt="鼎泰高科券商行研报告" loading="lazy" />
+          </figure>
+          <div class="strip">
+            <a data-lb="assets/pdf_pages/guolian_p1.png" data-cap="行研报告 第 1 页"><img src="assets/pdf_pages/guolian_p1.png" alt="1" loading="lazy" /><b>01</b></a>
+            <a data-lb="assets/pdf_pages/guolian_p2.png" data-cap="行研报告 第 2 页"><img src="assets/pdf_pages/guolian_p2.png" alt="2" loading="lazy" /><b>02</b></a>
+            <a data-lb="assets/pdf_pages/guolian_p3.png" data-cap="行研报告 第 3 页"><img src="assets/pdf_pages/guolian_p3.png" alt="3" loading="lazy" /><b>03</b></a>
+            <a data-lb="assets/pdf_pages/guolian_p4.png" data-cap="行研报告 第 4 页"><img src="assets/pdf_pages/guolian_p4.png" alt="4" loading="lazy" /><b>04</b></a>
+            <a data-lb="assets/pdf_pages/guolian_p5.png" data-cap="行研报告 第 5 页"><img src="assets/pdf_pages/guolian_p5.png" alt="5" loading="lazy" /><b>05</b></a>
+            <a data-lb="assets/pdf_pages/guolian_p6.png" data-cap="行研报告 第 6 页"><img src="assets/pdf_pages/guolian_p6.png" alt="6" loading="lazy" /><b>06</b></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- ---- 独立项目 · 股票 APP ---- -->
+      <article class="work rv">
+        <div class="work__meta">
+          <span class="work__idx">WORK 09 / PROJECT</span>
+          <h3 class="work__title">股票 APP · 资产分析功能设计</h3>
+          <p class="work__sub">产品设计 · 资产分析</p>
+        </div>
+        <div class="work__frames">
+          <p class="work__desc">围绕投资者资产查看与持仓管理场景，完成核心功能的信息架构与交互设计。</p>
+          <figure class="frame" data-lb="assets/pdf_hi/stock_asset_analysis_p1.png" data-cap="股票 APP 资产分析功能设计">
+            <img src="assets/pdf_hi/stock_asset_analysis_p1.png" alt="股票 APP 资产分析" loading="lazy" />
+          </figure>
+          <div class="strip">
+            <a data-lb="assets/pdf_hi/stock_asset_analysis_p1.png" data-cap="资产分析功能设计"><img src="assets/pdf_hi/stock_asset_analysis_p1.png" alt="1" loading="lazy" /><b>01</b></a>
+            <a data-lb="assets/pdf_hi/stock_middle_pi_p2.png" data-cap="中台 PI"><img src="assets/pdf_hi/stock_middle_pi_p2.png" alt="2" loading="lazy" /><b>02</b></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- ---- 独立项目 · Tableau ---- -->
+      <article class="work rv">
+        <div class="work__meta">
+          <span class="work__idx">WORK 10 / PROJECT</span>
+          <h3 class="work__title">每日业务情况总览看板</h3>
+          <p class="work__sub">Tableau · 业务可视化看板</p>
+        </div>
+        <div class="work__frames">
+          <p class="work__desc">将分散的业务数据整合为可视化看板，支撑日常经营监控与决策判断。</p>
+          <figure class="frame" data-lb="assets/portfolio_pngs/tableau_dashboard.jpg" data-cap="每日业务情况总览看板">
+            <img src="assets/portfolio_pngs/tableau_dashboard.jpg" alt="Tableau 业务看板" loading="lazy" />
+          </figure>
+        </div>
+      </article>
+
+      <!-- ---- 独立项目 · 机器学习 ---- -->
+      <article class="work rv">
+        <div class="work__meta">
+          <span class="work__idx">WORK 11 / PROJECT</span>
+          <h3 class="work__title">基于 CNN-LSTM 的股价时间序列预测</h3>
+          <p class="work__sub">课程论文 3 页 + 部分代码</p>
+        </div>
+        <div class="work__frames">
+          <p class="work__desc">以 CNN-LSTM 时序模型对股票价格进行预测建模，完成从数据预处理、特征工程到模型训练与效果评估的完整流程。</p>
+          <figure class="frame" data-lb="assets/portfolio_pngs/lstm_paper_p1.png" data-cap="CNN-LSTM 股价预测课程论文 · 第 1 页">
+            <img src="assets/portfolio_pngs/lstm_paper_p1.png" alt="CNN-LSTM 股价预测课程论文" loading="lazy" />
+          </figure>
+          <div class="strip">
+            <a data-lb="assets/portfolio_pngs/lstm_paper_p1.png" data-cap="课程论文 第 1 页"><img src="assets/portfolio_pngs/lstm_paper_p1.png" alt="论文 1" loading="lazy" /><b>01</b></a>
+            <a data-lb="assets/portfolio_pngs/lstm_paper_p2.png" data-cap="课程论文 第 2 页"><img src="assets/portfolio_pngs/lstm_paper_p2.png" alt="论文 2" loading="lazy" /><b>02</b></a>
+            <a data-lb="assets/portfolio_pngs/lstm_paper_p3.png" data-cap="课程论文 第 3 页"><img src="assets/portfolio_pngs/lstm_paper_p3.png" alt="论文 3" loading="lazy" /><b>03</b></a>
+            <a data-lb="assets/portfolio_pngs/lstm_code.png" data-cap="部分代码截图"><img src="assets/portfolio_pngs/lstm_code.png" alt="部分代码截图" loading="lazy" /><b>CODE</b></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- ---- 独立项目 · Python 进销存 ---- -->
+      <article class="work rv">
+        <div class="work__meta">
+          <span class="work__idx">WORK 12 / PROJECT</span>
+          <h3 class="work__title">Python 进销存管理系统</h3>
+          <p class="work__sub">系统设计 · 功能实现</p>
+        </div>
+        <div class="work__frames">
+          <p class="work__desc">独立完成进销存系统的功能设计与实现，覆盖商品、库存、订单等核心业务模块。</p>
+          <figure class="frame" data-lb="assets/portfolio_pngs/20240725121334.png" data-cap="Python 进销存管理系统">
+            <img src="assets/portfolio_pngs/20240725121334.png" alt="Python 进销存管理系统" loading="lazy" />
+          </figure>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ 04 摄影 ============ -->
+  <section class="scene wrap" id="photography">
+    <div class="scene__head rv">
+      <div class="scene__no">04</div>
+      <div>
+        <h2 class="scene__title">摄影<small>Photography</small></h2>
+      </div>
+      <p class="scene__intro">
+        山河之间，世界尽展。这些是 2024 — 2026 年用微单与无人机在路上留下的精彩片段。
+      </p>
+    </div>
+
+    <div class="wall rv">
+      <figure data-lb="assets/photo/微信图片_20260805194602_22_5.jpg" data-cap="鼓楼">
+        <img src="assets/photo/微信图片_20260805194602_22_5.jpg" alt="鼓楼" loading="lazy" />
+        <figcaption>鼓楼</figcaption>
+      </figure>
+      <figure data-lb="assets/photo/photo_doc_2.jpg" data-cap="青峦">
+        <img src="assets/photo/photo_doc_2.jpg" alt="青峦" loading="lazy" />
+        <figcaption>青峦</figcaption>
+      </figure>
+      <figure data-lb="assets/photo/微信图片_20260805194602_19_5.jpg" data-cap="雪境">
+        <img src="assets/photo/微信图片_20260805194602_19_5.jpg" alt="雪境" loading="lazy" />
+        <figcaption>雪境</figcaption>
+      </figure>
+      <figure data-lb="assets/photo/微信图片_20260805194602_32_5.jpg" data-cap="巷晚">
+        <img src="assets/photo/微信图片_20260805194602_32_5.jpg" alt="巷晚" loading="lazy" />
+        <figcaption>巷晚</figcaption>
+      </figure>
+      <figure data-lb="assets/photo/微信图片_20260805194602_24_5.jpg" data-cap="梯田">
+        <img src="assets/photo/微信图片_20260805194602_24_5.jpg" alt="梯田" loading="lazy" />
+        <figcaption>梯田</figcaption>
+      </figure>
+      <figure data-lb="assets/photo/微信图片_20260805194602_29_5.jpg" data-cap="塔影">
+        <img src="assets/photo/微信图片_20260805194602_29_5.jpg" alt="塔影" loading="lazy" />
+        <figcaption>塔影</figcaption>
+      </figure>
+      <figure data-lb="assets/photo/DSC07551.jpg" data-cap="DSC07551">
+        <img src="assets/photo/DSC07551.jpg" alt="摄影作品" loading="lazy" />
+        <figcaption>Frame 07</figcaption>
+      </figure>
+      <figure data-lb="assets/photo/微信图片_20260805194602_33_5.jpg" data-cap="湖光">
+        <img src="assets/photo/微信图片_20260805194602_33_5.jpg" alt="湖光" loading="lazy" />
+        <figcaption>湖光</figcaption>
+      </figure>
+      <figure data-lb="assets/photo/DSC04238.jpg" data-cap="静湖">
+        <img src="assets/photo/DSC04238.jpg" alt="静湖" loading="lazy" />
+        <figcaption>静湖</figcaption>
+      </figure>
+      <figure data-lb="assets/photo/微信图片_20260805194602_31_5.jpg" data-cap="行旅">
+        <img src="assets/photo/微信图片_20260805194602_31_5.jpg" alt="行旅" loading="lazy" />
+        <figcaption>行旅</figcaption>
+      </figure>
+      <figure data-lb="assets/photo/DSC04718.jpg" data-cap="旷野">
+        <img src="assets/photo/DSC04718.jpg" alt="旷野" loading="lazy" />
+        <figcaption>旷野</figcaption>
+      </figure>
+      <figure data-lb="assets/photo/photo_doc_1.jpg" data-cap="赤岩">
+        <img src="assets/photo/photo_doc_1.jpg" alt="赤岩" loading="lazy" />
+        <figcaption>赤岩</figcaption>
+      </figure>
+      <figure data-lb="assets/photo/DSC04912.jpg" data-cap="行云">
+        <img src="assets/photo/DSC04912.jpg" alt="行云" loading="lazy" />
+        <figcaption>行云</figcaption>
+      </figure>
+      <figure data-lb="assets/photo/DJI_0026-编辑.jpg" data-cap="航拍">
+        <img src="assets/photo/DJI_0026-编辑.jpg" alt="航拍" loading="lazy" />
+        <figcaption>航拍</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ 05 爱好 ============ -->
+  <section class="scene wrap" id="interests">
+    <div class="scene__head rv">
+      <div class="scene__no">05</div>
+      <div>
+        <h2 class="scene__title">爱好<small>Interests</small></h2>
+      </div>
+      <p class="scene__intro">
+        工作之外，是持续输入的来源 —— 影像、硬件、阅读与行走。
+      </p>
+    </div>
+
+    <div class="matrix rv">
+      <div class="cell">
+        <span class="cell__no">— 01</span>
+        <h3 class="cell__title">3C 消费电子</h3>
+        <p class="cell__body">持有影像设备（微单 / 无人机 / 运动相机 / Pocket 等）40 余种电子产品。喜欢研究底层架构与逻辑，掌握整机软硬件核心规格，持续追踪技术创新与产品演进，能够从技术角度及用户需求出发理解对比产品体验。</p>
+      </div>
+      <div class="cell">
+        <span class="cell__no">— 02</span>
+        <h3 class="cell__title">摄影与影像创作</h3>
+        <p class="cell__body">以微单与无人机记录山河之间的片段，长期保持对画面结构、光线与叙事的训练。</p>
+      </div>
+      <div class="cell">
+        <span class="cell__no">— 03</span>
+        <h3 class="cell__title">行业研究与阅读</h3>
+        <p class="cell__body">持续跟踪消费、科技与金融领域的行业变化，保持对商业底层逻辑的好奇。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 06 荣誉 ============ -->
+  <section class="scene wrap" id="honors">
+    <div class="scene__head rv">
+      <div class="scene__no">06</div>
+      <div>
+        <h2 class="scene__title">竞赛与荣誉<small>Honors &amp; Awards</small></h2>
+      </div>
+      <p class="scene__intro">
+        连续两年获国家励志奖学金；以数学建模与课程成果支撑起量化分析的基本功。
+      </p>
+    </div>
+
+    <div class="matrix rv">
+      <div class="cell">
+        <span class="cell__no">省一等奖 · 本科期间</span>
+        <h3 class="cell__title">全国大学生数学建模竞赛</h3>
+        <p class="cell__body">队长身份组织分工与计划推进，负责数据建模、论文撰写及答辩；用 Stata 进行熵权法 TOPSIS 建模及线性约束规划求解，解决物流订购的最优成本问题。</p>
+      </div>
+      <div class="cell">
+        <span class="cell__no">省优秀奖 · 本科期间</span>
+        <h3 class="cell__title">智慧经济创新创业大赛</h3>
+        <p class="cell__body">作为团队负责人进行论文撰写及答辩；联合计算机学院同学实现基于 LSTM 深度学习算法模型的股价时间序列预测，成功预测 50 支股票一个月内行情。</p>
+      </div>
+      <div class="cell">
+        <span class="cell__no">省铜奖 · 本科期间</span>
+        <h3 class="cell__title">互联网+ 创新创业大赛</h3>
+        <p class="cell__body">负责产品商业策划书撰写及项目答辩；与计算机学院联合完成老旧照片修复网站的编程与商业化实现。</p>
+      </div>
+      <div class="cell">
+        <span class="cell__no">外聘技术专家 · 本科期间</span>
+        <h3 class="cell__title">电网咨询项目 · 投资分析</h3>
+        <p class="cell__body">凭借较好的金融专业知识与数据分析能力，实习结束后被原公司邀请担任技术专家，独立完成企业客户的市场分析、经营管理、投资发展、业务发展等方向的分析，输出业务发展规划与投资策略报告。</p>
+      </div>
+      <div class="cell">
+        <span class="cell__no">奖学金 · 2 次 · 本科期间</span>
+        <h3 class="cell__title">国家励志奖学金</h3>
+        <p class="cell__body">连续获得各学期校奖学金，并获评千优百佳学生。</p>
+      </div>
+      <div class="cell">
+        <span class="cell__no">课程成果 · 课程成绩</span>
+        <h3 class="cell__title">机器学习 / Python / 数据挖掘</h3>
+        <p class="cell__body">高等数学上 100 · 机器学习 97 · Python 93 · 数据挖掘 92 · 高等数学下 100 · 概率论与数理统计 94 · 区块链技术 94 · 财务报表分析 93</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 07 联系 ============ -->
+  <section class="finale" id="contact">
+    <div class="finale__glow" aria-hidden="true"></div>
+    <div class="wrap" style="position:relative;z-index:1;">
+      <h2 class="finale__title rv">
+        联系我
+        <small>Get in Touch · Let's Build Something</small>
+      </h2>
+
+      <dl class="contacts rv">
+        <a href="tel:13249086026">
+          <dt>电话</dt>
+          <dd>13249086026</dd>
+        </a>
+        <a href="mailto:trinity_ting@163.com">
+          <dt>邮箱</dt>
+          <dd>trinity_ting@163.com</dd>
+        </a>
+        <a href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">
+          <dt>GitHub</dt>
+          <dd>@trinitytingchuan-alt</dd>
+        </a>
+        <div>
+          <dt>教育背景</dt>
+          <dd>暨南大学 · 辽宁大学</dd>
+        </div>
+      </dl>
+
+      <div class="finale__foot rv">
+        <span>© 2026 SHANG WENTING</span>
+        <span>Active Theory · Cinematic Edition</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ Lightbox ============ -->
+<div class="lb" id="lb">
+  <button class="lb__x" id="lbX" aria-label="关闭">✕ CLOSE</button>
+  <button class="lb__p" id="lbP" aria-label="上一张">←</button>
+  <img id="lbImg" src="" alt="" />
+  <button class="lb__n" id="lbN" aria-label="下一张">→</button>
+  <div class="lb__cap" id="lbCap"></div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ---------- 滚动显影 ---------- */
+  var rvEls = document.querySelectorAll('.rv');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
+    rvEls.forEach(function (el) { io.observe(el); });
+  } else {
+    rvEls.forEach(function (el) { el.classList.add('in'); });
+  }
+
+  /* ---------- Lightbox ---------- */
+  var lb = document.getElementById('lb');
+  var lbImg = document.getElementById('lbImg');
+  var lbCap = document.getElementById('lbCap');
+  var items = [];
+  var idx = 0;
+
+  function collect(scope) {
+    var root = scope.closest('.work, .wall, .scene') || document;
+    var nodes = root.querySelectorAll('[data-lb]');
+    return Array.prototype.map.call(nodes, function (n) {
+      return { src: n.getAttribute('data-lb'), cap: n.getAttribute('data-cap') || '' };
+    });
+  }
+
+  function show(i) {
+    if (!items.length) return;
+    idx = (i + items.length) % items.length;
+    lbImg.src = items[idx].src;
+    lbImg.alt = items[idx].cap;
+    lbCap.textContent = items[idx].cap + '   ·   ' + (idx + 1) + ' / ' + items.length;
+  }
+
+  function open(scope) {
+    items = collect(scope);
+    var start = -1;
+    for (var k = 0; k < items.length; k++) {
+      if (items[k].src === scope.getAttribute('data-lb')) { start = k; break; }
+    }
+    show(start < 0 ? 0 : start);
+    lb.classList.add('on');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function close() {
+    lb.classList.remove('on');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest('[data-lb]');
+    if (t) { e.preventDefault(); open(t); return; }
+    if (e.target.closest('#lbX')) { close(); return; }
+    if (e.target.closest('#lbP')) { show(idx - 1); return; }
+    if (e.target.closest('#lbN')) { show(idx + 1); return; }
+    if (e.target === lb) close();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (!lb.classList.contains('on')) return;
+    if (e.key === 'Escape') close();
+    else if (e.key === 'ArrowLeft') show(idx - 1);
+    else if (e.key === 'ArrowRight') show(idx + 1);
+  });
+
+  /* ---------- 顶栏滚动加深 ---------- */
+  var bar = document.querySelector('.topbar');
+  window.addEventListener('scroll', function () {
+    bar.style.background = window.scrollY > 40 ? 'rgba(5,5,7,0.84)' : 'rgba(5,5,7,0.62)';
+  }, { passive: true });
+})();
+</script>
+
+</body>
+</html>

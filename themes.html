@@ -100,19 +100,36 @@
     <h1>个人简历 · 风格总览</h1>
     <p>所有风格共用同一份版式骨架、同一套文字与图片位置，只有视觉语言不同。风格之间互不覆盖，可随时切换。</p>
     <div class="note">
-      <strong>切换方式</strong>：编辑 <code>css/resume-style.css</code>，只改最后一行 <code>@import</code> 指向的主题文件即可。<br />
+      <strong>两套体系并存</strong>：①「同骨架换皮肤」——<code>resume.html</code> + <code>css/themes/</code> 下的 Headspace / Y2K / Apple，改一行 <code>@import</code> 即可切换；②「独立新页」——<code>resume-active-theory.html</code> 为自包含整页，拥有完全不同的版式与叙事结构。<br />
       <strong>原始作品集</strong>：<code>index.html</code> + <code>css/style.css</code>，始终独立、从未被修改。
     </div>
   </div>
 
   <div class="grid">
 
-    <a class="card" href="resume.html">
-      <div class="card__swatch" style="background: linear-gradient(155deg,#BFE4FF 0%,#DCEBFB 34%,#EDF3F8 62%,#FFD9EA 100%);">
-        <i style="background:#5FC9F8"></i><i style="background:#FF66C4"></i><i style="background:#A8FF00"></i>
+    <a class="card" href="resume-active-theory.html">
+      <div class="card__swatch" style="background: radial-gradient(ellipse at 30% 20%, #0d3a4a 0%, #050507 62%);">
+        <i style="background:#00E0FF"></i><i style="background:#7C5CFF"></i><i style="background:#F2F4FF"></i>
       </div>
       <div class="card__body">
-        <span class="card__badge card__badge--on">当前启用</span>
+        <span class="card__badge card__badge--on">最新版本</span>
+        <h2>Active Theory 电影感</h2>
+        <p>深黑画布 + 单一 candy cyan 强调色、全幅巨型标题、零圆角、粒子场与体积光、分镜式滚动叙事，收尾一张最大冲击帧。</p>
+        <div class="card__meta">
+          <b>字体</b> Archivo / Inter / JetBrains Mono<br />
+          <b>配方</b> active-theory（Cinematic WebGL）<br />
+          <b>文件</b> resume-active-theory.html
+        </div>
+        <span class="card__go">查看此风格 →</span>
+      </div>
+    </a>
+
+    <a class="card" href="resume.html">
+      <div class="card__swatch" style="background: linear-gradient(155deg,#FFEDD5 0%,#FFE2C5 40%,#FFD9B8 70%,#F4A573 100%);">
+        <i style="background:#F4A573"></i><i style="background:#B0A5D1"></i><i style="background:#9DB67A"></i>
+      </div>
+      <div class="card__body">
+        <span class="card__badge card__badge--off">已保留</span>
         <h2>Headspace 冥想疗愈</h2>
         <p>暖桃地面、珊瑚橙、圆润一切、缓慢呼吸动效、柔和暖阴影。吉祥物圆角色 + 手绘 blob + 呼吸同心圆。</p>
         <div class="card__meta">
@@ -159,9 +176,10 @@
 
   <div class="foot">
     <b>目录结构</b><br />
+    <code>resume-active-theory.html</code> — Active Theory 电影感版（独立自包含页面）<br />
+    <code>resume.html</code> — 简历页（UI 骨架固定，靠主题切风格）<br />
     <code>css/resume-style.css</code> — 风格切换入口（只改这一行的 @import）<br />
-    <code>css/themes/*.css</code> — 各风格独立文件，互不覆盖<br />
-    <code>resume.html</code> — 简历页（引用入口，永不改动内容）<br />
+    <code>css/themes/*.css</code> — Headspace / Y2K / Apple 三套皮肤，互不覆盖<br />
     <code>index.html</code> — 原始作品集（独立，永不改动）
   </div>
 

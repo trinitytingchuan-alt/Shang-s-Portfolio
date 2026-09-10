@@ -1,0 +1,32 @@
+/* ============================================================
+   Active Theory (Cinematic WebGL) 风格令牌
+   —— 供 resume-active-theory.html 内联引用，也可作为独立皮肤
+   配方：web-design-engineer / style-recipes / active-theory
+   · 深黑 + 单一高饱和强调色 + 全幅大字 + 零圆角 + CSS 合成光影
+   · 锚定 html.at-theme
+   ============================================================ */
+
+html.at-theme {
+  /* 深黑底（带冷蓝投射，配方要求 gray-with-cast，不用纯灰） */
+  --at-void: #050507;
+  --at-black: #0A0A0F;
+  --at-panel: #101018;
+  --at-panel-2: #16161F;
+  --at-line: rgba(140, 160, 255, 0.14);
+  --at-line-soft: rgba(140, 160, 255, 0.07);
+
+  /* 单一签名强调色：candy cyan（配方要求黑 + 一个品牌色） */
+  --at-accent: #00E0FF;
+  --at-accent-2: #7C5CFF;
+  --at-accent-deep: #0098B8;
+  --at-candy: #FF4D9D;
+
+  /* 文字：带冷蓝投射的中性色 */
+  --at-fg: #F2F4FF;
+  --at-fg-soft: #A8B0D0;
+  --at-muted: #6B7394;
+
+  --at-display: 'Archivo', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --at-body: 'Inter', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  --at-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Consolas, monospace;
+}
