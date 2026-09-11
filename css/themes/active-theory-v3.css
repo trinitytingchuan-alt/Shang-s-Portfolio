@@ -36,6 +36,7 @@ html.resume-theme {
   --candy-violet:  #8A6BFF;
   --candy-coral:   #FF4D6D;
   --candy-amber:   #FFB020;
+  --candy-azure:   #4FA8FF;   /* v3 · 取代粉色，更克制高级的冷调蓝 */
 
   /* 深黑画布 */
   --at-void:   #060608;
@@ -94,7 +95,7 @@ html.resume-theme {
   background-image:
     radial-gradient(ellipse 62% 48% at 6% -6%,  rgba(0, 229, 255, 0.22) 0%, transparent 62%),
     radial-gradient(ellipse 52% 42% at 92% 2%,  rgba(138, 107, 255, 0.20) 0%, transparent 60%),
-    radial-gradient(ellipse 58% 46% at 96% 86%, rgba(255, 77, 109, 0.16) 0%, transparent 62%),
+    radial-gradient(ellipse 58% 46% at 96% 86%, rgba(138, 107, 255, 0.16) 0%, transparent 62%),
     radial-gradient(ellipse 50% 34% at 34% 104%, rgba(255, 176, 32, 0.11) 0%, transparent 64%),
     /* v3 · 随当前栏目色调“逐页”流动的辉光（--canvas-hue 由 JS 平滑过渡） */
     radial-gradient(ellipse 66% 46% at 50% 46%, color-mix(in srgb, var(--canvas-hue, #00E5FF) 15%, transparent) 0%, transparent 60%),
@@ -227,7 +228,7 @@ html.resume-theme {
 /* 板块专属糖果色（轮换），同时驱动标题、编号、分隔线 */
 .resume-theme #about       { --at-hue: var(--candy-cyan); }
 .resume-theme #capability  { --at-hue: var(--candy-violet); }
-.resume-theme #works       { --at-hue: var(--candy-coral); }
+.resume-theme #works       { --at-hue: var(--candy-azure); }
 .resume-theme #photography { --at-hue: var(--candy-lime); }
 .resume-theme #interests   { --at-hue: var(--candy-amber); }
 .resume-theme #honors      { --at-hue: var(--candy-cyan); }
@@ -875,9 +876,9 @@ html.resume-theme {
   z-index: 1200;
   transform: scaleX(0);
   transform-origin: 0 50%;
-  background: linear-gradient(90deg, var(--canvas-hue, #00E5FF),
-              color-mix(in srgb, var(--canvas-hue, #00E5FF) 35%, #FFFFFF));
-  box-shadow: 0 0 12px -2px var(--canvas-hue, #00E5FF);
+  /* v3 · 更高级的配色：克制冷调极光（periwinkle→violet→mint），取自 premium dark 语汇 */
+  background: linear-gradient(90deg, #5B8DEF 0%, #9B8CFF 52%, #6FE3D2 100%);
+  box-shadow: 0 0 16px -3px rgba(123, 143, 255, 0.55);
   will-change: transform;
   pointer-events: none;
 }
