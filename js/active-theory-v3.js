@@ -56,19 +56,6 @@
     setHue(hueOf(sections[0]));
   }
 
-  /* ---------- 3. 图片展示栏底部毛玻璃信息条 ---------- */
-  document.querySelectorAll('.work__hero').forEach(function (fig) {
-    if (fig.querySelector('.work__hero-cap')) return;
-    var cap = document.createElement('figcaption');
-    cap.className = 'work__hero-cap';
-    var alt = fig.getAttribute('data-alt') || '';
-    var work = fig.closest('.work');
-    var titleEl = work ? work.querySelector('.work__title') : null;
-    var title = titleEl ? (titleEl.textContent || '').trim() : '';
-    cap.textContent = title ? (title + (alt ? ' · ' + alt : '')) : alt;
-    fig.appendChild(cap);
-  });
-
   /* ---------- 滚动监听（rAF 节流） ---------- */
   var ticking = false;
   function onScroll() {
