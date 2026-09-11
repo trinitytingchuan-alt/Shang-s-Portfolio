@@ -37,6 +37,7 @@ html.resume-theme {
   --candy-coral:   #FF4D6D;
   --candy-amber:   #FFB020;
   --candy-azure:   #4FA8FF;   /* v3 · 取代粉色，更克制高级的冷调蓝 */
+  --candy-mint:    #6FE3D2;   /* v3 · 冷调薄荷，用于增加每页色调差异 */
 
   /* 深黑画布 */
   --at-void:   #060608;
@@ -97,9 +98,9 @@ html.resume-theme {
     radial-gradient(ellipse 52% 42% at 92% 2%,  rgba(138, 107, 255, 0.20) 0%, transparent 60%),
     radial-gradient(ellipse 58% 46% at 96% 86%, rgba(138, 107, 255, 0.16) 0%, transparent 62%),
     radial-gradient(ellipse 50% 34% at 34% 104%, rgba(255, 176, 32, 0.11) 0%, transparent 64%),
-    /* v3 · 随当前栏目色调“逐页”流动的辉光（--canvas-hue 由 JS 平滑过渡） */
-    radial-gradient(ellipse 66% 46% at 50% 46%, color-mix(in srgb, var(--canvas-hue, #00E5FF) 15%, transparent) 0%, transparent 60%),
-    radial-gradient(ellipse 44% 38% at 90% 14%, color-mix(in srgb, var(--canvas-hue, #00E5FF) 13%, transparent) 0%, transparent 62%),
+    /* v3 · 随当前栏目色调“逐页”流动的辉光（--canvas-hue / --glow-x / --glow-y 由 JS 平滑过渡） */
+    radial-gradient(ellipse 72% 54% at var(--glow-x, 50%) var(--glow-y, 46%), color-mix(in srgb, var(--canvas-hue, #00E5FF) 30%, transparent) 0%, transparent 62%),
+    radial-gradient(ellipse 48% 40% at calc(100% - var(--glow-x, 50%)) 14%, color-mix(in srgb, var(--canvas-hue, #00E5FF) 24%, transparent) 0%, transparent 64%),
     linear-gradient(168deg, #0E0E16 0%, #0A0A10 46%, #08080D 100%);
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -226,9 +227,13 @@ html.resume-theme {
 .resume-theme .section--photography::after { display: none; }
 
 /* 板块专属糖果色（轮换），同时驱动标题、编号、分隔线 */
-.resume-theme #about       { --at-hue: var(--candy-cyan); }
+.resume-theme #about       { --at-hue: var(--candy-azure); }
 .resume-theme #capability  { --at-hue: var(--candy-violet); }
 .resume-theme #works       { --at-hue: var(--candy-azure); }
+.resume-theme #stage-anker { --at-hue: var(--candy-mint); }
+.resume-theme #stage-kuaishou { --at-hue: var(--candy-cyan); }
+.resume-theme #stage-bgy   { --at-hue: var(--candy-azure); }
+.resume-theme #stage-project { --at-hue: var(--candy-violet); }
 .resume-theme #photography { --at-hue: var(--candy-lime); }
 .resume-theme #interests   { --at-hue: var(--candy-amber); }
 .resume-theme #honors      { --at-hue: var(--candy-cyan); }
@@ -296,22 +301,28 @@ html.resume-theme {
 }
 
 /* ============================================================
-   侧栏：深黑玻璃，右缘一道糖果色光刃
+   侧栏：彩色玻璃（随当前栏目色调流动的淡彩，不再是死黑），右缘光刃同色
    ============================================================ */
 .resume-theme .sidebar {
-  background: linear-gradient(180deg, rgba(12, 12, 18, 0.94), rgba(8, 8, 13, 0.96));
-  backdrop-filter: blur(20px) saturate(1.2);
-  -webkit-backdrop-filter: blur(20px) saturate(1.2);
-  border-right: 1px solid rgba(255, 255, 255, 0.09);
-  box-shadow: none;
+  /* v3 · 彩色玻璃：深色底 + 随当前栏目色调流动的淡彩辉光 */
+  background:
+    radial-gradient(130% 52% at 100% 6%, color-mix(in srgb, var(--canvas-hue, #00E5FF) 16%, transparent) 0%, transparent 58%),
+    linear-gradient(180deg, rgba(17, 17, 26, 0.90), rgba(10, 10, 16, 0.95) 100%);
+  backdrop-filter: blur(20px) saturate(1.25);
+  -webkit-backdrop-filter: blur(20px) saturate(1.25);
+  border-right: 1px solid color-mix(in srgb, var(--canvas-hue, #00E5FF) 24%, rgba(255, 255, 255, 0.08));
+  box-shadow: inset -1px 0 0 color-mix(in srgb, var(--canvas-hue, #00E5FF) 32%, transparent),
+              10px 0 46px -22px color-mix(in srgb, var(--canvas-hue, #00E5FF) 60%, transparent);
 }
 .resume-theme .sidebar::after {
   content: '';
   position: absolute;
   top: 0; right: -1px;
-  width: 1px; height: 42%;
-  background: linear-gradient(180deg, var(--candy-cyan), transparent);
-  opacity: 0.8;
+  width: 2px; height: 100%;
+  /* v3 · 右侧光刃：随当前栏目色调流动 */
+  background: linear-gradient(180deg, var(--canvas-hue, #00E5FF), transparent);
+  opacity: 0.85;
+  box-shadow: 0 0 14px -1px var(--canvas-hue, #00E5FF);
 }
 .resume-theme .sidebar__logo {
   font-family: var(--font-display);
@@ -338,8 +349,9 @@ html.resume-theme {
 .resume-theme .sidebar__nav-link::before {
   width: 2px; height: 15px;
   border-radius: 0 !important;
-  background: var(--candy-cyan);
-  box-shadow: 0 0 12px var(--candy-cyan);
+  /* v3 · 导航指示条随当前栏目色调流动 */
+  background: var(--canvas-hue, #00E5FF);
+  box-shadow: 0 0 12px var(--canvas-hue, #00E5FF);
 }
 .resume-theme .sidebar__nav-link.is-active { color: #FFFFFF; font-weight: 700; }
 .resume-theme .sidebar__nav-link:hover { color: #FFFFFF; }
@@ -349,7 +361,7 @@ html.resume-theme {
   font-size: 11px;
   color: var(--color-muted);
 }
-.resume-theme .sidebar__nav-link.is-active .sidebar__nav-num { color: var(--candy-cyan); }
+.resume-theme .sidebar__nav-link.is-active .sidebar__nav-num { color: var(--canvas-hue, #00E5FF); }
 .resume-theme .sidebar__nav-sub { border-left: 1px solid var(--color-line-soft); }
 .resume-theme .sidebar__nav-sub-link { color: var(--color-muted); }
 .resume-theme .sidebar__nav-sub-link:hover,
@@ -860,13 +872,23 @@ html.resume-theme {
    原则：沿用现有排版，仅做有规则的克制动效；毛玻璃取代纯色块
    ============================================================ */
 
-/* 注册自定义属性，使背景逐页色调可平滑过渡（Chrome/Edge 支持） */
+/* 注册自定义属性，使背景逐页色调 / 光斑位置可平滑过渡（Chrome/Edge 支持） */
 @property --canvas-hue {
   syntax: '<color>';
   inherits: true;
   initial-value: #00E5FF;
 }
-:root { transition: --canvas-hue 1.1s ease; }
+@property --glow-x {
+  syntax: '<percentage>';
+  inherits: true;
+  initial-value: 50%;
+}
+@property --glow-y {
+  syntax: '<percentage>';
+  inherits: true;
+  initial-value: 46%;
+}
+:root { transition: --canvas-hue 1.1s ease, --glow-x 1.1s ease, --glow-y 1.1s ease; }
 
 /* 顶部滚动进度条：细、随当前栏目色调流动 */
 .resume-theme .at-progress {
@@ -903,4 +925,22 @@ html.resume-theme {
   .resume-theme .contact::after { animation: none; }
   :root { transition: none; }
   .resume-theme .at-progress { transition: none; }
+  .resume-theme .is-active-section .section__title,
+  .resume-theme .is-active-section .section__num,
+  .resume-theme .is-active-section .stage__title { animation: none; }
+}
+
+/* v3 · 每翻到一页，标题与编号做一次轻微上浮入场，强化“每页不同”的节奏感 */
+@keyframes at-rise {
+  from { opacity: 0; transform: translateY(20px); filter: blur(6px); }
+  to   { opacity: 1; transform: none; filter: blur(0); }
+}
+.resume-theme .is-active-section .section__title {
+  animation: at-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.resume-theme .is-active-section .section__num {
+  animation: at-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.resume-theme .is-active-section .stage__title {
+  animation: at-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
 }

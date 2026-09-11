@@ -40,12 +40,34 @@
     return (getComputedStyle(el).getPropertyValue('--at-hue') || '').trim();
   }
 
+  /* 每个栏目对应光斑的落点（相机在色彩空间里移动），使每页氛围不同 */
+  var GLOW = {
+    hero:           [50, 30],
+    about:          [22, 58],
+    capability:     [78, 40],
+    'stage-anker':  [30, 50],
+    'stage-kuaishou':[70, 55],
+    'stage-bgy':    [40, 42],
+    'stage-project':[62, 48],
+    photography:    [82, 72],
+    interests:      [18, 76],
+    honors:         [52, 64],
+    contact:        [76, 34]
+  };
+  function setGlow(id) {
+    var p = GLOW[id];
+    if (!p) return;
+    root.style.setProperty('--glow-x', p[0] + '%');
+    root.style.setProperty('--glow-y', p[1] + '%');
+  }
+
   if ('IntersectionObserver' in window && !reduce) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         if (e.isIntersecting) {
           var hue = hueOf(e.target);
           if (hue) setHue(hue);
+          setGlow(e.target.id);
           sections.forEach(function (s) { s.classList.remove('is-active-section'); });
           e.target.classList.add('is-active-section');
         }
@@ -54,6 +76,7 @@
     sections.forEach(function (s) { io.observe(s); });
   } else if (sections.length) {
     setHue(hueOf(sections[0]));
+    setGlow(sections[0].id);
   }
 
   /* ---------- 滚动监听（rAF 节流） ---------- */
