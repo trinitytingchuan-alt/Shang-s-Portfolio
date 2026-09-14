@@ -15,7 +15,9 @@
 <style>
   /* 合并「简介 + 核心能力」为本页统一区块（仅作用于本页，不改 style.css，便于还原当前版本）：
      顺序：简介 → 产品商业化全链条能力 → 电子产品热爱 → 成绩（弱化黑色）→ 核心能力（紧凑置后） */
-  .about__rule { height: 1px; background: rgba(0,0,0,.1); margin: 2.4rem 0; }
+  .about__rule { height: 1px; background: rgba(0,0,0,.1); margin: 1.8rem 0; }
+  /* 核心能力 小标题：由引导句提升而来，收紧上下行距 */
+  .capabilities__head { font-family: var(--font-display); font-size: 18px; font-weight: 600; color: var(--color-fg); margin: 0 0 14px; letter-spacing: .01em; }
   .about__scores { margin-top: 1.6rem; font-size: .82rem; line-height: 1.7; color: #111; font-weight: 400; opacity: .8; }
   .about__scores p { margin: 0 0 .3rem; }
   /* 核心能力 紧凑版：四列横向、序号与标题同行、减少留白，占更少篇幅，适合简历短篇幅呈现（不改文案） */
@@ -225,9 +227,7 @@
 
       <!-- ⑤ 核心能力 置后 · 紧凑（保留 id=capability 供左侧「能力」锚定） -->
       <div id="capability">
-        <p class="section__lede reveal">
-          以下四项能力贯穿过去所有工作 —— 用综合能力，支撑产品设计与运营优化。
-        </p>
+        <h3 class="capabilities__head reveal">核心能力 · 以下四项能力贯穿过去所有工作 —— 用综合能力，支撑产品设计与运营优化。</h3>
 
         <div class="capabilities capabilities--compact">
           <div class="capability reveal">
