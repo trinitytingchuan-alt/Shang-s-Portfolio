@@ -92,9 +92,9 @@ html.resume-theme {
   /* Motion —— bouncy spring */
   --y2k-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 
-  --font-display: 'Baloo 2', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
-  --font-body: 'Nunito', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
-  --font-en: 'Baloo 2', 'PingFang SC', sans-serif;
+  --font-display: 'Sora', 'Noto Sans SC', sans-serif;
+  --font-body: 'Sora', 'Noto Sans SC', sans-serif;
+  --font-en: 'Space Grotesk', 'Noto Sans SC', sans-serif;
   --font-num: 'Share Tech Mono', 'SF Mono', Consolas, monospace;
   --font-mono: 'Share Tech Mono', 'SF Mono', Consolas, monospace;
 }
@@ -141,7 +141,7 @@ html.resume-theme {
     radial-gradient(34% 34% at 22% 30%, color-mix(in srgb, var(--sec-flow-a, #00E5FF) 22%, transparent) 0%, transparent 70%),
     radial-gradient(38% 38% at 80% 60%, color-mix(in srgb, var(--sec-flow-b, #FF3DCB) 20%, transparent) 0%, transparent 72%),
     radial-gradient(30% 30% at 55% 92%, color-mix(in srgb, var(--sec-flow-a, #00E5FF) 16%, transparent) 0%, transparent 70%);
-  filter: blur(12px);
+  will-change: transform;
   animation: y2k-aurora 34s ease-in-out infinite alternate;
   opacity: 0.72;
 }
@@ -263,18 +263,18 @@ html.resume-theme {
 .resume-theme .hero__title {
   position: relative;
   font-family: var(--font-display);
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: -0.01em;
   line-height: 1.06;
   color: transparent;
+  /* v3 · 加深 chrome 渐变：深钢蓝为主、中段细高光，确保在浅冰蓝背景上清晰可读 */
   background-image: linear-gradient(180deg,
-    #4A5A6E 0%,
-    var(--y2k-chrome-a) 20%,
-    #FFFFFF 40%,
-    var(--y2k-ice) 50%,
-    var(--y2k-cyan) 57%,
-    #8FA6BD 72%,
-    #3D4C5E 100%);
+    #16324A 0%,
+    #2E5E86 24%,
+    #CFEBFF 44%,
+    var(--y2k-cyan) 54%,
+    #0E2740 76%,
+    #1E4E72 100%);
   -webkit-background-clip: text;
   background-clip: text;
 }
@@ -300,21 +300,23 @@ html.resume-theme {
 .resume-theme .hero__title em {
   font-family: var(--font-en);
   font-style: normal;
-  font-weight: 700;
-  font-size: 0.66em;
-  letter-spacing: 0.02em;
+  font-weight: 300;
+  font-size: 0.74em;
+  letter-spacing: 0.1em;
   color: transparent;
   -webkit-text-stroke: 0;
+  /* v3 · 细体 + 深蓝→青→品红的品牌渐变，更克制高级且可读 */
   background-image: linear-gradient(96deg,
-    var(--y2k-cyan) 0%, var(--y2k-magenta) 52%, var(--y2k-acid) 100%);
+    #0E6FB0 0%, var(--y2k-cyan) 46%, var(--y2k-magenta) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   display: block;
+  margin-top: 0.18em;
 }
 
 .resume-theme .section__title {
   font-family: var(--font-display);
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: -0.012em;
   color: var(--y2k-ink);
 }
@@ -344,7 +346,7 @@ html.resume-theme {
 .resume-theme .stage__title,
 .resume-theme .work__title {
   font-family: var(--font-display);
-  font-weight: 800;
+  font-weight: 700;
   color: var(--y2k-ink);
 }
 
@@ -399,7 +401,7 @@ html.resume-theme {
 }
 .resume-theme .sidebar__logo {
   font-family: var(--font-display);
-  font-weight: 800;
+  font-weight: 700;
   color: var(--y2k-ink);
 }
 .resume-theme .sidebar__subtitle,
@@ -423,7 +425,7 @@ html.resume-theme {
 /* 当前项 —— 玻璃药丸 + 内顶高光 */
 .resume-theme .sidebar__nav-link.is-active {
   color: #0A3A5C;
-  font-weight: 800;
+  font-weight: 700;
   padding-left: 12px;
   margin-left: -12px;
   background: linear-gradient(180deg,
@@ -616,7 +618,7 @@ html.resume-theme {
 .resume-theme .honor__title {
   position: relative;
   font-family: var(--font-display);
-  font-weight: 800;
+  font-weight: 700;
   color: var(--y2k-ink);
 }
 /* 标题前的虹彩小圆（油膜渐变） */
@@ -725,7 +727,7 @@ html.resume-theme {
 }
 .resume-theme .work__points { border-top: 1px solid rgba(0, 0, 0, 0.1); }
 .resume-theme .work__points li { border-bottom: 1px solid rgba(0, 0, 0, 0.06); color: var(--y2k-ink-soft); }
-.resume-theme .work__points .hi { font-family: var(--font-display); font-weight: 800; color: var(--y2k-ink); }
+.resume-theme .work__points .hi { font-family: var(--font-display); font-weight: 700; color: var(--y2k-ink); }
 .resume-theme .work__highlights { border-top: 1px solid rgba(0, 0, 0, 0.1); }
 .resume-theme .work__highlight { border-right: 1px solid rgba(0, 0, 0, 0.06); }
 /* LCD readout numerals */
