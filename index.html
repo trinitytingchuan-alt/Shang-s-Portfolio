@@ -12,6 +12,14 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@300;400;500;600&family=Noto+Serif+SC:wght@400;500;600;700&family=Italiana&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@300;400;500;600&family=Noto+Serif+SC:wght@400;500;600;700&family=Italiana&display=swap" /></noscript>
 <link rel="stylesheet" href="css/style.css?v=20260827a" />
+<style>
+  /* 弱化「课程分数」：缩小、降透明度，使其退为背景信息（仅作用于本页，不改 style.css，便于还原当前版本） */
+  .about__scores { font-size: .82rem; line-height: 1.75; color: #8b95a7; opacity: .72; }
+  .about__scores + .about__scores { margin-top: .25rem; }
+  /* 合并「简介 + 核心能力」后的子区块间距与分隔弱化 */
+  .about__footline--soft { opacity: .45; }
+  .about__cap-sep { margin-top: 2.8rem; }
+</style>
 </head>
 <body>
 
@@ -193,8 +201,8 @@
 
       <div class="about__grid reveal">
         <div class="about__copy">
-          <p>硕士阶段核心课程：机器学习 97、Python 93、数据挖掘 92、区块链 94、财务报表分析 93。</p>
-          <p>本科高数上下均满分，四门数学均分95+。主修计量经济学 100、概率论 94、宏观经济学 97、微观经济学 96、会计学 92。</p>
+          <p class="about__scores">硕士阶段核心课程：机器学习 97、Python 93、数据挖掘 92、区块链 94、财务报表分析 93。</p>
+          <p class="about__scores">本科高数上下均满分，四门数学均分95+。主修计量经济学 100、概率论 94、宏观经济学 97、微观经济学 96、会计学 92。</p>
         </div>
         <div class="about__copy">
           <p><strong>产品商业化全链条能力：</strong>具备战略与投资规划、产品设计、运营增长经验；基于全局视角穿透各业务逻辑，进行需求拆解、用户研究、竞品对标，完成财务测算与产品设计，输出运营方案，并<strong>以业务洞察、用户反馈、数据分析驱动产品与策略迭代。</strong></p>
@@ -202,13 +210,10 @@
         </div>
       </div>
 
-      <div class="about__footline"></div>
-    </section>
+      <div class="about__footline about__footline--soft"></div>
 
-    <!-- ============================== CAPABILITY ============================== -->
-    <section class="section" id="capability">
-      <header class="section__header">
-        <span class="section__num">3</span>
+      <!-- 核心能力 并入「简介」区块，二者合为一体（保留 id=capability 供导航锚定） -->
+      <header class="section__header about__cap-sep" id="capability">
         <h2 class="section__title">核心能力</h2>
         <span class="section__title-en">Capability</span>
       </header>
