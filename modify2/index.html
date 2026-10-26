@@ -54,34 +54,49 @@
   }
   .about__scores{color:#cfc8ba;opacity:.85;}
 
-  /* 全局背景：一体化高级暗色基底 —— 锚定左侧栏的柔和暖金光晕 + 冷调微光 + 极淡胶片颗粒，
-     替代廉价浮动光斑（非随机粒子，与版式/金色主调呼应，营造层次而非死黑） */
+  /* ===== 背景系统：高级「暖炭灰 · 画廊编辑感」=====
+     设计思路：不使用任何光斑 / 圆点 / 粒子 / 噪点。
+     ① 暖炭灰纵向渐变打底 —— 告别纯黑死板，像展厅墙面般衬托作品；
+     ② 叠一层极淡的方向性受光（线性）—— 模拟展陈灯光/纸面受光，克制而有纵深；
+     ③ 四周暗角压边 —— 只加深边缘、聚焦中部，不产生任何亮斑；
+     全部为线性渐变，与金色主调、衬线标题、左侧栏版式同源。 */
   html{
-    background:
-      radial-gradient(115% 85% at 6% 2%,   rgba(200,178,107,.13) 0%, rgba(200,178,107,0) 46%),
-      radial-gradient(95% 90% at 97% 100%, rgba(122,150,172,.07) 0%, rgba(122,150,172,0) 52%),
-      linear-gradient(158deg, #120e0a 0%, #0a0907 46%, #060504 100%);
+    background-color:#0b0a08;
+    background-image:
+      linear-gradient(180deg, rgba(255,243,220,.055) 0%, rgba(255,243,220,0) 26%),
+      linear-gradient(115deg, rgba(200,178,107,.035) 0%, rgba(122,150,172,.02) 100%),
+      linear-gradient(180deg, #16120e 0%, #100d0a 40%, #0a0908 74%, #070605 100%);
+    background-attachment:fixed;
   }
-  body::after{
+  /* 四周暗角：加深画面纵深，只压边缘、不产生亮斑 */
+  body::before{
     content:"";
-    position:fixed;
-    inset:0;
-    z-index:-1;
-    pointer-events:none;
-    opacity:.04;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-size:180px 180px;
-    mix-blend-mode:overlay;
+    position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background:radial-gradient(125% 125% at 50% 42%, rgba(0,0,0,0) 55%, rgba(0,0,0,.42) 100%);
   }
+  /* 彻底移除基础主题的噪点层：深色底上噪声会被提亮成一片小圆点 */
+  body::after{content:none;}
 
-  /* 各页背景高级化 */
+  /* 各页背景：统一的暖炭灰 + 方向性受光（线性渐变，无圆斑/无点阵） */
   .section,.about,.works,.section--photography,#interests,#honors,.contact{position:relative;isolation:isolate;overflow:hidden;}
-  .about{background:radial-gradient(circle at 80% 18%,rgba(200,178,107,.10),transparent 32%),linear-gradient(120deg,#1b1711,#0b0a08);}
-  .works{background:radial-gradient(circle at 82% 14%,rgba(200,178,107,.12),transparent 26%),linear-gradient(135deg,#16110c,#080807 64%,#221a10);}
-  .section--photography{background:linear-gradient(90deg,rgba(8,8,7,.92),rgba(8,8,7,.6)),url('assets/photo/DSC04238.jpg') center/cover fixed;}
-  #interests{background:radial-gradient(circle at 18% 28%,rgba(200,178,107,.10),transparent 26%),#13110d;}
-  #honors{background:linear-gradient(125deg,#0d0c0a,#292015);}
-  .contact{background:radial-gradient(circle at 78% 22%,rgba(139,108,55,.16),transparent 26%),linear-gradient(135deg,#241c12,#090807);}
+  .about{background:
+    linear-gradient(125deg, rgba(255,244,222,.05) 0%, rgba(255,244,222,0) 42%),
+    linear-gradient(155deg, #17130e 0%, #0c0a08 100%);}
+  .works{background:
+    linear-gradient(150deg, rgba(255,244,222,.045) 0%, rgba(255,244,222,0) 45%),
+    linear-gradient(150deg, #16120d 0%, #0a0908 58%, #120e09 100%);}
+  .section--photography{background:
+    linear-gradient(180deg, rgba(8,8,7,.86) 0%, rgba(8,8,7,.70) 100%),
+    url('assets/photo/DSC04238.jpg') center/cover fixed;}
+  #interests{background:
+    linear-gradient(160deg, rgba(255,244,222,.04) 0%, rgba(255,244,222,0) 45%),
+    linear-gradient(160deg, #14110d 0%, #0a0908 100%);}
+  #honors{background:
+    linear-gradient(148deg, rgba(255,244,222,.045) 0%, rgba(255,244,222,0) 42%),
+    linear-gradient(148deg, #13100b 0%, #0b0907 62%, #151009 100%);}
+  .contact{background:
+    linear-gradient(130deg, rgba(255,244,222,.05) 0%, rgba(255,244,222,0) 45%),
+    linear-gradient(155deg, #1a140d 0%, #090807 100%);}
   .work__hero{background:#14110c;border:1px solid var(--color-line);}
   .page-strip__item,.photo-item{background:#14110c;}
   /* 摄影作品：去掉圆角，用方角 */
@@ -103,7 +118,7 @@
   /* 高级自定义光标（金点 + 延迟外环 + 悬停标签 + 点击涟漪） */
   body{cursor:none;}
   #cur-dot,#cur-ring,#cur-glow{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);}
-  #cur-glow{width:130px;height:130px;border-radius:50%;z-index:9998;background:radial-gradient(circle,rgba(200,178,107,.12),transparent 62%);opacity:.55;mix-blend-mode:screen;transition:opacity .3s,width .3s,height .3s;}
+  #cur-glow{display:none;}
   #cur-dot{width:5px;height:5px;border-radius:50%;background:var(--color-accent);box-shadow:0 0 10px 1px rgba(200,178,107,.7),0 0 2px rgba(255,244,214,.9);}
   #cur-ring{width:26px;height:26px;border-radius:50%;border:1px solid rgba(200,178,107,.42);box-shadow:0 0 8px rgba(200,178,107,.18),inset 0 0 4px rgba(200,178,107,.1);transition:width .28s cubic-bezier(.2,.8,.2,1),height .28s cubic-bezier(.2,.8,.2,1),border-color .28s,background .28s,opacity .28s;display:flex;align-items:center;justify-content:center;}
   #cur-ring .cur-label{position:absolute;top:calc(100% + 7px);left:50%;transform:translateX(-50%);font-family:var(--font-mono);font-size:8px;letter-spacing:.2em;color:var(--color-accent);text-transform:uppercase;opacity:0;transition:opacity .25s;white-space:nowrap;}
