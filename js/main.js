@@ -360,22 +360,37 @@ document.addEventListener('DOMContentLoaded', () => {
   const hint = portrait.querySelector('.hero__portrait-hint');
   const photos = [
     'assets/photo/me/303153c2fe8ff5c9ba67d9c2846c5160.jpg',
-    'assets/photo/me/3206b30ed5acc90e0d8584e8724720c3.jpg',
-    'assets/photo/me/8267ebda74bb9f27f24f17806a591442.jpg',
     'assets/photo/me/c5bdd17582a30fa237b2d2c92995801f.jpg',
     'assets/photo/me/d19057a5a98253b09e41f8b1094ab435.jpg'
   ];
   const total = photos.length;
   let idx = 0;
+  let cur = 0;
   const pad = (n) => String(n).padStart(2, '0');
 
+  // 交叉溶解：切换前把「当前照片」铺到容器背景作底，新图再于其上淡入。
+  // 全过程始终有画面覆盖（旧图底 + 新图淡入），不会出现黑底中间值。
+  const setBackdrop = (src) => {
+    portrait.style.backgroundImage = 'url("' + src + '")';
+    portrait.style.backgroundSize = 'cover';
+    portrait.style.backgroundPosition = 'center';
+  };
+
   const swap = () => {
-    img.style.opacity = '0';
-    setTimeout(() => {
-      img.src = photos[idx];
-      img.style.opacity = '1';
-      if (hint) hint.textContent = pad(idx + 1) + ' / ' + pad(total);
-    }, 180);
+    const next = photos[idx];
+    setBackdrop(photos[cur]);
+    const pre = new Image();
+    pre.onload = pre.onerror = () => {
+      img.style.opacity = '0';
+      img.src = next;
+      cur = idx;
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => { img.style.opacity = '1'; });
+      });
+      if (hint) hint.textContent = pad(cur + 1) + ' / ' + pad(total);
+      setTimeout(() => setBackdrop(next), 700);
+    };
+    pre.src = next;
   };
 
   const advance = () => {
@@ -383,10 +398,15 @@ document.addEventListener('DOMContentLoaded', () => {
     swap();
   };
 
-  // 自动轮播：每 2 秒切换一张；悬停暂停，手动操作后重置计时
+  // 初始状态：首图入位，底图同步（避免 HTML 里的旧 src 与被删图冲突）
+  img.src = photos[0];
+  setBackdrop(photos[0]);
+  if (hint) hint.textContent = pad(1) + ' / ' + pad(total);
+
+  // 自动轮播：每 3 秒切换一张；悬停暂停，手动操作后重置计时
   let timer = null;
   const stopTimer = () => { if (timer) { clearInterval(timer); timer = null; } };
-  const startTimer = () => { stopTimer(); timer = setInterval(advance, 2000); };
+  const startTimer = () => { stopTimer(); timer = setInterval(advance, 3000); };
   startTimer();
   portrait.addEventListener('mouseenter', stopTimer);
   portrait.addEventListener('mouseleave', startTimer);

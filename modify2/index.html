@@ -65,7 +65,7 @@
     background-image:
       linear-gradient(180deg, rgba(255,243,220,.055) 0%, rgba(255,243,220,0) 26%),
       linear-gradient(115deg, rgba(200,178,107,.035) 0%, rgba(122,150,172,.02) 100%),
-      linear-gradient(180deg, #16120e 0%, #100d0a 40%, #0a0908 74%, #070605 100%);
+      linear-gradient(180deg, #171310 0%, #12100c 40%, #100e0b 74%, #13110d 100%);
     background-attachment:fixed;
   }
   /* 四周暗角：加深画面纵深，只压边缘、不产生亮斑 */
@@ -86,8 +86,10 @@
   #about{background:
     linear-gradient(180deg, rgba(12,10,8,.88) 0%, rgba(12,10,8,.80) 100%),
     url('assets/photo/DSC04912.jpg') center/cover fixed;}
-  /* 作品集容器：中性暗底过渡（各工作分区自配照片） */
-  .works{background:linear-gradient(160deg, #14100c 0%, #0a0908 100%);}
+  /* 作品集容器：分区之间与标题区也不能是纯黑，铺一张暖金建筑照做底（极淡） */
+  .works{background:
+    linear-gradient(180deg, rgba(10,9,8,.90) 0%, rgba(10,9,8,.86) 100%),
+    url('assets/photo/微信图片_20260805194602_29_5.jpg') center/cover fixed;}
   /* 工作分区 3-6：各自一张实拍 + fixed 视差，取景位各异、色调递进 */
   #stage-anker{background:
     linear-gradient(180deg, rgba(7,7,6,.80) 0%, rgba(7,7,6,.88) 100%),
@@ -101,10 +103,19 @@
   #stage-project{background:
     linear-gradient(180deg, rgba(7,7,6,.84) 0%, rgba(7,7,6,.90) 100%),
     url('assets/photo/DSC04238.jpg') center 55%/cover fixed;}
-  /* 摄影区：网格本身即照片墙，背景回归极简暗渐变（避免与网格内展示图重复） */
+  /* 摄影区：网格本身即照片墙，背景不再用照片（避免与网格内展示图重复）。
+     改为「暖炭灰底 + 精致毛玻璃衬板」：暖调不纯黑，玻璃衬板把照片墙托起来。 */
   .section--photography{background:
-    linear-gradient(125deg, rgba(255,244,222,.04) 0%, rgba(255,244,222,0) 42%),
-    linear-gradient(160deg, #15110d 0%, #0a0908 100%);}
+    linear-gradient(125deg, rgba(255,244,222,.05) 0%, rgba(255,244,222,0) 42%),
+    linear-gradient(160deg, #1b1712 0%, #12100c 100%);}
+  .photo-grid{
+    background:rgba(255,250,240,.04);
+    -webkit-backdrop-filter:blur(14px) saturate(1.1);
+    backdrop-filter:blur(14px) saturate(1.1);
+    border:1px solid rgba(255,255,255,.09);
+    padding:18px;
+    box-shadow:0 24px 60px rgba(0,0,0,.32);
+  }
   #interests{background:
     linear-gradient(180deg, rgba(8,9,7,.85) 0%, rgba(8,9,7,.76) 100%),
     url('assets/photo/photo_doc_2.jpg') center/cover fixed;}
@@ -113,8 +124,8 @@
     url('assets/photo/photo_doc_1.jpg') center/cover fixed;}
   /* 联系区：文字密集，回归纯渐变底（照片让给其他区块），保持暖调不死黑 */
   .contact{background:
-    linear-gradient(130deg, rgba(255,244,222,.05) 0%, rgba(255,244,222,0) 45%),
-    linear-gradient(155deg, #1a140d 0%, #090807 100%);}
+    linear-gradient(130deg, rgba(255,244,222,.06) 0%, rgba(255,244,222,0) 45%),
+    linear-gradient(155deg, #1e1710 0%, #13110d 100%);}
 
   /* ===== 全宽铺满：除左侧导航栏外，所有区块背景铺满视口宽（消灭黑边） =====
      ① main 直属区块解除 max-width（内容仍限宽保持版式）；
