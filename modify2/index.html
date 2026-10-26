@@ -63,15 +63,18 @@
   @keyframes drift-b{50%{transform:translate(-7vw,-8vh) scale(1.1)}}
 
   /* 各页背景高级化 */
-  .section,.about,.works,.photography,.interests,.honors,.contact{position:relative;isolation:isolate;overflow:hidden;}
+  .section,.about,.works,.section--photography,#interests,.honors,.contact{position:relative;isolation:isolate;overflow:hidden;}
   .about{background:radial-gradient(circle at 80% 18%,rgba(200,178,107,.10),transparent 32%),linear-gradient(120deg,#1b1711,#0b0a08);}
   .works{background:radial-gradient(circle at 82% 14%,rgba(200,178,107,.12),transparent 26%),linear-gradient(135deg,#16110c,#080807 64%,#221a10);}
-  .photography{background:linear-gradient(90deg,rgba(8,8,7,.92),rgba(8,8,7,.6)),url('assets/photo/DSC04238.jpg') center/cover fixed;}
-  .interests{background:radial-gradient(circle at 18% 28%,rgba(200,178,107,.10),transparent 26%),#13110d;}
+  .section--photography{background:linear-gradient(90deg,rgba(8,8,7,.92),rgba(8,8,7,.6)),url('assets/photo/DSC04238.jpg') center/cover fixed;}
+  #interests{background:radial-gradient(circle at 18% 28%,rgba(200,178,107,.10),transparent 26%),#13110d;}
   .honors{background:linear-gradient(125deg,#0d0c0a,#292015);}
   .contact{background:radial-gradient(circle at 78% 22%,rgba(139,108,55,.16),transparent 26%),linear-gradient(135deg,#241c12,#090807);}
   .work__hero{background:#14110c;border:1px solid var(--color-line);}
   .page-strip__item,.photo-item{background:#14110c;}
+  /* 摄影作品：去掉圆角，用方角 */
+  .photo-item{border-radius:0;}
+  .photo-item::after{border-radius:0;}
 
   /* HERO：整图背景 + 电影式入场 */
   .hero{position:relative;overflow:hidden;isolation:isolate;}
