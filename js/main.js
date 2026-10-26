@@ -383,11 +383,20 @@ document.addEventListener('DOMContentLoaded', () => {
     swap();
   };
 
-  portrait.addEventListener('click', advance);
+  // 自动轮播：每 2 秒切换一张；悬停暂停，手动操作后重置计时
+  let timer = null;
+  const stopTimer = () => { if (timer) { clearInterval(timer); timer = null; } };
+  const startTimer = () => { stopTimer(); timer = setInterval(advance, 2000); };
+  startTimer();
+  portrait.addEventListener('mouseenter', stopTimer);
+  portrait.addEventListener('mouseleave', startTimer);
+
+  const manual = () => { advance(); startTimer(); };
+  portrait.addEventListener('click', manual);
   portrait.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
-      advance();
+      manual();
     }
   });
 });

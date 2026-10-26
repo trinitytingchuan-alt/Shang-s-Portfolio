@@ -77,6 +77,33 @@ body {
   letter-spacing: 0.005em;
 }
 
+/* ===== 高级感背景：柔和氛围光 + 极淡颗粒（替代廉价粒子感） =====
+   仅作用于内容区（.main / .section 透明，侧栏与联系区各自保持底色） */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(58% 48% at 10% 6%,  rgba(214, 196, 168, 0.32) 0%, transparent 60%),
+    radial-gradient(52% 44% at 94% 12%, rgba(232, 214, 188, 0.28) 0%, transparent 62%),
+    radial-gradient(60% 54% at 88% 92%, rgba(206, 190, 170, 0.24) 0%, transparent 60%),
+    radial-gradient(48% 40% at 14% 90%, rgba(220, 205, 182, 0.22) 0%, transparent 62%),
+    linear-gradient(180deg, #FBF9F6 0%, #F5F1EA 100%);
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+}
+
 ::selection {
   background: var(--color-highlight);
   color: var(--color-fg);
@@ -475,8 +502,10 @@ button {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  filter: brightness(1.09) contrast(1.04) saturate(1.03);
   transition: transform var(--duration-slow) var(--ease-out),
-              opacity var(--duration-base) var(--ease-out);
+              opacity var(--duration-base) var(--ease-out),
+              filter var(--duration-base) var(--ease-out);
 }
 
 .hero__portrait:hover {
@@ -1415,7 +1444,7 @@ a.contact__item:hover {
 .contact__label {
   display: block;
   font-size: 11px;
-  color: rgba(250, 248, 245, 0.5);
+  color: rgba(250, 248, 245, 0.82);
   letter-spacing: 0.16em;
   text-transform: uppercase;
   margin-bottom: 12px;
@@ -1426,7 +1455,7 @@ a.contact__item:hover {
   font-family: var(--font-display);
   font-size: 22px;
   font-weight: 400;
-  color: var(--color-bg);
+  color: #ffffff;
   display: block;
   word-break: break-word;
   line-height: 1.4;
@@ -1447,7 +1476,7 @@ a.contact__item:hover .contact__value {
   flex-wrap: wrap;
   gap: 16px;
   font-size: 12px;
-  color: rgba(250, 248, 245, 0.55);
+  color: rgba(250, 248, 245, 0.82);
   letter-spacing: 0.04em;
 }
 
