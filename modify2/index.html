@@ -55,7 +55,7 @@
   .about__scores{color:#cfc8ba;opacity:.85;}
 
   /* 全局背景动效层 */
-  #bg-grain{position:fixed;inset:0;z-index:0;width:100%;height:100%;pointer-events:none;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:160px 160px;mix-blend-mode:overlay;}
+
   .orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(64px);opacity:.5;}
   .orb--a{top:-12vh;left:-8vw;width:46vw;height:46vw;background:radial-gradient(circle,rgba(200,178,107,.22),transparent 65%);animation:drift-a 26s ease-in-out infinite;}
   .orb--b{bottom:-18vh;right:-10vw;width:42vw;height:42vw;background:radial-gradient(circle,rgba(120,150,170,.10),transparent 65%);animation:drift-b 32s ease-in-out infinite;}
@@ -75,8 +75,8 @@
 
   /* HERO：整图背景 + 电影式入场 */
   .hero{position:relative;overflow:hidden;isolation:isolate;}
-  .hero:before{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,rgba(7,7,6,.04),rgba(7,7,6,.22)),url('assets/photo/DJI_0026-编辑.jpg') center/cover;filter:saturate(1.06) contrast(1.04) brightness(1.25);transform:scale(1.05);animation:hero-cover 1.9s cubic-bezier(.76,0,.24,1) both,hero-breathe 16s ease-in-out 2s infinite alternate;}
-  .hero:after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(4,5,4,.20) 0%,rgba(4,5,4,.04) 55%,rgba(4,5,4,.15) 100%),linear-gradient(180deg,rgba(4,5,4,.01),rgba(4,5,4,.32));}
+  .hero:before{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,rgba(7,7,6,.05),rgba(7,7,6,.45)),url('assets/photo/DJI_0026-编辑.jpg') center/cover;filter:saturate(.95) contrast(1.02);transform:scale(1.05);animation:hero-cover 1.9s cubic-bezier(.76,0,.24,1) both,hero-breathe 16s ease-in-out 2s infinite alternate;}
+  .hero:after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(4,5,4,.45) 0%,rgba(4,5,4,.08) 55%,rgba(4,5,4,.30) 100%),linear-gradient(180deg,rgba(4,5,4,.02),rgba(4,5,4,.55));}
   .hero>*{position:relative;z-index:2;}
   .hero__title{text-shadow:0 2px 30px rgba(0,0,0,.55);}
   .hero__eyebrow,.hero__title,.hero__lead,.hero__meta,.hero__portrait{opacity:0;animation:fade-up .9s var(--ease-out) both;}
@@ -122,16 +122,21 @@
   /* 按钮类发光（如有 .btn / .hero__cta） */
   .btn,.hero__cta{border:1px solid var(--color-line);transition:border-color .3s,box-shadow .3s,color .3s;}
   .btn:hover,.hero__cta:hover{border-color:var(--color-accent);box-shadow:0 0 18px rgba(200,178,107,.25);color:var(--color-accent-soft);}
-  /* 联系区：暗底上强制清晰白色文字（覆盖黑金主题把 --color-bg 设为深色导致的暗字） */
-  .contact__label{color:rgba(244,241,234,.66)}
+  /* 黑金主题：base 用 var(--color-bg) 作文字色，本主题下 --color-bg 为深色，导致黑底上文字隐形 —— 统一改为白色系 */
+  .contact{color:#f5f1ea}
+  .contact .section__title{color:#f5f1ea}
+  .contact__label{color:rgba(244,241,234,.7)}
   .contact__value{color:#f5f1ea}
-  .contact__signoff{color:rgba(244,241,234,.74)}
+  .contact__signoff{color:rgba(244,241,234,.78)}
+  .page-strip__num{color:#f5f1ea}
+  .modal__close{color:#f5f1ea}
+  .modal__nav{color:#f5f1ea}
   </style>
 </head>
 <body>
 
   <!-- 背景动效层 -->
-  <div id="bg-grain"></div>
+
   <div class="orb orb--a"></div>
   <div class="orb orb--b"></div>
   <!-- 高级光标 -->
