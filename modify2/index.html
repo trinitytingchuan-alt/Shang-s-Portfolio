@@ -77,26 +77,29 @@
   /* 彻底移除基础主题的噪点层：深色底上噪声会被提亮成一片小圆点 */
   body::after{content:none;}
 
-  /* 各页背景：统一的暖炭灰 + 方向性受光（线性渐变，无圆斑/无点阵） */
-  .section,.about,.works,.section--photography,#interests,#honors,.contact{position:relative;isolation:isolate;overflow:hidden;}
-  .about{background:
-    linear-gradient(125deg, rgba(255,244,222,.05) 0%, rgba(255,244,222,0) 42%),
-    linear-gradient(155deg, #17130e 0%, #0c0a08 100%);}
+  /* ===== 各区块背景：以实拍作品按「色调 ↔ 内容情绪」策展式铺底 =====
+     每区一张自己拍的照片作底，压一层深色渐变保证文字可读、只透出色调与纹理：
+     简介=林芝雪山(暖棕沉稳) / 作品=火山口(深青专业) / 摄影=冰川航拍(自证)
+     爱好=果子沟(生机绿) / 荣誉=大红山(暖赭) / 联系=然乌湖(开阔蓝) */
+  .section,.works,.section--photography,#about,#interests,#honors,.contact{position:relative;isolation:isolate;overflow:hidden;}
+  #about{background:
+    linear-gradient(180deg, rgba(12,10,8,.88) 0%, rgba(12,10,8,.80) 100%),
+    url('assets/photo/DSC04912.jpg') center/cover fixed;}
   .works{background:
-    linear-gradient(150deg, rgba(255,244,222,.045) 0%, rgba(255,244,222,0) 45%),
-    linear-gradient(150deg, #16120d 0%, #0a0908 58%, #120e09 100%);}
+    linear-gradient(180deg, rgba(7,7,6,.62) 0%, rgba(7,7,6,.78) 100%),
+    url('assets/photo/photo_doc_3.jpg') center/cover fixed;}
   .section--photography{background:
-    linear-gradient(180deg, rgba(8,8,7,.86) 0%, rgba(8,8,7,.70) 100%),
+    linear-gradient(180deg, rgba(8,8,7,.84) 0%, rgba(8,8,7,.70) 100%),
     url('assets/photo/DSC04238.jpg') center/cover fixed;}
   #interests{background:
-    linear-gradient(160deg, rgba(255,244,222,.04) 0%, rgba(255,244,222,0) 45%),
-    linear-gradient(160deg, #14110d 0%, #0a0908 100%);}
+    linear-gradient(180deg, rgba(8,9,7,.85) 0%, rgba(8,9,7,.76) 100%),
+    url('assets/photo/photo_doc_2.jpg') center/cover fixed;}
   #honors{background:
-    linear-gradient(148deg, rgba(255,244,222,.045) 0%, rgba(255,244,222,0) 42%),
-    linear-gradient(148deg, #13100b 0%, #0b0907 62%, #151009 100%);}
+    linear-gradient(180deg, rgba(12,8,7,.87) 0%, rgba(12,8,7,.78) 100%),
+    url('assets/photo/photo_doc_1.jpg') center/cover fixed;}
   .contact{background:
-    linear-gradient(130deg, rgba(255,244,222,.05) 0%, rgba(255,244,222,0) 45%),
-    linear-gradient(155deg, #1a140d 0%, #090807 100%);}
+    linear-gradient(180deg, rgba(7,8,9,.84) 0%, rgba(8,9,10,.74) 100%),
+    url('assets/photo/DSC04718.jpg') center/cover fixed;}
   .work__hero{background:#14110c;border:1px solid var(--color-line);}
   .page-strip__item,.photo-item{background:#14110c;}
   /* 摄影作品：去掉圆角，用方角 */
