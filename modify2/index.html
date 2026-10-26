@@ -94,10 +94,10 @@
     url('assets/photo/微信图片_20260805194602_31_5.jpg') 30% center/cover fixed;}
   #stage-kuaishou{background:
     linear-gradient(180deg, rgba(8,8,6,.82) 0%, rgba(8,8,6,.90) 100%),
-    url('assets/photo/微信图片_20260805194602_24_5.jpg') 68% center/cover fixed;}
+    url('assets/photo/微信图片_20260805194602_22_5.jpg') 40% center/cover fixed;}
   #stage-bgy{background:
     linear-gradient(180deg, rgba(7,8,9,.84) 0%, rgba(7,8,9,.90) 100%),
-    url('assets/photo/DSC07551.jpg') center 35%/cover fixed;}
+    url('assets/photo/DSC04718.jpg') center 35%/cover fixed;}
   #stage-project{background:
     linear-gradient(180deg, rgba(7,7,6,.84) 0%, rgba(7,7,6,.90) 100%),
     url('assets/photo/DSC04238.jpg') center 55%/cover fixed;}
@@ -111,14 +111,37 @@
   #honors{background:
     linear-gradient(180deg, rgba(12,8,7,.87) 0%, rgba(12,8,7,.78) 100%),
     url('assets/photo/photo_doc_1.jpg') center/cover fixed;}
+  /* 联系区：文字密集，回归纯渐变底（照片让给其他区块），保持暖调不死黑 */
   .contact{background:
-    linear-gradient(180deg, rgba(7,8,9,.84) 0%, rgba(8,9,10,.74) 100%),
-    url('assets/photo/DSC04718.jpg') center/cover fixed;}
-  .work__hero{background:#14110c;border:1px solid var(--color-line);}
-  .page-strip__item,.photo-item{background:#14110c;}
+    linear-gradient(130deg, rgba(255,244,222,.05) 0%, rgba(255,244,222,0) 45%),
+    linear-gradient(155deg, #1a140d 0%, #090807 100%);}
+
+  /* ===== 全宽铺满：除左侧导航栏外，所有区块背景铺满视口宽（消灭黑边） =====
+     ① main 直属区块解除 max-width（内容仍限宽保持版式）；
+     ② 工作分区用负外边距抵消 works 的 88px 内边距，实现背景全出血。 */
+  .main > .hero,.main > .section,.main > .works,.main > .contact{max-width:none;}
+  .main > .hero > *,.main > .section > *,.main > .contact > *{max-width:var(--content-max);}
+  #stage-anker,#stage-kuaishou,#stage-bgy,#stage-project{
+    margin-left:calc(-1 * var(--content-pad));
+    margin-right:calc(-1 * var(--content-pad));
+    padding-left:var(--content-pad);
+    padding-right:var(--content-pad);
+  }
+  @media (max-width:900px){
+    #stage-anker,#stage-kuaishou,#stage-bgy,#stage-project{margin-left:-40px;margin-right:-40px;padding-left:40px;padding-right:40px;}
+  }
+  /* 预览卡片：偏实的毛玻璃（高不透明度+blur），与照片背景拉开层次、不抢主体风头 */
+  .work__hero,.page-strip__item,.photo-item{
+    background:rgba(26,22,17,.68);
+    -webkit-backdrop-filter:blur(18px) saturate(1.2);
+    backdrop-filter:blur(18px) saturate(1.2);
+    border:1px solid rgba(255,249,240,.14);
+  }
   /* 摄影作品：去掉圆角，用方角 */
   .photo-item{border-radius:0;}
   .photo-item::after{border-radius:0;}
+  /* 图片信息条/页码角标：同系毛玻璃 */
+  .photo-item__caption{background:rgba(22,18,14,.6);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);}
 
   /* HERO：整图背景 + 电影式入场 */
   .hero{position:relative;overflow:hidden;isolation:isolate;}
