@@ -1,0 +1,11 @@
+const s = require('fs').readFileSync('index.html','utf8');
+const so=(s.match(/<section\b/g)||[]).length, sc=(s.match(/<\/section>/g)||[]).length;
+console.log('section open='+so+' close='+sc+' '+(so===sc?'BALANCED':'MISMATCH'));
+console.log('id=about present='+/id="about"/.test(s));
+console.log('id=capability present='+/id="capability"/.test(s));
+console.log('about__scores refs='+(s.match(/about__scores/g)||[]).length);
+console.log('about__summary refs='+(s.match(/about__summary/g)||[]).length);
+console.log('about__rule refs='+(s.match(/about__rule/g)||[]).length);
+console.log('old about__grid present='+/about__grid/.test(s)+' (should be false)');
+console.log('grey #8b95a7 present='+/8b95a7/.test(s)+' (should be false)');
+console.log('summary text ok='+/产品商业化全链条能力：具备战略与投资规划/.test(s));

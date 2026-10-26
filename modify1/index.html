@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>尚文蜓 · 作品集 | Shang Wenting — Portfolio</title>
+<meta name="description" content="尚文蜓 · 产品经理 / 产品运营 · 产品设计 · 用户调研平台 · 数据驱动 · 作品集" />
+<meta name="author" content="Shang Wenting" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231a1816'/><text x='50' y='68' font-size='56' text-anchor='middle' fill='%23d97757' font-family='Georgia,serif'>蜓</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@300;400;500;600&family=Noto+Serif+SC:wght@400;500;600;700&family=Italiana&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@300;400;500;600&family=Noto+Serif+SC:wght@400;500;600;700&family=Italiana&display=swap" /></noscript>
+<style>
+  :root{
+    --paper:#f5f2ec;
+    --ink:#1a1816;
+    --ink-soft:#5b564f;
+    --line:rgba(26,24,22,.14);
+    --accent:#c0583c;
+    --accent-soft:#d97757;
+    --font-display:"Noto Serif SC","Cormorant Garamond",Georgia,serif;
+    --font-sans:"Noto Sans SC","Inter",-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+    --font-mono:"JetBrains Mono",ui-monospace,monospace;
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;background:#eef0f2;}
+  body{
+    margin:0;
+    font-family:var(--font-sans);
+    color:var(--ink);
+    background:rgba(245,242,236,.80);
+    line-height:1.75;
+    font-weight:400;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  /* ===== 极光背景（canvas，全屏固定，z-index 最底） ===== */
+  #aurora{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;}
+  .cw{position:relative;z-index:1;}
+
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+
+  /* ===== 顶部极简导航（仿 chuweimin） ===== */
+  .topnav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px clamp(20px,5vw,56px);
+    background:rgba(245,242,236,.55);
+    backdrop-filter:blur(14px) saturate(1.2);
+    -webkit-backdrop-filter:blur(14px) saturate(1.2);
+    border-bottom:1px solid var(--line);
+  }
+  .topnav__brand{font-family:var(--font-display);font-size:19px;font-weight:600;letter-spacing:.02em;display:flex;align-items:baseline;gap:10px;}
+  .topnav__brand small{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;color:var(--ink-soft);font-weight:400;text-transform:uppercase;}
+  .topnav__menu{display:flex;gap:0;align-items:center;font-size:13.5px;letter-spacing:.04em;}
+  .topnav__menu a{color:var(--ink-soft);padding:4px 0;transition:color .25s;position:relative;}
+  .topnav__menu a::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:1px;background:var(--accent);transition:width .3s;}
+  .topnav__menu a:hover,.topnav__menu a.is-active{color:var(--ink);}
+  .topnav__menu a.is-active::after{width:100%;}
+  .topnav__sep{color:var(--line);margin:0 14px;user-select:none;}
+  .topnav__toggle{display:none;background:none;border:none;cursor:pointer;color:var(--ink);padding:6px;}
+  @media(max-width:760px){
+    .topnav__menu{
+      position:fixed;top:62px;right:16px;left:16px;flex-direction:column;align-items:flex-start;gap:2px;
+      background:rgba(245,242,236,.96);backdrop-filter:blur(16px);border:1px solid var(--line);
+      border-radius:14px;padding:14px 18px;display:none;
+    }
+    .topnav__menu.is-open{display:flex;}
+    .topnav__sep{display:none;}
+    .topnav__menu a{padding:9px 0;width:100%;font-size:15px;}
+    .topnav__toggle{display:block;}
+  }
+
+  /* ===== 通用区块 ===== */
+  .block{max-width:var(--maxw);margin:0 auto;padding:clamp(64px,9vw,120px) clamp(20px,5vw,40px) 0;}
+  .block__head{display:flex;align-items:baseline;gap:18px;margin-bottom:34px;border-bottom:1px solid var(--line);padding-bottom:18px;}
+  .block__num{font-family:var(--font-mono);font-size:13px;color:var(--accent);letter-spacing:.1em;}
+  .block__title{font-family:var(--font-display);font-size:clamp(28px,4.4vw,42px);font-weight:600;margin:0;line-height:1.1;}
+  .block__en{font-family:var(--font-mono);font-size:12px;letter-spacing:.22em;color:var(--ink-soft);text-transform:uppercase;margin-left:auto;align-self:flex-end;}
+
+  /* ===== HERO ===== */
+  .hero{max-width:var(--maxw);margin:0 auto;padding:clamp(120px,16vh,180px) clamp(20px,5vw,40px) clamp(50px,7vw,90px);}
+  .hero__inner{display:grid;grid-template-columns:1.35fr .9fr;gap:clamp(32px,5vw,64px);align-items:center;}
+  .hero__eyebrow{font-family:var(--font-mono);font-size:12px;letter-spacing:.24em;color:var(--accent);text-transform:uppercase;margin-bottom:22px;display:flex;align-items:center;gap:10px;}
+  .hero__eyebrow::before{content:"";width:26px;height:1px;background:var(--accent);display:inline-block;}
+  .hero__title{font-family:var(--font-display);font-weight:600;font-size:clamp(46px,8vw,84px);line-height:.98;margin:0 0 8px;letter-spacing:-.01em;}
+  .hero__title em{display:block;font-style:normal;font-family:var(--font-mono);font-weight:400;font-size:clamp(15px,2vw,20px);letter-spacing:.28em;color:var(--ink-soft);margin-top:14px;text-transform:uppercase;}
+  .hero__lead{font-size:clamp(15px,1.5vw,17px);color:var(--ink-soft);max-width:46ch;margin:26px 0 28px;line-height:1.85;}
+  .hero__lead span{color:var(--accent);font-weight:500;}
+  .hero__lead strong{color:var(--ink);font-weight:600;}
+  .hero__meta{display:flex;flex-wrap:wrap;gap:10px 26px;margin-bottom:30px;font-size:13.5px;}
+  .hero__meta-item{display:flex;flex-direction:column;gap:2px;}
+  .hero__meta-label{font-family:var(--font-mono);font-size:10px;letter-spacing:.16em;color:var(--ink-soft);text-transform:uppercase;}
+  .hero__meta-value{font-weight:500;}
+  .hero__meta-value a{color:var(--accent);}
+  .hero__cta{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{font-family:var(--font-sans);font-size:14px;letter-spacing:.02em;padding:13px 26px;border-radius:999px;border:1px solid var(--ink);background:var(--ink);color:var(--paper);cursor:pointer;transition:.25s;font-weight:500;}
+  .btn:hover{background:var(--accent);border-color:var(--accent);}
+  .btn--ghost{background:transparent;color:var(--ink);}
+  .btn--ghost:hover{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .hero__portrait{position:relative;margin:0;aspect-ratio:3/4;border-radius:18px;overflow:hidden;cursor:pointer;box-shadow:0 24px 60px -28px rgba(26,24,22,.5);background:#ddd;}
+  .hero__portrait img{width:100%;height:100%;object-fit:cover;transition:opacity .35s;opacity:1;}
+  .hero__portrait-hint{position:absolute;right:12px;bottom:12px;font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;color:#fff;background:rgba(20,20,25,.45);backdrop-filter:blur(8px);padding:5px 11px;border-radius:999px;border:1px solid rgba(255,255,255,.3);}
+  @media(max-width:760px){.hero__inner{grid-template-columns:1fr;}.hero__portrait{max-width:320px;}}
+
+  /* ===== 简介 ===== */
+  .prose p{font-size:clamp(15px,1.5vw,16.5px);color:var(--ink-soft);margin:0 0 20px;max-width:62ch;}
+  .prose p strong{color:var(--ink);font-weight:600;}
+  .prose__scores{font-family:var(--font-mono);font-size:12.5px;line-height:2;color:var(--ink-soft);margin:18px 0 8px;padding:18px 20px;border-left:2px solid var(--accent);background:rgba(192,88,60,.05);border-radius:0 10px 10px 0;}
+
+  .cap__head{font-family:var(--font-display);font-size:20px;font-weight:600;margin:46px 0 22px;line-height:1.5;}
+  .caps{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;}
+  .cap{background:rgba(255,255,255,.55);padding:26px 24px;transition:background .3s;}
+  .cap:hover{background:rgba(255,255,255,.85);}
+  .cap__num{font-family:var(--font-mono);font-size:12px;color:var(--accent);letter-spacing:.1em;}
+  .cap__title{font-family:var(--font-display);font-size:19px;font-weight:600;margin:6px 0 12px;}
+  .cap__desc{font-size:13.5px;color:var(--ink-soft);line-height:1.8;margin:0 0 14px;}
+  .cap__tags{display:flex;flex-wrap:wrap;gap:6px;}
+  .cap__tag{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.04em;padding:3px 9px;border:1px solid var(--line);border-radius:999px;color:var(--ink-soft);}
+  @media(max-width:680px){.caps{grid-template-columns:1fr;}}
+
+  /* ===== 作品 · 系列 ===== */
+  .lede{font-size:14.5px;color:var(--ink-soft);max-width:64ch;margin:0 0 40px;line-height:1.85;}
+  .series{margin-bottom:clamp(54px,7vw,86px);}
+  .series__head{display:flex;align-items:flex-start;gap:18px;margin-bottom:22px;flex-wrap:wrap;}
+  .series__num{font-family:var(--font-mono);font-size:clamp(34px,5vw,56px);font-weight:400;color:rgba(26,24,22,.12);line-height:.8;letter-spacing:-.02em;}
+  .series__title{font-family:var(--font-display);font-size:clamp(22px,3vw,30px);font-weight:600;margin:0;}
+  .series__meta{font-size:12.5px;color:var(--ink-soft);font-family:var(--font-mono);letter-spacing:.04em;margin-top:4px;}
+  .series__stats{display:flex;gap:26px;margin-left:auto;}
+  .series__stat-num{font-family:var(--font-display);font-size:30px;font-weight:600;color:var(--accent);line-height:1;}
+  .series__stat-num span{font-size:16px;}
+  .series__stat-label{font-size:11px;color:var(--ink-soft);margin-top:4px;letter-spacing:.02em;}
+  .series__desc{font-size:14.5px;color:var(--ink-soft);max-width:64ch;margin:0 0 26px;line-height:1.85;}
+  @media(max-width:680px){.series__stats{margin-left:0;width:100%;}}
+
+  .work{border-top:1px solid var(--line);padding:30px 0;}
+  .work__tag{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;color:var(--accent);text-transform:uppercase;}
+  .work__title{font-family:var(--font-display);font-size:clamp(20px,2.6vw,26px);font-weight:600;margin:8px 0 10px;}
+  .work__sub{font-size:14px;color:var(--ink-soft);max-width:60ch;margin:0 0 18px;line-height:1.8;}
+  .work__sub-line2{display:block;font-size:12.5px;color:var(--ink-soft);opacity:.85;margin-top:4px;}
+  .work__media{position:relative;border-radius:14px;overflow:hidden;cursor:pointer;background:#e9e6e0;box-shadow:0 18px 44px -26px rgba(26,24,22,.45);}
+  .work__media img{width:100%;height:auto;display:block;transition:transform .5s,opacity .3s;}
+  .work__media:hover img{transform:scale(1.02);}
+  .work__zoom{position:absolute;left:12px;bottom:12px;display:flex;align-items:center;gap:6px;font-size:12px;color:#fff;background:rgba(20,20,25,.45);backdrop-filter:blur(8px);padding:7px 13px;border-radius:999px;border:1px solid rgba(255,255,255,.3);opacity:0;transform:translateY(6px);transition:.3s;}
+  .work__media:hover .work__zoom{opacity:1;transform:translateY(0);}
+
+  /* 多页缩略图条 */
+  .page-strip{margin-top:18px;}
+  .page-strip__label{font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;color:var(--ink-soft);margin-bottom:10px;}
+  .page-strip__grid{display:flex;gap:10px;overflow-x:auto;padding-bottom:8px;scrollbar-width:thin;}
+  .page-strip__item{position:relative;flex:0 0 auto;width:108px;aspect-ratio:4/3;border-radius:8px;overflow:hidden;cursor:pointer;background:#e9e6e0;border:1px solid var(--line);}
+  .page-strip__item img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
+  .page-strip__item:hover img{transform:scale(1.06);}
+  .page-strip__num{position:absolute;left:6px;bottom:6px;font-family:var(--font-mono);font-size:10px;color:#fff;background:rgba(20,20,25,.5);padding:2px 7px;border-radius:999px;}
+
+  /* ===== 摄影（瀑布流 + 毛玻璃信息条） ===== */
+  .photo-grid{column-count:3;column-gap:14px;}
+  @media(max-width:880px){.photo-grid{column-count:2;}}
+  @media(max-width:520px){.photo-grid{column-count:1;}}
+  .photo-item{position:relative;margin:0 0 14px;break-inside:avoid;border-radius:12px;overflow:hidden;cursor:pointer;background:#e3e0da;}
+  .photo-item img{width:100%;height:auto;display:block;transition:transform .5s;}
+  .photo-item:hover img{transform:scale(1.04);}
+  .photo-item__caption{
+    position:absolute;left:10px;right:10px;bottom:10px;
+    font-size:12.5px;color:#fff;letter-spacing:.02em;
+    background:rgba(20,20,25,.42);
+    backdrop-filter:blur(12px) saturate(1.3);
+    -webkit-backdrop-filter:blur(12px) saturate(1.3);
+    border:1px solid rgba(255,255,255,.32);
+    border-radius:10px;padding:8px 12px;
+  }
+
+  /* ===== 爱好 ===== */
+  .interests{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;}
+  .interest{background:rgba(255,255,255,.55);padding:26px 24px;}
+  .interest__name{font-family:var(--font-display);font-size:18px;font-weight:600;display:block;margin-bottom:8px;}
+  .interest__note{font-size:13px;color:var(--ink-soft);line-height:1.8;}
+  @media(max-width:680px){.interests{grid-template-columns:1fr;}}
+
+  /* ===== 荣誉 ===== */
+  .honors{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;}
+  .honor{background:rgba(255,255,255,.55);padding:26px 24px;transition:background .3s;}
+  .honor:hover{background:rgba(255,255,255,.85);}
+  .honor__level{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;color:var(--accent);}
+  .honor__title{font-family:var(--font-display);font-size:18px;font-weight:600;margin:6px 0 8px;}
+  .honor__date{font-family:var(--font-mono);font-size:11px;color:var(--ink-soft);}
+  .honor__desc{font-size:13px;color:var(--ink-soft);line-height:1.8;margin:8px 0 0;}
+  @media(max-width:680px){.honors{grid-template-columns:1fr;}}
+
+  /* ===== 联系（深色收尾） ===== */
+  .contact{max-width:var(--maxw);margin:clamp(70px,9vw,120px) auto 0;padding:clamp(56px,8vw,90px) clamp(20px,5vw,40px);background:var(--ink);color:var(--paper);border-radius:22px 22px 0 0;}
+  .contact .block__title{color:var(--paper);}
+  .contact .block__en{color:rgba(245,242,236,.5);}
+  .contact .block__head{border-color:rgba(245,242,236,.16);}
+  .contact__lede{font-size:14.5px;color:rgba(245,242,236,.7);max-width:54ch;margin:0 0 34px;}
+  .contact__grid{display:flex;flex-wrap:wrap;gap:14px;}
+  .contact__item{display:flex;flex-direction:column;gap:4px;padding:18px 24px;border:1px solid rgba(245,242,236,.2);border-radius:12px;min-width:200px;transition:.25s;}
+  .contact__item:hover{border-color:var(--accent-soft);background:rgba(217,119,87,.12);}
+  .contact__label{font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,242,236,.5);}
+  .contact__value{font-size:15px;font-weight:500;color:var(--paper);}
+  .contact__signoff{margin-top:36px;font-family:var(--font-mono);font-size:11.5px;letter-spacing:.06em;color:rgba(245,242,236,.5);}
+
+  /* ===== 滚动渐显 ===== */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);}
+  .reveal.is-visible{opacity:1;transform:none;}
+  .reveal-delay-1{transition-delay:.08s;}
+  .reveal-delay-2{transition-delay:.16s;}
+  .reveal-delay-3{transition-delay:.24s;}
+  .reveal-delay-4{transition-delay:.32s;}
+  .reveal-delay-5{transition-delay:.40s;}
+
+  /* ===== 灯箱 ===== */
+  .modal{position:fixed;inset:0;z-index:100;display:none;background:rgba(16,15,14,.94);backdrop-filter:blur(6px);}
+  .modal.is-open{display:flex;flex-direction:column;}
+  .modal__topbar{position:absolute;top:0;left:0;right:0;z-index:3;display:flex;align-items:center;gap:16px;padding:16px 22px;color:#f5f2ec;}
+  .modal__counter{font-family:var(--font-mono);font-size:12px;letter-spacing:.1em;color:rgba(245,242,236,.7);}
+  .modal__caption{font-size:13px;color:rgba(245,242,236,.85);}
+  .modal__close{margin-left:auto;background:none;border:none;color:#f5f2ec;font-size:30px;line-height:1;cursor:pointer;padding:0 6px;}
+  .modal__stage{flex:1;display:flex;align-items:center;justify-content:center;padding:70px 64px;cursor:zoom-in;overflow:auto;}
+  .modal__stage img{max-width:92%;max-height:84vh;object-fit:contain;border-radius:6px;box-shadow:0 30px 80px -20px rgba(0,0,0,.6);transition:transform .25s;}
+  .modal__stage.is-zoomed{cursor:zoom-out;}
+  .modal__stage.is-zoomed img{transform:scale(2);}
+  .modal__stage--preview-wide img{max-width:96%;}
+  .modal__nav{position:absolute;top:50%;transform:translateY(-50%);z-index:3;background:rgba(245,242,236,.12);border:1px solid rgba(245,242,236,.25);color:#f5f2ec;border-radius:50%;width:46px;height:46px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.25s;}
+  .modal__nav:hover{background:rgba(245,242,236,.25);}
+  .modal__nav--prev{left:18px;}
+  .modal__nav--next{right:18px;}
+  .modal__hint{position:absolute;bottom:14px;left:0;right:0;display:flex;justify-content:center;gap:22px;color:rgba(245,242,236,.55);font-size:11.5px;font-family:var(--font-mono);}
+  .modal__hint kbd{background:rgba(245,242,236,.14);border:1px solid rgba(245,242,236,.22);border-radius:5px;padding:1px 7px;font-family:var(--font-mono);}
+</style>
+</head>
+<body>
+
+<canvas id="aurora"></canvas>
+
+<!-- ===================== 顶部导航 ===================== -->
+<header class="topnav">
+  <a class="topnav__brand" href="#hero">尚文蜓<small>Shang Wenting</small></a>
+  <button class="topnav__toggle" aria-label="菜单">
+    <svg width="22" height="16" viewBox="0 0 22 16" fill="none"><path d="M0 1h22M0 8h22M0 15h14" stroke="currentColor" stroke-width="1.6"/></svg>
+  </button>
+  <nav class="topnav__menu" id="topMenu">
+    <a href="#about" data-target="about">关于</a><span class="topnav__sep">·</span>
+    <a href="#works" data-target="works">作品</a><span class="topnav__sep">·</span>
+    <a href="#photography" data-target="photography">摄影</a><span class="topnav__sep">·</span>
+    <a href="#honors" data-target="honors">荣誉</a><span class="topnav__sep">·</span>
+    <a href="#contact" data-target="contact">联系</a>
+  </nav>
+</header>
+
+<main class="cw">
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" id="hero">
+    <div class="hero__inner">
+      <div class="hero__text">
+        <div class="hero__eyebrow reveal">Business Strategy · 产品设计 · 数据驱动</div>
+        <h1 class="hero__title reveal">尚文蜓<em>Shang Wenting</em></h1>
+        <p class="hero__lead reveal">作品集记录我在<span>快手</span>、<span>安克创新</span>等产品与运营实践，记录从需求拆解、产品设计及运营迭代全流程 —— 核心能力是围绕用户诉求与业务目标，依托数据分析驱动<strong>需求拆解、竞品分析、用户研究、产品设计、运营策略</strong>等。</p>
+        <div class="hero__meta reveal">
+          <div class="hero__meta-item"><span class="hero__meta-label">电话</span><span class="hero__meta-value">13249086026</span></div>
+          <div class="hero__meta-item"><span class="hero__meta-label">邮箱</span><span class="hero__meta-value">trinity_ting@163.com</span></div>
+          <div class="hero__meta-item"><span class="hero__meta-label">GitHub</span><span class="hero__meta-value"><a href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">@trinitytingchuan-alt →</a></span></div>
+          <div class="hero__meta-item"><span class="hero__meta-label">本硕211</span><span class="hero__meta-value">暨南大学 · 辽宁大学</span></div>
+        </div>
+        <div class="hero__cta reveal">
+          <a class="btn" href="#works">进入作品 →</a>
+          <a class="btn btn--ghost" href="#about">了解我</a>
+        </div>
+      </div>
+      <figure class="hero__portrait reveal" id="heroPortrait" role="button" tabindex="0" aria-label="点击切换个人照片">
+        <img src="../assets/photo/me/303153c2fe8ff5c9ba67d9c2846c5160.jpg" alt="镜头外的我" />
+        <span class="hero__portrait-hint" id="heroPortraitHint">01 / 05</span>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===================== 关于 · 核心能力 ===================== -->
+  <section class="block" id="about">
+    <header class="block__head reveal">
+      <span class="block__num">01</span>
+      <h2 class="block__title">简介 · 核心能力</h2>
+      <span class="block__en">Profile &amp; Capability</span>
+    </header>
+
+    <div class="prose reveal">
+      <p>我是尚文蜓，保研暨南大学金融科技硕士、辽宁大学金融学本科双一流专业。中共党员，连续两年获国家励志奖学金，获全国大学生数学建模竞赛省一等奖。</p>
+      <p><strong>产品商业化全链条能力：</strong>具备战略与投资规划、产品设计、运营增长经验；基于全局视角穿透各业务逻辑，进行需求拆解、用户研究、竞品对标，完成财务测算与产品设计，输出运营方案，并以业务洞察、用户反馈、数据分析驱动产品与策略迭代。</p>
+      <p><strong>电子产品热爱：</strong>持有影像设备(微单/无人机/运动相机/Pocket等)40余种电子产品，喜欢研究底层架构与逻辑，掌握整机软硬件核心规格，持续追踪技术创新与产品演进，能够从技术角度及用户需求出发理解对比产品体验。</p>
+    </div>
+
+    <div class="prose__scores reveal">
+      硕士阶段核心课程：机器学习 97、Python 93、数据挖掘 92、区块链 94、财务报表分析 93。<br>
+      本科高数上下均满分，四门数学均分95+。主修计量经济学 100、概率论 94、宏观经济学 97、微观经济学 96、会计学 92。
+    </div>
+
+    <h3 class="cap__head reveal">核心能力 · 以下四项能力贯穿过去所有工作 —— 用综合能力，支撑产品设计与运营优化。</h3>
+    <div class="caps" id="capability">
+      <div class="cap reveal">
+        <span class="cap__num">i</span>
+        <h3 class="cap__title">功能定义 &amp; 逻辑设计</h3>
+        <p class="cap__desc">独立完成从用户需求洞察到功能设计落地的全链路闭环：业务场景拆解、用户路径梳理、功能方案输出、原型设计、PRD撰写。让功能有用户价值、可被理解、可被开发、可被验证。</p>
+        <div class="cap__tags"><span class="cap__tag">需求分析</span><span class="cap__tag">功能设计</span><span class="cap__tag">原型设计</span><span class="cap__tag">PRD撰写</span><span class="cap__tag">价值落地</span></div>
+      </div>
+      <div class="cap reveal reveal-delay-1">
+        <span class="cap__num">ii</span>
+        <h3 class="cap__title">数据分析 &amp; 策略调整</h3>
+        <p class="cap__desc">SQL取数分析、Tableau看板搭建；用ROI / 转化率 / 漏斗等指标推动产品迭代。完成数据监控 → 策略调整。</p>
+        <div class="cap__tags"><span class="cap__tag">Python</span><span class="cap__tag">SQL</span><span class="cap__tag">Tableau</span><span class="cap__tag">Excel</span><span class="cap__tag">数据分析</span></div>
+      </div>
+      <div class="cap reveal reveal-delay-2">
+        <span class="cap__num">iii</span>
+        <h3 class="cap__title">行业洞察 &amp; 商业分析</h3>
+        <p class="cap__desc">深度拆解行业底层逻辑，贯通市场‑竞品‑用户‑产品全链条挖掘机会点；完成需求研判、市场进入策略与商业化方案，输出可落地的分析与策略文档。</p>
+        <div class="cap__tags"><span class="cap__tag">行业研究</span><span class="cap__tag">财务测算</span><span class="cap__tag">竞品分析</span><span class="cap__tag">用户需求研判</span><span class="cap__tag">机会识别</span></div>
+      </div>
+      <div class="cap reveal reveal-delay-3">
+        <span class="cap__num">iv</span>
+        <h3 class="cap__title">AI 工程化实践</h3>
+        <p class="cap__desc">主动探索提高工作效率，开发竞品分析、策划报告生成等Agent，基于Claude Code、Codex等AI工具，将业务拆解为标准化工作流，多Agent协作完成需求拆解、信息采集、分析推理、报告产出等全链路执行，并设计门禁机制、固化基线、自行回测迭代，保障输出成果质量标准化统一；单份报告节省人工整理工作时长5小时。</p>
+        <div class="cap__tags"><span class="cap__tag">AI Agent</span><span class="cap__tag">QA质量阀门</span><span class="cap__tag">Agent team</span><span class="cap__tag">前后端</span><span class="cap__tag">Harness</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 作品集 ===================== -->
+  <section class="block" id="works">
+    <header class="block__head reveal">
+      <span class="block__num">02</span>
+      <h2 class="block__title">作品集</h2>
+      <span class="block__en">Works</span>
+    </header>
+    <p class="lede reveal">按「Anker 产品设计 → 快手广告投放 → 碧桂园投资研策 → 独立项目」组织。点击任意设计图可全屏查看，多页文档通过左右箭头翻页；空格或点击图片可放大至 200% 查看标注细节。</p>
+
+    <!-- Stage: Anker -->
+    <div class="series" id="stage-anker">
+      <header class="series__head reveal">
+        <span class="series__num">04</span>
+        <div>
+          <h3 class="series__title">Anker 产品设计</h3>
+          <div class="series__meta">用户测试平台 XTest · 2024.10 — 2025.3</div>
+        </div>
+        <div class="series__stats">
+          <div class="series__stat"><div class="series__stat-num">150<span>+</span></div><div class="series__stat-label">需求 / Bug</div></div>
+          <div class="series__stat"><div class="series__stat-num">37<span>%</span></div><div class="series__stat-label">测试效率提升</div></div>
+          <div class="series__stat"><div class="series__stat-num">10<span>×</span></div><div class="series__stat-label">报告产出提速</div></div>
+        </div>
+      </header>
+      <p class="series__desc reveal">针对各产线 β 测试标准不一、人工统计测试数据低效的痛点，搭建公司级用户测试平台，统一全产品线测试与调研规范，实现全流程自动化闭环。以下为独立定义的核心功能设计。</p>
+
+      <article class="work reveal" id="w-voc">
+        <div class="work__tag">Anker 产品设计 · 核心功能</div>
+        <h4 class="work__title">用户测试自动化报告</h4>
+        <p class="work__sub">独立牵头平台核心功能设计，完成功能逻辑与界面方案设计，AI自动化数据流转，实现用户反馈智能解析，为产品上市提供决策支撑，报告产出由数天缩至小时级</p>
+        <figure class="work__media" data-modal="../assets/pdf_hi/voc_p1.png" data-alt="VOC 自动化报告 · 页面 1" data-group="voc">
+          <img src="../assets/pdf_hi/voc_p1.png" alt="VOC 自动化报告" loading="lazy" />
+          <span class="work__zoom"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M8 11h6M11 8v6"/></svg>点击查看</span>
+        </figure>
+        <div class="page-strip">
+          <div class="page-strip__label">VOC 自动化报告 · 设计示意 · 4 页</div>
+          <div class="page-strip__grid">
+            <div class="page-strip__item" data-modal="../assets/pdf_hi/voc_p1.png" data-alt="VOC · 页面 1" data-group="voc"><img src="../assets/pdf_hi/voc_p1.png" alt="VOC p1" loading="lazy" /><span class="page-strip__num">1</span></div>
+            <div class="page-strip__item" data-modal="../assets/pdf_hi/voc_p2.png" data-alt="VOC · 页面 2" data-group="voc"><img src="../assets/pdf_hi/voc_p2.png" alt="VOC p2" loading="lazy" /><span class="page-strip__num">2</span></div>
+            <div class="page-strip__item" data-modal="../assets/pdf_hi/voc_p3.png" data-alt="VOC · 页面 3" data-group="voc"><img src="../assets/pdf_hi/voc_p3.png" alt="VOC p3" loading="lazy" /><span class="page-strip__num">3</span></div>
+            <div class="page-strip__item" data-modal="../assets/pdf_hi/voc_p4.png" data-alt="VOC · 页面 4" data-group="voc"><img src="../assets/pdf_hi/voc_p4.png" alt="VOC p4" loading="lazy" /><span class="page-strip__num">4</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="work reveal" id="w-xtest">
+        <div class="work__tag">Anker 产品设计 · 业务原型</div>
+        <h4 class="work__title">用户测试平台 · 功能设计</h4>
+        <p class="work__sub">统一全产品线β测试与用户调研规范，实现数据与流程自动化闭环<span class="work__sub-line2">新功能设计与全流程优化 · 招募 → 筛选 → 协议 → 寄件 → 任务 → 数据分析 → 报告产出</span></p>
+        <figure class="work__media" data-modal="../assets/pdf_hi/ankerx_p1.png" data-alt="XTest 需求文档 · 页面 1" data-group="ankerx">
+          <img src="../assets/pdf_hi/ankerx_p1.png" alt="XTest 需求文档" loading="lazy" />
+          <span class="work__zoom"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M8 11h6M11 8v6"/></svg>点击查看</span>
+        </figure>
+        <div class="page-strip">
+          <div class="page-strip__label">原型文档 · 设计示意 · 4 页</div>
+          <div class="page-strip__grid">
+            <div class="page-strip__item" data-modal="../assets/pdf_hi/ankerx_p1.png" data-alt="XTest 需求 · 页面 1" data-group="ankerx"><img src="../assets/pdf_hi/ankerx_p1.png" alt="xtest p1" loading="lazy" /><span class="page-strip__num">1</span></div>
+            <div class="page-strip__item" data-modal="../assets/pdf_hi/ankerx_p2.png" data-alt="XTest 需求 · 页面 2" data-group="ankerx"><img src="../assets/pdf_hi/ankerx_p2.png" alt="xtest p2" loading="lazy" /><span class="page-strip__num">2</span></div>
+            <div class="page-strip__item" data-modal="../assets/docx_images/wk_018.png" data-alt="Axure · 设备寄送流程原型" data-group="axure"><img src="../assets/docx_images/wk_018.png" alt="axure 1" loading="lazy" /><span class="page-strip__num">3</span></div>
+            <div class="page-strip__item" data-modal="../assets/docx_images/wk_017.png" data-alt="Axure · 项目进展播报" data-group="axure"><img src="../assets/docx_images/wk_017.png" alt="axure 2" loading="lazy" /><span class="page-strip__num">4</span></div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Stage: 快手 -->
+    <div class="series" id="stage-kuaishou">
+      <header class="series__head reveal">
+        <span class="series__num">05</span>
+        <div>
+          <h3 class="series__title">快手广告投放</h3>
+          <div class="series__meta">C 端策略优化 · B 端客户复盘及运营优化</div>
+        </div>
+      </header>
+      <p class="series__desc reveal">短剧广告投放的数据分析与问题拆解，负责C端用户策略优化与B端客户运营优化，覆盖 A/B 实验验证与投放效率提升。</p>
+
+      <article class="work reveal" id="w-ks-c">
+        <div class="work__tag">快手广告 · C 端策略优化</div>
+        <h4 class="work__title">C 端补贴策略优化</h4>
+        <p class="work__sub">满减 / 阶梯补贴 / 频次档 / 模型专属价等策略 A/B 实验验证 · 目标「增 30 万成本、获得 60 万提升+」</p>
+        <figure class="work__media" data-modal="../assets/ks/ks_c_abtest_p1.png" data-alt="C 端策略优化" data-group="ks-c">
+          <img src="../assets/ks/ks_c_abtest_p1.png" alt="C 端策略优化" />
+          <span class="work__zoom"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M8 11h6M11 8v6"/></svg>点击查看</span>
+        </figure>
+      </article>
+
+      <article class="work reveal" id="w-ks-b">
+        <div class="work__tag">快手广告 · B端运营优化</div>
+        <h4 class="work__title">客户投放复盘及运营优化</h4>
+        <p class="work__sub">复盘投放数据与策略，产出运营优化方案     /     消耗规模 · 流量资源 · 投放策略 · 工具使用</p>
+        <figure class="work__media" data-modal="../assets/ks/ks_b_review_p1.png" data-alt="B 端客户复盘及运营优化" data-group="ks-b">
+          <img src="../assets/ks/ks_b_review_p1.png" alt="B 端客户复盘及运营优化" />
+          <span class="work__zoom"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M8 11h6M11 8v6"/></svg>点击查看</span>
+        </figure>
+        <div class="page-strip">
+          <div class="page-strip__label">客户投放复盘及运营优化 · 4 页</div>
+          <div class="page-strip__grid">
+            <div class="page-strip__item" data-modal="../assets/ks/ks_b_review_p1.png" data-alt="B 端复盘 · 页面 1" data-group="ks-b"><img src="../assets/ks/ks_b_review_p1.png" alt="B 端复盘 p1" /><span class="page-strip__num">1</span></div>
+            <div class="page-strip__item" data-modal="../assets/ks/ks_b_review_p2.png" data-alt="B 端复盘 · 页面 2" data-group="ks-b"><img src="../assets/ks/ks_b_review_p2.png" alt="B 端复盘 p2" /><span class="page-strip__num">2</span></div>
+            <div class="page-strip__item" data-modal="../assets/ks/ks_b_review_p3.png" data-alt="B 端复盘 · 页面 3" data-group="ks-b"><img src="../assets/ks/ks_b_review_p3.png" alt="B 端复盘 p3" /><span class="page-strip__num">3</span></div>
+            <div class="page-strip__item" data-modal="../assets/ks/ks_b_review_p4.png" data-alt="B 端复盘 · 页面 4" data-group="ks-b"><img src="../assets/ks/ks_b_review_p4.png" alt="B 端复盘 p4" /><span class="page-strip__num">4</span></div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Stage: 碧桂园 -->
+    <div class="series" id="stage-bgy">
+      <header class="series__head reveal">
+        <span class="series__num">06</span>
+        <div>
+          <h3 class="series__title">碧桂园 · 投资研策</h3>
+          <div class="series__meta">市场研究 · 投资测算 · 产品定位策划 · 市场运营方案</div>
+        </div>
+      </header>
+      <p class="series__desc reveal">完成商业项目的投资回报测算与可行性分析，明确客群画像、市场需求及差异化优势，完成产品定位策划，并制定市场运营方案。</p>
+
+      <article class="work reveal" id="w-bgy-position">
+        <div class="work__tag">投资研策 · 市场研究与产品定位</div>
+        <h4 class="work__title">商业市场研究与产品定位策划</h4>
+        <p class="work__sub">宠物经济等市场研究，明确用户前沿消费趋势，设计产品模型与运营方案；<br>市场分析、竞品分析、客群分析，进行产品定位策划，并制定产品市场运营方案</p>
+        <figure class="work__media" data-modal="../assets/bgy/pet_economy_p1.png" data-alt="宠物经济研究与产品设计" data-group="bgy-pos">
+          <img src="../assets/bgy/pet_economy_p1.png" alt="宠物经济研究与产品设计" loading="lazy" />
+          <span class="work__zoom"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M8 11h6M11 8v6"/></svg>点击查看</span>
+        </figure>
+        <div class="page-strip">
+          <div class="page-strip__label">宠物经济研究 + 商业市场研究 + 产品定位策划 · 3 页</div>
+          <div class="page-strip__grid">
+            <div class="page-strip__item" data-modal="../assets/bgy/pet_economy_p1.png" data-alt="宠物经济研究与产品设计" data-group="bgy-pos"><img src="../assets/bgy/pet_economy_p1.png" alt="宠物经济 p1" loading="lazy" /><span class="page-strip__num">1</span></div>
+            <div class="page-strip__item" data-modal="../assets/bgy/bgy_market_p1.png" data-alt="商业市场研究" data-group="bgy-pos"><img src="../assets/bgy/bgy_market_p1.png" alt="商业市场研究 p1" loading="lazy" /><span class="page-strip__num">2</span></div>
+            <div class="page-strip__item" data-modal="../assets/bgy/bgy_positioning_p1.png" data-alt="产品定位策划" data-group="bgy-pos"><img src="../assets/bgy/bgy_positioning_p1.png" alt="定位策划 p1" loading="lazy" /><span class="page-strip__num">3</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="work reveal" id="w-bgy-invest">
+        <div class="work__tag">投资研策 · 投资测算</div>
+        <h4 class="work__title">投资测算与可行性分析</h4>
+        <p class="work__sub">结合业态层级、客流价值、市场行情，进行成本 / 收入 / 工程改造 / 利润测算 · 敏感性分析与投资回报</p>
+        <figure class="work__media" data-modal="../assets/bgy/bgy_invest_1.png" data-alt="投资测算 · 图 1" data-group="bgy-inv">
+          <img src="../assets/bgy/bgy_invest_1.png" alt="投资测算" />
+          <span class="work__zoom"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M8 11h6M11 8v6"/></svg>点击查看</span>
+        </figure>
+        <div class="page-strip">
+          <div class="page-strip__label">投资测算 · 2 张</div>
+          <div class="page-strip__grid">
+            <div class="page-strip__item" data-modal="../assets/bgy/bgy_invest_1.png" data-alt="投资测算 · 财务测算" data-group="bgy-inv"><img src="../assets/bgy/bgy_invest_1.png" alt="投资测算 1" /><span class="page-strip__num">1</span></div>
+            <div class="page-strip__item" data-modal="../assets/bgy/bgy_invest_2.png" data-alt="投资测算 · 核心数据" data-group="bgy-inv"><img src="../assets/bgy/bgy_invest_2.png" alt="投资测算 2" /><span class="page-strip__num">2</span></div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Stage: 独立项目 -->
+    <div class="series" id="stage-project">
+      <header class="series__head reveal">
+        <span class="series__num">07</span>
+        <div>
+          <h3 class="series__title">独立项目</h3>
+          <div class="series__meta">战略规划 · 行业研究 · 股票产品设计 · 数据分析 · 机器学习 · 工具开发</div>
+        </div>
+      </header>
+      <p class="series__desc reveal">电力企业战略规划制定、券商已发表的深度行业研究报告、Tableau 业务看板搭建、LSTM 股价预测与日常工具开发。</p>
+
+      <article class="work reveal" id="w-strategy">
+        <div class="work__tag">实习项目 · 企业战略</div>
+        <h4 class="work__title">电力企业中长期发展战略规划与科技创新规划 · 100+页</h4>
+        <p class="work__sub">需求调研 · SWOT 分析 · 对标分析 · 市场业务发展方向研判 · 损益预测与投资重点的系统化蓝图</p>
+        <figure class="work__media" data-modal="../assets/strategy/strategy_overview.png" data-alt="企业中长期战略规划总览" data-group="strategy">
+          <img src="../assets/strategy/strategy_overview.png" alt="企业中长期战略规划总览" loading="lazy" />
+          <span class="work__zoom"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M8 11h6M11 8v6"/></svg>点击查看</span>
+        </figure>
+        <div class="page-strip">
+          <div class="page-strip__label">战略规划 · 规划示意 · 6 图</div>
+          <div class="page-strip__grid">
+            <div class="page-strip__item" data-modal="../assets/strategy/strategy_overview.png" data-alt="战略规划 · 总体概览" data-group="strategy"><img src="../assets/strategy/strategy_overview.png" alt="总体概览" loading="lazy" /><span class="page-strip__num">1</span></div>
+            <div class="page-strip__item" data-modal="../assets/strategy/strategy_01_topdesign.png" data-alt="战略规划 · 顶层设计" data-group="strategy"><img src="../assets/strategy/strategy_01_topdesign.png" alt="顶层设计" loading="lazy" /><span class="page-strip__num">2</span></div>
+            <div class="page-strip__item" data-modal="../assets/strategy/strategy_02_market.png" data-alt="战略规划 · 市场及数据分析" data-group="strategy"><img src="../assets/strategy/strategy_02_market.png" alt="市场分析" loading="lazy" /><span class="page-strip__num">3</span></div>
+            <div class="page-strip__item" data-modal="../assets/strategy/strategy_03_tasks.png" data-alt="战略规划 · 重点任务" data-group="strategy"><img src="../assets/strategy/strategy_03_tasks.png" alt="重点任务" loading="lazy" /><span class="page-strip__num">4</span></div>
+            <div class="page-strip__item" data-modal="../assets/strategy/strategy_04_profit.png" data-alt="战略规划 · 产业损益预测" data-group="strategy"><img src="../assets/strategy/strategy_04_profit.png" alt="损益预测" loading="lazy" /><span class="page-strip__num">5</span></div>
+            <div class="page-strip__item" data-modal="../assets/strategy/strategy_05_tableau.png" data-alt="战略规划 · Tableau 投资重点" data-group="strategy"><img src="../assets/strategy/strategy_05_tableau.png" alt="投资重点" loading="lazy" /><span class="page-strip__num">6</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="work reveal" id="w-guolian">
+        <div class="work__tag">实习项目 · 券商行业研究</div>
+        <h4 class="work__title">鼎泰高科 (301377) 已发表的深度行业研究报告</h4>
+        <p class="work__sub">开展行业格局、产业链及业务拆解，完成可比公司对标与财务建模，研判企业发展并输出主观市场策略建议</p>
+        <figure class="work__media" data-modal="../assets/pdf_pages/guolian_p1.png" data-alt="鼎泰高科深度研究 · 页面 1" data-group="guolian">
+          <img src="../assets/pdf_pages/guolian_p1.png" alt="鼎泰高科深度研究" loading="lazy" />
+          <span class="work__zoom"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M8 11h6M11 8v6"/></svg>点击查看</span>
+        </figure>
+        <div class="page-strip">
+          <div class="page-strip__label">研究报告 · 完整 24 页</div>
+          <div class="page-strip__grid">
+            <div class="page-strip__item" data-modal="../assets/pdf_pages/guolian_p1.png" data-alt="鼎泰高科 · 第 1 页" data-group="guolian"><img src="../assets/pdf_pages/guolian_p1.png" alt="p1" loading="lazy" /><span class="page-strip__num">1</span></div>
+            <div class="page-strip__item" data-modal="../assets/pdf_pages/guolian_p2.png" data-alt="鼎泰高科 · 第 2 页" data-group="guolian"><img src="../assets/pdf_pages/guolian_p2.png" alt="p2" loading="lazy" /><span class="page-strip__num">2</span></div>
+            <div class="page-strip__item" data-modal="../assets/pdf_pages/guolian_p3.png" data-alt="鼎泰高科 · 第 3 页" data-group="guolian"><img src="../assets/pdf_pages/guolian_p3.png" alt="p3" loading="lazy" /><span class="page-strip__num">3</span></div>
+            <div class="page-strip__item" data-modal="../assets/pdf_pages/guolian_p4.png" data-alt="鼎泰高科 · 第 4 页" data-group="guolian"><img src="../assets/pdf_pages/guolian_p4.png" alt="p4" loading="lazy" /><span class="page-strip__num">4</span></div>
+            <div class="page-strip__item" data-modal="../assets/pdf_pages/guolian_p5.png" data-alt="鼎泰高科 · 第 5 页" data-group="guolian"><img src="../assets/pdf_pages/guolian_p5.png" alt="p5" loading="lazy" /><span class="page-strip__num">5</span></div>
+            <div class="page-strip__item" data-modal="../assets/pdf_pages/guolian_p6.png" data-alt="鼎泰高科 · 第 6 页" data-group="guolian"><img src="../assets/pdf_pages/guolian_p6.png" alt="p6" loading="lazy" /><span class="page-strip__num">6</span></div>
+            <div class="page-strip__item" data-modal="../assets/pdf_pages/guolian_p7.png" data-alt="鼎泰高科 · 第 7 页" data-group="guolian"><img src="../assets/pdf_pages/guolian_p7.png" alt="p7" loading="lazy" /><span class="page-strip__num">7</span></div>
+            <div class="page-strip__item" data-modal="../assets/pdf_pages/guolian_p8.png" data-alt="鼎泰高科 · 第 8 页" data-group="guolian"><img src="../assets/pdf_pages/guolian_p8.png" alt="p8" loading="lazy" /><span class="page-strip__num">8</span></div>
+            <div class="page-strip__item" data-modal="../assets/pdf_pages/guolian_p9.png" data-alt="鼎泰高科 · 第 9 页" data-group="guolian"><img src="../assets/pdf_pages/guolian_p9.png" alt="p9" loading="lazy" /><span class="page-strip__num">9</span></div>
+            <div class="page-strip__item" data-modal="../assets/pdf_pages/guolian_p10.png" data-alt="鼎泰高科 · 第 10 页" data-group="guolian"><img src="../assets/pdf_pages/guolian_p10.png" alt="p10" loading="lazy" /><span class="page-strip__num">10</span></div>
+            <div class="page-strip__item" data-modal="../assets/pdf_pages/guolian_p11.png" data-alt="鼎泰高科 · 第 11 页" data-group="guolian"><img src="../assets/pdf_pages/guolian_p11.png" alt="p11" loading="lazy" /><span class="page-strip__num">11</span></div>
+            <div class="page-strip__item" data-modal="../assets/pdf_pages/guolian_p12.png" data-alt="鼎泰高科 · 第 12 页" data-group="guolian"><img src="../assets/pdf_pages/guolian_p12.png" alt="p12" loading="lazy" /><span class="page-strip__num">12</span></div>
+            <div class="page-strip__item" data-modal="../assets/pdf_pages/guolian_p13.png" data-alt="鼎泰高科 · 第 13 页" data-group="guolian"><img src="../assets/pdf_pages/guolian_p13.png" alt="p13" loading="lazy" /><span class="page-strip__num">13</span></div>
+            <div class="page-strip__item" data-modal="../assets/pdf_pages/guolian_p14.png" data-alt="鼎泰高科 · 第 14 页" data-group="guolian"><img src="../assets/pdf_pages/guolian_p14.png" alt="p14" loading="lazy" /><span class="page-strip__num">14</span></div>
+            <div class="page-strip__item" data-modal="../assets/pdf_pages/guolian_p15.png" data-alt="鼎泰高科 · 第 15 页" data-group="guolian"><img src="../assets/pdf_pages/guolian_p15.png" alt="p15" loading="lazy" /><span class="page-strip__num">15</span></div>
+            <div class="page-strip__item" data-modal="../assets/pdf_pages/guolian_p16.png" data-alt="鼎泰高科 · 第 16 页" data-group="guolian"><img src="../assets/pdf_pages/guolian_p16.png" alt="p16" loading="lazy" /><span class="page-strip__num">16</span></div>
+            <div class="page-strip__item" data-modal="../assets/pdf_pages/guolian_p17.png" data-alt="鼎泰高科 · 第 17 页" data-group="guolian"><img src="../assets/pdf_pages/guolian_p17.png" alt="p17" loading="lazy" /><span class="page-strip__num">17</span></div>
+            <div class="page-strip__item" data-modal="../assets/pdf_pages/guolian_p18.png" data-alt="鼎泰高科 · 第 18 页" data-group="guolian"><img src="../assets/pdf_pages/guolian_p18.png" alt="p18" loading="lazy" /><span class="page-strip__num">18</span></div>
+            <div class="page-strip__item" data-modal="../assets/pdf_pages/guolian_p19.png" data-alt="鼎泰高科 · 第 19 页" data-group="guolian"><img src="../assets/pdf_pages/guolian_p19.png" alt="p19" loading="lazy" /><span class="page-strip__num">19</span></div>
+            <div class="page-strip__item" data-modal="../assets/pdf_pages/guolian_p20.png" data-alt="鼎泰高科 · 第 20 页" data-group="guolian"><img src="../assets/pdf_pages/guolian_p20.png" alt="p20" loading="lazy" /><span class="page-strip__num">20</span></div>
+            <div class="page-strip__item" data-modal="../assets/pdf_pages/guolian_p21.png" data-alt="鼎泰高科 · 第 21 页" data-group="guolian"><img src="../assets/pdf_pages/guolian_p21.png" alt="p21" loading="lazy" /><span class="page-strip__num">21</span></div>
+            <div class="page-strip__item" data-modal="../assets/pdf_pages/guolian_p22.png" data-alt="鼎泰高科 · 第 22 页" data-group="guolian"><img src="../assets/pdf_pages/guolian_p22.png" alt="p22" loading="lazy" /><span class="page-strip__num">22</span></div>
+            <div class="page-strip__item" data-modal="../assets/pdf_pages/guolian_p23.png" data-alt="鼎泰高科 · 第 23 页" data-group="guolian"><img src="../assets/pdf_pages/guolian_p23.png" alt="p23" loading="lazy" /><span class="page-strip__num">23</span></div>
+            <div class="page-strip__item" data-modal="../assets/pdf_pages/guolian_p24.png" data-alt="鼎泰高科 · 第 24 页" data-group="guolian"><img src="../assets/pdf_pages/guolian_p24.png" alt="p24" loading="lazy" /><span class="page-strip__num">24</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="work reveal" id="w-stock-asset">
+        <div class="work__tag">实习项目 · 股票产品设计</div>
+        <h4 class="work__title">股票APP · 资产分析功能设计</h4>
+        <p class="work__sub">资产收益分析功能细化与下钻、计算规则设计，优化体验提升用户留存</p>
+        <figure class="work__media" data-modal="../assets/pdf_hi/stock_asset_analysis_p1.png" data-alt="股票 APP 资产分析功能设计" data-group="stock">
+          <img src="../assets/pdf_hi/stock_asset_analysis_p1.png" alt="股票 APP 资产分析功能设计" loading="lazy" />
+          <span class="work__zoom"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M8 11h6M11 8v6"/></svg>点击查看</span>
+        </figure>
+        <div class="page-strip">
+          <div class="page-strip__label">股票 APP · 资产分析功能设计 + 中台功能 PI 过期 · 2 页</div>
+          <div class="page-strip__grid">
+            <div class="page-strip__item" data-modal="../assets/pdf_hi/stock_asset_analysis_p1.png" data-alt="股票 APP · 资产分析功能设计" data-group="stock"><img src="../assets/pdf_hi/stock_asset_analysis_p1.png" alt="资产分析功能设计 p1" loading="lazy" /><span class="page-strip__num">1</span></div>
+            <div class="page-strip__item" data-modal="../assets/pdf_hi/stock_middle_pi_p2.png" data-alt="股票中台 · 功能 PI 过期 · 第二页" data-group="stock"><img src="../assets/pdf_hi/stock_middle_pi_p2.png" alt="中台功能 PI 过期 第二页" loading="lazy" /><span class="page-strip__num">2</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="work reveal" id="w-tableau">
+        <div class="work__tag">学习项目 · 数据可视化</div>
+        <h4 class="work__title">每日业务情况总览看板</h4>
+        <p class="work__sub">EXCEL 自动更新报表 + Tableau 联动看板 · 经营总况 / 配送 / 新老客 / 平台 / 门店多维下钻</p>
+        <figure class="work__media" data-modal="../assets/portfolio_pngs/tableau_dashboard.jpg" data-alt="每日业务情况总览看板" data-group="tableau">
+          <img src="../assets/portfolio_pngs/tableau_dashboard.jpg" alt="Tableau 业务看板" loading="lazy" />
+          <span class="work__zoom"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M8 11h6M11 8v6"/></svg>点击查看</span>
+        </figure>
+      </article>
+
+      <article class="work reveal" id="w-lstm">
+        <div class="work__tag">机器学习 · 课程论文</div>
+        <h4 class="work__title">基于CNN-LSTM的股价时间序列预测</h4>
+        <p class="work__sub">多模型预测评估 · Attention-based CNN-LSTM 与 XGBoost 对比研究 · 测试集准确率 98.8%+</p>
+        <figure class="work__media" data-modal="../assets/portfolio_pngs/lstm_paper_p1.png" data-alt="LSTM 股价预测课程论文" data-group="lstm">
+          <img src="../assets/portfolio_pngs/lstm_paper_p1.png" alt="LSTM 股价预测课程论文" loading="lazy" />
+          <span class="work__zoom"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M8 11h6M11 8v6"/></svg>点击查看</span>
+        </figure>
+        <div class="page-strip">
+          <div class="page-strip__label">课程论文 3 页 + 部分代码 · 共 4 张</div>
+          <div class="page-strip__grid">
+            <div class="page-strip__item" data-modal="../assets/portfolio_pngs/lstm_paper_p1.png" data-alt="课程论文 第1页" data-group="lstm"><img src="../assets/portfolio_pngs/lstm_paper_p1.png" alt="课程论文 p1" loading="lazy" /><span class="page-strip__num">1</span></div>
+            <div class="page-strip__item" data-modal="../assets/portfolio_pngs/lstm_paper_p2.png" data-alt="课程论文 第2页" data-group="lstm"><img src="../assets/portfolio_pngs/lstm_paper_p2.png" alt="课程论文 p2" loading="lazy" /><span class="page-strip__num">2</span></div>
+            <div class="page-strip__item" data-modal="../assets/portfolio_pngs/lstm_paper_p3.png" data-alt="课程论文 第3页" data-group="lstm"><img src="../assets/portfolio_pngs/lstm_paper_p3.png" alt="课程论文 p3" loading="lazy" /><span class="page-strip__num">3</span></div>
+            <div class="page-strip__item" data-modal="../assets/portfolio_pngs/lstm_code.png" data-alt="部分代码截图" data-group="lstm"><img src="../assets/portfolio_pngs/lstm_code.png" alt="部分代码截图" loading="lazy" /><span class="page-strip__num">代码</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="work reveal" id="w-inventory">
+        <div class="work__tag">课程项目 · 工具开发</div>
+        <h4 class="work__title">Python 进销存管理系统</h4>
+        <p class="work__sub">Python Tkinter 桌面 GUI · 商品录入 / 库存查看 / 数据更新</p>
+        <figure class="work__media" data-modal="../assets/portfolio_pngs/20240725121334.png" data-alt="Python 进销存管理系统" data-group="inv">
+          <img src="../assets/portfolio_pngs/20240725121334.png" alt="Python 进销存管理系统" loading="lazy" />
+          <span class="work__zoom"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M8 11h6M11 8v6"/></svg>点击查看</span>
+        </figure>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===================== 摄影 ===================== -->
+  <section class="block" id="photography">
+    <header class="block__head reveal">
+      <span class="block__num">07</span>
+      <h2 class="block__title">摄影</h2>
+      <span class="block__en">Photography</span>
+    </header>
+    <p class="lede reveal">山河之间，世界尽展。这些是 2024 — 2026 年用微单与无人机在路上留下的精彩片段。</p>
+    <div class="photo-grid">
+      <figure class="photo-item reveal" data-ratio="1.78" data-modal="../assets/photo/微信图片_20260805194602_22_5.jpg" data-alt="鼓楼" data-group="photo"><img src="../assets/photo/微信图片_20260805194602_22_5.jpg" alt="鼓楼" loading="lazy" /><figcaption class="photo-item__caption">黔东南 · 黄岗侗寨</figcaption></figure>
+      <figure class="photo-item reveal" data-ratio="1.78" data-modal="../assets/photo/photo_doc_2.jpg" data-alt="青峦" data-group="photo"><img src="../assets/photo/photo_doc_2.jpg" alt="青峦" loading="lazy" /><figcaption class="photo-item__caption">伊犁 · 果子沟</figcaption></figure>
+      <figure class="photo-item reveal" data-ratio="0.56" data-modal="../assets/photo/微信图片_20260805194602_19_5.jpg" data-alt="雪境" data-group="photo"><img src="../assets/photo/微信图片_20260805194602_19_5.jpg" alt="雪境" loading="lazy" /><figcaption class="photo-item__caption">威海 · 下雪的海边</figcaption></figure>
+      <figure class="photo-item reveal" data-ratio="0.56" data-modal="../assets/photo/微信图片_20260805194602_32_5.jpg" data-alt="巷晚" data-group="photo"><img src="../assets/photo/微信图片_20260805194602_32_5.jpg" alt="巷晚" loading="lazy" /><figcaption class="photo-item__caption">京都 · 秘境街道</figcaption></figure>
+      <figure class="photo-item reveal" data-ratio="1.78" data-modal="../assets/photo/微信图片_20260805194602_24_5.jpg" data-alt="梯田" data-group="photo"><img src="../assets/photo/微信图片_20260805194602_24_5.jpg" alt="梯田" loading="lazy" /><figcaption class="photo-item__caption">广西 · 龙脊梯田</figcaption></figure>
+      <figure class="photo-item reveal" data-ratio="1.78" data-modal="../assets/photo/微信图片_20260805194602_29_5.jpg" data-alt="塔影" data-group="photo"><img src="../assets/photo/微信图片_20260805194602_29_5.jpg" alt="塔影" loading="lazy" /><figcaption class="photo-item__caption">黔东南 · 黄岗侗寨</figcaption></figure>
+      <figure class="photo-item reveal" data-ratio="1.50" data-modal="../assets/photo/DSC07551.jpg" data-alt="DSC07551" data-group="photo"><img src="../assets/photo/DSC07551.jpg" alt="DSC07551" loading="lazy" /><figcaption class="photo-item__caption">新疆 · 赛里木湖</figcaption></figure>
+      <figure class="photo-item reveal" data-ratio="0.56" data-modal="../assets/photo/微信图片_20260805194602_33_5.jpg" data-alt="湖光" data-group="photo"><img src="../assets/photo/微信图片_20260805194602_33_5.jpg" alt="湖光" loading="lazy" /><figcaption class="photo-item__caption">四川 · 九寨沟</figcaption></figure>
+      <figure class="photo-item reveal" data-ratio="0.75" data-modal="../assets/photo/DSC04238.jpg" data-alt="静湖" data-group="photo"><img src="../assets/photo/DSC04238.jpg" alt="静湖" loading="lazy" /><figcaption class="photo-item__caption">飞机视角 · 雪山冰川</figcaption></figure>
+      <figure class="photo-item reveal" data-ratio="1.78" data-modal="../assets/photo/微信图片_20260805194602_31_5.jpg" data-alt="行旅" data-group="photo"><img src="../assets/photo/微信图片_20260805194602_31_5.jpg" alt="行旅" loading="lazy" /><figcaption class="photo-item__caption">大阪 · 铁轨</figcaption></figure>
+      <figure class="photo-item reveal" data-ratio="1.50" data-modal="../assets/photo/DSC04718.jpg" data-alt="旷野" data-group="photo"><img src="../assets/photo/DSC04718.jpg" alt="旷野" loading="lazy" /><figcaption class="photo-item__caption">昌都 · 然乌胡</figcaption></figure>
+      <figure class="photo-item reveal" data-ratio="1.78" data-modal="../assets/photo/photo_doc_1.jpg" data-alt="赤岩" data-group="photo"><img src="../assets/photo/photo_doc_1.jpg" alt="赤岩" loading="lazy" /><figcaption class="photo-item__caption">乌兰察布 · 大红山</figcaption></figure>
+      <figure class="photo-item reveal" data-ratio="1.50" data-modal="../assets/photo/DSC04912.jpg" data-alt="行云" data-group="photo"><img src="../assets/photo/DSC04912.jpg" alt="行云" loading="lazy" /><figcaption class="photo-item__caption">林芝 · 雪山</figcaption></figure>
+      <figure class="photo-item reveal" data-ratio="1.50" data-modal="../assets/photo/DJI_0026-编辑.jpg" data-alt="DJI_0026-编辑" data-group="photo"><img src="../assets/photo/DJI_0026-编辑.jpg" alt="DJI_0026-编辑" loading="lazy" /><figcaption class="photo-item__caption">乌兰察布 · 火山</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- ===================== 爱好 ===================== -->
+  <section class="block" id="interests">
+    <header class="block__head reveal">
+      <span class="block__num">08</span>
+      <h2 class="block__title">爱好</h2>
+      <span class="block__en">Interests</span>
+    </header>
+    <p class="lede reveal">工作之外，用一些事保持对世界的好奇与探索。</p>
+    <div class="interests reveal">
+      <div class="interest"><span class="interest__name">3C消费电子</span><span class="interest__note">深度爱好者，持有40余种消费电子产品，了解BOM物料构成与产品架构，理解产品迭代背后的底层技术，热衷关注技术创新与产品演进</span></div>
+      <div class="interest"><span class="interest__name">摄影&旅行</span><span class="interest__note">探索并记录世界，持有微单、无人机、运动相机、Pocket设备；已环游32个省级行政区</span></div>
+      <div class="interest"><span class="interest__name">阅读&学习</span><span class="interest__note">保持学习进步，读好书，吸纳智人智慧；了解心理学，研习人和社会潜藏的规律；学习了解各种新科技技术，保持前沿敏感。</span></div>
+      <div class="interest"><span class="interest__name">骑行&户外</span><span class="interest__note">累计骑行4000+km，完成成都100km绿道骑行、阳澄湖100km环湖骑行</span></div>
+    </div>
+  </section>
+
+  <!-- ===================== 荣誉 ===================== -->
+  <section class="block" id="honors">
+    <header class="block__head reveal">
+      <span class="block__num">09</span>
+      <h2 class="block__title">竞赛与荣誉</h2>
+      <span class="block__en">Honors &amp; Awards</span>
+    </header>
+    <p class="lede reveal">大学与研究生阶段的若干次尝试 —— 数学建模、产品商业化。每一段经历都加强了我对「问题解决与方案设计」的能力。</p>
+    <div class="honors">
+      <div class="honor reveal"><span class="honor__level">省一等奖</span><h3 class="honor__title">全国大学生数学建模竞赛</h3><p class="honor__desc">队长身份组织分工与计划推进，负责数据建模、论文撰写及答辩；用 Stata 进行熵权法 TOPSIS 建模及线性约束规划求解，解决物流订购的最优成本问题。</p></div>
+      <div class="honor reveal reveal-delay-1"><span class="honor__level">省优秀奖</span><h3 class="honor__title">智慧经济创新创业大赛</h3><p class="honor__desc">作为团队负责人进行论文撰写及答辩；联合计算机学院同学实现基于 LSTM 深度学习算法模型的股价时间序列预测，成功预测 50 支股票一个月内行情。</p></div>
+      <div class="honor reveal reveal-delay-2"><span class="honor__level">省铜奖</span><h3 class="honor__title">互联网+ 创新创业大赛</h3><p class="honor__desc">负责产品商业策划书撰写及项目答辩；与计算机学院联合完成老旧照片修复网站的编程与商业化实现。</p></div>
+      <div class="honor reveal reveal-delay-3"><span class="honor__level">外聘技术专家</span><h3 class="honor__title">电网咨询项目 · 投资分析</h3><p class="honor__desc">凭借较好的金融专业知识与数据分析能力，实习结束后被原公司邀请担任技术专家，独立完成企业客户的市场分析、经营管理、投资发展、业务发展等方向的分析，输出业务发展规划与投资策略报告。</p></div>
+      <div class="honor reveal reveal-delay-4"><span class="honor__level">奖学金 · 2 次</span><h3 class="honor__title">国家励志奖学金</h3><span class="honor__date">本科期间</span><p class="honor__desc">连续获得各学期校奖学金，并获评千优百佳学生。</p></div>
+      <div class="honor reveal reveal-delay-5"><span class="honor__level">课程成果</span><h3 class="honor__title">机器学习 / Python / 数据挖掘</h3><span class="honor__date">课程成绩</span><p class="honor__desc">高等数学上 100 · 机器学习 97 · Python 93 · 数据挖掘 92 · 高等数学下 100 · 概率论与数理统计 94 · 区块链技术 94 · 财务报表分析 93</p></div>
+    </div>
+  </section>
+
+  <!-- ===================== 联系 ===================== -->
+  <section class="contact" id="contact">
+    <header class="block__head">
+      <h2 class="block__title">联系我</h2>
+      <span class="block__en">Get in Touch</span>
+    </header>
+    <p class="contact__lede reveal">期待与您的对话 —— 无论是工作机会，还是一次关于AI或消费电子的闲聊。</p>
+    <div class="contact__grid reveal">
+      <div class="contact__item"><span class="contact__label">Email</span><span class="contact__value">trinity_ting@163.com</span></div>
+      <div class="contact__item"><span class="contact__label">Phone</span><span class="contact__value">132 4908 6026</span></div>
+      <a class="contact__item" href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener"><span class="contact__label">GitHub</span><span class="contact__value">@trinitytingchuan-alt →</span></a>
+    </div>
+    <div class="contact__signoff">© 2026 Shang Wenting · 尚文蜓</div>
+  </section>
+
+</main>
+
+<!-- ===================== 灯箱 ===================== -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="图片放大查看">
+  <div class="modal__topbar">
+    <span class="modal__counter" id="modal-counter"></span>
+    <figcaption class="modal__caption" id="modal-caption"></figcaption>
+    <button class="modal__close" aria-label="关闭">×</button>
+  </div>
+  <button class="modal__nav modal__nav--prev" aria-label="上一张"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 6l-6 6 6 6"/></svg></button>
+  <div class="modal__stage" id="modal-stage"><img id="modal-img" src="" alt="" /></div>
+  <button class="modal__nav modal__nav--next" aria-label="下一张"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 6l6 6-6 6"/></svg></button>
+  <div class="modal__hint"><span><kbd>←</kbd> <kbd>→</kbd> 翻页</span><span><kbd>Space</kbd> / 点击 放大</span><span><kbd>Esc</kbd> 关闭</span></div>
+</div>
+
+<script>
+/* ============ 极光背景（canvas 流动光幕，仿 chuweimin 格陵兰 WebGL 极光） ============ */
+(function(){
+  const cv = document.getElementById('aurora');
+  const ctx = cv.getContext('2d');
+  let w, h, dpr;
+  function resize(){
+    dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    w = cv.width = Math.floor(innerWidth * dpr);
+    h = cv.height = Math.floor(innerHeight * dpr);
+    cv.style.width = innerWidth + 'px';
+    cv.style.height = innerHeight + 'px';
+  }
+  resize();
+  addEventListener('resize', resize);
+  const bands = [
+    { base:0.20, amp:0.05, speed:0.00018, hue:[110,200,170], alpha:0.16 },
+    { base:0.34, amp:0.06, speed:0.00026, hue:[150,120,220], alpha:0.13 },
+    { base:0.46, amp:0.05, speed:0.00015, hue:[80,160,255],  alpha:0.10 }
+  ];
+  let t = 0;
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    ctx.globalCompositeOperation = 'lighter';
+    for(let b=0;b<bands.length;b++){
+      const band = bands[b];
+      const yBase = h * band.base;
+      const A = band.amp * h;
+      const grad = ctx.createLinearGradient(0, yBase - A, 0, yBase + A);
+      const c = band.hue;
+      grad.addColorStop(0,   'rgba('+c[0]+','+c[1]+','+c[2]+',0)');
+      grad.addColorStop(0.5, 'rgba('+c[0]+','+c[1]+','+c[2]+','+band.alpha+')');
+      grad.addColorStop(1,   'rgba('+c[0]+','+c[1]+','+c[2]+',0)');
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.moveTo(0, yBase);
+      for(let x=0; x<=w; x+=18*dpr){
+        const y = yBase
+          + Math.sin(x*0.0016/w*dpr*6 + t*band.speed + b)*A
+          + Math.sin(x*0.004/w*dpr*6 + t*band.speed*1.7)*A*0.4;
+        ctx.lineTo(x, y);
+      }
+      ctx.lineTo(w, yBase + A*1.6);
+      ctx.lineTo(0, yBase + A*1.6);
+      ctx.closePath();
+      ctx.fill();
+    }
+    ctx.globalCompositeOperation = 'source-over';
+    t++;
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ============ 顶部导航：移动端开关 + 滚动高亮 ============ */
+(function(){
+  const toggle = document.querySelector('.topnav__toggle');
+  const menu = document.getElementById('topMenu');
+  if(toggle && menu){
+    toggle.addEventListener('click', () => menu.classList.toggle('is-open'));
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('is-open')));
+  }
+  const links = Array.from(document.querySelectorAll('.topnav__menu a[data-target]'));
+  const map = {};
+  links.forEach(l => { const id = l.getAttribute('data-target'); const el = document.getElementById(id); if(el) map[id] = l; });
+  function setActive(){
+    const y = scrollY + 160;
+    let cur = null;
+    for(const id in map){
+      const top = map[id].closest('[id="'+id+'"]') ? document.getElementById(id).getBoundingClientRect().top + scrollY : 0;
+      if(top <= y) cur = id;
+    }
+    links.forEach(l => l.classList.remove('is-active'));
+    if(cur && map[cur]) map[cur].classList.add('is-active');
+  }
+  addEventListener('scroll', setActive, {passive:true});
+  addEventListener('resize', setActive, {passive:true});
+  setActive();
+})();
+
+/* ============ 滚动渐显 ============ */
+(function(){
+  const els = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+    }, {root:null, rootMargin:'-40px 0px', threshold:0.05});
+    els.forEach(el=>io.observe(el));
+  } else { els.forEach(el=>el.classList.add('is-visible')); }
+})();
+
+/* ============ 灯箱（分组翻页 + 缩放） ============ */
+(function(){
+  const modal = document.getElementById('modal');
+  const modalImg = document.getElementById('modal-img');
+  const modalCounter = document.getElementById('modal-counter');
+  const modalClose = document.querySelector('.modal__close');
+  const modalPrev = document.querySelector('.modal__nav--prev');
+  const modalNext = document.querySelector('.modal__nav--next');
+  const modalStage = document.getElementById('modal-stage');
+  const modalCaption = document.getElementById('modal-caption');
+  let gallery = [], idx = 0, zoomed = false, scale = 1;
+
+  function cleanCaption(t){ return t ? t.replace(/\s*·\s*页面\s*\d+\s*$/u,'').trim() : ''; }
+  function openModal(src, alt, caption, group, groupName){
+    gallery = group && group.length ? group : [{src, alt, caption}];
+    idx = gallery.findIndex(g => g.src === src); if(idx<0) idx=0;
+    modalStage.classList.toggle('modal__stage--preview-wide', groupName === 'bgy-inv');
+    render(); modal.classList.add('is-open'); document.body.style.overflow='hidden'; zoomed=false; scale=1; applyScale();
+  }
+  function render(){
+    if(!gallery.length) return;
+    const it = gallery[idx];
+    modalImg.src = it.src; modalImg.alt = it.alt || '';
+    modalCaption.textContent = it.captionClean || cleanCaption(it.caption || '');
+    modalCounter.textContent = gallery.length>1 ? (idx+1)+' / '+gallery.length : '';
+    const show = gallery.length>1;
+    modalPrev.style.display = show?'flex':'none';
+    modalNext.style.display = show?'flex':'none';
+    zoomed=false; scale=1; applyScale();
+  }
+  function nav(d){ if(!gallery.length) return; idx=(idx+d+gallery.length)%gallery.length; render(); }
+  function close(){ modal.classList.remove('is-open'); document.body.style.overflow=''; }
+  function toggleZoom(){ zoomed=!zoomed; modalStage.classList.toggle('is-zoomed', zoomed); }
+  function applyScale(){ modalImg.style.transform = Math.abs(scale-1)>=0.001 ? 'scale('+scale+')' : ''; modalStage.classList.toggle('is-manual', Math.abs(scale-1)>=0.001); }
+
+  function buildGallery(trigger){
+    const g = trigger.getAttribute('data-group'); if(!g) return null;
+    const scope = trigger.closest('article') || trigger.closest('.work') || document;
+    const items = Array.from(scope.querySelectorAll('.page-strip__item[data-group="'+g+'"]'));
+    if(items.length) return items.map(x=>({src:x.getAttribute('data-modal'), alt:x.getAttribute('data-alt')||'', caption:x.querySelector('.photo-item__caption')?.textContent||x.getAttribute('data-alt')||''}));
+    const hero = scope.querySelector('.work__media[data-group="'+g+'"]');
+    if(hero) return [{src:hero.getAttribute('data-modal'), alt:hero.getAttribute('data-alt')||'', caption:hero.getAttribute('data-alt')||''}];
+    return null;
+  }
+  document.querySelectorAll('[data-modal]').forEach(el=>{
+    el.addEventListener('click', e=>{
+      e.preventDefault();
+      const src = el.getAttribute('data-modal');
+      const alt = el.getAttribute('data-alt') || '';
+      const cap = el.querySelector('.photo-item__caption')?.textContent || alt;
+      openModal(src, alt, cap, buildGallery(el), el.getAttribute('data-group'));
+    });
+  });
+  modalClose && modalClose.addEventListener('click', close);
+  modalPrev && modalPrev.addEventListener('click', ()=>nav(-1));
+  modalNext && modalNext.addEventListener('click', ()=>nav(1));
+  modalStage && modalStage.addEventListener('click', toggleZoom);
+  modalStage && modalStage.addEventListener('wheel', e=>{
+    if(!e.ctrlKey && !e.metaKey) return;
+    e.preventDefault();
+    scale = Math.min(6, Math.max(0.4, scale*(e.deltaY<0?1.12:1/1.12)));
+    applyScale();
+  }, {passive:false});
+  modal && modal.addEventListener('click', e=>{ if(e.target===modal) close(); });
+  document.addEventListener('keydown', e=>{
+    if(!modal.classList.contains('is-open')) return;
+    if(e.key==='Escape') close();
+    if(e.key==='ArrowLeft') nav(-1);
+    if(e.key==='ArrowRight') nav(1);
+    if(e.key===' '||e.key==='z'||e.key==='Z'){ e.preventDefault(); toggleZoom(); }
+  });
+
+  /* 摄影瀑布流：预设比例防抖动 */
+  document.querySelectorAll('.photo-item').forEach(it=>{
+    const r = parseFloat(it.dataset.ratio); const img = it.querySelector('img');
+    if(r && img) img.style.aspectRatio = String(r);
+  });
+})();
+
+/* ============ Hero 肖像：点击切换 5 张 ============ */
+(function(){
+  const portrait = document.getElementById('heroPortrait');
+  if(!portrait) return;
+  const img = portrait.querySelector('img');
+  const hint = portrait.querySelector('.hero__portrait-hint');
+  const photos = [
+    '../assets/photo/me/303153c2fe8ff5c9ba67d9c2846c5160.jpg',
+    '../assets/photo/me/3206b30ed5acc90e0d8584e8724720c3.jpg',
+    '../assets/photo/me/8267ebda74bb9f27f24f17806a591442.jpg',
+    '../assets/photo/me/c5bdd17582a30fa237b2d2c92995801f.jpg',
+    '../assets/photo/me/d19057a5a98253b09e41f8b1094ab435.jpg'
+  ];
+  const total = photos.length; let i = 0;
+  const pad = n => String(n).padStart(2,'0');
+  function swap(){
+    img.style.opacity = '0';
+    setTimeout(()=>{ img.src = photos[i]; img.style.opacity = '1'; if(hint) hint.textContent = pad(i+1)+' / '+pad(total); }, 180);
+  }
+  portrait.addEventListener('click', ()=>{ i=(i+1)%total; swap(); });
+  portrait.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); i=(i+1)%total; swap(); } });
+})();
+</script>
+</body>
+</html>
