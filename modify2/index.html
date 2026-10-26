@@ -54,21 +54,33 @@
   }
   .about__scores{color:#cfc8ba;opacity:.85;}
 
-  /* 全局背景动效层 */
-
-  .orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(64px);opacity:.5;}
-  .orb--a{top:-12vh;left:-8vw;width:46vw;height:46vw;background:radial-gradient(circle,rgba(200,178,107,.22),transparent 65%);animation:drift-a 26s ease-in-out infinite;}
-  .orb--b{bottom:-18vh;right:-10vw;width:42vw;height:42vw;background:radial-gradient(circle,rgba(120,150,170,.10),transparent 65%);animation:drift-b 32s ease-in-out infinite;}
-  @keyframes drift-a{50%{transform:translate(8vw,10vh) scale(1.12)}}
-  @keyframes drift-b{50%{transform:translate(-7vw,-8vh) scale(1.1)}}
+  /* 全局背景：一体化高级暗色基底 —— 锚定左侧栏的柔和暖金光晕 + 冷调微光 + 极淡胶片颗粒，
+     替代廉价浮动光斑（非随机粒子，与版式/金色主调呼应，营造层次而非死黑） */
+  html{
+    background:
+      radial-gradient(115% 85% at 6% 2%,   rgba(200,178,107,.13) 0%, rgba(200,178,107,0) 46%),
+      radial-gradient(95% 90% at 97% 100%, rgba(122,150,172,.07) 0%, rgba(122,150,172,0) 52%),
+      linear-gradient(158deg, #120e0a 0%, #0a0907 46%, #060504 100%);
+  }
+  body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    pointer-events:none;
+    opacity:.04;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:180px 180px;
+    mix-blend-mode:overlay;
+  }
 
   /* 各页背景高级化 */
-  .section,.about,.works,.section--photography,#interests,.honors,.contact{position:relative;isolation:isolate;overflow:hidden;}
+  .section,.about,.works,.section--photography,#interests,#honors,.contact{position:relative;isolation:isolate;overflow:hidden;}
   .about{background:radial-gradient(circle at 80% 18%,rgba(200,178,107,.10),transparent 32%),linear-gradient(120deg,#1b1711,#0b0a08);}
   .works{background:radial-gradient(circle at 82% 14%,rgba(200,178,107,.12),transparent 26%),linear-gradient(135deg,#16110c,#080807 64%,#221a10);}
   .section--photography{background:linear-gradient(90deg,rgba(8,8,7,.92),rgba(8,8,7,.6)),url('assets/photo/DSC04238.jpg') center/cover fixed;}
   #interests{background:radial-gradient(circle at 18% 28%,rgba(200,178,107,.10),transparent 26%),#13110d;}
-  .honors{background:linear-gradient(125deg,#0d0c0a,#292015);}
+  #honors{background:linear-gradient(125deg,#0d0c0a,#292015);}
   .contact{background:radial-gradient(circle at 78% 22%,rgba(139,108,55,.16),transparent 26%),linear-gradient(135deg,#241c12,#090807);}
   .work__hero{background:#14110c;border:1px solid var(--color-line);}
   .page-strip__item,.photo-item{background:#14110c;}
@@ -138,10 +150,6 @@
 </head>
 <body>
 
-  <!-- 背景动效层 -->
-
-  <div class="orb orb--a"></div>
-  <div class="orb orb--b"></div>
   <!-- 高级光标 -->
   <div id="cur-glow"></div>
   <div id="cur-dot"></div>
