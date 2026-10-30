@@ -86,10 +86,13 @@
   #about{background:
     linear-gradient(180deg, rgba(12,10,8,.88) 0%, rgba(12,10,8,.80) 100%),
     url('assets/photo/DSC04912.jpg') center/cover fixed;}
-  /* 作品集容器：分区之间与标题区也不能是纯黑，铺一张暖金建筑照做底（极淡） */
+  /* 作品集容器：不再用独立的「第 5 张图」单独铺底（会露出几厘米窄条）。
+     直接延展首段 Anker 的背景图向上铺满标题区，与 #stage-anker 同源无缝衔接；
+     末段 stage-project 自然延伸到分区底部（padding-bottom:0），不再有独立窄条。 */
   .works{background:
     linear-gradient(180deg, rgba(10,9,8,.90) 0%, rgba(10,9,8,.86) 100%),
-    url('assets/photo/微信图片_20260805194602_29_5.jpg') center/cover fixed;}
+    url('assets/photo/微信图片_20260805194602_31_5.jpg') center/cover fixed;
+    padding-bottom:0;}
   /* 工作分区 3-6：各自一张实拍 + fixed 视差，取景位各异、色调递进 */
   #stage-anker{background:
     linear-gradient(180deg, rgba(7,7,6,.80) 0%, rgba(7,7,6,.88) 100%),
@@ -138,6 +141,45 @@
     padding-left:var(--content-pad);
     padding-right:var(--content-pad);
   }
+  /* ===== 分区零间隙：背景图自己填满过渡区 =====
+     base 的 .stage{margin-top:88px} 会在分区之间留出空隙，
+     露出 .works 容器自己的那张图，形成一条「单独用图的窄带」。
+     改为 margin-top:0 + padding-top:88px（首个分区 56px）：
+     快手等分区的背景图向上延伸，填满与上一段经历的交界。 */
+  .stage{position:relative;margin-top:0;padding-top:88px;}
+  .stage:first-of-type{margin-top:0;padding-top:56px;}
+  /* ===== 换工作经历 · 分隔标记 =====
+     在两段经历交界（背景换图处）加一根贯穿全宽的金色发丝线，
+     中央一枚菱形节点 —— 像展陈动线的换章标记，克制而有仪式感。 */
+  .stage + .stage::before{
+    content:"";position:absolute;top:44px;left:0;right:0;height:1px;z-index:2;pointer-events:none;
+    background:linear-gradient(90deg,
+      rgba(200,178,107,0) 0%, rgba(200,178,107,.38) 18%,
+      rgba(200,178,107,.68) 50%,
+      rgba(200,178,107,.38) 82%, rgba(200,178,107,0) 100%);
+  }
+  .stage + .stage::after{
+    content:"";position:absolute;top:44px;left:50%;width:8px;height:8px;z-index:2;pointer-events:none;
+    transform:translate(-50%,-50%) rotate(45deg);
+    background:#14110d;border:1px solid rgba(200,178,107,.85);
+    box-shadow:0 0 12px rgba(200,178,107,.5), inset 0 0 3px rgba(200,178,107,.3);
+  }
+  /* ===== 大区块交界 · 分隔标记（与工作经历同语汇）=====
+     进入「作品集」与进入「摄影」的入口处各放一根金线 + 中央菱形节点，
+     区分上一块与下一块内容，避免边界只剩一条独立窄图。 */
+  .works::before,.section--photography::before{
+    content:"";position:absolute;top:48px;left:0;right:0;height:1px;z-index:2;pointer-events:none;
+    background:linear-gradient(90deg,
+      rgba(200,178,107,0) 0%, rgba(200,178,107,.38) 18%,
+      rgba(200,178,107,.68) 50%,
+      rgba(200,178,107,.38) 82%, rgba(200,178,107,0) 100%);
+  }
+  .works::after,.section--photography::after{
+    content:"";position:absolute;top:48px;left:50%;width:8px;height:8px;z-index:2;pointer-events:none;
+    transform:translate(-50%,-50%) rotate(45deg);
+    background:#14110d;border:1px solid rgba(200,178,107,.85);
+    box-shadow:0 0 12px rgba(200,178,107,.5), inset 0 0 3px rgba(200,178,107,.3);
+  }
   @media (max-width:900px){
     #stage-anker,#stage-kuaishou,#stage-bgy,#stage-project{margin-left:-40px;margin-right:-40px;padding-left:40px;padding-right:40px;}
   }
@@ -166,20 +208,6 @@
   @keyframes hero-breathe{from{transform:scale(1.05) translate3d(-.5%,0,0);filter:saturate(.85)}to{transform:scale(1.12) translate3d(.8%,-.6%,0);filter:saturate(1.08)}}
   @keyframes fade-up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
 
-  /* 高级自定义光标（金点 + 延迟外环 + 悬停标签 + 点击涟漪） */
-  body{cursor:none;}
-  #cur-dot,#cur-ring,#cur-glow{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);}
-  #cur-glow{display:none;}
-  #cur-dot{width:5px;height:5px;border-radius:50%;background:var(--color-accent);box-shadow:0 0 10px 1px rgba(200,178,107,.7),0 0 2px rgba(255,244,214,.9);}
-  #cur-ring{width:26px;height:26px;border-radius:50%;border:1px solid rgba(200,178,107,.42);box-shadow:0 0 8px rgba(200,178,107,.18),inset 0 0 4px rgba(200,178,107,.1);transition:width .28s cubic-bezier(.2,.8,.2,1),height .28s cubic-bezier(.2,.8,.2,1),border-color .28s,background .28s,opacity .28s;display:flex;align-items:center;justify-content:center;}
-  #cur-ring .cur-label{position:absolute;top:calc(100% + 7px);left:50%;transform:translateX(-50%);font-family:var(--font-mono);font-size:8px;letter-spacing:.2em;color:var(--color-accent);text-transform:uppercase;opacity:0;transition:opacity .25s;white-space:nowrap;}
-  #cur-ring.is-hover{width:40px;height:40px;border-color:var(--color-accent);border-style:dashed;background:rgba(200,178,107,.05);box-shadow:0 0 14px rgba(200,178,107,.28),inset 0 0 6px rgba(200,178,107,.16);animation:ring-spin 5s linear infinite;}
-  #cur-ring.is-hover .cur-label{opacity:1;}
-  #cur-ring.is-down{width:18px;height:18px;}
-  #cur-ripple{position:fixed;z-index:9997;width:8px;height:8px;border-radius:50%;border:1px solid rgba(200,178,107,.7);pointer-events:none;transform:translate(-50%,-50%) scale(1);opacity:.7;}
-  @keyframes ripple{to{transform:translate(-50%,-50%) scale(10);opacity:0;}}
-  @keyframes ring-spin{from{transform:translate(-50%,-50%) rotate(0deg);}to{transform:translate(-50%,-50%) rotate(360deg);}}
-  @media(pointer:coarse){body{cursor:auto;}#cur-dot,#cur-ring,#cur-glow,#cur-ripple{display:none;}}
   @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;}}
 
   /* ===== 高级 UI 细节：发光边缘 / 变化描边 ===== */
@@ -216,10 +244,6 @@
 </head>
 <body>
 
-  <!-- 高级光标 -->
-  <div id="cur-glow"></div>
-  <div id="cur-dot"></div>
-  <div id="cur-ring"><span class="cur-label"></span></div>
 
 <button class="sidebar__toggle" aria-label="打开导航">
   <svg width="18" height="14" viewBox="0 0 18 14" fill="none"><path d="M0 1h18M0 7h18M0 13h12" stroke="currentColor" stroke-width="1.5"/></svg>
@@ -1092,19 +1116,6 @@
 </div>
 
 <script src="js/main.js?v=20260826b"></script>
-  <script>
-  /* modify2 · 高级光标（背景已由 CSS 氛围光 + 细腻颗粒营造，去掉廉价粒子） */
-  (function(){
-    var dot=document.getElementById('cur-dot'),ring=document.getElementById('cur-ring'),glow=document.getElementById('cur-glow');
-    if(dot&&ring){var label=ring.querySelector('.cur-label'),mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
-      document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';if(glow){glow.style.left=mx+'px';glow.style.top=my+'px';}});
-      (function lp(){rx+=(mx-rx)*.18;ry+=(my-ry)*.18;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(lp);})();
-      var sel='a,button,[data-modal],.photo-item,.work__hero,.sidebar__nav-link,.sidebar__social';
-      document.querySelectorAll(sel).forEach(function(el){var lab=el.hasAttribute('data-modal')?'VIEW':'';el.addEventListener('mouseenter',function(){ring.classList.add('is-hover');label.textContent=lab;});el.addEventListener('mouseleave',function(){ring.classList.remove('is-hover');});});
-      document.addEventListener('mousedown',function(){ring.classList.add('is-down');var r=document.createElement('div');r.id='cur-ripple';r.style.left=mx+'px';r.style.top=my+'px';document.body.appendChild(r);r.addEventListener('animationend',function(){r.remove();});});
-      document.addEventListener('mouseup',function(){ring.classList.remove('is-down');});
-    }
-  })();
-  </script>
+
 </body>
 </html>
