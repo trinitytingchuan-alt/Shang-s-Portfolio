@@ -231,6 +231,10 @@
   /* 按钮类发光（如有 .btn / .hero__cta） */
   .btn,.hero__cta{border:1px solid var(--color-line);transition:border-color .3s,box-shadow .3s,color .3s;}
   .btn:hover,.hero__cta:hover{border-color:var(--color-accent);box-shadow:0 0 18px rgba(200,178,107,.25);color:var(--color-accent-soft);}
+  /* 全文邮箱/电话：点击复制（与侧栏邮箱一致） */
+  [data-copy]{cursor:pointer;transition:color .2s,text-shadow .2s;}
+  [data-copy]:hover{color:var(--color-accent);text-shadow:0 0 10px rgba(200,178,107,.35);}
+  [data-copy].is-copied{color:var(--color-accent);text-shadow:0 0 12px rgba(200,178,107,.45);}
   /* 黑金主题：base 用 var(--color-bg) 作文字色，本主题下 --color-bg 为深色，导致黑底上文字隐形 —— 统一改为白色系 */
   .contact{color:#f5f1ea}
   .contact .section__title{color:#f5f1ea}
@@ -382,11 +386,11 @@
         <div class="hero__meta reveal">
           <div class="hero__meta-item">
             <span class="hero__meta-label">电话</span>
-            <span class="hero__meta-value">13249086026</span>
+            <span class="hero__meta-value is-copy" data-copy="13249086026" title="点击复制电话" role="button" tabindex="0">13249086026</span>
           </div>
           <div class="hero__meta-item">
             <span class="hero__meta-label">邮箱</span>
-            <span class="hero__meta-value">trinity_ting@163.com</span>
+            <span class="hero__meta-value is-copy" data-copy="trinity_ting@163.com" title="点击复制邮箱" role="button" tabindex="0">trinity_ting@163.com</span>
           </div>
           <div class="hero__meta-item">
             <span class="hero__meta-label">GitHub</span>
@@ -1068,13 +1072,13 @@
       </p>
 
       <div class="contact__grid reveal">
-        <div class="contact__item" aria-disabled="true">
+        <div class="contact__item">
           <span class="contact__label">Email</span>
-          <span class="contact__value">trinity_ting@163.com</span>
+          <span class="contact__value is-copy" data-copy="trinity_ting@163.com" title="点击复制邮箱" role="button" tabindex="0">trinity_ting@163.com</span>
         </div>
         <div class="contact__item">
           <span class="contact__label">Phone</span>
-          <span class="contact__value">132 4908 6026</span>
+          <span class="contact__value is-copy" data-copy="13249086026" title="点击复制电话" role="button" tabindex="0">132 4908 6026</span>
         </div>
         <a class="contact__item" href="https://github.com/trinitytingchuan-alt" target="_blank" rel="noopener">
           <span class="contact__label">GitHub</span>

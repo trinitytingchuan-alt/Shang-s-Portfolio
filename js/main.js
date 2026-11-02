@@ -339,6 +339,36 @@
     });
   }
 
+  /* ---------- 全文邮箱/电话：点击复制（与侧栏邮箱一致） ---------- */
+  document.querySelectorAll('[data-copy]').forEach((el) => {
+    const text = el.getAttribute('data-copy') || '';
+    const copy = () => {
+      if (!text) return;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text)
+          .then(() => { flashCopied(el); })
+          .catch(() => { fallbackCopy(text); flashCopied(el); });
+      } else {
+        fallbackCopy(text);
+        flashCopied(el);
+      }
+    };
+    el.addEventListener('click', copy);
+    el.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); copy(); }
+    });
+  });
+
+  function flashCopied(el) {
+    const prev = el.getAttribute('title') || '点击复制';
+    el.setAttribute('title', '已复制 ✓');
+    el.classList.add('is-copied');
+    setTimeout(() => {
+      el.setAttribute('title', prev);
+      el.classList.remove('is-copied');
+    }, 1600);
+  }
+
   function fallbackCopy(text, cb) {
     const ta = document.createElement('textarea');
     ta.value = text;
