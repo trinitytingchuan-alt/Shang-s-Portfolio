@@ -386,6 +386,8 @@
 document.addEventListener('DOMContentLoaded', () => {
   const portrait = document.getElementById('heroPortrait');
   if (!portrait) return;
+  // 立即可见：hero 在首屏，不依赖滚动 reveal（reveal 初始 opacity:0 会与入场动画冲突导致黑帧）
+  portrait.classList.add('is-visible');
   const img = portrait.querySelector('img');
   const hint = portrait.querySelector('.hero__portrait-hint');
   // 兼容子目录部署（如 /portfolio/）：资源始终位于仓库根，按仓库根绝对路径拼接
@@ -397,53 +399,44 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
   const total = photos.length;
   let idx = 0;
-  let cur = 0;
   const pad = (n) => String(n).padStart(2, '0');
 
-  // 交叉溶解：切换前把「当前照片」铺到容器背景作底，新图再于其上淡入。
-  // 全过程始终有画面覆盖（旧图底 + 新图淡入），不会出现黑底中间值。
-  const setBackdrop = (src) => {
-    portrait.style.backgroundImage = 'url("' + src + '")';
-    portrait.style.backgroundSize = 'cover';
-    portrait.style.backgroundPosition = 'center';
-  };
+  if (hint) hint.textContent = pad(1) + ' / ' + pad(total);
 
-  const swap = () => {
-    const next = photos[idx];
-    setBackdrop(photos[cur]);
+  // 稳健交叉溶解：先预加载下一张，加载完成后再把当前图淡出、新图淡入，
+  // 并在容器铺一层当前图作底，规避淡出瞬间的黑底。
+  const apply = (i) => {
+    const next = photos[i];
     const pre = new Image();
-    pre.onload = pre.onerror = () => {
+    pre.onload = () => {
+      portrait.style.backgroundImage = 'url("' + next + '")';
+      portrait.style.backgroundSize = 'cover';
+      portrait.style.backgroundPosition = 'center';
       img.style.opacity = '0';
       img.src = next;
-      cur = idx;
       requestAnimationFrame(() => {
         requestAnimationFrame(() => { img.style.opacity = '1'; });
       });
-      if (hint) hint.textContent = pad(cur + 1) + ' / ' + pad(total);
-      setTimeout(() => setBackdrop(next), 700);
+      if (hint) hint.textContent = pad(i + 1) + ' / ' + pad(total);
+    };
+    pre.onerror = () => {
+      // 加载失败也不留黑帧：退回展示当前图
+      if (hint) hint.textContent = pad(idx + 1) + ' / ' + pad(total);
     };
     pre.src = next;
   };
 
-  const advance = () => {
-    idx = (idx + 1) % total;
-    swap();
-  };
-
-  // 初始状态：首图入位，底图同步（避免 HTML 里的旧 src 与被删图冲突）
-  img.src = photos[0];
-  setBackdrop(photos[0]);
-  if (hint) hint.textContent = pad(1) + ' / ' + pad(total);
-
-  // 自动轮播：每 3 秒切换一张；悬停暂停，手动操作后重置计时
   let timer = null;
   const stopTimer = () => { if (timer) { clearInterval(timer); timer = null; } };
-  const startTimer = () => { stopTimer(); timer = setInterval(advance, 3000); };
+  const startTimer = () => { stopTimer(); timer = setInterval(() => {
+    idx = (idx + 1) % total;
+    apply(idx);
+  }, 3000); };
   startTimer();
   portrait.addEventListener('mouseenter', stopTimer);
   portrait.addEventListener('mouseleave', startTimer);
 
-  const manual = () => { advance(); startTimer(); };
+  const manual = () => { idx = (idx + 1) % total; apply(idx); startTimer(); };
   portrait.addEventListener('click', manual);
   portrait.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' || e.key === ' ') {
