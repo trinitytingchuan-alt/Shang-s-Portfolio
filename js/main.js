@@ -388,10 +388,12 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!portrait) return;
   const img = portrait.querySelector('img');
   const hint = portrait.querySelector('.hero__portrait-hint');
+  // 兼容子目录部署（如 /portfolio/）：资源始终位于仓库根，按仓库根绝对路径拼接
+  const assetBase = (location.pathname.match(/^\/[^/]+\//) || ['/'])[0];
   const photos = [
-    'assets/photo/me/303153c2fe8ff5c9ba67d9c2846c5160.jpg',
-    'assets/photo/me/c5bdd17582a30fa237b2d2c92995801f.jpg',
-    'assets/photo/me/d19057a5a98253b09e41f8b1094ab435.jpg'
+    assetBase + 'assets/photo/me/303153c2fe8ff5c9ba67d9c2846c5160.jpg',
+    assetBase + 'assets/photo/me/c5bdd17582a30fa237b2d2c92995801f.jpg',
+    assetBase + 'assets/photo/me/d19057a5a98253b09e41f8b1094ab435.jpg'
   ];
   const total = photos.length;
   let idx = 0;
